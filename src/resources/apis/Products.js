@@ -13,11 +13,15 @@ const API_Products = {
         if (select) {
             return await Products.find(loaders, options)
                 .select(select)
+                .sort({ createdAt: -1 })
                 .populate({ path: 'Category', populate: 'parent' })
                 .lean();
         }
 
-        return await Products.find(loaders, options).populate({ path: 'Category', populate: 'parent' }).lean();
+        return await Products.find(loaders, options)
+            .sort({ createdAt: -1 })
+            .populate({ path: 'Category', populate: 'parent' })
+            .lean();
     },
 
     update: async (id, data) => {

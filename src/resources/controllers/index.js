@@ -1,0 +1,1 @@
+module.exports.Products_Controller = require('./Products');
