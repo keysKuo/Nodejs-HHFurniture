@@ -5,6 +5,7 @@ const Products = new Schema(
     {
         pid: { type: String, required: true, unique: true },
         pname: { type: String, required: true },
+        pimg: { type: [String] },
         material: { type: String },
         sizes: { type: [String] },
         colors: { type: [String] },

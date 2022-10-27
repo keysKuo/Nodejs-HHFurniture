@@ -22,7 +22,8 @@
     "fs": "^0.0.1-security",
     "mongoose": "^6.7.0",
     "multer": "^1.4.5-lts.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "slugify": "^1.6.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
