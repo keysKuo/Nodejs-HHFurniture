@@ -1,0 +1,125 @@
+<nav class='navbar navbar-expand-lg navbar-dark bg-dark header'>
+    <div class='container header-container'>
+        <a class='navbar-brand logo-container' href='#'>
+            <img
+                src='https://hhfurniture.com.vn/wp-content/uploads/2022/05/Logo-chuan-mau.png'
+                class='logo-img'
+                alt='Logo'
+            />
+        </a>
+        <button
+            class='navbar-toggler'
+            type='button'
+            data-bs-toggle='collapse'
+            data-bs-target='#navbarSupportedContent'
+            aria-controls='navbarSupportedContent'
+            aria-expanded='false'
+            aria-label='Toggle navigation'
+        >
+            <span class='navbar-toggler-icon'></span>
+        </button>
+        <div class='collapse navbar-collapse' id='navbarSupportedContent'>
+            <div class='' style='width: 100%'>
+                <div class='sub-category'>
+                    <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
+                        {{#each lsSubCat}}
+                            <li class='nav-item'>
+                                <a class='nav-link active' aria-current='page' href='#'>
+                                    <img src='{{img}}' alt='{{alt}}' />
+                                    <h3>{{name}}</h3>
+                                </a>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+
+                <div class='search-container'>
+                    <form class='search-form' role='search' action='https://hhfurniture.com.vn' method='get'>
+                        <div class='search-form__container'>
+                            <input
+                                placeholder='Tìm kiếm tên sản phẩm, mã sản phẩm,…'
+                                class='search-form__input'
+                                type='search'
+                                name='s'
+                                title='Tìm kiếm'
+                                value=''
+                            />
+                            <button class='search-form__submit' type='submit' title='Tìm kiếm' aria-label='Tìm kiếm'>
+                                <i aria-hidden='true' class='fas fa-search'></i>
+                                <span class='screen-only'>Tìm kiếm</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <ul class='nav justify-content-center menu_container'>
+                    {{#each lsCat}}
+                        <li class='nav-item dropdown menu_item'>
+                            <a
+                                class='nav-link dropdown-toggle'
+                                data-bs-toggle='dropdown'
+                                href='#'
+                                role='button'
+                                aria-expanded='false'
+                            >{{title}}
+                                {{#if isExpanded}}
+                                    <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                                {{/if}}
+
+                                {{#if isHot}}
+                                    <img src='images/hot-icon-menu-item.png' class='hot-img' width='50' />
+                                {{/if}}
+                            </a>
+                            {{#if isExpanded}}
+                                <ul class='dropdown-menu'>
+                                    <li><a class='dropdown-item' href='#'>Action</a></li>
+                                    <li><a class='dropdown-item' href='#'>Another action</a></li>
+                                    <li><a class='dropdown-item' href='#'>Something else here</a></li>
+                                    <li><hr class='dropdown-divider' /></li>
+                                    <li><a class='dropdown-item' href='#'>Separated link</a></li>
+                                </ul>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class='cart-container'>
+                <div class='cart-heading'>
+                    <p>
+                        GIỎ HÀNG
+                    </p>
+                </div>
+                <div class='widget-container'>
+                    <div class='cart-content'>
+                        <a
+                            class='cart-contents menu-item'
+                            href='https://hhfurniture.com.vn/gio-hang/'
+                            title='View your shopping cart'
+                        >
+                            <i class='fa fa-cart-shopping'>
+                                <span
+                                    class='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-contents-count'
+                                >
+                                    9
+                                </span>
+                            </i>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class='phone-container'>
+                <ul class='icon-list-items'>
+                    <li class='icon-list-item'>
+                        <a href='tel:0902%20627%20008'>
+                            <span class='icon-list-icon'>
+                                <i aria-hidden='true' class='fas fa-phone-alt'></i>
+                            </span>
+                            <span class='icon-list-text'>1900 86 68 16</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
