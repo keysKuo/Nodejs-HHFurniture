@@ -3,7 +3,7 @@ const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 const BASE_URL = process.env.BASE_URL;
 
-const Products_Controller = {
+const Controller_Products = {
     // [GET] /products/manager
     GET_managerProduct: async (req, res, next) => {
         const error = req.flash('error') || '';
@@ -113,12 +113,23 @@ const Products_Controller = {
     // [PUT] /products/update/:id
     PUT_updateProduct: async (req, res, next) => {
         const id = req.params.id;
+        const { pid , pname, material, colors, sizes, prices, discounts, description, oldpath} = req.body;
         // const { pid, pname, pimg, material, sizes, colors, prices, discounts, quantity, description, categories, }
         await API_Products.update(id, data)
             .then(product => {
-
+                fileapis.removeDirectory('/src/public' + oldpath, err => {
+                    if(err) {
+                        console.log('Xoa thu muc that bai: ' + err);
+                    }
+                });
+                req.flash('success', '...');
+                return res.redirect(`/products/update/${id}`);
+            })
+            .catch(err => {
+                req.flash('error', '...');
+                return res.redirect('/products/update/:id');
             })
     }
 };
 
-module.exports = Products_Controller;
+module.exports = Controller_Products;

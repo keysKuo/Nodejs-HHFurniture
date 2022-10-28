@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 const db = require('./config/database');
 const router = require('./resources/routes');
 

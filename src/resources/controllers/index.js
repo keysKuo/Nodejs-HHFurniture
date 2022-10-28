@@ -1,1 +1,1 @@
-module.exports.Products_Controller = require('./Products');
+module.exports.Controller_Products = require('./Products');
