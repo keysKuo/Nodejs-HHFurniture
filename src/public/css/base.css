@@ -1,0 +1,149 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Reset
+# Elements
+# Forms
+# Links
+# Alignments
+# Accessibility
+# Navigation
+    # Dropdown Menus
+    # Sidebar Navigation
+# Post Navigation
+# Header
+# Post Content
+# Widgets
+# Content Layout
+# Sidebars
+# Footer
+# Featured Images
+# Icons
+# Compatibility
+# Mobile
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+# Reset
+--------------------------------------------------------------*/
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    font-family: sans-serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+main {
+    display: block;
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+    vertical-align: baseline;
+}
+
+/* Inherit box-sizing to more easily change it's value on a component level.
+@link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='number'],
+textarea,
+select {
+    border: 1px solid;
+    border-radius: 0;
+    padding: 10px 15px;
+    max-width: 100%;
+}
+
+textarea {
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+a,
+button,
+input {
+    transition: color 0.1s ease-in-out, background-color 0.1s ease-in-out;
+}
+
+a {
+    -webkit-box-shadow: none;
+    font-family: 'Petrona, Sans-serif';
+    box-shadow: none;
+    text-decoration: none;
+}
+img {
+    height: auto;
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.col-md-3 {
+    padding: 0px;
+}
