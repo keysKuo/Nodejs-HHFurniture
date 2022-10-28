@@ -5,7 +5,7 @@ const BASE_URL = process.env.BASE_URL;
 
 const Products_Controller = {
     // [GET] /products/manager
-    GET_managerProduct: (req, res, next) => {
+    GET_managerProduct: async (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
         const page = parseInt(req.query.page) || 1;
@@ -22,7 +22,7 @@ const Products_Controller = {
             quantity: 1,
         };
 
-        let products = API_Products.readMany({}, options, select);
+        let products = await API_Products.readMany({}, options, select);
         return res.render('manager/productList', {
             layout: 'admin',
             pageName: 'Kho sản phẩm',
