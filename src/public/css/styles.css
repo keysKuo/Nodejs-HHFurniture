@@ -318,7 +318,6 @@ footer {
     transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
     padding: 20px 0px 20px 0px;
     background-color: var(--background);
-    margin-top: 300px;
 }
 
 footer .widget-wrap {
@@ -809,15 +808,19 @@ footer img {
     color: #000000;
     font-family: 'UVN May Chu P12', Sans-serif;
     font-size: 30px;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
     font-family: 'Petrona, serif' !important;
+    text-transform: uppercase;
+    padding: 5px;
 }
 .section-chanel img {
     vertical-align: middle;
     display: inline-block;
 }
-
+.section {
+    margin-bottom: 50px;
+}
 .section .hoatiet {
     width: 10%;
     max-width: 50%;
@@ -868,7 +871,7 @@ video {
 /* section-quytrinh */
 
 .section-quytrinh .image-container {
-    margin: 10px;
+    padding: 10px;
 }
 /* section-khachhang */
 .section-khachhang {
@@ -1041,7 +1044,7 @@ video {
     font-size: 30px;
 }
 .section-contact .icon-list-items .icon-list-item .icon-list-text {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     color: #ffffff;
     align-self: center;
@@ -1050,6 +1053,18 @@ video {
     text-align: left;
     display: inline-block;
 }
+.section-contact iframe {
+    height: 408px;
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    line-height: 1;
+    border: none;
+}
+.section-contact.custom-ember {
+    overflow: hidden;
+}
+
 /* section-post */
 
 .posts .post,
@@ -1157,7 +1172,6 @@ video {
 .section-posts .element .post__title a {
     color: #121212;
     font-family: 'Petrona, Sans-serif';
-
     font-size: 17px;
     font-weight: 500;
 }
@@ -1173,9 +1187,7 @@ video {
 }
 .section-posts .element .post__title a {
     color: #121212;
-
     font-family: 'Petrona, Sans-serif';
-
     font-size: 17px;
     font-weight: 500;
 }
@@ -1189,4 +1201,35 @@ video {
 .section-posts .element > .widget-container {
     margin: 20px 30px 30px 30px;
     padding: 0px 0px 0px 0px;
+}
+.swiper-button-prev {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M0%2C22L22%2C0l2.1%2C2.1L4.2%2C22l19.9%2C19.9L22%2C44L0%2C22L0%2C22L0%2C22z'%20fill%3D'%23fcb218%2F%3E%3C%2Fsvg%3E") !important;
+    color: var(--orange);
+}
+
+.swiper-button-next {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2027%2044'%3E%3Cpath%20d%3D'M27%2C22L27%2C22L5%2C44l-2.1-2.1L22.8%2C22L2.9%2C2.1L5%2C0L27%2C22L27%2C22z'%20fill%3D'%23fcb218%2F%3E%3C%2Fsvg%3E") !important;
+    color: var(--orange);
+}
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+/*****************************************************************/
+
+/* POST PAGE */
+.post-template {
+}
+
+.post-template .card {
+    background-color: #000000;
+}
+.post-template .card .card-body {
+    padding: 0px;
+}
+.post-template .post__read-more {
+    color: #fda702;
+    font-size: 12px;
+}
+.post-template .card-body {
+    font-family: 'Patreno, Sans-serif';
 }

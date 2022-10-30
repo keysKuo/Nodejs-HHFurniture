@@ -1,0 +1,48 @@
+<section class='section section-donoithat'>
+    <div class='container'>
+        <div class='row
+        {{#if reserved}}
+         flex-row-reverse
+         {{/if}}
+         '>
+            <div class='col-md-6'>
+                <div class='widget-wrap'>
+                    <div class='element widget widget-image'>
+                        <div class='widget-container'>
+                            <div class='image'>
+                                <img
+                                    width='770'
+                                    height='453'
+                                    src='{{img}}'
+                                    class='attachment-large size-large'
+                                    alt=''
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-md-6'>
+                <div class='widget-wrap'>
+                    <div class='element widget widget-heading'>
+                        <div class='widget-container heading-title-arround'>
+                            <h2 class='heading-title size-default'>
+                                {{title}}
+                            </h2>
+                        </div>
+                    </div>
+                    <div class='element widget widget-text-editor'>
+                        <div class='widget-container'>
+                            <div class='text-editor clearfix'>
+                                <p>
+                                    {{desc}}<a href='{{href}}'><b><i>XEM THÊM</i></b></a></p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
