@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-var data = [
+const { doitacs, introduce } = require('../data/mock');
+var lsSubCat = [
     {
         name: 'Đồ nội thất',
         img: 'images/category-chair-logo.png',
@@ -31,22 +31,58 @@ var data = [
 var lsCat = [
     {
         title: 'Về H & H',
+        items: [
+            {
+                title: 'Giới thiệu',
+                href: 'gioi-thieu',
+            },
+            {
+                title: 'Liên hệ',
+                href: 'contact',
+            },
+        ],
         isExpanded: true,
     },
     {
         title: 'Sản phẩm',
+        items: [
+            {
+                title: 'Đồ nội thất',
+                href: 'Giới thiệu',
+            },
+            {
+                title: 'Thiết bị vệ sinh',
+                href: 'contact',
+            },
+            {
+                title: 'Đèn trang trí',
+                href: 'contact',
+            },
+            {
+                title: 'Đồ trang trí',
+                href: 'contact',
+            },
+        ],
         isExpanded: true,
     },
     {
         title: 'Bản tin H & H',
-        isExpanded: true,
+        href: 'ban-tin',
     },
     {
         title: 'Chính sách',
+        items: [
+            { href: '', title: 'CHÍNH SÁCH ĐẠI LÝ' },
+            { href: '', title: 'CHÍNH SÁCH CỘNG TÁC VIÊN' },
+            { href: '', title: 'CHÍNH SÁCH GIAO HÀNG' },
+            { href: '', title: 'CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH' },
+            { href: '', title: ' QUY TRÌNH BÁN HÀNG' },
+        ],
         isExpanded: true,
     },
     {
         title: 'Khuyến mãi',
+        href: 'khuyen-mai',
         isExpanded: false,
         isHot: true,
     },
@@ -100,18 +136,6 @@ var lsProduct = [
     },
 ];
 
-var doitacs = [
-    { alt: '', src: 'images/7a57bfce40ae81f0d8bf-300x300.jpg' },
-    { alt: '', src: 'images/31544eccb1ac70f229bd-300x300.jpg' },
-    { alt: '', src: 'images/ad4e55d6aab66be832a7-300x300.jpg' },
-    { alt: '', src: 'images/236583f37c93bdcde482-286x300.jpg' },
-    { alt: '', src: 'images/354728d2d7b216ec4fa3-300x300.jpg' },
-    { alt: '', src: 'images/95acff380058c1069849-300x300.jpg' },
-    { alt: '', src: 'images/a2ab573fa85f6901304e-300x300.jpg' },
-    { alt: '', src: 'images/c377a2e05d809cdec591-300x300.jpg' },
-    { alt: '', src: 'images/86711debe28b23d57a9a.jpg' },
-    { alt: '', src: 'images/40b42a2dd54d14134d5c-300x300.jpg' },
-];
 var posts = [
     {
         title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
@@ -119,7 +143,7 @@ var posts = [
         img: 'images/2-1024x512.png',
     },
     {
-        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        title: 'Sale off từ 40 -50% nhân dịp Hội chợ TRIỂN LÃM QUỐC TẾ 𝐕𝐈𝐄𝐓𝐁𝐔𝐈𝐋𝐃 𝟐𝟎𝟐𝟐 – LẦN 3',
         href: '',
         img: 'images/2-1024x512.png',
     },
@@ -139,16 +163,115 @@ var posts = [
         img: 'images/2-1024x512.png',
     },
 ];
+
+var lsPost = [
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'Sale off từ 40 -50% nhân dịp Hội chợ TRIỂN LÃM QUỐC TẾ 𝐕𝐈𝐄𝐓𝐁𝐔𝐈𝐋𝐃 𝟐𝟎𝟐𝟐 – LẦN 3',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        desc: 'Bạn thân mến, nếu bạn đang cần mua thiết bị vệ sinh thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn',
+        date: '23 Tháng Tám, 2022',
+        img: 'images/2-1024x512.png',
+    },
+    {
+        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
+        href: '',
+        img: 'images/2-1024x512.png',
+    },
+];
+
 router.get('/', (req, res, next) => {
     res.render('pages/home/home', {
         layout: 'main',
         template: 'home-template',
-        lsSubCat: data,
+        lsSubCat,
         lsCat,
         lsProduct,
         doitacs,
         posts,
+        introduce,
+    });
+});
+router.get('/contact', (req, res, next) => {
+    res.render('pages/contact/contact', {
+        layout: 'main',
+        template: 'contact-template',
+        lsSubCat,
+        lsCat,
     });
 });
 
+router.get('/ban-tin', (req, res, next) => {
+    res.render('pages/post/post', {
+        layout: 'main',
+        template: 'post-template',
+        lsSubCat,
+        lsCat,
+        lsPost,
+    });
+});
+
+router.get('/khuyen-mai', (req, res, next) => {
+    res.render('pages/sales/sales', {
+        layout: 'main',
+        template: 'post-template',
+        lsSubCat,
+        lsCat,
+    });
+});
 module.exports = router;
