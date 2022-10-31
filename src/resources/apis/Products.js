@@ -6,21 +6,19 @@ const API_Products = {
     },
 
     readOne: async (loaders) => {
-        return await Products.findOne(loaders).populate('Category').lean();
+        return await Products.findOne(loaders).populate('categories').lean();
     },
 
-    readMany: async (loaders, options, select) => {
-        if (select) {
-            return await Products.find(loaders, options)
-                .select(select)
-                .sort({ createdAt: -1 })
-                .populate({ path: 'Category', populate: 'parent' })
-                .lean();
-        }
-
-        return await Products.find(loaders, options)
+    readMany: async (loaders, options) => {
+        let skip = options.skip || 0;
+        let limit = options.limit || 0;
+        let select = options.select || {};
+        return await Products.find(loaders)
+            .select(select)
+            .skip(skip)
+            .limit(limit)
             .sort({ createdAt: -1 })
-            .populate({ path: 'Category', populate: 'parent' })
+            .populate({ path: 'categories', populate: { path: 'parent'} })
             .lean();
     },
 

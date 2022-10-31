@@ -3,15 +3,16 @@ const Schema = mongoose.Schema;
 
 const Products = new Schema(
     {
-        pid: { type: String, required: true, unique: true },
+        pid: { type: [String], required: true, unique: true },
         pname: { type: String, required: true },
         pimg: { type: [String] },
         material: { type: String },
+        feature: { type: [String] },
         sizes: { type: [String] },
         colors: { type: [String] },
-        prices: { type: [Number] },
-        discounts: { type: [Number] },
-        quantity: { type: [Number] },
+        prices: { type: [String] },
+        discounts: { type: [String] },
+        quantity: { type: [String] },
         description: { type: String },
         categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
         slug: { type: String, required: true },

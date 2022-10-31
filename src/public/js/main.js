@@ -68,4 +68,6 @@ $(document).ready(function ($) {
         speed: 800,
         autoplayDisableOnInteraction: false,
     });
+   
 });
+

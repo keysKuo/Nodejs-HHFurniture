@@ -1,7 +1,7 @@
 const multer = require('multer');
 const fileapis = require('./fileapis');
+require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
-
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
     filename: (req, file, cb) => {
         let ext = file.originalname.substring(file.originalname.lastIndexOf('.'));
-        cb(null, Date.now() + ext);
+        cb(null, file.fieldname + '_' + Date.now() + ext);
     }
 })
 

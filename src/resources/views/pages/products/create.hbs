@@ -1,0 +1,175 @@
+{{#if error}}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{error}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+{{#if success}}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{success}}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{{/if}}
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card shadow'>
+                <div class='card-header d-flex justify-content-between'>
+                    <h4>{{pageName}}</h4>
+                    <a type="button" href="/admin/products" class="btn btn-secondary">Trở lại</a>
+                </div>
+                <div class='card-body'>
+                    <form action="/products/create" class="form" enctype="multipart/form-data" method="POST">
+                        <fieldset id="sizeForm">
+
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="name">TÊN SẢN PHẨM<span style="color:red">*</span></label>
+                                    <input id="pname" name="pname" placeholder="Tên sản phẩm"
+                                    class="form-control" required type="text">
+                                </div>
+
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="name">CHẤT LIỆU<span style="color:red">*</span></label>
+                                    <input id="material" name="material" placeholder="Chất liệu"
+                                    class="form-control" required type="text">
+                                </div>
+                                
+                                
+                            </div>
+                            <div class="form-row">
+                                
+                                
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="category">DANH MỤC SẢN PHẨM</label><br>
+                                    {{#each categories}}
+                                        {{#noChild name ../categories }}
+                                            <div class="form-check form-check-inline ml-1 mt-1">
+                                                <input class="form-check-input" name="categories" type="checkbox" id="{{slug}}" value="{{_id}}">
+                                                <label class="form-check-label" for="{{slug}}">{{name}}</label>
+                                            </div>
+                                        {{/noChild}}
+                                    {{/each}}
+                                    {{!-- <select id="categories" name="categories" class="form-control">
+                                        <option value="">-- Chọn loại sản phẩm --</option>
+                                        {{#each categories}}
+                                            {{#noChild name ../categories }}
+                                                <option value="{{_id}}">{{name}}</option>
+                                            {{/noChild}}
+                                        {{/each}}
+                                    </select> --}}
+                                    
+                                </div>
+                            
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="mr-2 text-uppercase">Thuộc tính</label><br>
+                                <div class="form-check form-check-inline ml-1 mt-1">
+                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox2" value="Mới">
+                                    <label class="form-check-label" for="inlineCheckbox2">Mới</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox3" value="Nổi bật">
+                                    <label class="form-check-label" for="inlineCheckbox3">Nổi bật</label>
+                                </div>
+                            </div> 
+                            
+
+                            <div class="form-row">
+
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="name">Mã sản phẩm<span style="color:red">*</span></label>
+                                    <input id="pid" name="pid" placeholder="Mã sản phẩm"
+                                    class="form-control" required type="text">
+                                </div>
+                                
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="price">Size</label>
+                                    <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text">
+                                </div>
+                                
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="price">Màu sắc</label>
+                                    <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text">
+                                </div>
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="price">Giá gốc</label>
+                                    <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0">
+                                    
+                                </div>
+
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="sale">Giá khuyến mãi</label>
+                                    <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0">
+                                </div>
+                                <div class="form-group col">
+                                    <label class="control-label text-uppercase" for="amount">Số lượng<span style="color:red">*</span></label>
+                                    <input id="quantity" name="quantity" placeholder="Số lượng"
+                                    class="form-control input-md w-100" required="" type="number" min="0">
+                                </div>
+                                
+                            </div>
+                        </fieldset>
+                        <div class="w-100 mb-3">
+                                    <div id="btnAddSize" class="btn btn-primary float-right">Thêm kích thước</div>
+                                </div>
+                        <div class="form-group mt-5">
+                                <label class="control-label text-uppercase" for="pimg">HÌNH ẢNH SẢN PHẨM<span style="color:red">*</span></label>
+                                <div class="form-group-container">
+                                    <input id="pimg" accept="image/*" required="" name="pimg"
+                                        class="form-control-file" onchange="preview()" type="file" multiple>
+                                    <p id="num-of-file" class="mt-1">Chưa có ảnh nào được chọn</p>
+                                    <div id="images-upload">
+                                    </div>
+                                </div>
+                            </div>
+
+                        <div class="form-group">
+                                <label class="control-label text-uppercase" for="description">Mô tả sản phẩm</label>
+                                <textarea id="description" name="description" class="ckeditor"></textarea>
+                            </div>
+                        <div class="form-footer">
+                                <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let fileInput = document.getElementById("pimg")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                img.setAttribute("width", '50%');
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+    CKEDITOR.replace('ckeditor')
+
+    
+</script>

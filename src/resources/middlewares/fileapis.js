@@ -1,4 +1,4 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 
 const fileapis = {
     createSync: (path, callback) => {
@@ -26,8 +26,9 @@ const fileapis = {
     },
 
     removeDirectory: (path, callback) => {
-        fs.rmdir(path, err => {
-            return callback(err);
+        fs.rmdir(path, {recursive: true}, err => {
+            if(err)
+                return callback(err);
         })
     },
 

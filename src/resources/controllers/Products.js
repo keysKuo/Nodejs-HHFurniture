@@ -1,10 +1,11 @@
-const { API_Products } = require('../apis');
+const { API_Products, API_Category } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
+require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
 
 const Controller_Products = {
-    // [GET] /products/manager
+    // [GET] /products/storage
     GET_managerProduct: async (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
@@ -12,21 +13,16 @@ const Controller_Products = {
         const options = {
             skip: 20 * (page - 1),
             limit: 20,
+            
         };
-        const select = {
-            pid: 1,
-            pname: 1,
-            sizes: 1,
-            colors: 1,
-            prices: 1,
-            quantity: 1,
-        };
+        
+        let products = await API_Products.readMany({}, options)
 
-        let products = await API_Products.readMany({}, options, select);
-        return res.render('manager/productList', {
+        console.log(products)
+        return res.render('pages/products/storage', {
             layout: 'admin',
             pageName: 'Kho sản phẩm',
-            data: products,
+            products: products,
             success,
             error,
         });
@@ -37,9 +33,12 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
+        const categories = await API_Category.readMany({});
+        
         return res.render('pages/products/create', {
             layout: 'admin',
             pageName: 'Thêm sản phẩm',
+            categories,
             success,
             error,
         });
@@ -55,7 +54,7 @@ const Controller_Products = {
 
         let pimg = files.map(file => {
             return `/uploads/${req.body.pid}/${file.filename}`;
-        })
+        });
 
         const slug = createSlug(req.body.pname, {
             lower: false,
@@ -87,11 +86,11 @@ const Controller_Products = {
                     console.log('Thư mục này không còn tồn tại: ' + err);
                 });
                 req.flash('success', 'Xóa sản phẩm thành công');
-                return res.redirect('/manager/products');
+                return res.redirect('/products/storage');
             })
             .catch((err) => {
                 req.flash('error', 'Xóa sản phẩm thất bại:' + err);
-                return res.redirect('/manager/products');
+                return res.redirect('/products/storage');
             });
     },
 
@@ -100,13 +99,16 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
         const id = req.params.id;
+        
+        const categories = await API_Category.readMany({});
 
         let product = await API_Products.readOne({_id: id});
-        return res.render('manager/update', {
+        
+        return res.render('pages/products/update', {
             layout: 'admin',
             pageName: 'Chỉnh sửa sản phẩm',
             data: product,
-            error, success
+            error, success, categories
         });
     },
 
