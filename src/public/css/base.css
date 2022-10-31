@@ -148,7 +148,10 @@ img {
 .col-md-4 {
     padding: 0px;
 }
-
+.container,
+.container-fluid {
+    padding: 0px;
+}
 .container {
-    width: 1240px;
+    width: 1140px;
 }

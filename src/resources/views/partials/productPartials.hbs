@@ -9,8 +9,20 @@
                     alt=''
                 /></a>
             <div class='product-img-overlay'></div>
-        </div><h5 class='product-title'><a href='{{href}}'>{{title}}</a></h5>
-        <div class='product-button'><a
+        </div>
+        <div class=''>
+            <h5 class='product-title'>
+                <a href='{{href}}'>{{title}}</a>
+            </h5>
+        </div>
+        <div class='product-price'>
+            {{! <span class='giathuong'>Giá niêm yết: </span> }}
+            <span class='Price-amount amount'>
+                <bdi>{{price}}<span class='Price-currencySymbol'>đ</span></bdi>
+            </span>
+        </div>
+        <div class='product-button'>
+            <a
                 href='{{href}}'
                 class='button product_type_variable add_to_cart_button'
                 aria-label='Lựa chọn cho “Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD”'

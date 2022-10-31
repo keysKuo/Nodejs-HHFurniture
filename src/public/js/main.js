@@ -1,5 +1,5 @@
 $(document).ready(function ($) {
-    AOS.init();
+    // AOS.init();
     $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
