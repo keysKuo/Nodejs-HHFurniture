@@ -1,8 +1,4 @@
-<div class='widget-container'>
-    <video width='100%' height='auto' playsinline='' muted='' autoplay='' loop=''>
-        <source src='https://hhfurniture.com.vn/wp-content/uploads/2021/01/demo-furniture.mp4' type='video/mp4' />
-    </video>
-</div>
+{{> videoHero}}
 
 <section class='section section-1'>
     <div class='container'>
@@ -13,7 +9,6 @@
                         <div class='element position-top vertical-align-top widget widget-image-box'>
                             <div class='widget-container'>
                                 <div class='image-box-wrapper'>
-
                                     <figure class='image-box-img'>
                                         <a href='https://hhfurniture.com.vn/chinh-sach-giao-hang/'>
                                             <img
@@ -40,6 +35,7 @@
                     </div>
                 </div>
             </div>
+
             <div class='col-md-3'>
                 <div class='box-img'>
                     <div class='widget-wrap'>
@@ -69,6 +65,7 @@
                     </div>
                 </div>
             </div>
+
             <div class='col-md-3'>
                 <div class='box-img'>
                     <div class='widget-wrap'>
@@ -96,6 +93,7 @@
                     </div>
                 </div>
             </div>
+
             <div class='col-md-3'>
                 <div class='box-img'>
                     <div class='widget-wrap'>
@@ -131,40 +129,11 @@
         </div>
     </div>
 </section>
-{{>introducePartials introduce.doNoiThat}}
 
-
-<section class='section'>
-    <div class='container'>
-        <div class='row'>
-            <div class='col-lg-12'>
-                <div class='owl-carousel owl-slider products'>
-                    {{#each lsProduct}}
-                        {{> productPartials}}
-                    {{/each}}
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class='container text-center'>
-        <div class='image'>
-            <a href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/' target='_blank'>
-                <img
-                    width='209'
-                    height='69'
-                    src='https://hhfurniture.com.vn/wp-content/uploads/2021/01/xem-them-6.png'
-                    class='attachment-large size-large'
-                    alt=''
-                />
-            </a>
-        </div>
-    </div>
-</section>
-
-{{>introducePartials introduce.thietBiVeSinh}}
-{{>introducePartials introduce.denTrangTri}}
-{{>introducePartials introduce.doTrangTri}}
+{{>slideProductPartials  introduce.doNoiThat href='do-noi-that' isHome=true lsProduct=lsProduct}}
+{{>slideProductPartials  introduce.thietBiVeSinh href='thiet-bi-ve-sinh' isHome=true lsProduct=lsProduct}}
+{{>slideProductPartials  introduce.denTrangTri href='den-trang-tri' isHome=true lsProduct=lsProduct}}
+{{>slideProductPartials  introduce.doTrangTri href='do-trang-tri' isHome=true lsProduct=lsProduct}}
 
 <section class='section section-chanel'>
     {{> heading title="H & H CHANEL"}}
@@ -209,7 +178,6 @@
                         ></iframe>
                     </div>
                 </div>
-
             </div>
             <div class='col-md-4'>
                 <div class='widget-wrap'>
@@ -227,7 +195,6 @@
                         ></iframe>
                     </div>
                 </div>
-
             </div>
             <div class='col-md-4'>
                 <div class='widget-wrap'>
@@ -532,7 +499,6 @@
 
             <div class='col-md-6 px-3'>
                 <div class='widget-wrap'>
-
                     <div
                         class='element grid-1 posts--thumbnail-left widget__width-initial grid-tablet-1 grid-mobile-1 widget widget-posts'
                     >
@@ -556,7 +522,6 @@
                                                     /></div>
                                             </a>
                                         </div>
-
                                         <div class='col-md-7 mb-2'>
                                             <div class='post__text p-3'>
                                                 <h3 class='post__title'>
@@ -566,7 +531,6 @@
                                                 </h3>
                                             </div>
                                         </div>
-
                                     </article>
                                 {{/each}}
                             </div>

@@ -10,7 +10,7 @@ router(app);
 
 app.get('/home', (req, res, next) => {
     res.render('pages/home/home');
-})
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`);

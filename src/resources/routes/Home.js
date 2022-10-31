@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { doitacs, introduce } = require('../data/mock');
+
 var lsSubCat = [
     {
         name: 'Đồ nội thất',
@@ -27,7 +28,6 @@ var lsSubCat = [
         href: '/',
     },
 ];
-
 var lsCat = [
     {
         title: 'Về H & H',
@@ -48,19 +48,19 @@ var lsCat = [
         items: [
             {
                 title: 'Đồ nội thất',
-                href: 'Giới thiệu',
+                href: 'danh-muc-san-pham',
             },
             {
                 title: 'Thiết bị vệ sinh',
-                href: 'contact',
+                href: 'danh-muc-san-pham',
             },
             {
                 title: 'Đèn trang trí',
-                href: 'contact',
+                href: 'danh-muc-san-pham',
             },
             {
                 title: 'Đồ trang trí',
-                href: 'contact',
+                href: 'danh-muc-san-pham',
             },
         ],
         isExpanded: true,
@@ -87,55 +87,62 @@ var lsCat = [
         isHot: true,
     },
 ];
-
 var lsProduct = [
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.RIH-B19.CTV_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.RIH-B19.CTV_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
     {
         title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
         img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+        price: 200000000,
         href: '/',
     },
 ];
-
 var posts = [
     {
         title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
@@ -157,13 +164,7 @@ var posts = [
         href: '',
         img: 'images/2-1024x512.png',
     },
-    {
-        title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
-        href: '',
-        img: 'images/2-1024x512.png',
-    },
 ];
-
 var lsPost = [
     {
         title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
@@ -269,9 +270,22 @@ router.get('/ban-tin', (req, res, next) => {
 router.get('/khuyen-mai', (req, res, next) => {
     res.render('pages/sales/sales', {
         layout: 'main',
-        template: 'post-template',
+        template: 'khuyen-mai-template',
         lsSubCat,
         lsCat,
+        lsProduct,
+        posts,
+    });
+});
+
+router.get('/danh-muc-san-pham', (req, res, next) => {
+    res.render('pages/category/category', {
+        layout: 'main',
+        template: 'category-template',
+        lsSubCat,
+        lsCat,
+        lsProduct,
+        posts,
     });
 });
 module.exports = router;
