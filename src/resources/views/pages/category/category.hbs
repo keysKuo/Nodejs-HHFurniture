@@ -1,0 +1,41 @@
+{{> videoHero}}
+<section class='section m-4'>
+    {{> heading title="Đồ Nội Thất"}}
+    <div class='container products'>
+        <div class='row '>
+            <div class='col-md-8'>
+                <div class='row'>
+                    {{#each lsProduct}}
+                        <div class='col-md-3'>
+                            {{> productPartials}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class='col-md-4'>
+                <div class='row'>
+                    {{#each lsProduct}}
+                        <div class='col-md-6'>
+                            {{> productPartials}}
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class='section'>
+    <div class='container'>
+        <div class='row'>
+            {{#each posts}}
+                <div
+                    class='col-lg-3 col-md-6 col-12 mt-4 pt-2 picture-item shuffle-item shuffle-item--visible'
+                    data-groups='[&quot;business&quot;]'
+                >
+                    {{> postPartials }}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

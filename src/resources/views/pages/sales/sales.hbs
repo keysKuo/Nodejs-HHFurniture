@@ -1,0 +1,52 @@
+{{> videoHero}}
+<section class='section m-4'>
+    {{> heading title="Khuyến mãi"}}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-6 p-0'>
+                <div class='cta__bg bg' style='position: relative; min-height: 200px;'></div>
+            </div>
+            <div class='col-md-6 p-0'>
+                <div class='cta__content'>
+                    <h2 class='cta__title cta__content-item content-item'>Khuyến Mãi </h2>
+                    <div class='cta__description cta__content-item content-item'>
+                        𝐶ℎ𝑢̛𝑜̛𝑛𝑔 𝑡𝑟𝑖̀𝑛ℎ 𝑎́𝑝 𝑑𝑢̣𝑛𝑔 𝑐ℎ𝑜 𝑡𝑎̂́𝑡 𝑐𝑎̉ 𝑘ℎ𝑎́𝑐ℎ ℎ𝑎̀𝑛𝑔 𝑚𝑢𝑎 𝑠𝑎̆́𝑚 𝑜𝑛𝑙𝑖𝑛𝑒 𝑣𝑎̀ 𝑡𝑟𝑢̛̣𝑐 𝑡𝑖𝑒̂́𝑝 𝑡𝑎̣𝑖 𝑐𝑢̛̉𝑎 ℎ𝑎̀𝑛𝑔.
+                        <br />
+                        Nếu bạn đang tìm cho ngôi nhà của mình đồ nội thất chất lượng và cao cấp với giá cả hấp dẫn chưa
+                        từng có thì đừng chần chờ nữa. 𝐂𝐇𝐎̂́𝐓 𝐃𝐄𝐀𝐋 𝐍𝐆𝐀𝐘!
+                    </div>
+
+                    <div class='cta__button-wrapper cta__content-item content-item'>
+                        <a
+                            class='cta__button btn btn-outline-dark size-sm'
+                            href='https://www.facebook.com/HHFURNITURE919/posts/637105411002958?__cft__%5B0%5D=AZUWHM8srijxrXjG-0dygEgKDNLMROFRWCuMVHWHW47wZKOX_XQkekuMTmJ_6V-kRll33YpPq_KLw-2HeoH7jOazq7A4SLnWATySFt9JHWGT7sUf-X-CsDkajwfftmI4GWM9BGlgVC7IqaZiaX3xiSA1PJIVNUJbrPoliAwuYL4_dw&amp;__tn__=%2CO%2CP-R'
+                        >
+                            Click Here
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{> slideProductPartials title="ĐỒ NỘI THẤT" lsProduct=lsProduct}}
+{{> slideProductPartials title="Thiết bị vệ sinh" lsProduct=lsProduct}}
+{{> slideProductPartials title="Đèn trang trí" lsProduct=lsProduct}}
+{{> slideProductPartials title="ĐỒ TRANG TRÍ" lsProduct=lsProduct}}
+
+
+<section class='section'>
+    <div class='container'>
+        <div class='row'>
+            {{#each posts}}
+                <div
+                    class='col-lg-3 col-md-6 col-12 mt-4 pt-2 picture-item shuffle-item shuffle-item--visible'
+                    data-groups='[&quot;business&quot;]'
+                >
+                    {{> postPartials }}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>
