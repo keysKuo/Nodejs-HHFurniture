@@ -145,7 +145,8 @@ img {
 }
 
 .col-md-3,
-.col-md-4 {
+.col-md-4,
+.col-sm-6 {
     padding: 0px;
 }
 .container,
@@ -153,5 +154,8 @@ img {
     padding: 0px;
 }
 .container {
-    width: 1140px;
+    max-width: 1140px;
+}
+.row {
+    margin: 0;
 }

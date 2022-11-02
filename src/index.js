@@ -14,9 +14,9 @@ app.get('/home', (req, res, next) => {
 
 app.get('/admin', (req, res, next) => {
     res.render('pages/products/create', {
-        layout: 'admin'
+        layout: 'admin',
     });
-})
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`);
