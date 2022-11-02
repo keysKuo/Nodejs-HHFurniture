@@ -38,12 +38,62 @@ const init = () => {
                     return 'Liên hệ';
                 },
 
-                includes: function (categories, target, options) {
-                    for (const item of categories) {
-                        if (item._id == target) return options.fn(this);
+                includes: function (list, target, options) {
+                    for(const item of list) {
+                        if(item == target)
+                            return options.fn(this);
                     }
                     return options.inverse(this);
                 },
+                first: function (list, options) {
+                    return list[0];
+                },
+                uploaded: function(data, options) {
+                    let html = ``;
+                    for(img of data) {
+                        html += `<img width="50%" src="${img}" alt=""> <br/>`
+                    }
+                    return html;
+                },
+                theRest: function(data, options) {
+                    let html = ``;
+                    for(let i = 1; i < data.pid.length; i++) {
+                        html += `
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <input id="pid" name="pid" placeholder="Mã sản phẩm"
+                                class="form-control" required type="text" value="${data.pid[i]}">
+                            </div>
+                            <div class="form-group col">
+                                <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text"
+                                value="${data.sizes[i]}">
+                            </div>
+                            <div class="form-group col">
+                                <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text"
+                                value="${data.colors[i]}">
+                            </div>
+                            <div class="form-group col">
+                                <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0"
+                                value="${data.prices[i]}">  
+                            </div>
+                            <div class="form-group col">
+                                <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0"
+                                value="${data.discounts[i]}">
+                            </div>
+                            <div class="form-group col">
+                                <input id="quantity" name="quantity" placeholder="Số lượng"
+                                class="form-control input-md w-100" required="" type="number" min="0"
+                                value="${data.quantity[i]}">
+                            </div>
+                            <div class="form-group">
+                                <div class="btn btn-danger btnDeleteSize"><i class="fa-solid fa-trash"></i></div>
+                            </div>
+                        </div>
+                        `
+                        
+                    }
+                    return html;
+                }
             },
         }),
     );

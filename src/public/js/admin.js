@@ -32,8 +32,17 @@ $(document).ready(function () {
                 <input id="quantity" name="quantity" placeholder="Số lượng"
                 class="form-control input-md w-100" required="" type="number" min="0">
             </div>
+            <div class="form-group">
+                <div class="btn btn-danger btnDeleteSize"><i class="fa-solid fa-trash"></i></div>
+            </div>
         </div>
         `;
         $('#sizeForm').append(html);
     });
+
+    $(document).on('click', 'div.btnDeleteSize', function() {
+        $(this).parent().parent().remove();
+    })
 });
+
+

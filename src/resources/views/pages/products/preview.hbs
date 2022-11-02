@@ -1,0 +1,65 @@
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card shadow'>
+                <div class='card-header d-flex justify-content-between'>
+                    <h4>{{pageName}}</h4>
+                    <a type='button' href='/products/storage' class='btn btn-secondary'>Trở lại</a>
+                </div>
+                <div class='card-body'>
+                    <div class='detail'>
+                        <div class='detail__container'>
+                            <div class='detail__content'>
+                                <div class='detail__container__left'>
+                                    <div class='detail__container__left__img'>
+                                        <img src='{{data.pimg.[0]}}' alt='detail' />
+                                    </div>
+                                    <div class='detail__container__sub__img'>
+                                        {{#each data.pimg}}
+                                            <img src='{{this}}' alt='sub__image' />
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                <div class='detail__container__right'>
+                                    <div class='detail__container__right__title'>
+                                        <h3>{{data.pname}}</h3>
+                                    </div>
+                                    <div class='detail__container__right__desc'>
+                                        <p class='text-decoration-line-through'>Mã sản phẩm: 
+                                                    {{#each data.pid}}<span>[{{this}}] </span>{{/each}}</p>
+                                        <p class='text-decoration-line-through'>Kích thước: 
+                                                     {{#each data.sizes}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                        <p class='text-decoration-line-through'>Màu sắc: 
+                                                     {{#each data.colors}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                        <p class='text-decoration-line-through'>Giá gốc: 
+                                                     {{#each data.prices}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
+                                        <p class='text-decoration-line-through'>Giá sale: 
+                                                     {{#each data.discounts}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
+                                        <p class='text-decoration-line-through'>Số lượng: 
+                                                     {{#each data.quantity}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                                
+                                        
+                                        <p>DANH MỤC: {{#each data.categories}}<span>[{{this.name}}] </span>{{/each}}</p>
+                                    </div>
+                                    <div class='detail__container__right__btn'>
+                                        <button type='submit'>LIÊN HỆ BÁO GIÁ</button>
+                                        <span>Số lượng lớn vui lòng gửi yêu cầu để nhận báo giá rẻ hơn</span>
+                                    </div>
+                                    <div class='detail__container__right__social__icon'>
+                                        <i class='uil uil-facebook-f'></i>
+                                        <i class='uil uil-twitter'></i>
+                                        <i class='uil uil-envelope'></i>
+                                        <i class='uil uil-linkedin'></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='detail__description p-3'>
+                                {{{data.description}}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

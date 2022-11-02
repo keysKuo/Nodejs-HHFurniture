@@ -25,7 +25,8 @@
         "multer": "^1.4.5-lts.1",
         "path": "^0.12.7",
         "slugify": "^1.6.5",
-        "swiper": "^8.4.4"
+        "swiper": "^8.4.4",
+        "uuidv4": "^6.2.13"
     },
     "devDependencies": {
         "nodemon": "^2.0.20"

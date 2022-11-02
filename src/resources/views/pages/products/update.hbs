@@ -21,10 +21,10 @@
             <div class='card shadow'>
                 <div class='card-header d-flex justify-content-between'>
                     <h4>{{pageName}}</h4>
-                    <a type="button" href="/admin/products" class="btn btn-secondary">Trở lại</a>
+                    <a type="button" href="/products/storage" class="btn btn-secondary">Trở lại</a>
                 </div>
                 <div class='card-body'>
-                    <form action="/products/create" class="form" enctype="multipart/form-data" method="POST">
+                    <form action="/products/update/{{data._id}}" class="form" enctype="multipart/form-data" method="POST">
                         <fieldset id="sizeForm">
 
                             <div class="form-row">
@@ -40,7 +40,9 @@
                                     class="form-control" required type="text" value="{{data.material}}">
                                 </div>
                                 
-                                
+                                {{#each data.pimg}}
+                                    <input type="hidden" name="oldpath" value="{{this}}">
+                                {{/each}}
                             </div>
                             <div class="form-row">
                                 
@@ -51,7 +53,7 @@
                                         {{#noChild name ../categories }}
                                             <div class="form-check form-check-inline ml-1 mt-1">
                                                 <input class="form-check-input" name="categories" type="checkbox" id="{{slug}}" value="{{_id}}" 
-                                                {{#includes ../../data.categories _id }}checked{{/includes}}>
+                                                {{#if this.check}}checked{{/if}}>
                                                 <label class="form-check-label" for="{{slug}}">{{name}}</label>
                                             </div>
                                         {{/noChild}}
@@ -71,71 +73,85 @@
                             <div class="form-group">
                                 <label for="" class="mr-2 text-uppercase">Thuộc tính</label><br>
                                 <div class="form-check form-check-inline ml-1 mt-1">
-                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox2" value="Mới">
+                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox2" value="Mới"
+                                    {{#includes data.feature "Mới"}}checked{{/includes}}>
                                     <label class="form-check-label" for="inlineCheckbox2">Mới</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox3" value="Nổi bật">
+                                    <input class="form-check-input" name="feature" type="checkbox" id="inlineCheckbox3" value="Nổi bật"
+                                    {{#includes data.feature "Nổi bật"}}checked{{/includes}}>
                                     <label class="form-check-label" for="inlineCheckbox3">Nổi bật</label>
                                 </div>
                             </div> 
                             
 
                             <div class="form-row">
-
+                                
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="name">Mã sản phẩm<span style="color:red">*</span></label>
                                     <input id="pid" name="pid" placeholder="Mã sản phẩm"
-                                    class="form-control" required type="text">
+                                    class="form-control" required type="text" value="{{#first data.pid}}{{/first}}">
                                 </div>
                                 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Size</label>
-                                    <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text">
+                                    <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text" value="{{#first data.sizes}}{{/first}}">
                                 </div>
                                 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Màu sắc</label>
-                                    <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text">
+                                    <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text" value="{{#first data.colors}}{{/first}}">
                                 </div>
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Giá gốc</label>
-                                    <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0">
+                                    <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0" value="{{#first data.prices}}{{/first}}">
                                     
                                 </div>
 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="sale">Giá khuyến mãi</label>
-                                    <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0">
+                                    <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0" value="{{#first data.discounts}}{{/first}}">
                                 </div>
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="amount">Số lượng<span style="color:red">*</span></label>
                                     <input id="quantity" name="quantity" placeholder="Số lượng"
-                                    class="form-control input-md w-100" required="" type="number" min="0">
+                                    class="form-control input-md w-100" required="" type="number" min="0" value="{{#first data.quantity}}{{/first}}">
+                                    
                                 </div>
-                                
+                                <div style="visibility: hidden;" class="form-group mt-2">
+                                    <br>
+                                    <div class="btn btn-danger"><i class="fa-solid fa-trash"></i></div>
+                                </div>
+        
                             </div>
+                            {{#theRest data}}
+                            {{/theRest}}
                         </fieldset>
+
                         <div class="w-100 mb-3">
-                                    <div id="btnAddSize" class="btn btn-primary float-right">Thêm kích thước</div>
-                                </div>
+                            <div id="btnAddSize" class="btn btn-primary float-right">Thêm kích thước</div>
+                        </div>
+
                         <div class="form-group mt-5">
-                                <label class="control-label text-uppercase" for="pimg">HÌNH ẢNH SẢN PHẨM<span style="color:red">*</span></label>
-                                <div class="form-group-container">
-                                    <input id="pimg" accept="image/*" required="" name="pimg"
-                                        class="form-control-file" onchange="preview()" type="file" multiple>
-                                    <p id="num-of-file" class="mt-1">Chưa có ảnh nào được chọn</p>
-                                    <div id="images-upload">
-                                    </div>
+                            <label class="control-label text-uppercase" for="pimg">HÌNH ẢNH SẢN PHẨM<span style="color:red">*</span></label>
+                            <div class="form-group-container">
+                                <input id="pimg" accept="image/*" name="pimg"
+                                    class="form-control-file" onchange="preview()" type="file" multiple>
+                                <p id="num-of-file" class="mt-1">Chưa có ảnh nào được chọn</p>
+                                <div id="images-upload">
+                                    {{#uploaded data.pimg}}{{/uploaded}}
                                 </div>
                             </div>
+                        </div>
+
+                        
 
                         <div class="form-group">
-                                <label class="control-label text-uppercase" for="description">Mô tả sản phẩm</label>
-                                <textarea id="description" name="description" class="ckeditor"></textarea>
-                            </div>
+                            <label class="control-label text-uppercase" for="description">Mô tả sản phẩm</label>
+                            <textarea id="description" name="description" class="ckeditor">{{{data.description}}}</textarea>
+                        </div>
                         <div class="form-footer">
-                                <button type="submit" class="btn btn-success">Thêm sản phẩm</button>
+                                <button type="submit" class="btn btn-success">Sửa sản phẩm</button>
                             </div>
                     </form>
                 </div>

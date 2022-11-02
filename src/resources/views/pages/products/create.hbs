@@ -21,7 +21,7 @@
             <div class='card shadow'>
                 <div class='card-header d-flex justify-content-between'>
                     <h4>{{pageName}}</h4>
-                    <a type="button" href="/admin/products" class="btn btn-secondary">Trở lại</a>
+                    <a type="button" href="/products/storage" class="btn btn-secondary">Trở lại</a>
                 </div>
                 <div class='card-body'>
                     <form action="/products/create" class="form" enctype="multipart/form-data" method="POST">
@@ -112,12 +112,17 @@
                                     <input id="quantity" name="quantity" placeholder="Số lượng"
                                     class="form-control input-md w-100" required="" type="number" min="0">
                                 </div>
+
+                                <div style="visibility: hidden;" class="form-group mt-2">
+                                    <br>
+                                    <div class="btn btn-danger"><i class="fa-solid fa-trash"></i></div>
+                                </div>
                                 
                             </div>
                         </fieldset>
                         <div class="w-100 mb-3">
-                                    <div id="btnAddSize" class="btn btn-primary float-right">Thêm kích thước</div>
-                                </div>
+                            <div id="btnAddSize" class="btn btn-primary float-right">Thêm kích thước</div>
+                        </div>
                         <div class="form-group mt-5">
                                 <label class="control-label text-uppercase" for="pimg">HÌNH ẢNH SẢN PHẨM<span style="color:red">*</span></label>
                                 <div class="form-group-container">
