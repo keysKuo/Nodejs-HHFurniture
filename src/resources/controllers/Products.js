@@ -177,6 +177,18 @@ const Controller_Products = {
                 req.flash('error', 'Chỉnh sửa sản phẩm thất bại' + err);
                 return res.redirect(`/products/update/${id}`);
             })
+    },
+
+    // [GET] /products/preview/:id
+    GET_previewProduct: async (req, res, next) => {
+        const id = req.params.id;
+
+        let product = await API_Products.readOne({_id: id})
+        console.log(product)
+        return res.render('pages/products/preview', {
+            layout: 'admin',
+            data: product
+        })
     }
 };
 
