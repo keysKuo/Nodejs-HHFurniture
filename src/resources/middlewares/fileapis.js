@@ -21,7 +21,8 @@ const fileapis = {
 
     deleteSync: (path, callback) => {
         fs.unlink(path, err => {
-            return callback(err);
+            if(err)
+                return callback(err);
         });
     },
 
@@ -38,10 +39,19 @@ const fileapis = {
                 return true;
             }            
         } catch (err) {
-            console.log(err);
+            console.log(err + "Pss");
         }
 
         return false;
+    },
+
+    renameDir: (oldPath, newPath) => {
+        if(oldPath != newPath) {
+            if(this.isExist(newPath)) {
+                this.removeDirectory(newPath);
+            }
+            return fs.renameSync(oldPath, newPath)
+        }
     }
    
 }

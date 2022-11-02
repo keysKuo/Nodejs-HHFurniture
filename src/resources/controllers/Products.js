@@ -18,7 +18,7 @@ const Controller_Products = {
         
         let products = await API_Products.readMany({}, options)
 
-        console.log(products)
+        //console.log(products)
         return res.render('pages/products/storage', {
             layout: 'admin',
             pageName: 'Kho sản phẩm',
@@ -52,8 +52,10 @@ const Controller_Products = {
             return res.redirect('/products/create');
         }
 
+        let pdir = (typeof req.body.pid == 'string') ? req.body.pid : req.body.pid[0];
+
         let pimg = files.map(file => {
-            return `/uploads/${req.body.pid}/${file.filename}`;
+            return `/uploads/${pdir}/${file.filename}`;
         });
 
         const slug = createSlug(req.body.pname, {
@@ -77,12 +79,14 @@ const Controller_Products = {
             });
     },
 
-    // [DELETE] /products/delete/:id
-    DELETE_removeProduct: async (req, res, next) => {
+    // [GET] /products/delete/:id
+    GET_removeProduct: async (req, res, next) => {
         const id = req.params.id;
+        
         await API_Products.remove(id)
             .then((product) => {
-                fileapis.removeDirectory(BASE_URL + product.pid, (err) => {
+                let pdir = (typeof product.pid == 'string') ? product.pid : product.pid[0];
+                fileapis.removeDirectory(BASE_URL + pdir, (err) => {
                     console.log('Thư mục này không còn tồn tại: ' + err);
                 });
                 req.flash('success', 'Xóa sản phẩm thành công');
@@ -100,36 +104,78 @@ const Controller_Products = {
         const success = req.flash('success') || '';
         const id = req.params.id;
         
-        const categories = await API_Category.readMany({});
-
-        let product = await API_Products.readOne({_id: id});
+        let product = await API_Products.readOne({_id: id})
         
+        const categories = await API_Category.readMany({})
+            .then(categories => {
+                categories.forEach(cate1 => {
+                    product.categories.forEach(cate2 => {
+                        cate1.check = (cate2._id.toString() == cate1._id.toString());
+                    })
+                })
+
+                return categories;
+            })
+
         return res.render('pages/products/update', {
             layout: 'admin',
             pageName: 'Chỉnh sửa sản phẩm',
             data: product,
-            error, success, categories
+            error, success, categories     
         });
     },
 
-    // [PUT] /products/update/:id
-    PUT_updateProduct: async (req, res, next) => {
+    // [POST] /products/update/:id
+    POST_updateProduct: async (req, res, next) => {
+        const { pid , pname, material, colors, sizes, prices, feature,
+        categories, discounts, description, quantity, oldpath} = req.body;
         const id = req.params.id;
-        const { pid , pname, material, colors, sizes, prices, discounts, description, oldpath} = req.body;
-        // const { pid, pname, pimg, material, sizes, colors, prices, discounts, quantity, description, categories, }
+        const files = req.files;
+        let pimg;
+        let isNewImg = (files.length != 0);
+        
+        let pdir = (typeof pid == 'string') ? pid : pid[0];
+        
+        if(!isNewImg) {
+            pimg = oldpath;
+        }else {
+            pimg = files.map(file => {
+                return `/uploads/${pdir}/${file.filename}`;
+            })
+        }
+        
+        const data = {
+            pname, material, categories, feature, pid, sizes,
+            colors, prices, discounts, quantity, pimg, description
+        }
+
         await API_Products.update(id, data)
-            .then(product => {
-                fileapis.removeDirectory('/src/public' + oldpath, err => {
-                    if(err) {
-                        console.log('Xoa thu muc that bai: ' + err);
-                    }
-                });
-                req.flash('success', '...');
+            .then(async product => {
+                if(isNewImg) {         
+                    for(path of oldpath) {
+                        fileapis.deleteSync('./src/public' + path, err => {
+                            if(err) {
+                                console.log('Xóa hình ảnh thất bại: ' + err);
+                            }
+                        });
+                    }         
+                }
+                
+                req.flash('success', 'Chỉnh sửa sản phẩm thành công');
                 return res.redirect(`/products/update/${id}`);
             })
             .catch(err => {
-                req.flash('error', '...');
-                return res.redirect('/products/update/:id');
+                if(isNewImg) {
+                    for(path of pimg) {
+                        fileapis.deleteSync('./src/public' + path, err => {
+                            if(err) {
+                                console.log('Xóa hình ảnh thất bại: ' + err);
+                            }
+                        });
+                    }
+                }
+                req.flash('error', 'Chỉnh sửa sản phẩm thất bại' + err);
+                return res.redirect(`/products/update/${id}`);
             })
     }
 };
