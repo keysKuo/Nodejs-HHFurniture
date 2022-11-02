@@ -187,6 +187,7 @@ const Controller_Products = {
         console.log(product)
         return res.render('pages/products/preview', {
             layout: 'admin',
+            pageName: 'Preview sản phẩm',
             data: product
         })
     }

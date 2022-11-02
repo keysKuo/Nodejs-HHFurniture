@@ -39,7 +39,7 @@ const fileapis = {
                 return true;
             }            
         } catch (err) {
-            console.log(err + "Pss");
+            console.log(err);
         }
 
         return false;
