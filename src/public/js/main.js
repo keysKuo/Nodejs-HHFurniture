@@ -3,9 +3,22 @@ $(document).ready(function ($) {
     $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
-        dots: false,
         nav: true,
         items: 5,
+        responsiveClass: true,
+        responsive: {
+            0: {
+                nav: false,
+                items: 2,
+            },
+            480: {
+                items: 3,
+            },
+            769: {
+                nav: true,
+                items: 5,
+            },
+        },
     });
     var owl = $('.owl-carousel');
     owl.owlCarousel();
@@ -68,6 +81,4 @@ $(document).ready(function ($) {
         speed: 800,
         autoplayDisableOnInteraction: false,
     });
-   
 });
-

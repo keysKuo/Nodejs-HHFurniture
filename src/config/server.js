@@ -39,12 +39,11 @@ const init = () => {
                 },
 
                 includes: function (categories, target, options) {
-                    for(const item of categories) {
-                        if(item._id == target)
-                            return options.fn(this);
+                    for (const item of categories) {
+                        if (item._id == target) return options.fn(this);
                     }
                     return options.inverse(this);
-                }
+                },
             },
         }),
     );

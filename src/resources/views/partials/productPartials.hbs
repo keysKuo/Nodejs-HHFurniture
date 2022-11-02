@@ -4,7 +4,7 @@
             <a href='{{href}}'><img
                     width='300'
                     height='300'
-                    src='images/{{img}}'
+                    src='/images/{{img}}'
                     class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail'
                     alt=''
                 /></a>
@@ -18,16 +18,19 @@
         <div class='product-price'>
             {{! <span class='giathuong'>Giá niêm yết: </span> }}
             <span class='Price-amount amount'>
-                <bdi>{{price}}<span class='Price-currencySymbol'>đ</span></bdi>
+                <bdi>
+                    {{formatCurrency price}}</bdi>
             </span>
         </div>
-        <div class='product-button'>
-            <a
-                href='{{href}}'
-                class='button product_type_variable add_to_cart_button'
-                aria-label='Lựa chọn cho “Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD”'
-                rel='nofollow'
-            >Thêm vào giỏ hàng</a></div>
-        <div class='products-cqw-wrapper'> </div>
+        {{#if hasButton}}
+            <div class='product-button'>
+                <a
+                    href='{{href}}'
+                    class='button product_type_variable add_to_cart_button'
+                    aria-label='Lựa chọn cho “Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD”'
+                    rel='nofollow'
+                >Thêm vào giỏ hàng</a></div>
+            <div class='products-cqw-wrapper'> </div>
+        {{/if}}
     </div>
 </div>
