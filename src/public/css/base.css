@@ -159,3 +159,17 @@ img {
 .row {
     margin: 0;
 }
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+select,
+textarea {
+    border: 1px solid;
+    border-radius: 0;
+    padding: 10px 15px;
+    max-width: 100%;
+}

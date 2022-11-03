@@ -393,6 +393,9 @@ p {
     -ms-flex-align: center;
     align-items: center;
 }
+.footer .field-group .button:hover {
+    color: #fff;
+}
 .footer .widget-form .field-group > label,
 .widget-form .field-subgroup label {
     color: var(--e-global-color-text);
@@ -819,7 +822,7 @@ p {
     text-align: center;
     font-family: 'Petrona, serif' !important;
     text-transform: uppercase;
-    padding: 5px;
+    padding: 15px;
 }
 .section-chanel img {
     vertical-align: middle;
@@ -829,7 +832,7 @@ p {
     margin-bottom: 50px;
 }
 .section .hoatiet {
-    width: 10%;
+    width: 15%;
     max-width: 50%;
 }
 .widget-image {
@@ -1362,4 +1365,480 @@ video {
     content: '\2714';
     text-align: center;
     vertical-align: middle;
+}
+
+/* Cart */
+table.shop_table th {
+    font-weight: 700;
+    padding: 9px 12px px;
+    line-height: 1.5em;
+}
+
+.cart th {
+    text-align: center !important;
+    font-size: 14px !important;
+}
+table.shop_table {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0 -1px 24px 0;
+    text-align: left;
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 5px;
+}
+table.cart-form__contents > thead:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-top-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table.cart-form__contents > thead:after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-top-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table.cart-form__contents > tbody:before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-bottom-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table.cart-form__contents > tbody:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-bottom-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+table.shop_table td,
+table.shop_table th {
+    background: black;
+    color: #fda702;
+    text-transform: uppercase;
+    border: 0.5px solid #fda702;
+}
+a.remove {
+    content: 'X';
+    float: left;
+    text-indent: 0;
+    font-size: 12px;
+    color: black;
+    background: #fda702;
+    padding: 5px;
+}
+a.remove {
+    color: inherit !important;
+    background: 0 0 !important;
+    border-color: inherit;
+    font-weight: 600;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    line-height: 17px;
+    font-family: 'Petrona, sans-serif';
+}
+.cart-form__contents thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+table.cart .product-thumbnail {
+    min-width: 32px;
+}
+table.shop_table td {
+    padding: 20px;
+}
+table.shop_table td.product-name {
+    text-transform: uppercase;
+}
+table.shop_table td.product-name a {
+    color: #f1c40f;
+}
+
+table.shop_table td.product-name dl.variation {
+    text-transform: capitalize !important;
+    margin-top: 30px;
+}
+table.shop_table td.product-name dl.variation {
+    font-size: 13px !important;
+}
+table.shop_table td {
+    padding: 9px 12px;
+    vertical-align: middle;
+    line-height: 1.5em;
+}
+.giakhuyenmai,
+.giathuong {
+    color: white;
+}
+.qib-container div.quantity:not(#qib_id):not(#qib_id) {
+    float: left;
+    line-height: 1;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    width: auto;
+    min-height: initial;
+    min-width: initial;
+    max-height: initial;
+    max-width: initial;
+}
+@media (min-width: 768px) {
+    table.cart td.product-quantity .qib-container:not(#qib_id) :not(#qib_id) {
+        display: flex;
+        justify-content: center;
+    }
+}
+.qib-button:not(#qib_id):not(#qib_id) {
+    line-height: 1;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 35px;
+    width: 30px;
+    color: black;
+    background: #e2e2e2;
+    border-color: #cac9c9;
+    float: left;
+    min-height: initial;
+    min-width: initial;
+    max-height: initial;
+    max-width: initial;
+    vertical-align: middle;
+    font-size: 16px;
+    letter-spacing: 0;
+    border-style: solid;
+    border-width: 1px;
+    transition: none;
+    border-radius: 0;
+}
+.quantity .minus:not(#qib_id):not(#qib_id),
+.quantity .plus:not(#qib_id):not(#qib_id),
+.quantity > a:not(#qib_id):not(#qib_id) {
+    display: none;
+}
+.qib-container .quantity input.qty:not(#qib_id):not(#qib_id) {
+    line-height: 1;
+    background: none;
+    text-align: center;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 35px;
+    width: 45px;
+    min-height: initial;
+    min-width: initial;
+    max-height: initial;
+    max-width: initial;
+    box-shadow: none;
+    font-size: 15px;
+    border-style: solid;
+    border-color: #cac9c9;
+    border-width: 1px 0;
+    border-radius: 0;
+    background-color: #fff;
+    outline: none;
+}
+.quantity .plus:not(#qib_id):not(#qib_id),
+.quantity > a:not(#qib_id):not(#qib_id) {
+    display: none;
+}
+.qib-button:not(#qib_id):not(#qib_id) {
+    line-height: 1.5;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 35px;
+    width: 30px;
+    color: black;
+    background: #e2e2e2;
+    border-color: #cac9c9;
+    float: left;
+    min-height: initial;
+    min-width: initial;
+    max-height: initial;
+    max-width: initial;
+    vertical-align: middle;
+    font-size: 16px;
+    letter-spacing: 0;
+    border-style: solid;
+    border-width: 1px;
+    transition: none;
+    border-radius: 0;
+}
+.screen-reader-text,
+.screen-reader-text span {
+    position: absolute;
+    top: -10000em;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+td.product-quantity {
+    min-width: 140px;
+}
+.product-subtotal {
+    text-align: center;
+    min-width: 120px;
+}
+.product-remove {
+    min-width: 30px;
+}
+.product-price {
+    text-align: center;
+}
+.coupon {
+    float: left;
+}
+#content table.cart td.actions .input-text,
+table.cart td.actions .input-text,
+#content table.cart td.actions .input-text,
+table.cart td.actions .input-text {
+    width: 150px;
+    padding: 10px 15px;
+}
+
+#content table.cart td.actions .coupon label,
+table.cart td.actions .coupon label,
+#content table.cart td.actions .coupon label,
+table.cart td.actions .coupon label {
+    display: none;
+}
+#respond input#submit,
+a.button,
+button.button,
+input.button {
+    color: #ffffff;
+    background-color: #fda702;
+    font-weight: normal;
+    text-transform: none;
+    padding: 10px 20px;
+}
+.cart-collaterals {
+    width: 100%;
+}
+.cart-collaterals::after,
+.cart-collaterals::before {
+    content: ' ';
+    display: table;
+}
+.cart-collaterals .cart_totals,
+.cart-collaterals .cart_totals h2 {
+    font-size: 16px;
+    font-weight: bold;
+    color: black !important;
+}
+.cart-collaterals .cart_totals,
+.cart-collaterals .cart_totals {
+    float: right;
+    width: 100%;
+}
+@media screen and (min-width: 800px) {
+    .cart-collaterals .cart_totals,
+    .cart-collaterals .cart_totals {
+        margin-right: 0px !important;
+        width: 45% !important;
+    }
+}
+.cart-collaterals .cart_totals tr {
+    background: #fda702 !important;
+}
+.cart-collaterals .cart_totals .cart-subtotal {
+    display: none;
+}
+
+table.shop_table tr {
+    color: black !important;
+}
+.order-total {
+    font-weight: 600;
+    text-align: center;
+}
+.order-total:before {
+    padding: 0 25px;
+    font-size: 23px;
+    line-height: 60px;
+    content: 'TỔNG TẠM TÍNH';
+}
+p.taxtext {
+    font-size: 12px !important;
+    color: #fff !important;
+    font-style: italic;
+    margin-bottom: 0px !important;
+}
+.cart_totals .shop_table tr.order-total th {
+    padding: 15px !important;
+    display: none;
+}
+.wc-proceed-to-checkout {
+}
+.wc-proceed-to-checkout a.checkout-button {
+    display: block;
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 1.25em;
+    padding: 1em;
+    border: 1px solid #fda702 !important;
+    background-color: #000;
+}
+span.onsale {
+    width: 45px;
+    height: 75px;
+    border-radius: 0;
+    background-image: url(https://hhfurniture.com.vn/wp-content/uploads/2021/03/label-3d.png);
+    background-color: #fff0;
+    background-repeat: no-repeat;
+    font-size: 13px;
+    top: -10px;
+    position: absolute;
+    line-height: 2;
+    z-index: 200;
+    color: #fff;
+}
+span.onsale,
+li.product .onsale {
+    width: 45px;
+    height: 75px;
+    border-radius: 0;
+    background-image: url(https://hhfurniture.com.vn/wp-content/uploads/2021/03/label-3d.png);
+    background-color: #fff0;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-top: 10px !important;
+    font-weight: 700 !important;
+    font-size: 14px;
+}
+
+.shop-list-title {
+    color: #fff;
+}
+
+.product-details .product-detail-item {
+    display: flex;
+    padding-bottom: 10px;
+    width: 100%;
+}
+.product-details .product-detail-item li a {
+    border: 2px solid var(--orange);
+    color: #fff;
+    font-size: 16px;
+}
+.product-details .product-detail-item li:hover a {
+    background-color: #fff;
+    color: #000;
+}
+.product_meta {
+    font-size: 80%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.product_meta .detail-container:not(:last-child) {
+    padding-bottom: calc(0px / 2);
+    position: relative;
+    display: block;
+}
+.detail-label {
+    font-weight: 700;
+}
+.product-title h2 {
+    color: #fda702;
+    font-family: 'Patreno, Sans-serif';
+    font-size: 19px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.4em;
+}
+.shop-list-title {
+    min-width: 80px;
+}
+.product-details .product-price {
+    color: #fda702 !important;
+    font-size: 25px !important;
+    font-family: 'Patreno, Sans-serif';
+}
+.product-detail-item li:hover a.btn-submit {
+    background-color: var(--orange);
+}
+
+.share-btn {
+    border-radius: 50%;
+    border-width: 2px;
+    border: 1px solid var(--orange);
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.share-btn:not(:last-child) {
+    margin-right: 10px;
+}
+
+.share-btn i {
+    font-size: 25px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    color: #fda702 !important;
+}
+.elementor-facebook-widget.fb-like {
+    height: 1px;
+}
+.elementor-facebook-widget.fb_iframe_widget,
+.elementor-facebook-widget.fb_iframe_widget span {
+    width: 100% !important;
+}
+.fb_iframe_widget {
+    display: inline-block;
+    position: relative;
+}
+widget.fb_iframe_widget span {
+    width: 100% !important;
+}
+.fb_iframe_widget span {
+    display: inline-block;
+    position: relative;
+    text-align: justify;
+}
+.elementor-facebook-widget.fb_iframe_widget iframe {
+    position: relative;
+    width: 100% !important;
+}
+.fb_iframe_widget iframe {
+    position: absolute;
+}
+.sanpham iframe {
+    height: 300px;
 }

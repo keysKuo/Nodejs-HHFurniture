@@ -140,7 +140,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -148,7 +148,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -156,7 +156,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -164,7 +164,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -172,7 +172,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -180,7 +180,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -188,7 +188,7 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -196,7 +196,7 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -204,7 +204,25 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
+        },
+    ],
+    lsCart: [
+        {
+            title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
+            img: 'HH-FURNITURE_N.LTX-801M.13.CTD_1900866816-300x300.jpg',
+            price: 200000000,
+            discount: 20,
+            isHot: true,
+            href: '/san-pham/ban-an-thong-minh',
+        },
+        {
+            title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
+            img: 'HH-FURNITURE_N.RIH-B19.CTV_1900866816-300x300.jpg',
+            price: 200000000,
+            discount: 20,
+            isHot: true,
+            href: '/san-pham/ban-an-thong-minh',
         },
     ],
     lsCat: [
@@ -272,25 +290,37 @@ module.exports = {
             name: 'Đồ nội thất',
             img: '/images/category-chair-logo.png',
             alt: 'Đồ nội thất',
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             name: 'THIẾT BỊ VỆ SINH​',
             img: '/images/bathroom-icon.png',
             alt: 'thiết bị vệ sinh',
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             name: 'ĐÈN TRANG TRÍ​​',
             img: '/images/den-chum-icon-chandelier.png',
             alt: 'Đèn trang trí',
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
         {
             name: 'ĐỒ TRANG TRÍ​',
             img: '/images/do-trang-tri-icon.png',
             alt: 'Đồ trang trí',
-            href: '//',
+            href: '/san-pham/ban-an-thong-minh',
         },
     ],
+
+    product: {
+        title: 'Bộ Bàn Trang Điểm Hiện Đại H&H SCU-G1691',
+        slug: 'bo-ban-trang-diem-hien-dai-hh-scu-g1691',
+        code: 'N.SCU-G1691.T80',
+        price: '16290000',
+        material: 'Gỗ tự nhiên, kim loại',
+        size: ['T80: 800*400*780', 'T100: 1000*400*780', 'T120: 1200*400*780'],
+        color: ['Trắng'],
+        discount: 50,
+        img: 'N.SCU-G1691-scaled.jpg',
+    },
 };

@@ -1,0 +1,164 @@
+<section class='section category-section'>
+    {{> heading title="Giỏ hàng" }}
+</section>
+<section class='section'>
+    <div class='container'>
+        <div class='table-responsive-md'>
+            <form>
+                <table
+                    class='table shop_table shop_table_responsive cart cart-form__contents position-relative'
+                    cellspacing='0'
+                >
+                    <thead>
+                        <tr>
+                            <th class='product-remove'>Stt</th>
+                            <th class='product-thumbnail'>Hình Ảnh Sản Phẩm</th>
+                            <th class='product-name'>Sản phẩm</th>
+                            <th class='product-price'>Giá</th>
+                            <th class='product-quantity'>Số lượng</th>
+                            <th class='product-subtotal'>Tạm tính</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class='cart-form__cart-item cart_item'>
+                            <td class='product-remove'>
+                                <a
+                                    href='https://hhfurniture.com.vn/gio-hang/?remove_item=9897af2e1014f2e1c831b8d6e18f6e57&amp;_wpnonce=1a20c87b83'
+                                    class='remove'
+                                    aria-label='Xóa sản phẩm này'
+                                >1</a>
+                            </td>
+
+                            <td class='product-thumbnail'>
+                                <a
+                                    href='https://hhfurniture.com.vn/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
+                                ><img
+                                        width='300'
+                                        height='300'
+                                        src='https://hhfurniture.com.vn/wp-content/uploads/2021/06/N.SCU-G1692C100-300x300.png'
+                                        class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail'
+                                        alt=''
+                                    /></a>
+                            </td>
+
+                            <td class='product-name' data-title='Sản phẩm'>
+                                <a
+                                    href='https://hhfurniture.com.vn/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
+                                >Bộ Bàn Trang Điểm Hiện Đại H&amp;H SCU-G1692</a><dl class='variation'>
+                                    <dt class='variation-ChtLiu'>Chất Liệu:</dt>
+                                    <dd class='variation-ChtLiu'><p>Gỗ tự nhiên, Kim loại</p>
+                                    </dd>
+                                    <dt class='variation-KchThc'>Kích Thước:</dt>
+                                    <dd class='variation-KchThc'><p>1000*520*760</p>
+                                    </dd>
+                                    <dt class='variation-MuSc'>Màu Sắc:</dt>
+                                    <dd class='variation-MuSc'><p>Cam</p>
+                                    </dd>
+                                </dl>
+                            </td>
+
+                            <td class='product-price' data-title='Giá'>
+                                <span class='giathuong'>Giá niêm yết: </span>
+                                <span class='Price-amount amount'>
+                                    {{formatCurrency 230000000}}
+                                </span>
+                            </td>
+
+                            <td class='product-quantity' data-title='Số lượng'>
+                                <div class='qib-container'>
+                                    <button type='button' class='minus qib-button'>-</button>
+                                    <div class='quantity buttons_added buttons-added'>
+                                        <label class='screen-reader-text' for='quantity_63629e80a8d21'>Bộ Bàn Trang Điểm
+                                            Hiện Đại H&amp;H SCU-G1692 số lượng</label>
+                                        <input
+                                            type='number'
+                                            id='quantity_63629e80a8d21'
+                                            class='input-text qty text'
+                                            step='1'
+                                            min='0'
+                                            max=''
+                                            name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
+                                            value='1'
+                                            title='SL'
+                                            size='4'
+                                            placeholder=''
+                                            inputmode='numeric'
+                                        />
+                                    </div>
+                                    <button type='button' class='plus qib-button'>+</button>
+                                </div>
+                            </td>
+
+                            <td class='product-subtotal' data-title='Tạm tính'>
+                                <span class='Price-amount amount'>
+                                    {{formatCurrency 230000000}}
+                                </span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan='6' class='actions'>
+                                <div class='coupon'>
+                                    <label for='coupon_code'>Ưu đãi:</label>
+                                    <input
+                                        type='text'
+                                        name='coupon_code'
+                                        class='input-text'
+                                        id='coupon_code'
+                                        value=''
+                                        placeholder='Mã ưu đãi'
+                                    />
+                                    <button type='submit' class='button' name='apply_coupon' value='Áp dụng'>Áp dụng</button>
+                                </div>
+
+                                <button
+                                    type='submit'
+                                    class='button'
+                                    name='update_cart'
+                                    value='Cập nhật giỏ hàng'
+                                    disabled=''
+                                    hidden='true'
+                                    aria-disabled='true'
+                                >Cập nhật giỏ hàng</button>
+
+                                <input type='hidden' id='cart-nonce' name='cart-nonce' value='1a20c87b83' /><input
+                                    type='hidden'
+                                    name='_wp_http_referer'
+                                    value='/gio-hang/'
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+        </div>
+
+        <div class='cart-collaterals'>
+            <div class='cart_totals'>
+                <h2>Cộng giỏ hàng</h2>
+                <table cellspacing='0' class='shop_table shop_table_responsive'>
+                    <tbody><tr class='cart-subtotal'>
+                            <th>Tạm tính</th>
+                            <td data-title='Tạm tính'><span class='Price-amount amount'>
+                                    {{formatCurrency 230000000}}
+                                </span></td>
+                        </tr>
+
+                        <tr class='order-total'>
+                            <th>Tổng</th>
+                            <td data-title='Tổng'><strong><span class='Price-amount amount'><bdi>23.160.000<span
+                                                class='Price-currencySymbol'
+                                            >đ</span></bdi></span></strong>
+                                <p class='taxtext'>(Giá chưa bao gồm thuế VAT 10%)</p></td>
+                        </tr>
+                    </tbody></table>
+                <div class='wc-proceed-to-checkout'>
+                    <a href='https://hhfurniture.com.vn/thanh-toan/' class='checkout-button button alt wc-forward'>XÁC
+                        NHẬN ĐẶT HÀNG</a>
+                </div>
+            </div>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</section>
