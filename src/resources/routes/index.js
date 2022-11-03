@@ -4,6 +4,7 @@ const categoryRouter = require('./Category');
 function router(app) {
     app.use('/', homeRouter);
     app.use('/products', productRouter);
+    app.use('/san-pham', productRouter);
     app.use('/danh-muc-san-pham', categoryRouter);
 }
 

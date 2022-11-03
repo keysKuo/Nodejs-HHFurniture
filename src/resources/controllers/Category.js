@@ -23,9 +23,11 @@ var category = {
 const Controller_Category = {
     GET_CategoryPage: async (req, res, next) => {
         if (req.params.slug) {
+            const meta = { title: category.title, desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
             return res.render('pages/category', {
                 layout: 'main',
                 template: 'category-template',
+                meta,
                 category,
                 lsSubCat,
                 lsCat,

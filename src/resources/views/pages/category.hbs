@@ -1,6 +1,6 @@
-{{!-- {{> videoHero}} --}}
+{{> videoHero}}
 <section class='section category-section'>
-    {{!-- {{> heading title=category.title }} --}}
+    {{> heading title=category.title }}
 </section>
 <section class='section top-section danhmuc-subcate section-boxed section-height-default section-height-default'>
     <div class='container -gap-default'>
@@ -12,10 +12,10 @@
                             <div class='container'>
                                 <nav class='nav breadcrumb'>
                                     <span class='nmr-crumb'>
-                                        <a class='nav-link p-1' href='https://hhfurniture.com.vn'></a>
+                                        <a class='nav-link p-1' href='/'></a>
                                     </span>
                                     <span class='nmr-crumb'>
-                                        <a class='nav-link p-1' href='https://hhfurniture.com.vn'>
+                                        <a class='nav-link p-1' href='/'>
                                             <i class='fa fa-angle-right'></i>
                                             {{category.title}}
                                         </a>
@@ -69,7 +69,7 @@
                 <div class='row'>
                     {{#each lsProduct}}
                         <div class='col-md-3 px-1'>
-                            {{!-- {{> productPartials hasButton=true}} --}}
+                            {{> productPartials hasButton=true}}
                         </div>
                     {{/each}}
                 </div>
@@ -89,27 +89,27 @@
                                 <ul class='layered-nav-list'>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/?max_price=5000000'
+                                            href='/danh-muc-san-pham/do-noi-that/?max_price=5000000'
                                         >Từ 0 - 5 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/?max_price=20000000&amp;min_price=5000000'
+                                            href='/danh-muc-san-pham/do-noi-that/?max_price=20000000&amp;min_price=5000000'
                                         >Từ 5 - 20 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/?max_price=50000000&amp;min_price=20000000'
+                                            href='/danh-muc-san-pham/do-noi-that/?max_price=50000000&amp;min_price=20000000'
                                         >Từ 20 - 50 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/?max_price=100000000&amp;min_price=50000000'
+                                            href='/danh-muc-san-pham/do-noi-that/?max_price=100000000&amp;min_price=50000000'
                                         >Từ 50 - 100 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='https://hhfurniture.com.vn/danh-muc-san-pham/do-noi-that/?min_price=100000000'
+                                            href='/danh-muc-san-pham/do-noi-that/?min_price=100000000'
                                         >Lớn hơn 100 Triệu Đồng</a>
                                     </li>
                                 </ul>
@@ -127,7 +127,7 @@
                     {{#each lsProduct as |product|}}
                         {{#if discount}}
                             <div class='col-md-6'>
-                                {{!-- {{> productPartials}} --}}
+                                {{> productPartials}}
                             </div>
                         {{/if}}
                     {{/each}}
@@ -142,7 +142,7 @@
                     {{#each lsProduct as |product|}}
                         {{#if isHot}}
                             <div class='col-md-6'>
-                                {{!-- {{> productPartials}} --}}
+                                {{> productPartials}}
                             </div>
                         {{/if}}
                     {{/each}}

@@ -39,25 +39,24 @@ const init = () => {
                 },
 
                 includes: function (list, target, options) {
-                    for(const item of list) {
-                        if(item == target)
-                            return options.fn(this);
+                    for (const item of list) {
+                        if (item == target) return options.fn(this);
                     }
                     return options.inverse(this);
                 },
                 first: function (list, options) {
                     return list[0];
                 },
-                uploaded: function(data, options) {
+                uploaded: function (data, options) {
                     let html = ``;
-                    for(img of data) {
-                        html += `<img width="50%" src="${img}" alt=""> <br/>`
+                    for (img of data) {
+                        html += `<img width="50%" src="${img}" alt=""> <br/>`;
                     }
                     return html;
                 },
-                theRest: function(data, options) {
+                theRest: function (data, options) {
                     let html = ``;
-                    for(let i = 1; i < data.pid.length; i++) {
+                    for (let i = 1; i < data.pid.length; i++) {
                         html += `
                         <div class="form-row">
                             <div class="form-group col">
@@ -89,11 +88,27 @@ const init = () => {
                                 <div class="btn btn-danger btnDeleteSize"><i class="fa-solid fa-trash"></i></div>
                             </div>
                         </div>
-                        `
-                        
+                        `;
                     }
                     return html;
-                }
+                },
+                when: function (operand_1, operator, operand_2, options) {
+                    let operators = {
+                        //  {{#when <operand1> 'eq' <operand2>}}
+                        eq: (l, r) => l == r, //  {{/when}}
+                        noteq: (l, r) => l != r,
+                        gt: (l, r) => +l > +r, // {{#when var1 'eq' var2}}
+                        gteq: (l, r) => +l > +r || l == r, //               eq
+                        lt: (l, r) => +l < +r, // {{else when var1 'gt' var2}}
+                        lteq: (l, r) => +l < +r || l == r, //               gt
+                        or: (l, r) => l || r, // {{else}}
+                        and: (l, r) => l && r, //               lt
+                        '%': (l, r) => l % r === 0, // {{/when}}
+                    };
+                    let result = operators[operator](operand_1, operand_2);
+                    if (result) return options.fn(this);
+                    return options.inverse(this);
+                },
             },
         }),
     );
