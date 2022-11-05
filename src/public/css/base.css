@@ -173,3 +173,16 @@ textarea {
     padding: 10px 15px;
     max-width: 100%;
 }
+
+.back-to-top {
+    background-color: #fda702;
+    border: none;
+}
+.back-to-top:hover {
+    background-color: #fda702;
+    border: none;
+}
+.back-to-top:active {
+    background-color: #fda702;
+    border: none;
+}

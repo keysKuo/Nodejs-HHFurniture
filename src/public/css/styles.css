@@ -3,6 +3,7 @@
     --green: #7ad03a;
     --red: #a00;
     --orange: #ffba00;
+    --yellow: #f1c40f;
     --blue: #2ea2cc;
     --primary: #a46497;
     --primary-text: white;
@@ -1378,7 +1379,7 @@ table.shop_table th {
     text-align: center !important;
     font-size: 14px !important;
 }
-table.shop_table {
+.cart-collaterals table.shop_table {
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 0 -1px 24px 0;
     text-align: left;
@@ -1394,7 +1395,7 @@ table.cart-form__contents > thead:before {
     display: block;
     width: 60px;
     height: 60px;
-    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-top-left.png);
+    background: url(/images/coner-top-left.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1406,7 +1407,7 @@ table.cart-form__contents > thead:after {
     display: block;
     width: 60px;
     height: 60px;
-    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-top-right.png);
+    background: url(/images/coner-top-right.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1418,7 +1419,7 @@ table.cart-form__contents > tbody:before {
     display: block;
     width: 60px;
     height: 60px;
-    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-bottom-left.png);
+    background: url(/images/coner-bottom-left.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1430,15 +1431,17 @@ table.cart-form__contents > tbody:after {
     display: block;
     width: 60px;
     height: 60px;
-    background: url(https://hhfurniture.com.vn/wp-content/uploads/2022/05/coner-bottom-right.png);
+    background: url(/images/coner-bottom-right.png);
     background-repeat: no-repeat;
     background-size: cover;
+}
+table.shop_table th {
+    text-transform: uppercase;
 }
 table.shop_table td,
 table.shop_table th {
     background: black;
     color: #fda702;
-    text-transform: uppercase;
     border: 0.5px solid #fda702;
 }
 a.remove {
@@ -1466,7 +1469,7 @@ a.remove {
 }
 
 table.cart .product-thumbnail {
-    min-width: 32px;
+    min-width: 120px;
 }
 table.shop_table td {
     padding: 20px;
@@ -1475,11 +1478,11 @@ table.shop_table td.product-name {
     text-transform: uppercase;
 }
 table.shop_table td.product-name a {
-    color: #f1c40f;
+    color: var(--yellow);
 }
 
 table.shop_table td.product-name dl.variation {
-    text-transform: capitalize !important;
+    text-transform: none !important;
     margin-top: 30px;
 }
 table.shop_table td.product-name dl.variation {
@@ -1489,10 +1492,14 @@ table.shop_table td {
     padding: 9px 12px;
     vertical-align: middle;
     line-height: 1.5em;
+    color: var(--yellow);
 }
 .giakhuyenmai,
 .giathuong {
     color: white;
+}
+.Price-amount {
+    text-transform: capitalize;
 }
 .qib-container div.quantity:not(#qib_id):not(#qib_id) {
     float: left;
@@ -1618,6 +1625,7 @@ td.product-quantity {
 }
 .product-price {
     text-align: center;
+    min-width: 150px;
 }
 .coupon {
     float: left;
@@ -1682,11 +1690,12 @@ input.button {
 table.shop_table tr {
     color: black !important;
 }
-.order-total {
+.cart-collaterals .order-total {
     font-weight: 600;
     text-align: center;
 }
-.order-total:before {
+
+.cart-collaterals .order-total:before {
     padding: 0 25px;
     font-size: 23px;
     line-height: 60px;
@@ -1694,9 +1703,11 @@ table.shop_table tr {
 }
 p.taxtext {
     font-size: 12px !important;
-    color: #fff !important;
+    color: #fff;
     font-style: italic;
+    font-weight: 600;
     margin-bottom: 0px !important;
+    font-family: 'Patreno, Sans-serif';
 }
 .cart_totals .shop_table tr.order-total th {
     padding: 15px !important;
@@ -1710,18 +1721,22 @@ p.taxtext {
     margin-bottom: 1em;
     font-size: 1.25em;
     padding: 1em;
-    border: 1px solid #fda702 !important;
+    border: 2px solid #fda702;
     background-color: #000;
+}
+.wc-proceed-to-checkout a.checkout-button:hover {
+    background-color: #fda702;
+    color: #000;
 }
 span.onsale {
     width: 45px;
     height: 75px;
     border-radius: 0;
-    background-image: url(https://hhfurniture.com.vn/wp-content/uploads/2021/03/label-3d.png);
+    background-image: url(/images/label-3d.png);
     background-color: #fff0;
     background-repeat: no-repeat;
     font-size: 13px;
-    top: -10px;
+    top: -1px;
     position: absolute;
     line-height: 2;
     z-index: 200;
@@ -1732,7 +1747,7 @@ li.product .onsale {
     width: 45px;
     height: 75px;
     border-radius: 0;
-    background-image: url(https://hhfurniture.com.vn/wp-content/uploads/2021/03/label-3d.png);
+    background-image: url(/images/label-3d.png);
     background-color: #fff0;
     background-repeat: no-repeat;
     text-align: center;
@@ -1746,14 +1761,13 @@ li.product .onsale {
 }
 
 .product-details .product-detail-item {
-    display: flex;
-    padding-bottom: 10px;
     width: 100%;
 }
 .product-details .product-detail-item li a {
     border: 2px solid var(--orange);
     color: #fff;
     font-size: 16px;
+    margin: 10px 0px 10px 0px;
 }
 .product-details .product-detail-item li:hover a {
     background-color: #fff;
@@ -1841,4 +1855,323 @@ widget.fb_iframe_widget span {
 }
 .sanpham iframe {
     height: 300px;
+}
+
+.product-features {
+    padding: 30px 10px 10px 10px;
+    border-style: solid;
+    border-width: 3px 3px 3px 3px;
+    border-color: #fda702;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.product-detail-features .button {
+    font-family: 'Patreno, Sans-serif';
+    font-size: 30px;
+    font-weight: 600;
+    fill: #fda702;
+    color: #fda702;
+    background-color: #000000;
+    display: inline-block;
+    line-height: 1;
+    padding: 12px 24px;
+    border-radius: 3px;
+    text-align: center;
+    -webkit-transition: all 0.3s;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+    transition-delay: 0s;
+    transition-property: all;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    left: 50px;
+}
+.product-detail-features .icon-list-icon {
+    color: #fda702;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* payments */
+#customer_details {
+    border: 2px solid var(--orange);
+    position: relative;
+    border-radius: 10px 10px 0px 0px;
+}
+#customer_details > .billing-fields:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-top-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#customer_details > .billing-fields:after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-top-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#customer_details > div.additional-fields:before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-bottom-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#customer_details > div.additional-fields:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-bottom-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#customer_details h3:first-child {
+    border-radius: 10px 10px 0px 0px;
+}
+
+#customer_details h3,
+h3#order_review_heading {
+    text-transform: uppercase !important;
+}
+#customer_details h3 {
+    background: #fda702;
+    color: #000 !important;
+    text-align: center;
+    padding-top: 6px;
+    padding-right: 6px;
+}
+
+#customer_details .form-row label {
+    color: #fda702 !important;
+}
+form .form-row input.input-text,
+form .form-row textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    outline: 0;
+    line-height: normal;
+}
+form .form-row .required {
+    color: red;
+    font-weight: 700;
+    border: 0 !important;
+    text-decoration: none;
+}
+#order_review_heading {
+    position: relative;
+    width: 100%;
+    background: #fda702;
+    color: #000 !important;
+    text-align: center;
+    margin-bottom: 0px;
+    border-radius: 10px 10px 0px 0px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+#order_review_heading:before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-top-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#order_review_heading:after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-top-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#order_review .order-total th,
+#order_review .order-total td {
+    background-color: var(--orange);
+    color: #000000;
+}
+.checkout-review-order-table:after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-bottom-right.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.checkout-review-order-table::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    display: block;
+    width: 60px;
+    height: 60px;
+    background: url(/images/coner-bottom-left.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#payment {
+    background: #000;
+    border-radius: 5px;
+}
+ul.payment_methods {
+    text-align: left;
+    padding: 1em;
+    border-bottom: 1px solid #d3ced2;
+    margin: 0;
+    list-style: none outside;
+}
+#customer_details p,
+ul.wc_payment_methods.payment_methods.methods {
+    color: #fda702 !important;
+}
+#payment ul.payment_methods::before {
+    content: ' ';
+    display: table;
+}
+#payment ul.payment_methods li {
+    line-height: 2;
+    text-align: left;
+    margin: 0;
+    font-weight: 400;
+}
+#payment ul.payment_methods {
+    text-align: left;
+    padding: 1em;
+    border-bottom: 1px solid #d3ced2;
+    margin: 0;
+    list-style: none outside;
+}
+#payment ul.payment_methods li:not(.notice)::before {
+    content: ' ';
+    display: table;
+}
+#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child {
+    clip: rect(1px, 1px, 1px, 1px);
+    position: absolute !important;
+}
+.checkout #payment ul.payment_methods li input {
+    margin: 0 1em 0 0;
+}
+#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label {
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, 0.07);
+}
+#payment .payment_methods > .wc_payment_method > label {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.04);
+    display: block;
+    cursor: pointer;
+}
+#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
+    content: '\e03c';
+}
+#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
+    content: '\e904';
+}
+#payment .payment_methods > .wc_payment_method > label:before {
+    font-family: WooCommerce;
+    content: '\e039';
+}
+#payment .payment_methods > .wc_payment_method > label:before {
+    display: inline-block;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    content: '\e902';
+    margin-right: 0.5407911001em;
+    transition: color, ease, 0.2s;
+    font-family: 'GP Premium';
+}
+
+#add_payment_method #payment div.payment_box,
+.cart #payment div.payment_box,
+.checkout #payment div.payment_box {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em;
+    margin: 1em 0;
+    font-size: 0.92em;
+    border-radius: 2px;
+    line-height: 1.5;
+    color: #515151;
+}
+.checkout #payment ul.payment_methods li img {
+    float: right;
+}
+.checkout #payment ul.payment_methods li img {
+    vertical-align: middle;
+    margin: -2px 0 0 0.5em;
+    padding: 0;
+    position: relative;
+    box-shadow: none;
+}
+#payment ul.payment_methods li {
+    line-height: 2;
+    text-align: left;
+    margin: 0;
+    font-weight: 400;
+}
+#payment #place_order,
+#payment #place_order {
+    float: none;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 700;
+    font-size: 150%;
+}
+button#place_order,
+a.checkout-button {
+    border: 1px solid #fda702 !important;
+    color: #fff !important;
+    background-color: transparent !important;
+}
+.privacy-policy-text,
+.cart-subtotal {
+    display: none;
+}
+
+button#place_order:hover,
+a.checkout-button:hover {
+    border: 1px solid #fda702 !important;
+    color: #000 !important;
+    background-color: #fda702 !important;
 }
