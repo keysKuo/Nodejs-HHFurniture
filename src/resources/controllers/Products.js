@@ -3,7 +3,7 @@ const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
-const { lsCat, lsSubCat, product } = require('../data/mock');
+const { lsCat, lsSubCat, product, lsProduct } = require('../data/mock');
 
 const Controller_Products = {
     // [GET] /products/storage
@@ -226,6 +226,7 @@ const Controller_Products = {
                 lsCat,
                 product,
                 meta,
+                lsProduct,
             });
         }
     },

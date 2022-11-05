@@ -1,15 +1,24 @@
 {{#if isHome }}
-<section class='section d-flex section-donoithat'>
+<section class='section d-flex section-donoithat'
+    >
     <div class='container'>
         <div class='row
         {{#if reserved}}
          flex-row-reverse
          {{/if}}
-         '>
-            <div class='col-md-6'>
+         '
+            >
+            <div class='col-md-6'
+            {{#if reserved}}
+                data-aos='fade-left'
+                    {{else}}
+                data-aos='fade-right'
+            {{/if}}
+                
+                >
                 <div class='widget-wrap'>
                     <div class='element widget widget-image'>
-                        <div class='widget-container'>
+                        <div class='widget-container position-relative'>
                             <div class='image'>
                                 <img
                                     width='770'
@@ -24,7 +33,14 @@
                 </div>
             </div>
 
-            <div class='col-md-6'>
+            <div class='col-md-6'
+            {{#if reserved}}
+                data-aos='fade-right'
+                    {{else}}
+                data-aos='fade-left'
+            {{/if}}
+                
+                >
                 <div class='widget-wrap'>
                     <div class='element widget widget-heading'>
                         <div class='widget-container heading-title-arround'>
@@ -48,7 +64,7 @@
     </div>
 </section>
 
-<section class='section d-flex flex-column'>
+<section class='section d-flex flex-column' data-aos='fade-up'>
     <div class="container">
         <div class='owl-carousel owl-slider products'>
             {{#each lsProduct}}
@@ -72,7 +88,9 @@
     </div>
 </section>
 {{else}}
-<section class='section m-4'>
+<section class='section m-4' 
+     data-aos="fade-up"
+    >
     <div class='container'>
         <div
             class='element grid-1 posts--thumbnail-left widget__width-initial grid-tablet-1 grid-mobile-1 widget widget-posts'
