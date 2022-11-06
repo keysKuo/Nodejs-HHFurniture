@@ -10,7 +10,7 @@ router.get('/ban-tin', Controller_Home.GET_News);
 
 router.get('/khuyen-mai', Controller_Home.GET_Sales);
 
-router.get('/gio-hang', Controller_Home.GET_CartPage);
+router.get('/thanh-toan', Controller_Home.GET_Payment);
 
 // router.get('*', function (req, res) {
 //     res.status(404).render('error', {

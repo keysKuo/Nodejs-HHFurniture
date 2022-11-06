@@ -56,12 +56,12 @@ const Controller_Home = {
             posts,
         });
     },
-    GET_CartPage: async (req, res, next) => {
-        const meta = { title: 'Giỏ hàng', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+    GET_Payment: async (req, res, next) => {
+        const meta = { title: 'Thanh Toán', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
 
-        return res.render('pages/cart', {
+        return res.render('pages/payment', {
             layout: 'main',
-            template: 'khuyen-mai-template',
+            template: 'payment-template',
             meta,
             lsSubCat,
             lsCat,

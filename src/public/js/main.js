@@ -1,5 +1,8 @@
 $(document).ready(function ($) {
-    // AOS.init();
+    AOS.init({
+        duration: 2000,
+    });
+
     $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
@@ -12,6 +15,7 @@ $(document).ready(function ($) {
                 items: 2,
             },
             480: {
+                nav: false,
                 items: 3,
             },
             769: {
@@ -80,5 +84,36 @@ $(document).ready(function ($) {
         autoplay: 5000,
         speed: 800,
         autoplayDisableOnInteraction: false,
+    });
+    // back-to-top
+    var mybutton = document.getElementById('back-to-top');
+    window.onscroll = function () {
+        scrollFunction();
+    };
+
+    function scrollFunction() {
+        if (mybutton != null) {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                mybutton.style.display = 'block';
+            } else {
+                mybutton.style.display = 'none';
+            }
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
+    if ($('[name="payment_method"]').val() == 'bacs') {
+        $('#collapseOne').collapse('show');
+    }
+    $('[name="payment_method"]').on('change', function () {
+        if ($(this).val() === 'bacs') {
+            $('#collapseOne').collapse('show');
+        } else {
+            $('#collapseOne').collapse('hide');
+        }
     });
 });

@@ -7,6 +7,7 @@ const flash = require('express-flash');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const { isNumber } = require('util');
 require('dotenv').config();
 
 const init = () => {
@@ -108,6 +109,15 @@ const init = () => {
                     let result = operators[operator](operand_1, operand_2);
                     if (result) return options.fn(this);
                     return options.inverse(this);
+                },
+
+                discountPrice: function (price, dis, options) {
+                    var percent = dis / 100;
+                    return (
+                        Math.round(price * (1 - percent))
+                            .toString()
+                            .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫'
+                    );
                 },
             },
         }),
