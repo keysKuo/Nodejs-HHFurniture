@@ -1,5 +1,5 @@
 const { Products } = require('../models');
-
+// CRUD
 const API_Products = {
     create: async (data) => {
         return await new Products(data).save();

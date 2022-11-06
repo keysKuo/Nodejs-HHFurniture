@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 
 const fileapis = {
     createSync: (path, callback) => {
-        if(!this.isExist) {
+        if(!fs.existsSync(path)) {
             fs.mkdirSync(path, { recursive: true }, err => {
                 return callback(err);
             })
@@ -47,7 +47,7 @@ const fileapis = {
 
     renameDir: (oldPath, newPath) => {
         if(oldPath != newPath) {
-            if(this.isExist(newPath)) {
+            if(fs.existsSync(newPath)) {
                 this.removeDirectory(newPath);
             }
             return fs.renameSync(oldPath, newPath)
