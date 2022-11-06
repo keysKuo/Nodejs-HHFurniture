@@ -18,7 +18,7 @@ const API_Products = {
             .skip(skip)
             .limit(limit)
             .sort({ createdAt: -1 })
-            .populate({ path: 'categories', populate: { path: 'parent'} })
+            .populate({ path: 'categories', populate: { path: 'parent' } })
             .lean();
     },
 

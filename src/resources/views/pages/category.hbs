@@ -2,7 +2,10 @@
 <section class='section category-section'>
     {{> heading title=category.title }}
 </section>
-<section class='section top-section danhmuc-subcate section-boxed section-height-default section-height-default' data-aos='fade-up'>
+<section
+    class='section top-section danhmuc-subcate section-boxed section-height-default section-height-default'
+    data-aos='fade-up'
+>
     <div class='container -gap-default'>
         <div class='row'>
             <div class='col-md-12'>
@@ -12,11 +15,14 @@
                             <div class='container'>
                                 <nav class='nav breadcrumb'>
                                     <span class='nmr-crumb'>
-                                        <a class='nav-link p-1' href='/'></a>
+                                        <a class='nav-link p-1' href='/'>
+                                        </a>
                                     </span>
                                     <span class='nmr-crumb'>
                                         <a class='nav-link p-1' href='/'>
-                                            <i class='fa fa-angle-right'></i>
+                                            <i class='fa fa-angle-right'>
+
+                                            </i>
                                             {{category.title}}
                                         </a>
                                     </span>
@@ -72,6 +78,31 @@
                             {{> productPartials hasButton=true}}
                         </div>
                     {{/each}}
+
+                    <nav aria-label='Page navigation example'>
+                        <ul class='pagination justify-content-center'>
+                            {{#paginate pagination type="previous"}}
+                            <li class='page-item {{#if disabled}}disabled{{/if}}'>
+                                <a class='page-link bg-transparent text-light' href='?p={{n}}' aria-label='Previous'> 
+                                    <span aria-hidden='true'>&laquo;</span>
+                                </a>
+                            </li>
+                            {{/paginate}}
+                            {{#paginate pagination type="middle" limit="7"}}
+                            <li class='page-item {{#if active}}active{{/if}}'>
+                                <a class='page-link bg-transparent text-light' href='?p={{n}}'>{{n}}</a>
+                            </li>
+                            {{/paginate}}
+                            {{#paginate pagination type="next"}}
+                            <li class='page-item {{#if disabled}}disabled{{/if}}'>
+                                <a class='page-link bg-transparent text-light'  href='?p={{n}}' aria-label='Next'>
+                                    <span aria-hidden='true'>&raquo;</span>
+                                </a>
+                            </li>
+                            {{/paginate}}
+                        </ul>
+                    </nav>
+
                 </div>
             </div>
             <div class='col-md-4 p-2' style='border:3px solid #ffba00'>
@@ -88,9 +119,7 @@
                             <aside id='price_list_filter-3' class='price_list_filter widget_layered_nav'>
                                 <ul class='layered-nav-list'>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
-                                        <a
-                                            href='/danh-muc-san-pham/do-noi-that/?max_price=5000000'
-                                        >Từ 0 - 5 Triệu Đồng</a>
+                                        <a href='/danh-muc-san-pham/do-noi-that/?max_price=5000000'>Từ 0 - 5 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
@@ -108,9 +137,8 @@
                                         >Từ 50 - 100 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
-                                        <a
-                                            href='/danh-muc-san-pham/do-noi-that/?min_price=100000000'
-                                        >Lớn hơn 100 Triệu Đồng</a>
+                                        <a href='/danh-muc-san-pham/do-noi-that/?min_price=100000000'>Lớn hơn 100 Triệu
+                                            Đồng</a>
                                     </li>
                                 </ul>
                             </aside>
@@ -146,7 +174,6 @@
                             </div>
                         {{/if}}
                     {{/each}}
-
                 </div>
             </div>
         </div>
