@@ -82,8 +82,10 @@
             reader.readAsDataURL(i)
         }
     }
-    CKEDITOR.replace('ckeditor', {
-        extraPlugins: 'filebrowser',
-        filebrowserUploadUrl: '/upload'
+    CKEDITOR.replace('content', {
+        extraPlugins: 'filebrowser, youtube',
+        filebrowserUploadUrl: '/news/upload',
+        filebrowserUploadMethod: 'form',
+        filebrowserBrowseUrl: '/cke_uploads',
     })
 </script>

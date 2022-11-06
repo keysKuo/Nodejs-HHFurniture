@@ -7,6 +7,7 @@ const News = new Schema(
         images: { type: [String], required: true },
         content: { type: String, required: true },
         description: { type: String, required: true },
+        content_images: {type: [String]},
         slug: { type: String, required: true },
     },
     {

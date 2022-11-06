@@ -3,6 +3,9 @@ const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
+const { ImageContent } = require('../models');
+
+// Urls
 const storageURL = '/news/storage';
 const createURL  = '/news/create';
 const updateURL = '/news/update/';
@@ -57,7 +60,7 @@ const Controller_News = {
         }
 
         let listNews = await API_News.readMany({}, options);
-        console.log(listNews)
+        //console.log(listNews)
         return res.render('pages/news/storage', {
             layout: 'admin',
             pageName: 'Kho tin tức',
@@ -92,8 +95,11 @@ const Controller_News = {
             return `/uploads/news/${slug}/${file.filename}`;
         } );
         
-        await API_News.create({...req.body, images,slug})
-            .then(post => {
+        let content_images = await uploadImageForContent();
+        
+        await API_News.create({...req.body, images, content_images, slug})
+            .then(async post => {
+                
                 req.flash('success', 'Đăng bài viết thành công');
                 return res.redirect(storageURL);
             })
@@ -115,6 +121,15 @@ const Controller_News = {
                 fileapis.removeDirectory(BASE_URL + 'news/' + post.slug, err => {
                     console.log('Xoá thư mục thất bại: ' + err);
                 });
+
+                for(path of post.content_images) {
+                    fileapis.deleteSync('./src/public' + path, err => {
+                        if(err) {
+                            console.log(err);
+                        }
+                    })
+                }
+
                 req.flash('success', 'Xoá bài viết thành công');
                 return res.redirect(storageURL);
             })
@@ -143,11 +158,12 @@ const Controller_News = {
     // [POST] /news/update/:id
     POST_updateNews: async (req, res, next) => {
         const files = req.files;
-        const oldPath = req.body.oldpath;
+        const oldPath = (typeof req.body.oldpath == 'string') ? [req.body.oldpath] : req.body.oldpath;
         const id = req.params.id;
 
-        let isNewImg = files.length == 0;
+        let isNewImg = files.length != 0;
         let images = (isNewImg) ? files.map(file => `/uploads/news/${req.body.slug}/${file.filename}`) : oldPath;
+        
         let data = {
             ...req.body, images
         }
@@ -162,16 +178,17 @@ const Controller_News = {
                     }
                 }
                 req.flash('success', 'Chỉnh sửa sản phẩm thành công');
-                return res.redirect(updateURL + id);
+                return res.redirect(storageURL);
             })
             .catch(err => {
                 if(isNewImg) {
                     for(path of images) {
-                        fileapis.deleteSync('./src/public' + path, err => {
+                        fileapis.deleteSync('./src/public' + ppath, err => {
                             if (err)    console.log('Thư mục không tồn tại');
                         })
                     }
                 }
+
                 req.flash('error', 'Chỉnh sửa sản phẩm thất bại');
                 return res.redirect(updateURL + id);
             })
@@ -191,6 +208,25 @@ const Controller_News = {
         })
     }
     
+}
+
+async function uploadImageForContent() {
+    let content_images = [];
+    await ImageContent.find({}).lean()
+            .then(images => {
+                images.forEach(img => content_images.push(img.url));
+            })
+            .then(() => {
+                ImageContent.deleteMany({}, err => {
+                    if(err)
+                        console.log(err);
+                })
+            })
+            .catch(err => {
+                req.flash('error', 'Upload hình ảnh bài viết thất bại');
+                return res.redirect(createURL);
+            })
+    return content_images;
 }
 
 module.exports = Controller_News;

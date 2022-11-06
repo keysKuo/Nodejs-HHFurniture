@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -465,7 +465,7 @@
 /**
  * The location of an external file manager that should be launched when the **Browse Server**
  * button is pressed. If configured, the **Browse Server** button will appear in the
- * **Link** and **Image** dialog windows.
+ * **Link**, **Image**, and **Flash** dialog windows.
  *
  * Read more in the {@glink guide/dev_file_browse_upload documentation}
  * and see the {@glink examples/fileupload example}.
@@ -479,7 +479,8 @@
 
 /**
  * The location of the script that handles file uploads.
- * If set, the **Upload** tab will appear in the **Link** and **Image** dialog windows.
+ * If set, the **Upload** tab will appear in the **Link**, **Image**,
+ * and **Flash** dialog windows.
  *
  * Read more in the {@glink guide/dev_file_browse_upload documentation}
  * and see the {@glink examples/fileupload example}.
@@ -522,9 +523,6 @@
  *
  *		config.filebrowserFlashBrowseUrl = '/browser/browse.php?type=Flash';
  *
- * **Note**: This option is deprecated due to the flash plugin being removed.
- *
- * @deprecated 4.17.0
  * @since 3.0.0
  * @cfg {String} [filebrowserFlashBrowseUrl='' (empty string = disabled)]
  * @member CKEDITOR.config
@@ -559,9 +557,6 @@
  *
  *		config.filebrowserFlashUploadUrl = '/uploader/upload.php?type=Flash';
  *
- * **Note**: This option is deprecated due to the flash plugin being removed.
- *
- * @deprecated 4.17.0
  * @since 3.0.0
  * @cfg {String} filebrowserFlashUploadUrl='' (empty string = disabled)]
  * @member CKEDITOR.config

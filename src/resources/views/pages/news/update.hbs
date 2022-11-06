@@ -46,6 +46,10 @@
                                 <label class="control-label text-uppercase" for="content">Nội dung tin tức</label>
                                 <textarea id="content" name="content" class="ckeditor">{{{data.content}}}</textarea>
                             </div>
+                            <input type="hidden" name="slug" value="{{data.slug}}">
+                            {{#each data.images}}
+                                <input type="hidden" name="oldpath" value="{{this}}">
+                            {{/each}}
 
                             {{!-- <input type="hidden" name="id" value="{{data._id}}"> --}}
 

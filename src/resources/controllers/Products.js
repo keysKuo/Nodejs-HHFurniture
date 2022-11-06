@@ -208,11 +208,14 @@ const Controller_Products = {
         });
     },
 
+
+    //      ++++++++++++      Client Controller  ++++++++++++               //
+
     // [GET] /products/:slug
-    GET_productPage: async (req, res, next) => {
+    GET_productDetail: async (req, res, next) => {
         if (req.params.slug) {
             const meta = { title: product.title, desc: product.desc, keywords: 'Homepage, đồ nội thất' };
-            return res.render('pages/product', {
+            return res.render('pages/products/detail', {
                 layout: 'main',
                 template: 'san-pham-template',
                 lsSubCat,
