@@ -82,5 +82,8 @@
             reader.readAsDataURL(i)
         }
     }
-    CKEDITOR.replace('ckeditor')
+    CKEDITOR.replace('ckeditor', {
+        extraPlugins: 'filebrowser',
+        filebrowserUploadUrl: '/upload'
+    })
 </script>
