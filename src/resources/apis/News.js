@@ -9,12 +9,16 @@ const API_News = {
         return await News.findOne(loaders).lean();
     },
 
-    readMany: async (loaders, options, select) => {
-        if (select) {
-            return await News.find(loaders, options).select(select).sort({ createdAt: -1 }).lean();
-        }
-
-        return await News.find(loaders, options).sort({ createdAt: -1 }).lean();
+    readMany: async (loaders, options) => {
+        let skip = options.skip || 0;
+        let limit = options.limit || 0;
+        let select = options.select || {};
+        return await News.find(loaders)
+            .select(select)
+            .skip(skip)
+            .limit(limit)
+            .sort({ createdAt: -1 })
+            .lean();
     },
 
     update: async (id, data) => {

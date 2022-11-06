@@ -3,7 +3,17 @@ const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
-const { lsCat, lsSubCat, lsProduct } = require('../data/mock');
+
+const { lsCat, lsSubCat, product, lsProduct } = require('../data/mock');
+const mongoose = require('mongoose');
+
+// URLs
+const storageURL = '/products/storage';
+const createURL = '/products/create';
+const updateURL = '/products/update/';
+const deleteURL = '/products/delete/';
+const previewURL = '/products/preview/';
+
 
 const Controller_Products = {
     // [GET] /products/storage
@@ -49,13 +59,13 @@ const Controller_Products = {
         const files = req.files;
         if (files.length == 0) {
             req.flash('error', 'Vui lòng nhập hình ảnh');
-            return res.redirect('/products/create');
+            return res.redirect(createURL);
         }
 
         let pdir = typeof req.body.pid == 'string' ? req.body.pid : req.body.pid[0];
 
         let pimg = files.map((file) => {
-            return `/uploads/${pdir}/${file.filename}`;
+            return `/uploads/products/${pdir}/${file.filename}`;
         });
 
         const slug = createSlug(req.body.pname, {
@@ -68,14 +78,14 @@ const Controller_Products = {
         await API_Products.create({ ...req.body, pimg, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
-                return res.redirect('/products/create');
+                return res.redirect(storageURL);
             })
             .catch((err) => {
-                fileapis.removeDirectory(BASE_URL + req.body.pid, (err) => {
+                fileapis.removeDirectory(BASE_URL + 'products/' + req.body.pid, (err) => {
                     console.log('Xóa thư mục thất bại: ' + err);
                 });
                 req.flash('error', 'Thêm sản phẩm thất bại: ' + err);
-                return res.redirect('/products/create');
+                return res.redirect(createURL);
             });
     },
 
@@ -86,15 +96,15 @@ const Controller_Products = {
         await API_Products.remove(id)
             .then((product) => {
                 let pdir = typeof product.pid == 'string' ? product.pid : product.pid[0];
-                fileapis.removeDirectory(BASE_URL + pdir, (err) => {
+                fileapis.removeDirectory(BASE_URL + 'products/' + pdir, (err) => {
                     console.log('Thư mục này không còn tồn tại: ' + err);
                 });
                 req.flash('success', 'Xóa sản phẩm thành công');
-                return res.redirect('/products/storage');
+                return res.redirect(storageURL);
             })
             .catch((err) => {
                 req.flash('error', 'Xóa sản phẩm thất bại:' + err);
-                return res.redirect('/products/storage');
+                return res.redirect(storageURL);
             });
     },
 
@@ -105,16 +115,20 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-
+        //console.log(product);
         const categories = await API_Category.readMany({}).then((categories) => {
             categories.forEach((cate1) => {
                 product.categories.forEach((cate2) => {
-                    cate1.check = cate2._id.toString() == cate1._id.toString();
+                    if (cate2._id.toString() == cate1._id.toString()) {
+                        cate1.check = true;
+                    }
                 });
             });
 
             return categories;
         });
+
+        //console.log(categories)
 
         return res.render('pages/products/update', {
             layout: 'admin',
@@ -128,68 +142,49 @@ const Controller_Products = {
 
     // [POST] /products/update/:id
     POST_updateProduct: async (req, res, next) => {
-        const {
-            pid,
-            pname,
-            material,
-            colors,
-            sizes,
-            prices,
-            feature,
-            categories,
-            discounts,
-            description,
-            quantity,
-            oldpath,
-        } = req.body;
+        const oldPath = req.body.oldpath;
+        const pid = req.body.pid;
+        const categories = req.body.categories;
         const id = req.params.id;
         const files = req.files;
-        let pimg;
+
         let isNewImg = files.length != 0;
-
         let pdir = typeof pid == 'string' ? pid : pid[0];
-
-        if (!isNewImg) {
-            pimg = oldpath;
-        } else {
-            pimg = files.map((file) => {
-                return `/uploads/${pdir}/${file.filename}`;
-            });
-        }
+        let objCategories =
+            typeof categories == 'string'
+                ? [new mongoose.Types.ObjectId(categories)]
+                : categories.map((c) => mongoose.Types.ObjectId(c));
+        let updateImg = !isNewImg
+            ? oldPath
+            : files.map((file) => {
+                  return `/uploads/products/${pdir}/${file.filename}`;
+              });
 
         const data = {
-            pname,
-            material,
-            categories,
-            feature,
-            pid,
-            sizes,
-            colors,
-            prices,
-            discounts,
-            quantity,
-            pimg,
-            description,
+            ...req.body,
+            categories: objCategories,
+            pimg: updateImg,
         };
+        delete data.oldpath;
 
         await API_Products.update(id, data)
             .then(async (product) => {
                 if (isNewImg) {
-                    for (path of oldpath) {
+                    for (path of oldPath) {
                         fileapis.deleteSync('./src/public' + path, (err) => {
                             if (err) {
-                                console.log('Xóa hình ảnh thất bại: ' + err);
+                                req.flash('error', 'Xóa hình ảnh thất bại: ' + err);
+                                return res.redirect(updateURL + id);
                             }
                         });
                     }
                 }
-
                 req.flash('success', 'Chỉnh sửa sản phẩm thành công');
-                return res.redirect(`/products/update/${id}`);
+                return res.redirect(updateURL + id);
             })
             .catch((err) => {
                 if (isNewImg) {
-                    for (path of pimg) {
+                    for (path of data.pimg) {
                         fileapis.deleteSync('./src/public' + path, (err) => {
                             if (err) {
                                 console.log('Xóa hình ảnh thất bại: ' + err);
@@ -198,7 +193,7 @@ const Controller_Products = {
                     }
                 }
                 req.flash('error', 'Chỉnh sửa sản phẩm thất bại' + err);
-                return res.redirect(`/products/update/${id}`);
+                return res.redirect(updateURL + id);
             });
     },
 
@@ -207,13 +202,14 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-        console.log(product);
+        //console.log(product);
         return res.render('pages/products/preview', {
             layout: 'admin',
             pageName: 'Preview sản phẩm',
             data: product,
         });
     },
+//      ++++++++++++      Client Controller  ++++++++++++               //
 
     // [GET] /san-pham/:slug
     GET_productPage: async (req, res, next) => {

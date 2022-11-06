@@ -1,6 +1,7 @@
 const BASE_URL = process.env.BASE_URL;
 const { API_Products } = require('../apis');
 const { doitacs, introduce, lsCat, lsSubCat, lsPost, posts, lsProduct } = require('../data/mock');
+
 var category = {
     title: 'Đồ nội thất',
     subCat: [

@@ -8,6 +8,10 @@ db.connect();
 
 router(app);
 
+app.get('/test', (req, res, next) => {
+    return res.render('pages/category');
+})
+
 app.get('/home', (req, res, next) => {
     res.render('pages/home/home');
 });
