@@ -13,14 +13,14 @@
                             <span class='nmr-crumb'>
                                 <a class='nav-link p-1' href='/'>
                                     <i class='fa fa-angle-right'></i>
-                                    {{product.category.title}}
+                                    {{product.category.name}}
                                 </a>
                             </span>
 
                             <span class='nmr-crumb'>
                                 <a class='nav-link p-1' href='/'>
                                     <i class='fa fa-angle-right'></i>
-                                    {{product.title}}
+                                    {{product.pname}}
                                 </a>
                             </span>
                         </nav>
@@ -58,7 +58,7 @@
                                     <img
                                         width='600'
                                         height='600'
-                                        src='/images/{{product.img}}'
+                                        src='{{first product.pimg}}'
                                         class='wp-post-image'
                                         alt=''
                                         title='N.SCU-G1691'
@@ -81,14 +81,14 @@
                             <div class='product-title'>
                                 <h2
                                     class='product_title entry-title elementor-heading-title elementor-size-default'
-                                >{{product.title}}</h2>
+                                >{{product.pname}}</h2>
                             </div>
                             <div class='product_meta'>
                                 <span class='sku_wrapper detail-container'>
                                     <span class='detail-label'>
                                         Mã Sản Phẩm:
                                     </span>
-                                    <span class='sku'>{{product.code}}</span>
+                                    <span class='sku'>{{product.pid}}</span>
                                 </span>
                             </div>
                         </div>
@@ -99,7 +99,9 @@
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
                                         <span class='Price-amount amount'>
-                                            {{formatCurrency 230000000}}
+                                            {{#each product.prices}}
+                                            {{formatCurrency this}}
+                                            {{/each}}
                                         </span>
                                     </h5>
                                 </div>
@@ -120,7 +122,7 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.color as |item|}}
+                                    {{#each product.colors as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
@@ -133,7 +135,7 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.size as |item|}}
+                                    {{#each product.sizes as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'

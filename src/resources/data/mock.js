@@ -140,7 +140,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -148,7 +148,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -156,7 +156,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -164,7 +164,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -172,7 +172,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -180,7 +180,7 @@ module.exports = {
             price: 200000000,
             discount: 20,
             isHot: true,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -188,7 +188,7 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -196,7 +196,7 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
         {
             title: 'Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD',
@@ -204,7 +204,7 @@ module.exports = {
             price: 200000000,
             discount: 0,
             isHot: false,
-            href: '/san-pham/ban-an-thong-minh',
+            href: '/san-pham/ghe-go-vuong',
         },
     ],
     lsCat: [
