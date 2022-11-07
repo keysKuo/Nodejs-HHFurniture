@@ -48,6 +48,11 @@
 .section {
     margin-top: 50px;
 }
+
+.chose {
+    background-color: white;
+    color: black !important;
+}
 body {
     background-color: var(--background);
     color: #ffffff;
