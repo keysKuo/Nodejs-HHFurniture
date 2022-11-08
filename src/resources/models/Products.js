@@ -14,7 +14,11 @@ const Products = new Schema(
         discounts: { type: [String] },
         quantity: { type: [String] },
         description: { type: String },
-        categories: [{ type: Schema.Types.ObjectId, ref: 'Category' }],
+        categories: [{
+            level1: { type: Schema.Types.ObjectId, ref: 'Category' },
+            level2: { type: Schema.Types.ObjectId, ref: 'Category' },
+            level3: { type: Schema.Types.ObjectId, ref: 'Category' }
+        }],
         slug: { type: String, required: true },
     },
     {
