@@ -1065,6 +1065,11 @@ video {
     width: 1.25em;
     font-size: 30px;
 }
+
+.icon-list-icon i {
+    color: #fcb218;
+    font-size: 20px;
+}
 .section-contact .icon-list-items .icon-list-item .icon-list-text {
     font-size: 18px;
     font-weight: 600;
@@ -1636,6 +1641,8 @@ td.product-quantity {
 }
 .product-price {
     text-align: center;
+}
+table td.product-price {
     min-width: 300px;
 }
 .coupon {
@@ -2263,4 +2270,31 @@ a.checkout-button:hover {
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s;
+}
+
+/* post */
+.post-heading {
+    color: var(--orange);
+}
+.post-content {
+    color: #a7a7a7;
+    padding-right: 100px;
+    padding-left: 100px;
+}
+
+.post-content ul {
+    margin: 0 0 1.5em 3em;
+}
+
+.post-content h2,
+.post-content a,
+.post-content h3 span a {
+    color: #fff !important;
+}
+.post-navigation .post-navigation__link {
+    width: calc(50% - (1px / 2));
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
 }

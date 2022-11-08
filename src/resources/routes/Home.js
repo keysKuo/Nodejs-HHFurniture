@@ -14,8 +14,6 @@ router.get('/thanh-toan', Controller_Home.GET_Payment);
 
 router.get('/gioi-thieu', Controller_Home.GET_Introduction);
 
-router.get('/:slug', Controller_Home.GET_PolicyPage);
-
 // router.get('*', function (req, res) {
 //     res.status(404).render('error', {
 //         layout: 'main',

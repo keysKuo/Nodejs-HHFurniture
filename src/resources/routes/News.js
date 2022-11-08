@@ -18,7 +18,7 @@ router.post('/update/:id', upload2.array('news', 12), Controller_News.POST_updat
 
 router.get('/delete/:id', Controller_News.GET_removeNews);
 
-router.get('/:slug', Controller_News.GET_newsDetail);
+router.get('/:slug', Controller_News.GET_PostPage);
 
 router.post('/upload', multipartMiddleware, (req, res) => {
     try {

@@ -1,0 +1,114 @@
+<section>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12 text-center p-0' style='border:4px solid var(--orange)'>
+                <img src='/images/{{post.images}}' class='img-fluid w-100' alt='' />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class='section text-center post-section' data-aos='fade-up'>
+    <div class='container'>
+        <h2 class='post-heading'>{{post.title}}</h2>
+        <div class='row'>
+            <div class='col-md-6 text-end' style='border-right:1px solid #fff;'>
+                <span class='icon-list-icon mx-2'>
+                    <i aria-hidden='true' class='far fa-calendar-alt'>
+
+                    </i>
+                </span>
+                <span class='icon-list-text post-info__item post-info__item--type-terms'>
+                    <span class='post-info__terms-list'>
+                        <a
+                            href='https://hhfurniture.com.vn/category/ban-tin/'
+                            class='text-light post-info__terms-list-item'
+                        >Bản tin </a>
+                    </span>
+                </span>
+            </div>
+            <div class='col-md-6 text-start'>
+                <a href='https://hhfurniture.com.vn/2022/08/12/'>
+                    <span class='icon-list-icon mx-2'>
+                        <i aria-hidden='true' class='far fa-clock'>
+
+                        </i>
+                    </span>
+                    <span class='icon-list-text text-light post-info__item post-info__item--type-date'>
+                        Tháng Tám 12, 2022
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div class='image mt-4'>
+            <img
+                width='300'
+                height='84'
+                src='/images/hoa-tiet-hoa-van.png'
+                class='hoatiet attachment-large size-large'
+                alt=''
+                loading='lazy'
+            />
+        </div>
+        <div class='row'>
+            <div class='col-md-12 post-content' style='text-align: justify;color: #CFCFCF'>
+                {{!-- {{{post.content}}} --}}
+            </div>
+        </div>
+
+        <div class='row post-navigation'>
+            <div class='col-md-6 post-navigation__prev post-navigation__link' style='border-right:2px solid #fff'>
+                <a
+                    href='https://hhfurniture.com.vn/lam-the-nao-de-dam-bao-su-thoai-mai-va-hanh-phuc-cho-nguoi-cu-ngu-trong-nhung-khong-gian-nho/'
+                    rel='prev'
+                    class='d-flex'
+                >
+                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-prev'>
+                        <i class='fa fa-angle-left' aria-hidden='true'>
+                        </i>
+                        <span class='screen-only'>Prev</span>
+                    </span>
+                    <span class='post-navigation__link__prev d-flex flex-column overflow-hidden'>
+                        <span class='post-navigation__prev--label'>Bài kế tiếp</span>
+                        <span class='post-navigation__prev--title'>Làm thế nào để đảm bảo sự thoải mái và hạnh phúc cho
+                            người cư ngụ trong những không gian nhỏ?</span>
+                    </span>
+                </a>
+            </div>
+            <div class='col-md-6 post-navigation__next post-navigation__link'>
+                <a
+                    href='https://hhfurniture.com.vn/tocei-chia-se-kinh-nghiem-khi-mua-thiet-bi-ve-sinh/'
+                    rel='next'
+                    class='d-flex'
+                >
+                    <span class='post-navigation__link__next d-flex flex-column overflow-hidden'>
+                        <span class='post-navigation__next--label'>Bài trước đó</span>
+                        <span class='post-navigation__next--title'>TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh</span>
+                    </span>
+                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-next'>
+                        <i class='fa fa-angle-right' aria-hidden='true'>
+                        </i>
+                        <span class='screen-only'>Next</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class='section'>
+    <div class='container'>
+        <div class='row'>
+            {{#each lsPostRelated}}
+                <div
+                    class='col-lg-3 col-md-6 col-12 mt-4 pt-2 picture-item shuffle-item shuffle-item--visible'
+                    data-groups='[&quot;business&quot;]'
+                >
+                    {{!-- {{> postPartials isSales=true }} --}}
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</section>

@@ -11,6 +11,7 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
     lsPostProject,
+    product,
 } = require('../data/mock');
 const mongoose = require('mongoose');
 
@@ -221,10 +222,7 @@ const Controller_Products = {
     GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
         if (slug) {
-            const product = await API_Products.readOne({ slug: slug });
-            
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
-            console.log(product.categories);
             return res.render('pages/product', {
                 layout: 'main',
                 template: 'san-pham-template',
@@ -247,7 +245,7 @@ const Controller_Products = {
     GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
 
-        let product = await API_Products.readOne({slug});
+        let product = await API_Products.readOne({ slug });
         product.frame = reDistribute(product);
         const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
         return res.render('pages/products/detail', {
@@ -264,13 +262,12 @@ const Controller_Products = {
     // [GET] /products/colection/:slug
     GET_productCollection: async (req, res, next) => {
         const slug = req.params.slug;
-        
-        let category = await API_Category.readOne({slug: slug});
-        let children = await API_Category.readMany({ 'parent': category._id });
-        let products = await API_Products.readMany({ 'categories': {$in: []} }, {});
-        console.log(children);
 
-    }
+        let category = await API_Category.readOne({ slug: slug });
+        let children = await API_Category.readMany({ parent: category._id });
+        let products = await API_Products.readMany({ categories: { $in: [] } }, {});
+        console.log(children);
+    },
 };
 
 function reDistribute(product) {
@@ -298,7 +295,6 @@ function reDistribute(product) {
         result.push(frame);
     });
     return result;
-
 }
 
 module.exports = Controller_Products;
