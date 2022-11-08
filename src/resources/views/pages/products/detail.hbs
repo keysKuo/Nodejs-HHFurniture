@@ -20,7 +20,7 @@
                             <span class='nmr-crumb'>
                                 <a class='nav-link p-1' href='/'>
                                     <i class='fa fa-angle-right'></i>
-                                    {{product.title}}
+                                    {{product.pname}}
                                 </a>
                             </span>
                         </nav>
@@ -36,8 +36,8 @@
             <div class='col-md-5'>
                 <div class='product-images position-relative'>
                     <div class='widget-container'>
-                        {{#when product.discount 'gt' 0}}
-                            <span class='onsale'>-{{product.discount}}%</span>
+                        {{#when product.frame.[0].rate 'gt' 0}}
+                            <span class='onsale'>-{{product.frame.[0].rate}}%</span>
                         {{/when}}
 
                         <div
@@ -58,7 +58,7 @@
                                     <img
                                         width='600'
                                         height='600'
-                                        src='/images/{{product.img}}'
+                                        src='{{product.pimg.[0]}}'
                                         class='wp-post-image'
                                         alt=''
                                         title='N.SCU-G1691'
@@ -81,29 +81,52 @@
                             <div class='product-title'>
                                 <h2
                                     class='product_title entry-title elementor-heading-title elementor-size-default'
-                                >{{product.title}}</h2>
+                                >{{product.pname}}</h2>
                             </div>
+                            
                             <div class='product_meta'>
                                 <span class='sku_wrapper detail-container'>
                                     <span class='detail-label'>
                                         Mã Sản Phẩm:
                                     </span>
-                                    <span class='sku'>{{product.code}}</span>
+                                    <span class='sku'>{{product.frame.[0].pid.[0]}}</span>
                                 </span>
                             </div>
                         </div>
                         <div class='col-lg-12 col-12'>
 
                             <div class='d-flex shop-list align-items-center my-4'>
-                                <h6 class='mb-0 shop-list-title'>Gía niêm yết:</h6>
+                                <h6 class='mb-0 shop-list-title'>Giá niêm yết:</h6>
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
-                                        <span class='Price-amount amount'>
-                                            {{formatCurrency 230000000}}
+                                        <span style="text-decoration: line-through; color: grey" class='Price-amount amount'>
+                                            {{formatCurrency product.frame.[0].price}}
                                         </span>
                                     </h5>
                                 </div>
                             </div>
+                            {{#if product.frame.[0].discount}}
+                            <div class='d-flex shop-list align-items-center my-4'>
+                                <h6 class='mb-0 shop-list-title'>Giảm:</h6>
+                                <div class='ms-3'>
+                                    <h5 class='text-muted product-price'>
+                                        <span class='Price-amount amount'>
+                                            {{product.frame.[0].rate}}%
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class='d-flex shop-list align-items-center my-4'>
+                                <h6 class='mb-0 shop-list-title'>Giá khuyến mãi:</h6>
+                                <div class='ms-3'>
+                                    <h5 class='text-muted product-price'>
+                                        <span class='Price-amount amount'>
+                                            {{formatCurrency product.frame.[0].discount}}
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            {{/if}}
 
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Chất liệu:</h6>
@@ -111,7 +134,7 @@
                                     <li class='list-inline-item'>
                                         <a
                                             href='javascript:void(0)'
-                                            class='btn btn-icon btn-soft-primary'
+                                            class='btn btn-icon btn-soft-primary chose'
                                         >{{product.material}}</a>
                                     </li>
                                 </ul>
@@ -120,11 +143,11 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.color as |item|}}
+                                    {{#each product.frame.[0].colors as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
-                                                class='btn btn-icon btn-soft-primary'
+                                                class='btn btn-icon btn-soft-primary {{#equal @index 0}}chose{{/equal}}'
                                             >{{item}}</a>
                                         </li>
                                     {{/each}}
@@ -133,12 +156,12 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.size as |item|}}
+                                    {{#each product.frame as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
-                                                class='btn btn-icon btn-soft-primary'
-                                            >{{item}}</a>
+                                                class='btn btn-icon btn-soft-primary {{#equal @index 0}}chose{{/equal}}'
+                                            >{{item.size}}</a>
                                         </li>
                                     {{/each}}
                                 </ul>
@@ -146,7 +169,7 @@
                         </div>
                         <!--end col-->
 
-                        <div class='col-lg-12 col-12 mt-5 mt-lg-0'>
+                        <div class='col-lg-12 col-12 mt-5 mt-lg-0 px-0'>
                             <div class='row'>
                                 <div class='col-lg-5 col-12'>
                                     <div class='d-flex shop-list align-items-center mt-2'>
@@ -175,7 +198,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class='col-lg-12 col-12'>
+                                <div class='col-lg-12 col-12 mt-3'>
                                     <div class='d-block'>
                                         <ul class='product-detail-item list-unstyled mb-0 p-0'>
                                             <li class='list-inline-item'>
@@ -319,7 +342,7 @@ ction>
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>
                         <div class='heading-title-arround p-1'>
                             <h2 class='heading-title size-default fs-6 text-start' style='text-transform: uppercase;'>
-                                SẢN PHẨM LIÊN QUAN
+                                Mô tả sản phẩm
                             </h2>
                         </div>
                     </div>
