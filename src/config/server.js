@@ -93,6 +93,17 @@ const init = () => {
                     }
                     return html;
                 },
+                discountRate: function (frame, options) {
+                    console.log(frame)
+                    for(item of frame) {
+                        if(item.rate > 0) {
+                            return options.fn(item.rate);
+                        }
+                    }
+
+                    return options.inverse(this);
+                },
+
                 when: function (operand_1, operator, operand_2, options) {
                     let operators = {
                         //  {{#when <operand1> 'eq' <operand2>}}

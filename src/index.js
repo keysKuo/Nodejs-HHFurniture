@@ -8,9 +8,7 @@ db.connect();
 
 router(app);
 
-app.get('/test', (req, res, next) => {
-    return res.render('pages/category');
-})
+app.get('/test', require('./resources/controllers/Category').GET_CategoryPage);
 
 app.get('/home', (req, res, next) => {
     res.render('pages/home/home');

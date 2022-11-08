@@ -99,13 +99,13 @@
                                 <h6 class='mb-0 shop-list-title'>Giá niêm yết:</h6>
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
-                                        <span style="text-decoration: line-through; color: grey" class='Price-amount amount'>
+                                        <span {{#when product.frame.[0].rate 'gt' 0}}style="text-decoration: line-through; color: grey"{{/when}} class='Price-amount amount'>
                                             {{formatCurrency product.frame.[0].price}}
                                         </span>
                                     </h5>
                                 </div>
                             </div>
-                            {{#if product.frame.[0].discount}}
+                            {{#when product.frame.[0].rate 'gt' 0}}
                             <div class='d-flex shop-list align-items-center my-4'>
                                 <h6 class='mb-0 shop-list-title'>Giảm:</h6>
                                 <div class='ms-3'>
@@ -126,7 +126,7 @@
                                     </h5>
                                 </div>
                             </div>
-                            {{/if}}
+                            {{/when}}
 
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Chất liệu:</h6>
