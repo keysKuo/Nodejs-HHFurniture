@@ -4,10 +4,10 @@
             <span class='onsale'>-{{discount}}%</span>
         {{/when}}
         <div class='product-thumbnail'>
-            <a href='{{slug}}'><img
+            <a href='/san-pham/{{slug}}'><img
                     width='300'
                     height='300'
-                    src='/images/{{img}}'
+                    src='/images/{{pimg}}'
                     class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail'
                     alt=''
                 /></a>
@@ -15,7 +15,7 @@
         </div>
         <div class=''>
             <h5 class='product-title'>
-                <a href='{{slug}}'>{{title}}</a>
+                <a href='/san-pham/{{slug}}'>{{pname}}</a>
             </h5>
         </div>
         <div class='product-price'>
@@ -28,7 +28,7 @@
         {{#if hasButton}}
             <div class='product-button'>
                 <a
-                    href='{{slug}}'
+                    href='/san-pham/{{slug}}'
                     class='button product_type_variable add-to-cart'
                     aria-label='Lựa chọn cho “Bàn Ăn Thông Minh Mahal Kita Home LTX-801M.13.CTD”'
                     rel='nofollow'

@@ -101,6 +101,7 @@ const Controller_Home = {
             //////////
         });
     },
+    // [GET] /thanh-toan
     GET_Payment: async (req, res, next) => {
         const meta = {
             title: 'Thanh Toán – H&H Furniture',
@@ -120,14 +121,15 @@ const Controller_Home = {
             //////////
         });
     },
+
     GET_PolicyPage: async (req, res, next) => {
         const meta = {
-            title: 'Chính sách – H&H Furniture',
+            title: policy.title + ' – H&H Furniture',
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
 
-        return res.render('pages/policy', {
+        return res.render('pages/post', {
             layout: 'main',
             template: 'policy-template',
             meta,
@@ -139,7 +141,7 @@ const Controller_Home = {
             ////////////
         });
     },
-
+    // [GET] /gioi-thieu
     GET_Introduction: async (req, res, next) => {
         const meta = {
             title: 'Giới thiệu – H&H Furniture',

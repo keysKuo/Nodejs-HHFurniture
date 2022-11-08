@@ -11,6 +11,7 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
     lsPostProject,
+    product,
 } = require('../data/mock');
 const mongoose = require('mongoose');
 
@@ -221,9 +222,7 @@ const Controller_Products = {
     GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
         if (slug) {
-            const product = await API_Products.readOne({ slug: slug });
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
-            console.log(product.categories);
             return res.render('pages/product', {
                 layout: 'main',
                 template: 'san-pham-template',

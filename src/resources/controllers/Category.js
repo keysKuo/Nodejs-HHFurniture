@@ -60,7 +60,7 @@ const Controller_Category = {
                     page: 1, // The current page the user is on
                     pageCount: 12, // The total number of available pages
                 },
-                //BE trả về
+                // BE trả về
                 category,
                 lsProductByCategory,
                 lsProductDiscount,

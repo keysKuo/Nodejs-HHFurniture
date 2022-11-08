@@ -13,7 +13,7 @@
                             <span class='nmr-crumb'>
                                 <a class='nav-link p-1' href='{{product.categories.[0].slug}}'>
                                     <i class='fa fa-angle-right'></i>
-                                    {{product.categories.[0].name}}
+                                    {{product.categories.name}}
                                 </a>
                             </span>
 
@@ -58,7 +58,7 @@
                                     <img
                                         width='600'
                                         height='600'
-                                        src='{{first product.pimg}}'
+                                        src='/images/{{ product.pimg}}'
                                         class='wp-post-image'
                                         alt=''
                                         title='N.SCU-G1691'
@@ -153,28 +153,36 @@
                                 <div class='col-lg-5 col-12'>
                                     <div class='d-flex shop-list align-items-center mt-2'>
                                         <h6 class='mb-0 shop-list-title'>Số lượng:</h6>
-                                        <div class='qib-container ms-3'>
-                                            <button type='button' class='minus qib-button'>-</button>
-                                            <div class='quantity buttons_added'>
-                                                <label class='screen-reader-text' for='quantity_6362c544d0f1c'>Bộ Bàn
-                                                    Trang Điểm Hiện Đại H&amp;H SCU-G1691 số lượng</label>
-                                                <input
-                                                    type='number'
-                                                    id='quantity_6362c544d0f1c'
-                                                    class='input-text qty text'
-                                                    step='1'
-                                                    min='1'
-                                                    max=''
-                                                    name='quantity'
-                                                    value='1'
-                                                    title='SL'
-                                                    size='4'
-                                                    placeholder=''
-                                                    inputmode='numeric'
-                                                />
-                                            </div>
-                                            <button type='button' class='plus qib-button'>+</button>
+                                          <div class='qib-container mt-3'>
+                                        <button
+                                            type='button'
+                                            data-product_id='{{id}}'
+                                            class='minus qib-button'
+                                        >-</button>
+                                        <div class='quantity buttons_added buttons-added'>
+                                            <label class='screen-reader-text' for='quantity'>Bộ Bàn Trang Điểm Hiện Đại
+                                                H&amp;H SCU-G1692 số lượng</label>
+                                            <input
+                                                type='number'
+                                                id='quantity'
+                                                class='input-text qty quantity_{{id}} text'
+                                                step='1'
+                                                min='1'
+                                                max=''
+                                                name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
+                                                value='1'
+                                                title='SL'
+                                                size='4'
+                                                placeholder=''
+                                                inputmode='numeric'
+                                            />
                                         </div>
+                                        <button
+                                            type='button'
+                                            data-product_id='{{id}}'
+                                            class='plus qib-button'
+                                        >+</button>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class='col-lg-12 col-12'>
@@ -326,13 +334,7 @@ ction>
                         </div>
                     </div>
                     <div class='text-light widget-container'>
-                        <p>– Thương hiệu H&amp;H<br />
-                            – Nhập khẩu 100%<br />
-                            – Chất liệu: Gỗ tự nhiên, da bò cao cấp<br />
-                            – Kích thước: G: 1800*2000 – T: 620*420*630<br />
-                            – Màu sắc: Màu đỏ<br />
-                            – Ứng dụng: Phòng ngủ<br />
-                            – Bảo hành: Khung gỗ bảo hành 5 năm, da bọc, đệm mút 12 tháng, phụ kiện khác 12 tháng</p>
+                        <p>{{product.description}}</p>
                     </div>
 
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>
