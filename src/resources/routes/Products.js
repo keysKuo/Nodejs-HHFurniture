@@ -3,7 +3,6 @@ const router = express.Router();
 const { Controller_Products } = require('../controllers');
 const { upload } = require('../middlewares/multer');
 
-
 // System Router
 router.get('/preview/:id', Controller_Products.GET_previewProduct);
 router.get('/storage', Controller_Products.GET_managerProduct);

@@ -1,6 +1,6 @@
 $(document).ready(function ($) {
     AOS.init({
-        duration: 2000,
+        duration: 1700,
     });
 
     $('.owl-carousel').owlCarousel({
@@ -101,11 +101,6 @@ $(document).ready(function ($) {
         }
     }
 
-    function topFunction() {
-        document.body.scrollTop = 0;
-        document.documentElement.scrollTop = 0;
-    }
-
     if ($('[name="payment_method"]').val() == 'bacs') {
         $('#collapseOne').collapse('show');
     }
@@ -114,6 +109,14 @@ $(document).ready(function ($) {
             $('#collapseOne').collapse('show');
         } else {
             $('#collapseOne').collapse('hide');
+        }
+    });
+
+    $(window).on('load', function () {
+        if ($(window).width() > 600) {
+            setTimeout(function () {
+                $('#TuVanModal').modal('show');
+            }, 180000);
         }
     });
 

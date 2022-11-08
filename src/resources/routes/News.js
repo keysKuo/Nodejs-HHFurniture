@@ -32,17 +32,24 @@ router.post('/upload', multipartMiddleware, (req, res) => {
                     let msg = 'Tải lên thành công';
                     let funcNum = req.query.CKEditorFuncNum;
                     console.log({ url, msg, funcNum });
-                    ImageContent.create({ url })
-                        .then(() => {
-                            console.log('Upload successfully')
-                            res.status(201).send("<script>window.parent.CKEDITOR.tools.callFunction('" + funcNum + "','" + url + "','" + msg + "');</script>");
-                        })
+                    ImageContent.create({ url }).then(() => {
+                        console.log('Upload successfully');
+                        res.status(201).send(
+                            "<script>window.parent.CKEDITOR.tools.callFunction('" +
+                                funcNum +
+                                "','" +
+                                url +
+                                "','" +
+                                msg +
+                                "');</script>",
+                        );
+                    });
                 }
             });
         });
     } catch (error) {
         console.log(error.message);
     }
-})
+});
 
 module.exports = router;

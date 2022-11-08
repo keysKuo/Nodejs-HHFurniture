@@ -36,7 +36,7 @@
                                     <ul class='product-categories'>
                                         {{#each category.subCat}}
                                             <li class='cat-item cat-item-41'>
-                                                <a href='{{href}}'>{{title}}</a>
+                                                <a href='{{slug}}'>{{title}}</a>
                                             </li>
                                         {{/each}}
                                     </ul>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class='row'>
-                    {{#each lsProduct}}
+                    {{#each lsProductByCategory}}
                         <div class='col-md-3 px-1'>
                             {{> productPartials hasButton=true}}
                         </div>
@@ -119,25 +119,25 @@
                             <aside id='price_list_filter-3' class='price_list_filter widget_layered_nav'>
                                 <ul class='layered-nav-list'>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
-                                        <a href='/danh-muc-san-pham/do-noi-that/?max_price=5000000'>Từ 0 - 5 Triệu Đồng</a>
+                                        <a href='{{slug}}?max_price=5000000'>Từ 0 - 5 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='/danh-muc-san-pham/do-noi-that/?max_price=20000000&amp;min_price=5000000'
+                                            href='{{slug}}?max_price=20000000&amp;min_price=5000000'
                                         >Từ 5 - 20 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='/danh-muc-san-pham/do-noi-that/?max_price=50000000&amp;min_price=20000000'
+                                            href='{{slug}}?max_price=50000000&amp;min_price=20000000'
                                         >Từ 20 - 50 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
                                         <a
-                                            href='/danh-muc-san-pham/do-noi-that/?max_price=100000000&amp;min_price=50000000'
+                                            href='{{slug}}?max_price=100000000&amp;min_price=50000000'
                                         >Từ 50 - 100 Triệu Đồng</a>
                                     </li>
                                     <li class='layered-nav-list__item mb-2 wc-layered-nav-term'>
-                                        <a href='/danh-muc-san-pham/do-noi-that/?min_price=100000000'>Lớn hơn 100 Triệu
+                                        <a href='{{slug}}?min_price=100000000'>Lớn hơn 100 Triệu
                                             Đồng</a>
                                     </li>
                                 </ul>
@@ -152,7 +152,7 @@
                             </h2>
                         </div>
                     </div>
-                    {{#each lsProduct as |product|}}
+                    {{#each lsProductDiscount as |product|}}
                         {{#if discount}}
                             <div class='col-md-6'>
                                 {{> productPartials}}
@@ -167,7 +167,7 @@
                             </h2>
                         </div>
                     </div>
-                    {{#each lsProduct as |product|}}
+                    {{#each lsProductBestSeller as |product|}}
                         {{#if isHot}}
                             <div class='col-md-6'>
                                 {{> productPartials}}

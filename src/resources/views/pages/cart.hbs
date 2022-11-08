@@ -12,10 +12,10 @@
                     <thead>
                         <tr>
                             <th class='product-remove'>Stt</th>
-                            <th class='product-thumbnail'>Hình Ảnh Sản Phẩm</th>
-                            <th class='product-name'>Sản phẩm</th>
+                            <th class=''>Hình Ảnh Sản Phẩm</th>
+                            <th class='product-name'>Mô tả</th>
                             <th class='product-quantity'>Số lượng</th>
-                            <th class='product-price'>Giá sản phẩm</th>
+                            <th class='product-price'>Giá bán</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -27,15 +27,15 @@
                                         href='/gio-hang/?remove_item=9897af2e1014f2e1c831b8d6e18f6e57&amp;_wpnonce=1a20c87b83'
                                         class='remove'
                                         aria-label='Xóa sản phẩm này'
-                                    >1</a>
+                                    >{{id}}</a>
                                 </td>
 
                                 <td class='product-thumbnail'>
                                     <a
                                         href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
                                     ><img
-                                            width='150'
-                                            height='150'
+                                            width='200'
+                                            height='200'
                                             src='/images/{{img}}'
                                             class='attachment_thumbnail size_thumbnail'
                                             alt=''
@@ -79,7 +79,7 @@
                                                 min='0'
                                                 max=''
                                                 name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
-                                                value='1'
+                                                value='{{quantity}}'
                                                 title='SL'
                                                 size='4'
                                                 placeholder=''
@@ -159,7 +159,6 @@
                         </tr>
                     </tbody>
                 </table>
-
             </form>
         </div>
 

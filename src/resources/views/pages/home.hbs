@@ -129,10 +129,11 @@
         </div>
     </div>
 </section>
-{{>slideProductPartials  introduce.doNoiThat href='do-noi-that' isHome=true lsProduct=lsProduct}}
-{{>slideProductPartials  introduce.thietBiVeSinh href='thiet-bi-ve-sinh' isHome=true lsProduct=lsProduct}}
-{{>slideProductPartials  introduce.denTrangTri href='den-trang-tri' isHome=true lsProduct=lsProduct}}
-{{>slideProductPartials  introduce.doTrangTri href='do-trang-tri' isHome=true lsProduct=lsProduct}}
+{{>slideProductPartials  introduce.doNoiThat href='do-noi-that' isHome=true lsProduct=lsProductDoNoiThat}}
+{{>slideProductPartials  introduce.thietBiVeSinh href='thiet-bi-ve-sinh' isHome=true lsProduct=lsProductThietBiVeSinh}}
+{{>slideProductPartials  introduce.denTrangTri href='den-trang-tri' isHome=true lsProduct=lsProductDenTrangTri}}
+{{>slideProductPartials  introduce.doTrangTri href='do-trang-tri' isHome=true lsProduct=lsProductDoTrangTri}}
+
 <section class='section section-chanel' data-aos='fade-up'>
     {{> heading title="H & H CHANEL"}}
 
@@ -461,33 +462,8 @@
                         </div>
                         <div class='widget-container'>
                             <div class='posts-container posts posts--skin-classic grid has-item-ratio'>
-                                {{#each posts}}
-                                    <article
-                                        class='post row grid-item post-8024 post type-post status-publish format-standard has-post-thumbnail hentry category-ban-tin'
-                                    >
-                                        <div class='col-md-5 p-2'>
-                                            <a class='post__thumbnail__link' href='{{href}}'>
-                                                <div class='post__thumbnail fit-height'><img
-                                                        width='770'
-                                                        height='293'
-                                                        src='{{img}}'
-                                                        class='attachment-large size-large'
-                                                        alt=''
-                                                    /></div>
-                                            </a>
-                                        </div>
-
-                                        <div class='col-md-7 mb-2'>
-                                            <div class='post__text p-3'>
-                                                <h3 class='post__title'>
-                                                    <a href='{{href}}'>
-                                                        {{title}}
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                    </article>
+                                {{#each lsPostNews}}
+                                    {{> postPartials}}
                                 {{/each}}
                             </div>
                         </div>
@@ -505,31 +481,8 @@
                         </div>
                         <div class='widget-container'>
                             <div class='posts-container posts posts--skin-classic grid has-item-ratio'>
-                                {{#each posts}}
-                                    <article
-                                        class='post row grid-item post-8024 post type-post status-publish format-standard has-post-thumbnail hentry category-ban-tin'
-                                    >
-                                        <div class='col-md-5 p-2'>
-                                            <a class='post__thumbnail__link' href='{{href}}'>
-                                                <div class='post__thumbnail fit-height'><img
-                                                        width='770'
-                                                        height='293'
-                                                        src='{{img}}'
-                                                        class='attachment-large size-large'
-                                                        alt=''
-                                                    /></div>
-                                            </a>
-                                        </div>
-                                        <div class='col-md-7 mb-2'>
-                                            <div class='post__text p-3'>
-                                                <h3 class='post__title'>
-                                                    <a href='{{href}}'>
-                                                        {{title}}
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </article>
+                                {{#each lsPostProject}}
+                                    {{> postPartials}}
                                 {{/each}}
                             </div>
                         </div>

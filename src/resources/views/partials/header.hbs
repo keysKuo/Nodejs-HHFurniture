@@ -1,11 +1,7 @@
 <nav class='navbar fixed-top navbar-expand-lg navbar-dark bg-dark header'>
     <div class='container header-container'>
         <a class='navbar-brand logo-container' href='/'>
-            <img
-                src='https://hhfurniture.com.vn/wp-content/uploads/2022/05/Logo-chuan-mau.png'
-                class='logo-img'
-                alt='Logo'
-            />
+            <img src='/images/Logo-chuan-mau.png' class='logo-img' alt='Logo' />
         </a>
         <button
             class='navbar-toggler'
@@ -24,8 +20,8 @@
                     <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
                         {{#each lsSubCat}}
                             <li class='nav-item'>
-                                <a class='nav-link active' aria-current='page' href='#'>
-                                    <img src='{{img}}' alt='{{alt}}' />
+                                <a class='nav-link active' aria-current='page' href='{{slug}}'>
+                                    <img src='{{img}}' alt='{{name}}' />
                                     <h3>{{name}}</h3>
                                 </a>
                             </li>
@@ -58,7 +54,7 @@
                                 <a
                                     class='nav-link dropdown-toggle'
                                     data-bs-toggle='dropdown'
-                                    href='{{href}}'
+                                    href='{{slug}}'
                                     role='button'
                                     aria-expanded='false'
                                 >{{title}}
@@ -69,7 +65,7 @@
                                     {{/if}}
                                 </a>
                             {{else}}
-                                <a class='nav-link' href='{{href}}'>{{title}}
+                                <a class='nav-link' href='{{slug}}'>{{title}}
                                     {{#if isHot}}
                                         <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
                                     {{/if}}
@@ -79,7 +75,7 @@
                             {{#if isExpanded}}
                                 <ul class='dropdown-menu'>
                                     {{#each items}}
-                                        <li><a class='dropdown-item' href='{{href}}'>{{title}}</a></li>
+                                        <li><a class='dropdown-item' href='{{slug}}'>{{title}}</a></li>
                                     {{/each}}
                                 </ul>
                             {{/if}}

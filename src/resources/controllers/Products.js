@@ -4,7 +4,14 @@ const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
 
-const { lsCat, lsSubCat, product, lsProduct } = require('../data/mock');
+const {
+    lsCat,
+    lsSubCat,
+    lsProductRelated,
+    lsProductDiscount,
+    lsProductBestSeller,
+    lsPostProject,
+} = require('../data/mock');
 const mongoose = require('mongoose');
 
 // URLs
@@ -211,20 +218,27 @@ const Controller_Products = {
     //      ++++++++++++      Client Controller  ++++++++++++               //
 
     // [GET] /san-pham/:slug
-    GET_productPage: async (req, res, next) => {
+    GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
         if (slug) {
             const product = await API_Products.readOne({ slug: slug });
             
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
+            console.log(product.categories);
             return res.render('pages/product', {
                 layout: 'main',
                 template: 'san-pham-template',
                 lsSubCat,
                 lsCat,
-                product,
                 meta,
-                lsProduct,
+
+                // BE trả về
+                product,
+                lsProductRelated,
+                lsProductDiscount,
+                lsProductBestSeller,
+                lsPostProject,
+                /////////
             });
         }
     },

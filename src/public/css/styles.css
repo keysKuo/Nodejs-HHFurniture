@@ -627,13 +627,19 @@ p {
 
 .section-donoithat {
 }
-.section-donoithat .text-editor {
+
+.section-donoithat .text-editor a,
+.introduction-section .text-editor p {
     color: #d9d9d9;
     font-family: 'Petrona, Sans-serif';
     font-weight: 400;
 }
-.section-donoithat .text-editor a {
-    color: #fff;
+.text-editor a {
+    color: #757575;
+}
+.text-editor p {
+    color: #d9d9d9;
+    line-height: 1.5em;
 }
 
 /* carousel */
@@ -956,7 +962,7 @@ video {
 }
 .swiper-button-next,
 .swiper-button-prev {
-    top: calc(50% - (40px / 2));
+    top: calc(50% - (-40px / 2));
 }
 
 .section-khachhang .testimonial {
@@ -1630,7 +1636,7 @@ td.product-quantity {
 }
 .product-price {
     text-align: center;
-    min-width: 150px;
+    min-width: 300px;
 }
 .coupon {
     float: left;
@@ -2179,4 +2185,82 @@ a.checkout-button:hover {
     border: 1px solid #fda702 !important;
     color: #000 !important;
     background-color: #fda702 !important;
+}
+/* Introduction */
+.itemPageWrap {
+    padding: 60px 0;
+}
+.itemPageWrap .row {
+    width: 100%;
+}
+.itemPageWrap .row .item {
+    display: block;
+}
+.itemPageWrap .row .item:nth-child(n) {
+    padding-right: 1.5%;
+    padding-left: 1.5%;
+}
+.itemPageWrap .row .item:nth-child(3n) {
+    margin-right: 0;
+    margin-bottom: 0;
+}
+.itemPageWrap .row .item div {
+    padding: 70px 30px;
+    background: #fff;
+    border: 1px solid #dedede;
+    position: relative;
+    margin-bottom: 0 !important;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.itemPageWrap .row .item h3 {
+    font-size: 38px;
+    color: var(--background);
+    text-transform: uppercase;
+    padding-bottom: 25px;
+    display: block;
+    position: relative;
+}
+.itemPageWrap .row .item h3:after {
+    width: 2px;
+    height: 75px;
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    left: -31px;
+    background: var(--orange);
+}
+.itemPageWrap .row .item p {
+    font-size: 16px;
+    padding-bottom: 20px;
+}
+.itemPageWrap .row .item a {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+}
+.itemPageWrap .row .item:hover div {
+    background: var(--orange);
+}
+.itemPageWrap .row .item:hover a,
+.itemPageWrap .row .item:hover h3,
+.itemPageWrap .row .item:hover p {
+    color: var(--background);
+}
+.itemPageWrap .row .item:hover .btn-2 {
+    background: url(../images/ar-w.png) right center/24px no-repeat;
+}
+.itemPageWrap .btn-2 {
+    display: inline-block;
+    font-family: riftdemi;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #a7a7a7;
+    background: url(../images/ar-g.png) right center/24px no-repeat;
+    padding-right: 40px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
 }
