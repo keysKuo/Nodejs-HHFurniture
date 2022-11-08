@@ -119,4 +119,11 @@ $(document).ready(function ($) {
             }, 180000);
         }
     });
+
+    $('.list-inline-item').click(function() {
+        let current = $(this).children('a');
+        let prev = $(this).siblings().children('a');
+        current.addClass('chose');
+        prev.removeClass('chose');
+    })
 });

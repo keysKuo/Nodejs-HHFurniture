@@ -6,7 +6,7 @@ const API_Category = {
     },
 
     readOne: async (loaders) => {
-        return await Category.findOne(loaders).populate('parent').lean();
+        return await Category.findOne(loaders).populate({ path: 'parent', populate: 'parent' }).lean();
     },
 
     readMany: async (loaders, options, select) => {
@@ -14,7 +14,7 @@ const API_Category = {
             return await Category.find(loaders, options)
                 .select(select)
                 .sort({ createdAt: -1 })
-                .populate('parent')
+                .populate({ path: 'parent', populate: 'parent' })
                 .lean();
         }
 

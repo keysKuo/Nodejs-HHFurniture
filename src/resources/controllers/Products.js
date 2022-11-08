@@ -222,6 +222,7 @@ const Controller_Products = {
         const slug = req.params.slug;
         if (slug) {
             const product = await API_Products.readOne({ slug: slug });
+            
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
             console.log(product.categories);
             return res.render('pages/product', {
@@ -241,6 +242,63 @@ const Controller_Products = {
             });
         }
     },
+
+    // [GET] /products/:slug
+    GET_productDetail: async (req, res, next) => {
+        const slug = req.params.slug;
+
+        let product = await API_Products.readOne({slug});
+        product.frame = reDistribute(product);
+        const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
+        return res.render('pages/products/detail', {
+            layout: 'main',
+            template: 'san-pham-template',
+            lsSubCat,
+            lsCat,
+            product,
+            meta,
+            lsProduct,
+        });
+    },
+
+    // [GET] /products/colection/:slug
+    GET_productCollection: async (req, res, next) => {
+        const slug = req.params.slug;
+        
+        let category = await API_Category.readOne({slug: slug});
+        let children = await API_Category.readMany({ 'parent': category._id });
+        let products = await API_Products.readMany({ 'categories': {$in: []} }, {});
+        console.log(children);
+
+    }
 };
+
+function reDistribute(product) {
+    let groups = new Set(product.sizes);
+    let result = [];
+
+    groups.forEach((gr) => {
+        let frame = {
+            pid: [],
+            colors: [],
+        };
+        for (let i = 0; i < product.sizes.length; i++) {
+            if (gr == product.sizes[i]) {
+                let rate =
+                    product.discounts[i] != 0 ? 100 - parseInt((product.discounts[i] / product.prices[i]) * 100) : 0;
+
+                frame.size = gr;
+                frame.price = product.prices[i];
+                frame.discount = product.discounts[i];
+                frame.pid.push(product.pid[i]);
+                frame.colors.push(product.colors[i]);
+                frame.rate = rate;
+            }
+        }
+        result.push(frame);
+    });
+    return result;
+
+}
 
 module.exports = Controller_Products;

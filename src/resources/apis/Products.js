@@ -6,7 +6,9 @@ const API_Products = {
     },
 
     readOne: async (loaders) => {
-        return await Products.findOne(loaders).populate('categories').lean();
+        return await Products.findOne(loaders)
+            .populate({ path: 'categories', populate: { path: 'parent', populate: 'parent' } })
+            .lean();
     },
 
     readMany: async (loaders, options) => {
@@ -18,7 +20,7 @@ const API_Products = {
             .skip(skip)
             .limit(limit)
             .sort({ createdAt: -1 })
-            .populate({ path: 'categories', populate: { path: 'parent' } })
+            .populate({ path: 'categories', populate: { path: 'parent', populate: 'parent' } })
             .lean();
     },
 
