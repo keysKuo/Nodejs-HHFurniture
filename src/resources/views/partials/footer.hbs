@@ -45,10 +45,9 @@
                 <div class='element widget widget-text-editor'>
                     <div class='widget-container'>
                         <div class='text-editor clearfix'>
-                            Đồ nội thất<br />
-                            Thiết bị vệ sinh<br />
-                            Đèn trang trí<br />
-                            Đồ trang trí
+                            {{#each lsSubCat}}
+                            <a href="{{slug}}" class="text-capitalize"title="{{name}}">{{name}}</a><br />
+                            {{/each}}
                         </div>
                     </div>
                 </div>

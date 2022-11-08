@@ -1,39 +1,74 @@
 const BASE_URL = process.env.BASE_URL;
-const { doitacs, introduce, lsCat, lsCart, lsSubCat, lsPost, posts, lsProduct } = require('../data/mock');
+const {
+    doitacs,
+    introduce,
+    lsCat,
+    lsCart,
+    lsSubCat,
+    lsPostNews,
+    lsPostProject,
+    lsProductDoNoiThat,
+    lsProductThietBiVeSinh,
+    lsProductDenTrangTri,
+    lsProductDoTrangTri,
+    policy,
+} = require('../data/mock');
 
 const Controller_Home = {
     // [GET] /
     GET_Homepage: async (req, res, next) => {
-        const meta = { title: 'Trang chủ', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const meta = {
+            title: 'Trang chủ – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
 
         return res.render('pages/home', {
             layout: 'main',
             template: 'home-template',
             meta,
-            lsSubCat,
             lsCat,
-            lsProduct,
             doitacs,
-            posts,
             introduce,
+            lsSubCat,
+
+            // BE trả về
+            lsProductDoNoiThat,
+            lsProductThietBiVeSinh,
+            lsProductDenTrangTri,
+            lsProductDoTrangTri,
+            lsPostNews,
+            lsPostProject,
+            //////////////
         });
     },
     // [GET] /ban-tin
     GET_News: async (req, res, next) => {
-        const meta = { title: 'Bản tin', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const meta = {
+            title: 'Bản tin – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
 
-        return res.render('pages/post', {
+        return res.render('pages/news', {
             layout: 'main',
             template: 'post-template',
             meta,
             lsSubCat,
             lsCat,
-            lsPost,
+
+            // BE trả về
+            lsPostNews,
+            //////////////
         });
     },
     // [GET] /contact
     GET_Contact: async (req, res, next) => {
-        const meta = { title: 'Liên hệ', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const meta = {
+            title: 'Liên hệ – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
         return res.render('pages/contact', {
             layout: 'main',
             template: 'contact-template',
@@ -44,7 +79,11 @@ const Controller_Home = {
     },
     // [GET] /khuyen-mai
     GET_Sales: async (req, res, next) => {
-        const meta = { title: 'Khuyến mãi', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const meta = {
+            title: 'Khuyến mãi – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
 
         return res.render('pages/sales', {
             layout: 'main',
@@ -52,20 +91,68 @@ const Controller_Home = {
             lsSubCat,
             lsCat,
             meta,
-            lsProduct,
-            posts,
+
+            // BE trả về
+            lsProductDoNoiThat,
+            lsProductThietBiVeSinh,
+            lsProductDenTrangTri,
+            lsProductDoTrangTri,
+            lsPostNews,
+            //////////
         });
     },
     GET_Payment: async (req, res, next) => {
-        const meta = { title: 'Thanh Toán', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const meta = {
+            title: 'Thanh Toán – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
 
-        return res.render('pages/payment', {
+        return res.render('pages/checkout', {
             layout: 'main',
             template: 'payment-template',
             meta,
             lsSubCat,
             lsCat,
+
+            // BE trả về
             lsCart,
+            //////////
+        });
+    },
+    GET_PolicyPage: async (req, res, next) => {
+        const meta = {
+            title: 'Chính sách – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
+
+        return res.render('pages/policy', {
+            layout: 'main',
+            template: 'policy-template',
+            meta,
+            lsSubCat,
+            lsCat,
+
+            /// BE trả về
+            policy,
+            ////////////
+        });
+    },
+
+    GET_Introduction: async (req, res, next) => {
+        const meta = {
+            title: 'Giới thiệu – H&H Furniture',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
+
+        return res.render('pages/introduction', {
+            layout: 'main',
+            template: 'policy-template',
+            meta,
+            lsSubCat,
+            lsCat,
         });
     },
 };

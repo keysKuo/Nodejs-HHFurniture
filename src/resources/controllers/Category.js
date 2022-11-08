@@ -1,6 +1,15 @@
 const BASE_URL = process.env.BASE_URL;
 const { API_Products } = require('../apis');
-const { doitacs, introduce, lsCat, lsSubCat, lsPost, posts, lsProduct } = require('../data/mock');
+const {
+    doitacs,
+    introduce,
+    lsCat,
+    lsSubCat,
+    lsPostProject,
+    lsProductByCategory,
+    lsProductDiscount,
+    lsProductBestSeller,
+} = require('../data/mock');
 
 var category = {
     title: 'Đồ nội thất',
@@ -23,6 +32,9 @@ var category = {
     ],
 };
 const Controller_Category = {
+    // ++++++++++ Client Controller +++++++++++
+
+    // [GET] /danh-muc-san-pham/do-noi-that
     GET_CategoryPage: async (req, res, next) => {
         if (req.params.slug) {
             const meta = { title: category.title, desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
@@ -42,15 +54,19 @@ const Controller_Category = {
                 layout: 'main',
                 template: 'category-template',
                 meta,
-                category,
                 lsSubCat,
                 lsCat,
-                lsProduct,
-                posts,
                 pagination: {
                     page: 1, // The current page the user is on
                     pageCount: 12, // The total number of available pages
                 },
+                //BE trả về
+                category,
+                lsProductByCategory,
+                lsProductDiscount,
+                lsProductBestSeller,
+                lsPostProject,
+                ///////////s
             });
         }
     },
