@@ -1,5 +1,5 @@
 const BASE_URL = process.env.BASE_URL;
-const { API_Products } = require('../apis');
+const { API_Products, API_News, API_Category } = require('../apis');
 const {
     doitacs,
     introduce,
@@ -99,6 +99,7 @@ const Controller_Home = {
             keywords: 'Homepage, đồ nội thất',
         };
 
+        let lsPostNews = await API_News.readMany({},{ limit: 12, select: { content: 0 } })
         return res.render('pages/news', {
             layout: 'main',
             template: 'post-template',
@@ -172,11 +173,13 @@ const Controller_Home = {
     },
 
     GET_PolicyPage: async (req, res, next) => {
+
         const meta = {
             title: policy.title + ' – H&H Furniture',
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+
 
         return res.render('pages/post', {
             layout: 'main',
