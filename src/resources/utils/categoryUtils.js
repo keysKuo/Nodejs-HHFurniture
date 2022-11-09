@@ -27,3 +27,16 @@ exports.queryCategories = async (categories) => {
 
     return result;
 }
+
+exports.normalizeData = (products) => {
+    return products.map((product) => {
+        return {
+            pname: product.pname,
+            pimg: product.pimg[0],
+            slug: product.slug,
+            price: product.classify[0].price,
+            discount: product.classify[0].discount,
+            rate: Math.max(...product.classify.map((c) => c.rate)),
+        };
+    });
+}

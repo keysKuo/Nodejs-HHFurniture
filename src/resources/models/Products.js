@@ -10,8 +10,8 @@ const Products = new Schema(
         feature: { type: [String] },
         classify: [{
             size: String,
-            price: String,
-            discount: String,
+            price: Number,
+            discount: Number,
             rate: Number,
             pid: [String],
             colors: [String],

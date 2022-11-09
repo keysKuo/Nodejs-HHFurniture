@@ -10,7 +10,7 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
 } = require('../data/mock');
-const { getRelation, queryCategories } = require('../utils/categoryUtils');
+const { getRelation, queryCategories, normalizeData } = require('../utils/categoryUtils');
 const reDistribute = require('../utils/reDistribute');
 
 var category = {
@@ -80,16 +80,7 @@ const Controller_Category = {
                 { $and: [query, { 'classify.rate': { $gt: 0 } }] },
                 { limit: 6, select: { categories: 0, description: 0 } },
             ).then((products) => {
-                return products.map((product) => {
-                    return {
-                        pname: product.pname,
-                        pimg: product.pimg[0],
-                        slug: product.slug,
-                        price: product.classify[0].price,
-                        discount: product.classify[0].discount,
-                        rate: Math.max(...product.classify.map((c) => c.rate)),
-                    };
-                });
+                return normalizeData(products);
             });
 
             // Query lsProductBestSeller
@@ -97,16 +88,7 @@ const Controller_Category = {
                 { $and: [query, { 'classify.rate': { $gt: 0 } }] },
                 { limit: 6, select: { categories: 0, description: 0 } },
             ).then((products) => {
-                return products.map((product) => {
-                    return {
-                        pname: product.pname,
-                        pimg: product.pimg[0],
-                        slug: product.slug,
-                        price: product.classify[0].price,
-                        discount: product.classify[0].discount,
-                        rate: Math.max(...product.classify.map((c) => c.rate)),
-                    };
-                });
+                return normalizeData(products);
             });
 
             // Query lsPostProject

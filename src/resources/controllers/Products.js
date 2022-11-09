@@ -1,4 +1,4 @@
-const { API_Products, API_Category } = require('../apis');
+const { API_Products, API_Category, API_News } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
@@ -11,11 +11,11 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
     lsPostProject,
-    product,
+    
 } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
-const { getRelation, queryCategories } = require('../utils/categoryUtils');
+const { getRelation, queryCategories, normalizeData } = require('../utils/categoryUtils');
 
 // URLs
 const storageURL = '/products/storage';
@@ -52,7 +52,7 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
-        const categories = await API_Category.readMany({});
+        const categories = await API_Category.readMany({level: 3});
 
         return res.render('pages/products/create', {
             layout: 'admin',
@@ -91,7 +91,6 @@ const Controller_Products = {
         }
         
         let classify = reDistribute(req.body);
-
         await API_Products.create({ ...req.body, pimg, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
@@ -133,7 +132,7 @@ const Controller_Products = {
 
         let product = await API_Products.readOne({ _id: id });
         //console.log(product);
-        const categories = await API_Category.readMany({}).then((categories) => {
+        const categories = await API_Category.readMany({level: 3}).then((categories) => {
             categories.forEach((cate1) => {
                 product.categories.forEach((cate2) => {
                     if (cate2._id.toString() == cate1._id.toString()) {
@@ -232,6 +231,45 @@ const Controller_Products = {
     GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
         if (slug) {
+            let product = await API_Products.readOne({slug});
+            let queryCate = product.categories.map(cate => cate.level3.id);
+
+            let lsProductRelated = await API_Products.readMany(
+                { 'categories.level3.id': {$in: queryCate} },
+                { limit: 12, select: { description: 0, categories: 0 } }
+            ).then(products => {
+                return normalizeData(products);
+            })
+
+            let lsProductDiscount = await API_Products.readMany(
+                { $and: [{ 'categories.level3.id': {$in: queryCate} }, { 'classify.rate': {$gt: 0}}]},
+                { limit: 6 , select: { description: 0, categories: 0 }}
+            ).then(products => {
+                return normalizeData(products);
+            })
+
+            let lsProductBestSeller = await API_Products.readMany(
+                { $and: [{ 'categories.level3.id': {$in: queryCate} }, { 'classify.rate': {$gt: 0}}]},
+                { limit: 6 , select: { description: 0, categories: 0 }}
+            ).then(products => {
+                return normalizeData(products);
+            })
+
+            let lsPostProject = await API_News.readMany(
+                {},
+                { limit: 4 }
+            ).then((posts) => {
+                return posts.map((post) => {
+                    return {
+                        title: post.title,
+                        slug: post.slug,
+                        img: post.images[0]
+                    };
+                });
+            });
+
+            //return res.json({data: lsPostProject})
+
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
             return res.render('pages/product', {
                 layout: 'main',
@@ -252,22 +290,22 @@ const Controller_Products = {
     },
 
     // [GET] /products/:slug
-    GET_productDetail: async (req, res, next) => {
-        const slug = req.params.slug;
+    // GET_productDetail: async (req, res, next) => {
+    //     const slug = req.params.slug;
 
-        let product = await API_Products.readOne({ slug });
-        // product.frame = reDistribute(product);
-        const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
-        return res.render('pages/products/detail', {
-            layout: 'main',
-            template: 'san-pham-template',
-            lsSubCat,
-            lsCat,
-            product,
-            meta,
-            lsProduct,
-        });
-    },
+    //     let product = await API_Products.readOne({ slug });
+    //     // product.frame = reDistribute(product);
+    //     const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
+    //     return res.render('pages/products/detail', {
+    //         layout: 'main',
+    //         template: 'san-pham-template',
+    //         lsSubCat,
+    //         lsCat,
+    //         product,
+    //         meta,
+    //         lsProduct,
+    //     });
+    // },
 
     // [GET] /products/colection/:slug
     GET_productCollection: async (req, res, next) => {

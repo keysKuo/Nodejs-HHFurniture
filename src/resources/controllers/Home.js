@@ -1,4 +1,5 @@
 const BASE_URL = process.env.BASE_URL;
+const { API_Products } = require('../apis');
 const {
     doitacs,
     introduce,
@@ -13,6 +14,7 @@ const {
     lsProductDoTrangTri,
     policy,
 } = require('../data/mock');
+const { normalizeData } = require('../utils/categoryUtils');
 
 const Controller_Home = {
     // [GET] /
@@ -22,6 +24,53 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+
+        const options = {
+            limit: 12,
+            select: {
+                description: 0,
+                categories: 0
+            }
+        }
+
+        let lsProductDoNoiThat = await API_Products.readMany(
+            { 'categories.level1.name': 'Đồ nội thất'}, options
+        ).then(products => {
+            return normalizeData(products);
+        })
+        
+        let lsProductThietBiVeSinh = await API_Products.readMany(
+            { 'categories.level1.name': 'Thiết bị vệ sinh'}, options
+        ).then(products => {
+            return normalizeData(products);
+        })
+
+        let lsProductDenTrangTri = await API_Products.readMany(
+            { 'categories.level1.name': 'Đèn trang trí'}, options
+        ).then(products => {
+            return normalizeData(products);
+        })
+
+        let lsProductDoTrangTri = await API_Products.readMany(
+            { 'categories.level1.name': 'Đồ trang trí'}, options
+        ).then(products => {
+            return normalizeData(products);
+        })
+
+        let lsPostProject = await API_News.readMany(
+            {},
+            { limit: 4 }
+        ).then((posts) => {
+            return posts.map((post) => {
+                return {
+                    title: post.title,
+                    slug: post.slug,
+                    img: post.images[0]
+                };
+            });
+        });
+
+        //return res.json({data: lsProductDoTrangTri});
 
         return res.render('pages/home', {
             layout: 'main',
