@@ -6,6 +6,7 @@ function reDistribute(product) {
         let frame = {
             pid: [],
             colors: [],
+            quantity: []
         };
         for (let i = 0; i < product.sizes.length; i++) {
             if (gr == product.sizes[i]) {
@@ -17,6 +18,7 @@ function reDistribute(product) {
                 frame.discount = product.discounts[i];
                 frame.pid.push(product.pid[i]);
                 frame.colors.push(product.colors[i]);
+                frame.quantity.push(parseInt(product.quantity[i]))
                 frame.rate = rate;
             }
         }

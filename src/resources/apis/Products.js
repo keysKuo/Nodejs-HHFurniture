@@ -29,6 +29,7 @@ const API_Products = {
     remove: async (id) => {
         return await Products.findByIdAndRemove(id);
     },
+
 };
 
 module.exports = API_Products;

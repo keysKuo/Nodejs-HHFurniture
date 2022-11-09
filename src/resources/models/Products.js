@@ -8,16 +8,20 @@ const Products = new Schema(
         pimg: { type: [String] },
         material: { type: String },
         feature: { type: [String] },
-        sizes: { type: [String] },
-        colors: { type: [String] },
-        prices: { type: [String] },
-        discounts: { type: [String] },
-        quantity: { type: [String] },
+        classify: [{
+            size: String,
+            price: String,
+            discount: String,
+            rate: Number,
+            pid: [String],
+            colors: [String],
+            quantity: [Number]
+        }],
         description: { type: String },
         categories: [{
-            level1: { type: Schema.Types.ObjectId, ref: 'Category' },
-            level2: { type: Schema.Types.ObjectId, ref: 'Category' },
-            level3: { type: Schema.Types.ObjectId, ref: 'Category' }
+            level1: { type: { name: String, id: String} },
+            level2: { type: { name: String, id: String} },
+            level3: { type: { name: String, id: String} }
         }],
         slug: { type: String, required: true },
     },

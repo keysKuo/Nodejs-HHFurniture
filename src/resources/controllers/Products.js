@@ -14,6 +14,8 @@ const {
     product,
 } = require('../data/mock');
 const mongoose = require('mongoose');
+const reDistribute = require('../utils/reDistribute');
+const { getRelation, queryCategories } = require('../utils/categoryUtils');
 
 // URLs
 const storageURL = '/products/storage';
@@ -82,7 +84,15 @@ const Controller_Products = {
             locale: 'vi',
         });
 
-        await API_Products.create({ ...req.body, pimg, slug })
+        let categories = [];
+        let queryCate = await queryCategories(req.body.categories);
+        for(cate of queryCate) {
+            categories.push(getRelation(cate));
+        }
+        
+        let classify = reDistribute(req.body);
+
+        await API_Products.create({ ...req.body, pimg, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
                 return res.redirect(storageURL);
@@ -246,7 +256,7 @@ const Controller_Products = {
         const slug = req.params.slug;
 
         let product = await API_Products.readOne({ slug });
-        product.frame = reDistribute(product);
+        // product.frame = reDistribute(product);
         const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
         return res.render('pages/products/detail', {
             layout: 'main',
@@ -270,31 +280,6 @@ const Controller_Products = {
     },
 };
 
-function reDistribute(product) {
-    let groups = new Set(product.sizes);
-    let result = [];
 
-    groups.forEach((gr) => {
-        let frame = {
-            pid: [],
-            colors: [],
-        };
-        for (let i = 0; i < product.sizes.length; i++) {
-            if (gr == product.sizes[i]) {
-                let rate =
-                    product.discounts[i] != 0 ? 100 - parseInt((product.discounts[i] / product.prices[i]) * 100) : 0;
-
-                frame.size = gr;
-                frame.price = product.prices[i];
-                frame.discount = product.discounts[i];
-                frame.pid.push(product.pid[i]);
-                frame.colors.push(product.colors[i]);
-                frame.rate = rate;
-            }
-        }
-        result.push(frame);
-    });
-    return result;
-}
 
 module.exports = Controller_Products;
