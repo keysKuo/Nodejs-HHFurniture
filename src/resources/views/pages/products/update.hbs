@@ -50,13 +50,13 @@
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="category">DANH MỤC SẢN PHẨM</label><br>
                                     {{#each categories}}
-                                        {{#noChild name ../categories }}
+                                        {{!-- {{#noChild name ../categories }} --}}
                                             <div class="form-check form-check-inline ml-1 mt-1">
                                                 <input class="form-check-input" name="categories" type="checkbox" id="{{slug}}" value="{{_id}}" 
                                                 {{#if this.check}}checked{{/if}}>
                                                 <label class="form-check-label" for="{{slug}}">{{name}}</label>
                                             </div>
-                                        {{/noChild}}
+                                        {{!-- {{/noChild}} --}}
                                     {{/each}}
                                     {{!-- <select id="categories" name="categories" class="form-control">
                                         <option value="">-- Chọn loại sản phẩm --</option>
@@ -90,32 +90,32 @@
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="name">Mã sản phẩm<span style="color:red">*</span></label>
                                     <input id="pid" name="pid" placeholder="Mã sản phẩm"
-                                    class="form-control" required type="text" value="{{#first data.pid}}{{/first}}">
+                                    class="form-control" required type="text" value="{{#first dataArr.pid}}{{/first}}">
                                 </div>
                                 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Size</label>
-                                    <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text" value="{{#first data.sizes}}{{/first}}">
+                                    <input id="sizes" name="sizes" placeholder="Size" class="form-control input-md" type="text" value="{{#first dataArr.sizes}}{{/first}}">
                                 </div>
                                 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Màu sắc</label>
-                                    <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text" value="{{#first data.colors}}{{/first}}">
+                                    <input id="colors" name="colors" placeholder="Màu sắc" class="form-control input-md" type="text" value="{{#first dataArr.colors}}{{/first}}">
                                 </div>
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="price">Giá gốc</label>
-                                    <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0" value="{{#first data.prices}}{{/first}}">
+                                    <input id="prices" name="prices" placeholder="Giá gốc" class="form-control input-md" type="number" min="0" value="{{#first dataArr.prices}}{{/first}}">
                                     
                                 </div>
 
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="sale">Giá khuyến mãi</label>
-                                    <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0" value="{{#first data.discounts}}{{/first}}">
+                                    <input id="discounts" name="discounts" placeholder="Giá khuyến mãi" class="form-control input-md" type="number" min="0" value="{{#first dataArr.discounts}}{{/first}}">
                                 </div>
                                 <div class="form-group col">
                                     <label class="control-label text-uppercase" for="amount">Số lượng<span style="color:red">*</span></label>
                                     <input id="quantity" name="quantity" placeholder="Số lượng"
-                                    class="form-control input-md w-100" required="" type="number" min="0" value="{{#first data.quantity}}{{/first}}">
+                                    class="form-control input-md w-100" required="" type="number" min="0" value="{{#first dataArr.quantity}}{{/first}}">
                                     
                                 </div>
                                 <div style="visibility: hidden;" class="form-group mt-2">
@@ -124,7 +124,7 @@
                                 </div>
         
                             </div>
-                            {{#theRest data}}
+                            {{#theRest dataArr}}
                             {{/theRest}}
                         </fieldset>
 

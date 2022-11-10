@@ -45,26 +45,26 @@
                                         <td><img src='{{pimg.[0]}}' alt='' width='70%' /></td>
                                         <td>{{pname}}</td>
                                         <td>
-                                            {{#each classify}}
-                                                {{pid}}
+                                            {{#each classify.pid}}
+                                                {{this}}
                                                 <br />
                                             {{/each}}
                                         </td>
                                         <td>
-                                            {{#each classify}}
-                                                {{size}}
+                                            {{#each classify.sizes}}
+                                                {{this}}
                                                 <br />
                                             {{/each}}
                                         </td>
                                         <td>
-                                            {{#each classify}}
-                                                {{formatCurrency price}}
+                                            {{#each classify.prices}}
+                                                {{formatCurrency this}}
                                                 <br />
                                             {{/each}}
                                         </td>
                                         <td>
-                                            {{#each classify}}
-                                                {{quantity}}
+                                            {{#each classify.quantity}}
+                                                {{this}}
                                                 <br />
                                             {{/each}}
                                         </td>

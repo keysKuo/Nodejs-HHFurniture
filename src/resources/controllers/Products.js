@@ -15,7 +15,7 @@ const {
 } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
-const { getRelation, queryCategories, normalizeData } = require('../utils/categoryUtils');
+const { getRelation, queryCategories, normalizeData, rollBackArr } = require('../utils/categoryUtils');
 
 // URLs
 const storageURL = '/products/storage';
@@ -33,10 +33,23 @@ const Controller_Products = {
         const options = {
             skip: 20 * (page - 1),
             limit: 20,
+            select: {
+                description: 0,
+                categories: 0,
+                material: 0,
+            }
         };
 
-        let products = await API_Products.readMany({}, options);
-
+        let products = await API_Products.readMany({}, options)
+            .then(products => {
+                return products.map(product => {
+                    return {
+                        ...product,
+                        classify: rollBackArr(product.classify)
+                    }
+                })
+            })
+        
         //console.log(products)
         return res.render('pages/products/storage', {
             layout: 'admin',
@@ -131,25 +144,26 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-        //console.log(product);
-        const categories = await API_Category.readMany({level: 3}).then((categories) => {
-            categories.forEach((cate1) => {
-                product.categories.forEach((cate2) => {
-                    if (cate2._id.toString() == cate1._id.toString()) {
-                        cate1.check = true;
+        
+        let dataArr = rollBackArr(product.classify);
+        const categories = await API_Category.readMany({level: 3})
+            .then(categories => {
+                return categories.map(cate => {
+                    return {
+                        ...cate,
+                        check: product.categories.some(c => c.level3.name == cate.name)
                     }
-                });
-            });
-
-            return categories;
-        });
-
+                })
+            })
         //console.log(categories)
+        //return res.json({data: dataArr})
+
 
         return res.render('pages/products/update', {
             layout: 'admin',
             pageName: 'Chỉnh sửa sản phẩm',
             data: product,
+            dataArr,
             error,
             success,
             categories,
@@ -160,26 +174,30 @@ const Controller_Products = {
     POST_updateProduct: async (req, res, next) => {
         const oldPath = req.body.oldpath;
         const pid = req.body.pid;
-        const categories = req.body.categories;
+
+        let cateArr = await API_Category.readMany({_id: {$in: req.body.categories}})
+        let categories = cateArr.map(c => {
+            return getRelation(c);
+        })
+        
         const id = req.params.id;
         const files = req.files;
 
         let isNewImg = files.length != 0;
         let pdir = typeof pid == 'string' ? pid : pid[0];
-        let objCategories =
-            typeof categories == 'string'
-                ? [new mongoose.Types.ObjectId(categories)]
-                : categories.map((c) => mongoose.Types.ObjectId(c));
+
         let updateImg = !isNewImg
             ? oldPath
             : files.map((file) => {
                   return `/uploads/products/${pdir}/${file.filename}`;
               });
-
+        
+        let classify = reDistribute(req.body);
         const data = {
             ...req.body,
-            categories: objCategories,
             pimg: updateImg,
+            categories,
+            classify
         };
         delete data.oldpath;
 
@@ -216,8 +234,14 @@ const Controller_Products = {
     // [GET] /products/preview/:id
     GET_previewProduct: async (req, res, next) => {
         const id = req.params.id;
-
-        let product = await API_Products.readOne({ _id: id });
+        
+        let product = await API_Products.readOne({ _id: id })
+            .then(product => {     
+                return {
+                    ...product,
+                    classify: rollBackArr(product.classify)
+                }     
+            })
         //console.log(product);
         return res.render('pages/products/preview', {
             layout: 'admin',

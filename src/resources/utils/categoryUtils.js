@@ -40,3 +40,26 @@ exports.normalizeData = (products) => {
         };
     });
 }
+
+exports.rollBackArr = (items) => {
+    let result = {
+        pid: [],
+        sizes: [],
+        colors: [],
+        prices: [],
+        discounts: [],
+        quantity: []
+    };
+    items.forEach(item => {
+        for(let i = 0; i < item.pid.length; i++) {
+            result.pid.push(item.pid[i]);
+            result.sizes.push(item.size);
+            result.colors.push(item.colors[i]);
+            result.prices.push(item.price);
+            result.discounts.push(item.discount);
+            result.quantity.push(item.quantity[i]);
+        }
+    })
+
+    return result;
+}

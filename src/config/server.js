@@ -45,7 +45,7 @@ const init = () => {
                     }
                     return options.inverse(this);
                 },
-                first: function (list, options) {
+                first: function (list, options) {         
                     return list[0];
                 },
                 uploaded: function (data, options) {

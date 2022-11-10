@@ -26,20 +26,20 @@
                                     </div>
                                     <div class='detail__container__right__desc'>
                                         <p class='text-decoration-line-through'>Mã sản phẩm: 
-                                                    {{#each data.pid}}<span>[{{this}}] </span>{{/each}}</p>
+                                                    {{#each data.classify.pid}}<span>[{{this}}] </span>{{/each}}</p>
                                         <p class='text-decoration-line-through'>Kích thước: 
-                                                     {{#each data.sizes}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                                     {{#each data.classify.sizes}}<span>[{{this}}] </span>{{/each}}</p></p>
                                         <p class='text-decoration-line-through'>Màu sắc: 
-                                                     {{#each data.colors}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                                     {{#each data.classify.colors}}<span>[{{this}}] </span>{{/each}}</p></p>
                                         <p class='text-decoration-line-through'>Giá gốc: 
-                                                     {{#each data.prices}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
+                                                     {{#each data.classify.prices}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
                                         <p class='text-decoration-line-through'>Giá sale: 
-                                                     {{#each data.discounts}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
+                                                     {{#each data.classify.discounts}}<span>[{{formatCurrency this}}] </span>{{/each}}</p></p>
                                         <p class='text-decoration-line-through'>Số lượng: 
-                                                     {{#each data.quantity}}<span>[{{this}}] </span>{{/each}}</p></p>
+                                                     {{#each data.classify.quantity}}<span>[{{this}}] </span>{{/each}}</p></p>
                                                 
                                         
-                                        <p>DANH MỤC: {{#each data.categories}}<span>[{{this.name}}] </span>{{/each}}</p>
+                                        <p>DANH MỤC: {{#each data.categories}}<span>[{{this.level3.name}}] </span>{{/each}}</p>
                                     </div>
                                     <div class='detail__container__right__btn'>
                                         <button type='submit'>LIÊN HỆ BÁO GIÁ</button>

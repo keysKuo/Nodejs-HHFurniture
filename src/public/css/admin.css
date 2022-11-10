@@ -15,6 +15,10 @@ td {
     white-space: nowrap;
 }
 
+.card.shadow td {
+    max-width: 100px;
+}
+
 .wrapper {
     display: flex;
     min-height: 100%;
