@@ -36,8 +36,8 @@
             <div class='col-md-5'>
                 <div class='product-images position-relative'>
                     <div class='widget-container'>
-                        {{#when product.discount 'gt' 0}}
-                            <span class='onsale'>-{{product.discount}}%</span>
+                        {{#when product.classify.rate 'gt' 0}}
+                            <span class='onsale'>-{{product.classify.rate}}%</span>
                         {{/when}}
 
                         <div
@@ -58,7 +58,7 @@
                                     <img
                                         width='600'
                                         height='600'
-                                        src='/images/{{ product.pimg}}'
+                                        src='{{ product.pimg.[0]}}'
                                         class='wp-post-image'
                                         alt=''
                                         title='N.SCU-G1691'
@@ -88,7 +88,7 @@
                                     <span class='detail-label'>
                                         Mã Sản Phẩm:
                                     </span>
-                                    <span class='sku'>{{product.pid}}</span>
+                                    <span class='sku'>{{product.classify.[0].pid}}</span>
                                 </span>
                             </div>
                         </div>
@@ -99,9 +99,9 @@
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
                                         <span class='Price-amount amount'>
-                                            {{#each product.prices}}
-                                            {{formatCurrency this}}
-                                            {{/each}}
+                                            
+                                            {{formatCurrency product.classify.[0].price}}
+                                            
                                         </span>
                                     </h5>
                                 </div>
@@ -113,7 +113,7 @@
                                     <li class='list-inline-item'>
                                         <a
                                             href='javascript:void(0)'
-                                            class='btn btn-icon btn-soft-primary'
+                                            class='btn btn-icon btn-soft-primary chose'
                                         >{{product.material}}</a>
                                     </li>
                                 </ul>
@@ -122,11 +122,11 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.colors as |item|}}
+                                    {{#each product.classify.[0].colors as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
-                                                class='btn btn-icon btn-soft-primary'
+                                                class='btn btn-icon btn-soft-primary chose'
                                             >{{item}}</a>
                                         </li>
                                     {{/each}}
@@ -135,12 +135,12 @@
                             <div class='d-flex align-items-center'>
                                 <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
                                 <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.sizes as |item|}}
+                                    {{#each product.classify as |item|}}
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
                                                 class='btn btn-icon btn-soft-primary'
-                                            >{{item}}</a>
+                                            >{{item.size}}</a>
                                         </li>
                                     {{/each}}
                                 </ul>
@@ -329,12 +329,12 @@ ction>
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>
                         <div class='heading-title-arround p-1'>
                             <h2 class='heading-title size-default fs-6 text-start' style='text-transform: uppercase;'>
-                                SẢN PHẨM LIÊN QUAN
+                                Mô tả sản phẩm
                             </h2>
                         </div>
                     </div>
                     <div class='text-light widget-container'>
-                        <p>{{product.description}}</p>
+                        <p>{{{product.description}}}</p>
                     </div>
 
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>

@@ -1,4 +1,4 @@
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const db = require('./config/database');
 const router = require('./resources/routes');
 require('dotenv').config();
