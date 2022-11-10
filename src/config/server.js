@@ -39,6 +39,13 @@ const init = () => {
                     return 'Liên hệ';
                 },
 
+                includesID: function (list, target, options) {
+                    for (const item of list) {
+                        if (item.parent._id.toString() == target.toString()) return options.fn(this);
+                    }
+                    return options.inverse(this);
+                },
+
                 includes: function (list, target, options) {
                     for (const item of list) {
                         if (item == target) return options.fn(this);

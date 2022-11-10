@@ -1,0 +1,70 @@
+{{#if error}}
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        {{error}}
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card shadow'>
+                <div class='card-header d-flex justify-content-between'>
+                    <h4>{{pageName}}</h4>
+                    <a type="button" href="/admin/categories" class="btn btn-secondary">Trở lại</a>
+                </div>
+                <div class='card-body'>
+                    <form class='form' method='POST'>
+                        <fieldset>
+                            <!-- Text input-->
+                            <div class='form-group'>
+                                <label class='control-label text-uppercase' for='name'>Tên danh mục<span style="color:red">*</span></label>
+                                <input
+                                    id='name'
+                                    name='name'
+                                    placeholder='Tên danh mục'
+                                    class='form-control input-md'
+                                    required=''
+                                    type='text'
+                                />
+                            </div>
+
+                            <div class='form-group'>
+                                <label class='control-label text-uppercase' for='parent'>DANH MỤC Sản phẩm</label>
+                                <select id='parent' name='parent' class='form-control'>
+                                    <option value=''>Chọn danh mục...</option>
+                                    {{#each categories}}
+                                        <optgroup label="{{name}}">
+                                            {{#each children}}
+                                                <optgroup label="&nbsp;&nbsp;&nbsp;&nbsp;{{name}}">
+                                                    {{#includesID ../grands _id}}
+                                                        {{#each ../grands}}
+                                                            <option value='{{_id}}'>&nbsp;&nbsp;&nbsp;&nbsp;{{name}}</option>
+                                                        {{/each}}
+                                                    {{/includesID}}
+                                                </optgroup>
+                                            {{/each}}
+                                            {{!-- <option value='{{_id}}'>{{name}}</option> --}}
+
+                                        </optgroup>
+                                        
+                                    {{/each}}
+                                </select>
+
+                                
+                            </div>
+
+                            <!-- Text input-->
+                            <div class='form-footer'>
+                                <button type='submit' class='btn btn-success'>Thêm danh mục</button>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

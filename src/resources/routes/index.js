@@ -13,6 +13,7 @@ function router(app) {
     app.use('/chinh-sach', policyRouter);
     app.use('/san-pham', productRouter);
     app.use('/danh-muc-san-pham', categoryRouter);
+    app.use('/category', categoryRouter);
     app.use('/gio-hang', cartRouter);
 }
 
