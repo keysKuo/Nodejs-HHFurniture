@@ -2101,28 +2101,29 @@ ul.wc_payment_methods.payment_methods.methods {
     content: ' ';
     display: table;
 }
+
+.checkout #payment ul.payment_methods li input {
+    margin: 0 1em 0 0;
+}
 #payment .payment_methods li.wc_payment_method > input[type='radio']:first-child {
     clip: rect(1px, 1px, 1px, 1px);
     position: absolute !important;
 }
-.checkout #payment ul.payment_methods li input {
-    margin: 0 1em 0 0;
-}
 #payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label {
     font-weight: 700;
     background-color: rgba(0, 0, 0, 0.07);
-}
-#payment .payment_methods > .wc_payment_method > label {
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.04);
-    display: block;
-    cursor: pointer;
 }
 #payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
     content: '\e03c';
 }
 #payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
     content: '\e904';
+}
+#payment .payment_methods > .wc_payment_method > label {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.04);
+    display: block;
+    cursor: pointer;
 }
 #payment .payment_methods > .wc_payment_method > label:before {
     font-family: WooCommerce;

@@ -285,7 +285,7 @@ const Controller_Products = {
                 });
             });
 
-            return res.json({ data: lsPostProject });
+            // return res.json({ data: lsPostProject });
 
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
             return res.render('pages/product', {
