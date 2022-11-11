@@ -215,30 +215,26 @@ const Controller_News = {
     GET_PostPage: async (req, res, next) => {
         const slug = req.params.slug;
 
-        let post = await API_News.readOne({slug})
-            .then((posts) => {
-                return posts.map((post) => {
-                    return {
-                        title: post.title,
-                        slug: post.slug,
-                        img: post.images[0],
-                        content: post.content
-                    };
-                });
+        let post = await API_News.readOne({ slug }).then((posts) => {
+            return posts.map((post) => {
+                return {
+                    title: post.title,
+                    slug: post.slug,
+                    img: post.images[0],
+                    content: post.content,
+                };
             });
+        });
 
-            let lsPostRelated = await API_News.readMany(
-                {},
-                { limit: 4 }
-            ).then((posts) => {
-                return posts.map((post) => {
-                    return {
-                        title: post.title,
-                        slug: post.slug,
-                        img: post.images[0]
-                    };
-                });
+        let lsPostRelated = await API_News.readMany({}, { limit: 4 }).then((posts) => {
+            return posts.map((post) => {
+                return {
+                    title: post.title,
+                    slug: post.slug,
+                    img: post.images[0],
+                };
             });
+        });
 
         const meta = {
             title: post.title,

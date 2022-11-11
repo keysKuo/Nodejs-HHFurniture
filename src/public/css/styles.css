@@ -2212,7 +2212,7 @@ a.checkout-button:hover {
     margin-bottom: 0;
 }
 .itemPageWrap .row .item div {
-    padding: 70px 30px;
+    padding: 20px 30px;
     background: #fff;
     border: 1px solid #dedede;
     position: relative;
@@ -2278,8 +2278,6 @@ a.checkout-button:hover {
 }
 .post-content {
     color: #a7a7a7;
-    padding-right: 100px;
-    padding-left: 100px;
 }
 
 .post-content ul {

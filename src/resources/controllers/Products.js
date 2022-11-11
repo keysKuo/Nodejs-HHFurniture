@@ -11,7 +11,7 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
     lsPostProject,
-    
+    product,
 } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
@@ -37,19 +37,18 @@ const Controller_Products = {
                 description: 0,
                 categories: 0,
                 material: 0,
-            }
+            },
         };
 
-        let products = await API_Products.readMany({}, options)
-            .then(products => {
-                return products.map(product => {
-                    return {
-                        ...product,
-                        classify: rollBackArr(product.classify)
-                    }
-                })
-            })
-        
+        let products = await API_Products.readMany({}, options).then((products) => {
+            return products.map((product) => {
+                return {
+                    ...product,
+                    classify: rollBackArr(product.classify),
+                };
+            });
+        });
+
         //console.log(products)
         return res.render('pages/products/storage', {
             layout: 'admin',
@@ -65,7 +64,7 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
-        const categories = await API_Category.readMany({level: 3});
+        const categories = await API_Category.readMany({ level: 3 });
 
         return res.render('pages/products/create', {
             layout: 'admin',
@@ -99,10 +98,10 @@ const Controller_Products = {
 
         let categories = [];
         let queryCate = await queryCategories(req.body.categories);
-        for(cate of queryCate) {
+        for (cate of queryCate) {
             categories.push(getRelation(cate));
         }
-        
+
         let classify = reDistribute(req.body);
         await API_Products.create({ ...req.body, pimg, classify, categories, slug })
             .then(() => {
@@ -144,20 +143,18 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-        
+
         let dataArr = rollBackArr(product.classify);
-        const categories = await API_Category.readMany({level: 3})
-            .then(categories => {
-                return categories.map(cate => {
-                    return {
-                        ...cate,
-                        check: product.categories.some(c => c.level3.name == cate.name)
-                    }
-                })
-            })
+        const categories = await API_Category.readMany({ level: 3 }).then((categories) => {
+            return categories.map((cate) => {
+                return {
+                    ...cate,
+                    check: product.categories.some((c) => c.level3.name == cate.name),
+                };
+            });
+        });
         //console.log(categories)
         //return res.json({data: dataArr})
-
 
         return res.render('pages/products/update', {
             layout: 'admin',
@@ -175,11 +172,11 @@ const Controller_Products = {
         const oldPath = req.body.oldpath;
         const pid = req.body.pid;
 
-        let cateArr = await API_Category.readMany({_id: {$in: req.body.categories}})
-        let categories = cateArr.map(c => {
+        let cateArr = await API_Category.readMany({ _id: { $in: req.body.categories } });
+        let categories = cateArr.map((c) => {
             return getRelation(c);
-        })
-        
+        });
+
         const id = req.params.id;
         const files = req.files;
 
@@ -191,13 +188,13 @@ const Controller_Products = {
             : files.map((file) => {
                   return `/uploads/products/${pdir}/${file.filename}`;
               });
-        
+
         let classify = reDistribute(req.body);
         const data = {
             ...req.body,
             pimg: updateImg,
             categories,
-            classify
+            classify,
         };
         delete data.oldpath;
 
@@ -234,14 +231,13 @@ const Controller_Products = {
     // [GET] /products/preview/:id
     GET_previewProduct: async (req, res, next) => {
         const id = req.params.id;
-        
-        let product = await API_Products.readOne({ _id: id })
-            .then(product => {     
-                return {
-                    ...product,
-                    classify: rollBackArr(product.classify)
-                }     
-            })
+
+        let product = await API_Products.readOne({ _id: id }).then((product) => {
+            return {
+                ...product,
+                classify: rollBackArr(product.classify),
+            };
+        });
         //console.log(product);
         return res.render('pages/products/preview', {
             layout: 'admin',
@@ -255,44 +251,41 @@ const Controller_Products = {
     GET_productDetail: async (req, res, next) => {
         const slug = req.params.slug;
         if (slug) {
-            let product = await API_Products.readOne({slug});
-            let queryCate = product.categories.map(cate => cate.level3.id);
+            let product = await API_Products.readOne({ slug });
+            let queryCate = product.categories.map((cate) => cate.level3.id);
 
             let lsProductRelated = await API_Products.readMany(
-                { 'categories.level3.id': {$in: queryCate} },
-                { limit: 12, select: { description: 0, categories: 0 } }
-            ).then(products => {
+                { 'categories.level3.id': { $in: queryCate } },
+                { limit: 12, select: { description: 0, categories: 0 } },
+            ).then((products) => {
                 return normalizeData(products);
-            })
+            });
 
             let lsProductDiscount = await API_Products.readMany(
-                { $and: [{ 'categories.level3.id': {$in: queryCate} }, { 'classify.rate': {$gt: 0}}]},
-                { limit: 6 , select: { description: 0, categories: 0 }}
-            ).then(products => {
+                { $and: [{ 'categories.level3.id': { $in: queryCate } }, { 'classify.rate': { $gt: 0 } }] },
+                { limit: 6, select: { description: 0, categories: 0 } },
+            ).then((products) => {
                 return normalizeData(products);
-            })
+            });
 
             let lsProductBestSeller = await API_Products.readMany(
-                { $and: [{ 'categories.level3.id': {$in: queryCate} }, { 'classify.rate': {$gt: 0}}]},
-                { limit: 6 , select: { description: 0, categories: 0 }}
-            ).then(products => {
+                { $and: [{ 'categories.level3.id': { $in: queryCate } }, { 'classify.rate': { $gt: 0 } }] },
+                { limit: 6, select: { description: 0, categories: 0 } },
+            ).then((products) => {
                 return normalizeData(products);
-            })
+            });
 
-            let lsPostProject = await API_News.readMany(
-                {},
-                { limit: 4 }
-            ).then((posts) => {
+            let lsPostProject = await API_News.readMany({}, { limit: 4 }).then((posts) => {
                 return posts.map((post) => {
                     return {
                         title: post.title,
                         slug: post.slug,
-                        img: post.images[0]
+                        img: post.images[0],
                     };
                 });
             });
 
-            //return res.json({data: lsPostProject})
+            return res.json({ data: lsPostProject });
 
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
             return res.render('pages/product', {
@@ -341,7 +334,5 @@ const Controller_Products = {
         console.log(children);
     },
 };
-
-
 
 module.exports = Controller_Products;

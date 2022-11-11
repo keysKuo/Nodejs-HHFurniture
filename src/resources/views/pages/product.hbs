@@ -55,15 +55,15 @@
                             </a>
                             <figure class='product-gallery__wrapper'>
                                 <div class='product-gallery__image' style='position: relative; overflow: hidden;'>
-                                    <img
-                                        width='600'
-                                        height='600'
-                                        src='/images/{{ product.pimg}}'
-                                        class='wp-post-image'
-                                        alt=''
-                                        title='N.SCU-G1691'
-                                    />
-
+                                    <a href="/images/{{ product.pimg}}" class="lightbox">
+                                        <img  width='600'
+                                            height='600'
+                                            src='/images/{{ product.pimg}}'
+                                            class='wp-post-image'
+                                            alt=''
+                                            title='N.SCU-G1691'
+                                        />
+                                    </a>
                                 </div>
                             </figure>
                         </div>
@@ -319,8 +319,6 @@
     <!--end container-->
 </section>
 
-ction>
-
 <section class='section m-4'>
     <div class='container products'>
         <div class='row'>
@@ -334,7 +332,7 @@ ction>
                         </div>
                     </div>
                     <div class='text-light widget-container'>
-                        <p>{{product.description}}</p>
+                        <p>{{{product.description}}}</p>
                     </div>
 
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>

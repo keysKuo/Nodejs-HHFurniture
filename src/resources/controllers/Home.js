@@ -13,6 +13,7 @@ const {
     lsProductDenTrangTri,
     lsProductDoTrangTri,
     policy,
+    lsCartItem,
 } = require('../data/mock');
 const { normalizeData } = require('../utils/categoryUtils');
 
@@ -29,47 +30,46 @@ const Controller_Home = {
             limit: 12,
             select: {
                 description: 0,
-                categories: 0
-            }
-        }
+                categories: 0,
+            },
+        };
 
-        let lsProductDoNoiThat = await API_Products.readMany(
-            { 'categories.level1.name': 'Đồ nội thất'}, options
-        ).then(products => {
-            return normalizeData(products);
-        })
-        
+        let lsProductDoNoiThat = await API_Products.readMany({ 'categories.level1.name': 'Đồ nội thất' }, options).then(
+            (products) => {
+                return normalizeData(products);
+            },
+        );
+
         let lsProductThietBiVeSinh = await API_Products.readMany(
-            { 'categories.level1.name': 'Thiết bị vệ sinh'}, options
-        ).then(products => {
+            { 'categories.level1.name': 'Thiết bị vệ sinh' },
+            options,
+        ).then((products) => {
             return normalizeData(products);
-        })
+        });
 
         let lsProductDenTrangTri = await API_Products.readMany(
-            { 'categories.level1.name': 'Đèn trang trí'}, options
-        ).then(products => {
+            { 'categories.level1.name': 'Đèn trang trí' },
+            options,
+        ).then((products) => {
             return normalizeData(products);
-        })
+        });
 
         let lsProductDoTrangTri = await API_Products.readMany(
-            { 'categories.level1.name': 'Đồ trang trí'}, options
-        ).then(products => {
+            { 'categories.level1.name': 'Đồ trang trí' },
+            options,
+        ).then((products) => {
             return normalizeData(products);
-        })
+        });
 
-        let lsPostProject = await API_News.readMany(
-            {},
-            { limit: 4 }
-        ).then((posts) => {
+        let lsPostProject = await API_News.readMany({}, { limit: 4 }).then((posts) => {
             return posts.map((post) => {
                 return {
                     title: post.title,
                     slug: post.slug,
-                    img: post.images[0]
+                    images: post.images[0],
                 };
             });
         });
-
         //return res.json({data: lsProductDoTrangTri});
 
         return res.render('pages/home', {
@@ -99,7 +99,7 @@ const Controller_Home = {
             keywords: 'Homepage, đồ nội thất',
         };
 
-        let lsPostNews = await API_News.readMany({},{ limit: 12, select: { content: 0 } })
+        let lsPostNews = await API_News.readMany({}, { limit: 12, select: { content: 0 } });
         return res.render('pages/news', {
             layout: 'main',
             template: 'post-template',
@@ -168,20 +168,19 @@ const Controller_Home = {
 
             // BE trả về
             lsCart,
+            lsCartItem,
             //////////
         });
     },
 
     GET_PolicyPage: async (req, res, next) => {
-
         const meta = {
             title: policy.title + ' – H&H Furniture',
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
 
-
-        return res.render('pages/post', {
+        return res.render('pages/policy', {
             layout: 'main',
             template: 'policy-template',
             meta,
