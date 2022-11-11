@@ -411,6 +411,7 @@ module.exports = {
         title: 'TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh',
         slug: 'sale-off-tu-40-50-nhan-dip-hoi-cho-trien-lam-quoc-te-𝐕𝐈𝐄𝐓𝐁𝐔𝐈𝐋𝐃-𝟐𝟎𝟐',
         images: '2-1024x512.png',
+        date: 'Tháng 12 Năm 2021',
         content: `
 			<p><span style="font-family: Arial, Helvetica, sans-serif;">Bạn thân mến, nếu bạn đang cần mua <a href="https://hhfurniture.com.vn/danh-muc-san-pham/thiet-bi-ve-sinh/"><strong>thiết bị vệ sinh</strong>&nbsp;</a>thì bài viết này đặc biệt cần thiết dành cho Bạn. Có thể Bạn sẽ mua hoặc không mua hàng tại đây nhưng điều đó không quan trọng.</span></p>
 <p><span style="font-family: Arial, Helvetica, sans-serif;">Quan trọng là bạn sẽ có thêm nhiều kinh nghiệm mua thiết bị vệ sinh từ những chuyên gia nội thất hàng đầu trong ngành, tránh bị mua nhầm, mua hớ, mua phải hàng nhái và nhiều sai lầm đáng tiếc khác.</span></p>
