@@ -34,6 +34,64 @@ var category = {
     ],
 };
 const Controller_Category = {
+    // ++++++++++ System Controller +++++++++++
+
+    // /category/create
+    GET_createCategory: async (req, res, next) => {
+        let level1 = await API_Category.readMany({level: 1})
+            .then(items => {
+                return items.map(item => {
+                    return {
+                        _id: item._id,
+                        name: item.name,
+                        children: [],
+                        grands: []
+                    }
+                })
+            })
+        await API_Category.readMany({level: 2})
+            .then(items => {
+                items.forEach(item => {
+                    for(let i = 0; i < level1.length; i++) {
+                        if(item.parent._id.toString() == level1[i]._id.toString()) {
+                            level1[i].children.push({
+                                _id: item._id,
+                                name: item.name
+                            })
+                        }
+                    }
+                })
+            })
+        
+        await API_Category.readMany({level: 3})
+            .then(items => {
+                items.forEach(item => {
+                    for(let i = 0; i < level1.length; i++) {
+                        if(item.parent.parent._id.toString() == level1[i]._id.toString()) {
+                            level1[i].grands.push({
+                                _id: item._id,
+                                name: item.name,
+                                parent: item.parent
+                            })
+                        }
+                    }
+                })
+            })
+        
+        // return res.json({level1});
+        return res.render('pages/categories/create', {
+            layout: 'admin',
+            categories: level1
+        })
+    },
+
+    POST_filterCategory: async (req, res, next) => {
+        const { level1 , level2 } = req.body;
+        let query = {$and: [{level: 3}, {'parent._id': level2}, {'parent.parent._id': level1}]};
+        let categories = await API_Category.readMany(query, {});
+        return res.json({categories});
+    },
+
     // ++++++++++ Client Controller +++++++++++
 
     // [GET] /danh-muc-san-pham/do-noi-that
