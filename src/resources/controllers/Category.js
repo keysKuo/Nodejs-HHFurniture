@@ -38,50 +38,54 @@ const Controller_Category = {
 
     // /category/create
     GET_createCategory: async (req, res, next) => {
-        let level1 = await API_Category.readMany({level: 1})
-            .then(items => {
-                return items.map(item => {
-                    return {
-                        _id: item._id,
-                        name: item.name,
-                        children: [],
-                        grands: []
-                    }
-                })
-            })
-        await API_Category.readMany({level: 2})
-            .then(items => {
-                items.forEach(item => {
-                    for(let i = 0; i < level1.length; i++) {
-                        if(item.parent._id.toString() == level1[i]._id.toString()) {
-                            level1[i].children.push({
-                                _id: item._id,
-                                name: item.name
-                            })
-                        }
-                    }
-                })
-            })
+        let level1 = await API_Category.readMany({level: 1});
+        let level2 = await API_Category.readMany({level: 2});
+        let level3 = await API_Category.readMany({level: 3});
+
+        // let level1 = await API_Category.readMany({level: 1})
+        //     .then(items => {
+        //         return items.map(item => {
+        //             return {
+        //                 _id: item._id,
+        //                 name: item.name,
+        //                 children: [],
+        //                 grands: []
+        //             }
+        //         })
+        //     })
+        // await API_Category.readMany({level: 2})
+        //     .then(items => {
+        //         items.forEach(item => {
+        //             for(let i = 0; i < level1.length; i++) {
+        //                 if(item.parent._id.toString() == level1[i]._id.toString()) {
+        //                     level1[i].children.push({
+        //                         _id: item._id,
+        //                         name: item.name
+        //                     })
+        //                 }
+        //             }
+        //         })
+        //     })
         
-        await API_Category.readMany({level: 3})
-            .then(items => {
-                items.forEach(item => {
-                    for(let i = 0; i < level1.length; i++) {
-                        if(item.parent.parent._id.toString() == level1[i]._id.toString()) {
-                            level1[i].grands.push({
-                                _id: item._id,
-                                name: item.name,
-                                parent: item.parent
-                            })
-                        }
-                    }
-                })
-            })
+        // await API_Category.readMany({level: 3})
+        //     .then(items => {
+        //         items.forEach(item => {
+        //             for(let i = 0; i < level1.length; i++) {
+        //                 if(item.parent.parent._id.toString() == level1[i]._id.toString()) {
+        //                     level1[i].grands.push({
+        //                         _id: item._id,
+        //                         name: item.name,
+        //                         parent: item.parent
+        //                     })
+        //                 }
+        //             }
+        //         })
+        //     })
         
         // return res.json({level1});
         return res.render('pages/categories/create', {
             layout: 'admin',
-            categories: level1
+            level1, level2, level3
         })
     },
 
