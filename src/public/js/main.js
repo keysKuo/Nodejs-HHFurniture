@@ -1,8 +1,8 @@
 $(document).ready(function ($) {
     AOS.init({
-        duration: 1000,
+        duration: 180000,
     });
-
+    const tobii = new Tobii();
     $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
@@ -120,10 +120,10 @@ $(document).ready(function ($) {
         }
     });
 
-    $('.list-inline-item').click(function() {
+    $('.list-inline-item').click(function () {
         let current = $(this).children('a');
         let prev = $(this).siblings().children('a');
         current.addClass('chose');
         prev.removeClass('chose');
-    })
+    });
 });

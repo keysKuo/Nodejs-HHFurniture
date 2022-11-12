@@ -9,9 +9,9 @@
 </section>
 
 <section class='section text-center post-section' data-aos='fade-up'>
-    <div class='container'>
+    <div class='container' style='width:780px'>
         <h2 class='post-heading'>{{post.title}}</h2>
-        <div class='row'>
+        <div class='row mt-4'>
             <div class='col-md-6 text-end' style='border-right:1px solid #fff;'>
                 <span class='icon-list-icon mx-2'>
                     <i aria-hidden='true' class='far fa-calendar-alt'>
@@ -35,7 +35,7 @@
                         </i>
                     </span>
                     <span class='icon-list-text text-light post-info__item post-info__item--type-date'>
-                        Tháng Tám 12, 2022
+                        {{post.date}}
                     </span>
                 </a>
             </div>
@@ -53,41 +53,49 @@
         </div>
         <div class='row'>
             <div class='col-md-12 post-content' style='text-align: justify;color: #CFCFCF'>
-                {{!-- {{{post.content}}} --}}
+                {{{post.content}}}
             </div>
         </div>
 
-        <div class='row post-navigation'>
-            <div class='col-md-6 post-navigation__prev post-navigation__link' style='border-right:2px solid #fff'>
+        <div class='row post-navigation mt-5'>
+            <div
+                class='col-md-6 text-start post-navigation__prev post-navigation__link'
+                style='border-right:2px solid #fff'
+            >
                 <a
                     href='https://hhfurniture.com.vn/lam-the-nao-de-dam-bao-su-thoai-mai-va-hanh-phuc-cho-nguoi-cu-ngu-trong-nhung-khong-gian-nho/'
                     rel='prev'
-                    class='d-flex'
+                    class='d-flex align-items-center text-light'
                 >
-                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-prev'>
-                        <i class='fa fa-angle-left' aria-hidden='true'>
+                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-prev' style='margin-right:20px'>
+                        <i class='fs-2 fa fa-angle-left' aria-hidden='true'>
                         </i>
                         <span class='screen-only'>Prev</span>
                     </span>
                     <span class='post-navigation__link__prev d-flex flex-column overflow-hidden'>
-                        <span class='post-navigation__prev--label'>Bài kế tiếp</span>
-                        <span class='post-navigation__prev--title'>Làm thế nào để đảm bảo sự thoải mái và hạnh phúc cho
-                            người cư ngụ trong những không gian nhỏ?</span>
+                        <span class='post-navigation__prev--label text-uppercase' style='color:var(--orange)'>Bài kế
+                            tiếp</span>
+                        <span class='post-navigation__prev--title overflow-hidden' style='text-overflow: ellipsis;'>Làm
+                            thế nào để đảm bảo sự thoải mái và hạnh phúc cho người cư ngụ trong những không gian nhỏ?</span>
                     </span>
                 </a>
             </div>
-            <div class='col-md-6 post-navigation__next post-navigation__link'>
+            <div class='col-md-6 text-end post-navigation__next post-navigation__link'>
                 <a
                     href='https://hhfurniture.com.vn/tocei-chia-se-kinh-nghiem-khi-mua-thiet-bi-ve-sinh/'
                     rel='next'
-                    class='d-flex'
+                    class='d-flex align-items-center text-light'
                 >
                     <span class='post-navigation__link__next d-flex flex-column overflow-hidden'>
-                        <span class='post-navigation__next--label'>Bài trước đó</span>
-                        <span class='post-navigation__next--title'>TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh</span>
+                        <span class='post-navigation__next--label text-uppercase' style='color:var(--orange)'>Bài trước
+                            đó</span>
+                        <span
+                            class='post-navigation__next--title overflow-hidden'
+                            style='text-overflow: ellipsis;'
+                        >TOCEI Chia Sẻ Kinh Nghiệm Khi Mua Thiết Bị Vệ Sinh</span>
                     </span>
-                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-next'>
-                        <i class='fa fa-angle-right' aria-hidden='true'>
+                    <span class='post-navigation__arrow-wrapper post-navigation__arrow-next' style='margin-left:20px'>
+                        <i class='fs-2 pl-2 fa fa-angle-right' aria-hidden='true'>
                         </i>
                         <span class='screen-only'>Next</span>
                     </span>
@@ -95,6 +103,55 @@
             </div>
         </div>
 
+        <div class='d-flex justify-content-end mt-4'>
+            <div class='pointer-event' style="margin-right:5px">
+                <div
+                    class='share-btn share-btn_facebook'
+                    tabindex='0'
+                    aria-label='Share on facebook'
+                >
+                    <span class='share-btn__icon'>
+                        <i class='fab fa-facebook' aria-hidden='true'></i>
+                    </span>
+                </div>
+            </div>
+            <div class='pointer-event' style="margin-right:5px">
+                <div class='share-btn share-btn_twitter' tabindex='0' aria-label='Share on twitter'>
+                    <span class='share-btn__icon'>
+                        <i class='fab fa-twitter' aria-hidden='true'></i>
+                    </span>
+                </div>
+            </div>
+            <div class='pointer-event' style="margin-right:5px">
+                <div
+                    class='share-btn share-btn_linkedin'
+                    tabindex='0'
+                    aria-label='Share on linkedin'
+                >
+                    <span class='share-btn__icon'>
+                        <i class='fab fa-linkedin' aria-hidden='true'></i>
+                    </span>
+                </div>
+            </div>
+            <div class='pointer-event' style="margin-right:5px">
+                <div
+                    class='share-btn share-btn_pinterest'
+                    tabindex='0'
+                    aria-label='Share on pinterest'
+                >
+                    <span class='share-btn__icon'>
+                        <i class='fab fa-pinterest' aria-hidden='true'></i>
+                    </span>
+                </div>
+            </div>
+            <div class='' style="margin-right:5px">
+                <div class='share-btn share-btn_email' tabindex='0' aria-label='Share on email'>
+                    <span class='share-btn__icon'>
+                        <i class='fas fa-envelope' aria-hidden='true'></i>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -106,7 +163,7 @@
                     class='col-lg-3 col-md-6 col-12 mt-4 pt-2 picture-item shuffle-item shuffle-item--visible'
                     data-groups='[&quot;business&quot;]'
                 >
-                    {{!-- {{> postPartials isSales=true }} --}}
+                    {{> postPartials isSales=true }}
                 </div>
             {{/each}}
         </div>

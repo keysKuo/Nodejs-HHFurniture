@@ -103,7 +103,7 @@ const Controller_Category = {
         if (req.params.slug) {
             // Query category
             let category = await API_Category.readOne({ slug: req.params.slug });
-            
+
             const page = parseInt(req.query.page) || 1;
             let query = '';
             switch (category.level) {
@@ -154,15 +154,12 @@ const Controller_Category = {
             });
 
             // Query lsPostProject
-            let lsPostProject = await API_News.readMany(
-                {},
-                { limit: 4 }
-            ).then((posts) => {
+            let lsPostProject = await API_News.readMany({}, { limit: 4 }).then((posts) => {
                 return posts.map((post) => {
                     return {
                         title: post.title,
                         slug: post.slug,
-                        img: post.images[0]
+                        img: post.images[0],
                     };
                 });
             });
