@@ -27,13 +27,22 @@
     <script src="/ckeditor/ckeditor.js"></script>
 </head>
 <body>
+  <div class="layer">
+        <div class="wrapper-loader">
+          <div class="loader"></div>
+          <div class="loader"></div>
+      </div>
+    </div>
     <div class="wrapper">
         {{> sidebar}}
         <section class="home-section p-4">
             {{{body}}}
+
+            
         </section>
     </div>
 
+    
 
     {{!-- Data Table --}}
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

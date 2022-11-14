@@ -7,46 +7,30 @@
     </div>
 {{/if}}
 
+{{#if success}}
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        {{success}}
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>
+{{/if}}
+
 <div class='container'>
     <div class='row'>
         <div class='col-md-12'>
             <div class='card shadow'>
                 <div class='card-header d-flex justify-content-between'>
                     <h4>{{pageName}}</h4>
-                    <a type="button" href="/category/storage" class="btn btn-secondary">Trở lại</a>
+                    <a type="button" href="/category/create" class="btn btn-success">+ Thêm danh mục</a>
                 </div>
                 <div class='card-body'>
-                    <form class='form' method='POST'>
+                    <form action="/category/delete/" class='form delete-form' method='POST'>
                         <fieldset>
                             <!-- Text input-->
-
-                            <div class="form-row">
-                                <div class='form-group col'>
-                                    <label class='control-label text-uppercase' for='name'>Tên danh mục<span style="color:red">*</span></label>
-                                    <input
-                                        id='name'
-                                        name='name'
-                                        placeholder='Tên danh mục'
-                                        class='form-control input-md'
-                                        required=''
-                                        type='text'
-                                    />
-                                </div>
-
-                                <div class='choose-level-box form-group col'>
-                                    <label class='control-label text-uppercase' for='level'>cấp danh mục</label>
-                                    <select id='level' name='level' class='form-control'>
-                                        <option value=''>Chọn cấp</option>
-                                        <option value='1'>1</option>
-                                        <option value='2'>2</option>
-                                        <option value='3'>3</option>
-                                        
-                                    </select>
-                                </div>
-                            </div>
                             
 
-                            <div class='level1-box form-group d-none'>
+                            <div class='level1-box form-group'>
                                 <label class='control-label text-uppercase ' for='level1'>DANH MỤC CẤP 1</label>
                                 <select id='level1' name='level1' class='form-control'>
                                     <option value=''>Chọn danh mục...</option>
@@ -76,7 +60,7 @@
 
                             <!-- Text input-->
                             <div class='form-footer'>
-                                <button type='submit' class='btn btn-success'>Thêm danh mục</button>
+                                <button type='submit' class='delCategory btn btn-danger'>Xoá danh mục</button>
                             </div>
 
                         </fieldset>

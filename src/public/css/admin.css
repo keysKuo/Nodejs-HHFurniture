@@ -744,3 +744,68 @@ td {
     margin-left: 20px;
     margin-right: 10px;
 }
+
+
+/* Loader */
+
+.layer {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  height: 100vh;
+  z-index: 100000;
+  background-color: rgba(0,0,0,0.25);
+}
+
+.wrapper-loader {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  
+}
+
+.loader {
+  width: 20px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+}
+
+.loader:nth-child(1) {
+  background: #fe2c55;
+  animation: clockwise 1200ms infinite linear;
+}
+
+.loader:nth-child(2) {
+  mix-blend-mode: darken;
+  background: #25f4ee;
+  margin-left: -5px;
+  animation: counter-clockwise 1200ms infinite linear;
+}
+
+@keyframes clockwise {
+  0% {
+    transform: translateX(0);
+    width: 20px;
+  }
+
+  25% {
+    width: 25px;
+  }
+
+  50% {
+    transform: translateX(100%);
+    width: 20px;
+  }
+}
+
+@keyframes counter-clockwise {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-100%);
+  }
+}
