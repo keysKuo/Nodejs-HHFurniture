@@ -106,6 +106,12 @@ $(document).ready(function () {
     $('#level2').on('change', function() {
         let level1_id = $(this).val();
         $('.delete-form').attr('action',`/category/delete/${level1_id}`)
+
+        if(!level1_id) {
+            let alt = $('#level1').val();
+            $('.delete-form').attr('action',`/category/delete/${alt}`)
+        }
+
         if(level1_id == '') {
             $('.level3-box').addClass('d-none');
         }
@@ -133,6 +139,10 @@ $(document).ready(function () {
 
     $('#level3').on('change',function() {
         let level1_id = $(this).val();
+        if(!level1_id) {
+            let alt = $('#level2').val();
+            $('.delete-form').attr('action',`/category/delete/${alt}`)
+        }
         $('.delete-form').attr('action',`/category/delete/${level1_id}`)
     })
 });
