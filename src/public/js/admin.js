@@ -106,7 +106,7 @@ $(document).ready(function () {
     $('#level2').on('change', function() {
         let level1_id = $(this).val();
         $('.delete-form').attr('action',`/category/delete/${level1_id}`)
-
+        
         if(!level1_id) {
             let alt = $('#level1').val();
             $('.delete-form').attr('action',`/category/delete/${alt}`)
