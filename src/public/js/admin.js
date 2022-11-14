@@ -71,13 +71,13 @@ $(document).ready(function () {
                 $('.level1-box').hide();
                 $('.level2-box').hide();
                 $('.level3-box').hide();
-                break;
-                
+                break;            
         }
     })
 
     $('#level1').on('change', function() {
         let level1_id = $(this).val();
+        $('.delete-form').attr('action',`/category/delete/${level1_id}`)
         $('.level2-box').addClass('d-none');
         $('.level3-box').addClass('d-none');
 
@@ -90,7 +90,7 @@ $(document).ready(function () {
                 level1_id
             },
             success: (data) => {
-                $('.delete-form').attr('action',`/category/delete/${level1_id}`)
+                
                 $('.layer').hide();
                 $('.level2-box').removeClass('d-none')
                 $('#level2').html(data);
@@ -105,6 +105,7 @@ $(document).ready(function () {
 
     $('#level2').on('change', function() {
         let level1_id = $(this).val();
+        $('.delete-form').attr('action',`/category/delete/${level1_id}`)
         if(level1_id == '') {
             $('.level3-box').addClass('d-none');
         }
@@ -118,7 +119,6 @@ $(document).ready(function () {
                 level1_id
             },
             success: (data) => {
-                $('.delete-form').attr('action',`/category/delete/${level1_id}`)
                 $('.layer').hide();
                 $('.level3-box').removeClass('d-none')
                 $('#level3').html(data);
