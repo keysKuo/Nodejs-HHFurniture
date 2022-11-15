@@ -18,11 +18,11 @@ const reDistribute = require('../utils/reDistribute');
 const { getRelation, queryCategories, normalizeData, rollBackArr } = require('../utils/categoryUtils');
 
 // URLs
-const storageURL = '/products/storage';
-const createURL = '/products/create';
-const updateURL = '/products/update/';
-const deleteURL = '/products/delete/';
-const previewURL = '/products/preview/';
+const storageURL = '/admin/products/storage';
+const createURL = '/admin/products/create';
+const updateURL = '/admin/products/update/';
+const deleteURL = '/admin/products/delete/';
+const previewURL = '/admin/products/preview/';
 
 const Controller_Products = {
     // [GET] /products/storage

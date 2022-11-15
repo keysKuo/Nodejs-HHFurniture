@@ -13,6 +13,6 @@ router.post('/update/:id', upload.array('products', 12), Controller_Products.POS
 router.get('/delete/:id', Controller_Products.GET_removeProduct);
 
 // Client Router
-router.get('/:slug', Controller_Products.GET_productDetail);
-router.get('/collection/:slug', Controller_Products.GET_productCollection);
+// router.get('/:slug', Controller_Products.GET_productDetail);
+// router.get('/collection/:slug', Controller_Products.GET_productCollection);
 module.exports = router;

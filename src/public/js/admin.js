@@ -89,14 +89,14 @@ $(document).ready(function () {
         }else {
             $('.delCategory').hide();
         }
-        $('.delete-form').attr('action',`/category/delete/${level1_id}`)
+        $('.delete-form').attr('action',`/admin/category/delete/${level1_id}`)
         $('.level2-box').addClass('d-none');
         $('.level3-box').addClass('d-none');
 
         $('.layer').show();
 
         $.ajax({
-            url: '/category/filter',
+            url: '/admin/category/filter',
             method: 'POST',
             data: {
                 level1_id
@@ -117,11 +117,11 @@ $(document).ready(function () {
 
     $('#level2').on('change', function() {
         let level1_id = $(this).val();
-        $('.delete-form').attr('action',`/category/delete/${level1_id}`)
+        $('.delete-form').attr('action',`/admin/category/delete/${level1_id}`)
         
         if(!level1_id) {
             let alt = $('#level1').val();
-            $('.delete-form').attr('action',`/category/delete/${alt}`)
+            $('.delete-form').attr('action',`/admin/category/delete/${alt}`)
         }
 
         if(level1_id == '') {
@@ -131,7 +131,7 @@ $(document).ready(function () {
         $('.layer').show();
 
         $.ajax({
-            url: '/category/filter',
+            url: '/admin/category/filter',
             method: 'POST',
             data: {
                 level1_id
@@ -153,9 +153,9 @@ $(document).ready(function () {
         let level1_id = $(this).val();
         if(!level1_id) {
             let alt = $('#level2').val();
-            $('.delete-form').attr('action',`/category/delete/${alt}`)
+            $('.delete-form').attr('action',`/admin/category/delete/${alt}`)
         }else {
-            $('.delete-form').attr('action',`/category/delete/${level1_id}`)
+            $('.delete-form').attr('action',`/admin/category/delete/${level1_id}`)
         }
         
         // Add cate on product create

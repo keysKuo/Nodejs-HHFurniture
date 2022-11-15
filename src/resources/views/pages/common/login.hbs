@@ -1,0 +1,30 @@
+<div class='login-page'>
+    {{#if error}}
+        <div class='text-center alert alert-danger alert-dismissible fade show' role='alert'>
+            {{error}}
+        </div>
+    {{/if}}
+
+    <div class='flex-container'>
+        <div class='content-container'>
+            <div class='form-container'>
+                <form action='/dang-nhap' method='POST'>
+                    <h1>
+                        Đăng nhập
+                    </h1>
+                    <br />
+                    <br />
+                    <span class='subtitle'>Tên đăng nhập:</span>
+                    <br />
+                    <input type='text' name='username' value='' />
+                    <br />
+                    <span class='subtitle'>Mật khẩu:</span>
+                    <br />
+                    <input type='password' name='password' value='' />
+                    <br /><br />
+                    <input type='submit' value='Truy cập' class='submit-btn' />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

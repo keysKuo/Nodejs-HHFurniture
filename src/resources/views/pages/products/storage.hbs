@@ -22,7 +22,7 @@
             <div class='card shadow'>
                 <div class='card-header d-flex justify-content-between'>
                     <h4>{{pageName}}</h4>
-                    <a href='/products/create' class='btn btn-success'><i class='fa-solid fa-plus'></i>
+                    <a href='/admin/products/create' class='btn btn-success'><i class='fa-solid fa-plus'></i>
                         Thêm sản phẩm</a>
                 </div>
                 <div class='card-body'>
@@ -70,11 +70,11 @@
                                         </td>
                                         <td class='d-flex'>
                                             <!-- Button trigger modal -->
-                                            <a class='text-info w-100' href='/products/preview/{{_id}}'>
+                                            <a class='text-info w-100' href='/admin/products/preview/{{_id}}'>
                                                 <i class='fa-solid fa-eye fa-lg'></i>
                                             </a>
                                             <!-- Button trigger modal -->
-                                            <a class='text-warning w-100' href='/products/update/{{_id}}'>
+                                            <a class='text-warning w-100' href='/adminproducts/update/{{_id}}'>
                                                 <i class='fas fa-edit fa-lg'></i>
                                             </a>
                                             <!-- Button trigger modal -->
@@ -82,7 +82,7 @@
                                                 class='text-danger w-100'
                                                 data-toggle='modal'
                                                 data-target='#deleteModal'
-                                                onclick="$('#deleteBtn').attr('href', '/products/delete/{{_id}}')"
+                                                onclick="$('#deleteBtn').attr('href', '/admin/products/delete/{{_id}}')"
                                             >
                                                 <i class='fas fa-trash fa-lg'></i>
                                             </a>

@@ -9,7 +9,7 @@ router.get('/storage', Controller_Category.GET_categoryStorage);
 router.post('/delete/:id', Controller_Category.POST_removeCategory);
 
 // CLient Controllers
-router.get('/:slug', Controller_Category.GET_CategoryPage);
+//router.get('/:slug', Controller_Category.GET_CategoryPage);
 
 // Ajax
 router.post('/filter', Controller_Category.AJAX_POST_filterCategory)

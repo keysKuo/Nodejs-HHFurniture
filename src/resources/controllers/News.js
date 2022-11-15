@@ -6,11 +6,12 @@ const BASE_URL = process.env.BASE_URL;
 const { ImageContent } = require('../models');
 
 // Urls
-const storageURL = '/news/storage';
-const createURL = '/news/create';
-const updateURL = '/news/update/';
-const deleteURL = '/news/delete/';
-const previewURL = '/news/preview/';
+const storageURL = '/admin/news/storage';
+const createURL = '/admin/news/create';
+const updateURL = '/admin/news/update/';
+const deleteURL = '/admin/news/delete/';
+const previewURL = '/admin/news/preview/';
+
 const { lsCat, lsSubCat, post, lsPostRelated } = require('../data/mock');
 const Controller_News = {
     // [GET] /news

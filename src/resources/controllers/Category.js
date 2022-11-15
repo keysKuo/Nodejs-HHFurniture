@@ -16,10 +16,10 @@ const reDistribute = require('../utils/reDistribute');
 const mongoose = require('mongoose');
 
 // Urls
-const createUrl = '/category/create';
-const updateUrl = '/category/update/';
-const deleteUrl = '/category/delete/';
-const storageUrl = '/category/storage';
+const createUrl = '/admin/category/create';
+const updateUrl = '/admin/category/update/';
+const deleteUrl = '/admin/category/delete/';
+const storageUrl = '/admin/category/storage';
 
 var category = {
     title: 'Đồ nội thất',
