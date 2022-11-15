@@ -33,6 +33,10 @@ const API_Category = {
     remove: async (id) => {
         return await Category.findByIdAndRemove(id);
     },
+
+    removeMany: async (idList) => {
+        return await Category.deleteMany({_id: idList});
+    }
 };
 
 module.exports = API_Category;

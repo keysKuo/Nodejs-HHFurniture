@@ -80,6 +80,14 @@ const Controller_Category = {
             name: name,
             slug: createSlug(name, {})
         };
+
+        await API_Category.readOne({slug: data.slug})
+            .then(cate => {
+                if(cate) {
+                    data.slug = createSlug(name + ' ' + cate.parent.parent.name, {});
+                }
+            })
+
         switch (parseInt(level)) {
             case 1:
                 data.level = 1;
@@ -136,7 +144,9 @@ const Controller_Category = {
         let id = req.params.id;
 
         await API_Category.remove(id)
-            .then(category => {
+            .then(async category => {
+                let idList = await API_Category.readMany({parent: category._id});
+                await API_Category.removeMany(idList);
                 req.flash('success', 'Xoá danh mục thành công');
                 return res.redirect(storageUrl);
             })

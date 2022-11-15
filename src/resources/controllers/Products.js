@@ -64,12 +64,12 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
-        const categories = await API_Category.readMany({ level: 3 });
+        const categories = await API_Category.readMany({ level: 1 });
 
         return res.render('pages/products/create', {
             layout: 'admin',
             pageName: 'Thêm sản phẩm',
-            categories,
+            level1: categories,
             success,
             error,
         });
@@ -143,16 +143,12 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-
+        let cateArr = product.categories.map(cate => {
+            return cate.level3.id;
+        })
         let dataArr = rollBackArr(product.classify);
-        const categories = await API_Category.readMany({ level: 3 }).then((categories) => {
-            return categories.map((cate) => {
-                return {
-                    ...cate,
-                    check: product.categories.some((c) => c.level3.name == cate.name),
-                };
-            });
-        });
+        const currCategories = await API_Category.readMany({_id: {$in: cateArr }});
+        const level1 = await API_Category.readMany({level: 1});
         //console.log(categories)
         //return res.json({data: dataArr})
 
@@ -161,9 +157,11 @@ const Controller_Products = {
             pageName: 'Chỉnh sửa sản phẩm',
             data: product,
             dataArr,
+            cateArr,
+            level1,
             error,
             success,
-            categories,
+            currCategories,
         });
     },
 
@@ -171,8 +169,8 @@ const Controller_Products = {
     POST_updateProduct: async (req, res, next) => {
         const oldPath = req.body.oldpath;
         const pid = req.body.pid;
-
-        let cateArr = await API_Category.readMany({ _id: { $in: req.body.categories } });
+        let cateStr = req.body.categories;
+        let cateArr = await API_Category.readMany({ _id: { $in: cateStr.split(',') } });
         let categories = cateArr.map((c) => {
             return getRelation(c);
         });

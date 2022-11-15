@@ -48,26 +48,53 @@
                                 
                                 
                                 <div class="form-group col">
-                                    <label class="control-label text-uppercase" for="category">DANH MỤC SẢN PHẨM</label><br>
+                                    {{!-- <label class="control-label text-uppercase" for="category">DANH MỤC SẢN PHẨM</label><br>
                                     {{#each categories}}
-                                        {{!-- {{#noChild name ../categories }} --}}
+                                       
                                             <div class="form-check form-check-inline ml-1 mt-1">
                                                 <input class="form-check-input" name="categories" type="checkbox" id="{{slug}}" value="{{_id}}" 
                                                 {{#if this.check}}checked{{/if}}>
                                                 <label class="form-check-label" for="{{slug}}">{{name}}</label>
                                             </div>
-                                        {{!-- {{/noChild}} --}}
-                                    {{/each}}
-                                    {{!-- <select id="categories" name="categories" class="form-control">
-                                        <option value="">-- Chọn loại sản phẩm --</option>
-                                        {{#each categories}}
-                                            {{#noChild name ../categories }}
-                                                <option value="{{_id}}">{{name}}</option>
-                                            {{/noChild}}
-                                        {{/each}}
-                                    </select> --}}
-                                    
+                                        
+                                    {{/each}} --}}
+                                    <div class='level1-box form-group'>
+                                        <label class='control-label text-uppercase ' for='level1'>DANH MỤC CẤP 1</label>
+                                        <select id='level1' name='level1' class='form-control'>
+                                            <option value=''>Chọn danh mục...</option>
+                                            {{#each level1}}
+                                                    <option value='{{_id}}'>{{name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+                                    <div class='level2-box form-group d-none'>
+                                        <label class='control-label text-uppercase' for='level2'>DANH MỤC CẤP 2</label>
+                                        <select id='level2' name='level2' class='form-control'>     
+                                        </select>
+                                    </div>
+                                    <div class='level3-box form-group d-none'>
+                                        <label class='control-label text-uppercase' for='level3'>DANH MỤC CẤP 3</label>
+                                        <select id='level3' name='level3' class='form-control'>    
+                                        </select>
+                                    </div>
+
+                                    {{!-- <div class="btn btn-primary btnChooseCate float-right">Chọn</div> --}}
                                 </div>
+                                <div id="chosen-cate" class="form-group col chosen-cate">
+                                    <label class='control-label text-uppercase' for=''>DANH MỤC ĐÃ CHỌN <span class="text-lowercase text-danger">( * Không trùng lặp * )</span></label>
+                                    <input id="categories" name="categories" placeholder="Category"
+                                    class="form-control" required type="hidden" value="{{cateArr}}">
+                                    {{#each currCategories}}
+                                        <div style="position: relative;" class="text-center my-1">
+                                            <div class="btn">{{name}}</div>
+                                            <div style="position: absolute; right: 0" class="btn btn-danger delParent"><i class="fas fa-trash"></i></div>
+                                            <div class="d-none cid">{{_id}}</div>
+                                        </div>
+                                    {{/each}}
+                                </div>  
+                                    
+                                    
+                                
                             
                             </div>
                             <div class="form-group">

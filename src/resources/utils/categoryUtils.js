@@ -20,7 +20,7 @@ exports.getRelation = (category) => {
 }
 
 exports.queryCategories = async (categories) => {
-    let arr = (typeof categories == 'string') ? [categories] : categories;
+    let arr = categories.split(',');
     let result = [];
     for(cate of arr) {
         result.push(await API_Category.readOne({_id: cate}))
