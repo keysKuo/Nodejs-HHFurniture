@@ -81,13 +81,12 @@ const Controller_Products = {
         let data = JSON.parse(req.docx);
         let slug = createSlug(data.pname, {});
         let classify = reDistribute(data);
-        let categories = await API_Category.readMany({_id: {$in: data.cateList}})
-            .then(items => {
-                return items.map(item => {
-                    return getRelation(item);
-                })
-            })
-   
+        let categories = await API_Category.readMany({ _id: { $in: data.cateList } }).then((items) => {
+            return items.map((item) => {
+                return getRelation(item);
+            });
+        });
+
         await API_Products.create({ ...data, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
@@ -123,19 +122,18 @@ const Controller_Products = {
 
     // [GET] /products/update/:id
     GET_updateProduct: async (req, res, next) => {
-        
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
-        let cateArr = product.categories.map(cate => {
+        let cateArr = product.categories.map((cate) => {
             return cate.level3.id;
-        })
-        
+        });
+
         let dataArr = rollBackArr(product.classify);
-        const currCategories = await API_Category.readMany({_id: {$in: cateArr }});
-        const level1 = await API_Category.readMany({level: 1});
+        const currCategories = await API_Category.readMany({ _id: { $in: cateArr } });
+        const level1 = await API_Category.readMany({ level: 1 });
         //console.log(categories)
         //return res.json({data: dataArr})
 
@@ -159,37 +157,16 @@ const Controller_Products = {
         const files = req.files;
         let data = JSON.parse(req.docx);
         let isNewImg = files.length != 0;
-        // const oldPath = req.body.oldpath;
-        // const pid = req.body.pid;
-        // let cateStr = req.body.categories;
-        // let cateArr = await API_Category.readMany({ _id: { $in: cateStr.split(',') } });
-        // let categories = cateArr.map((c) => {
-        //     return getRelation(c);
-        // });
 
-        data.categories = await API_Category.readMany({_id: {$in: data.cateList}})
-            .then(items => {
-                return items.map(item => {
-                    return getRelation(item);
-                })
-            })
+        data.categories = await API_Category.readMany({ _id: { $in: data.cateList } }).then((items) => {
+            return items.map((item) => {
+                return getRelation(item);
+            });
+        });
 
-        
-
-        
-        // let pdir = typeof pid == 'string' ? pid : pid[0];
-
-        data.pimg = !isNewImg
-            ? data.oldpath
-            : data.pimg
+        data.pimg = !isNewImg ? data.oldpath : data.pimg;
 
         data.classify = reDistribute(data);
-        // const data = {
-        //     ...req.body,
-        //     pimg: updateImg,
-        //     categories,
-        //     classify,
-        // };
 
         return await API_Products.update(id, data)
             .then(async (product) => {
@@ -197,7 +174,7 @@ const Controller_Products = {
                     for (path of data.oldpath) {
                         fileapis.deleteSync('./src/public' + path, (err) => {
                             if (err) {
-                                console.log(err)
+                                console.log(err);
                             }
                         });
                     }
