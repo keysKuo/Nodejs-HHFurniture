@@ -1,5 +1,5 @@
 const express = require('express');
-const { Controller_Home, Controller_Category, Controller_Products, Controller_News } = require('../controllers');
+const { Controller_Cart, Controller_Home, Controller_Category, Controller_Products, Controller_News } = require('../controllers');
 const router = express.Router();
 
 router.get('/', Controller_Home.GET_Homepage);
@@ -19,6 +19,8 @@ router.get('/gioi-thieu', Controller_Home.GET_Introduction);
 router.get('/danh-muc-san-pham/:slug', Controller_Category.GET_CategoryPage);
 
 router.get('/san-pham/:slug', Controller_Products.GET_productDetail);
+
+router.get('/gio-hang', Controller_Cart.GET_CartPage);
 
 router.get('/dang-nhap', (req, res, next) => {
     return res.render('pages/common/login', {
