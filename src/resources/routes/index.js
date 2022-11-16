@@ -11,7 +11,6 @@ const { isAdmin } = require('../middlewares/validators');
 
 function router(app) {
     app.use('/', homeRouter);
-
     app.use('/admin', isAdmin, adminRouter);
 
     // app.use('/products', productRouter);

@@ -1,19 +1,22 @@
-const { Customers } = require('../models');
+const { Orders } = require('../models');
 
-const API_Customers = {
+const API_Orders = {
     create: async (data) => {
-        return await new Customers(data).save();
+        return await new Orders(data).save();
     },
 
     readOne: async (loaders) => {
-        return await Customers.findOne(loaders).lean();
+        return await Orders.findOne(loaders)
+        .populate('product_list')
+        .populate('customer')
+        .lean();
     },
 
     readMany: async (loaders, options) => {
         let skip = options.skip || 0;
         let limit = options.limit || 0;
         let select = options.select || {};
-        return await Customers.find(loaders)
+        return await Orders.find(loaders)
             .select(select)
             .skip(skip)
             .limit(limit)
@@ -22,12 +25,12 @@ const API_Customers = {
     },
 
     update: async (id, data) => {
-        return await Customers.findByIdAndUpdate(id, { $set: data });
+        return await Orders.findByIdAndUpdate(id, { $set: data });
     },
 
     remove: async (id) => {
-        return await Customers.findByIdAndRemove(id);
+        return await Orders.findByIdAndRemove(id);
     },
 };
 
-module.exports = API_Customers;
+module.exports = API_Orders;

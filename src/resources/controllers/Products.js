@@ -15,7 +15,7 @@ const {
 } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
-const { getRelation, queryCategories, normalizeData, rollBackArr } = require('../utils/categoryUtils');
+const { getRelation, normalizeData, rollBackArr } = require('../utils/categoryUtils');
 
 // URLs
 const storageURL = '/admin/products/storage';
@@ -77,39 +77,24 @@ const Controller_Products = {
 
     // [POST] /products/create
     POST_createProduct: async (req, res, next) => {
-        const files = req.files;
-        if (files.length == 0) {
-            req.flash('error', 'Vui lòng nhập hình ảnh');
-            return res.redirect(createURL);
-        }
-
-        let pdir = typeof req.body.pid == 'string' ? req.body.pid : req.body.pid[0];
-
-        let pimg = files.map((file) => {
-            return `/uploads/products/${pdir}/${file.filename}`;
-        });
-
-        const slug = createSlug(req.body.pname, {
-            lower: false,
-            strict: true,
-            remove: false,
-            locale: 'vi',
-        });
-
-        let categories = [];
-        let queryCate = await queryCategories(req.body.categories);
-        for (cate of queryCate) {
-            categories.push(getRelation(cate));
-        }
-
-        let classify = reDistribute(req.body);
-        await API_Products.create({ ...req.body, pimg, classify, categories, slug })
+        //return res.json({data: JSON.parse(req.docx)})
+        let data = JSON.parse(req.docx);
+        let slug = createSlug(data.pname, {});
+        let classify = reDistribute(data);
+        let categories = await API_Category.readMany({_id: {$in: data.cateList}})
+            .then(items => {
+                return items.map(item => {
+                    getRelation(item);
+                })
+            })
+   
+        await API_Products.create({ ...data, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
                 return res.redirect(storageURL);
             })
             .catch((err) => {
-                fileapis.removeDirectory(BASE_URL + 'products/' + req.body.pid, (err) => {
+                fileapis.removeDirectory(BASE_URL + 'products/' + data.pdir, (err) => {
                     console.log('Xóa thư mục thất bại: ' + err);
                 });
                 req.flash('error', 'Thêm sản phẩm thất bại: ' + err);

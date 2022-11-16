@@ -30,7 +30,7 @@ router.get('/dang-nhap', (req, res, next) => {
 
 router.post('/dang-nhap', (req, res, next) => {
     const { username, password } = req.body;
-    req.session.user = { username, password };
+    req.session.isLogin = true;
     if(username == 'admin' && password == '123456')
         return res.redirect('/admin');
     else {
