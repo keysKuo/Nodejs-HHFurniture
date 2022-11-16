@@ -84,7 +84,7 @@ const Controller_Products = {
         let categories = await API_Category.readMany({_id: {$in: data.cateList}})
             .then(items => {
                 return items.map(item => {
-                    getRelation(item);
+                    return getRelation(item);
                 })
             })
    
@@ -123,6 +123,7 @@ const Controller_Products = {
 
     // [GET] /products/update/:id
     GET_updateProduct: async (req, res, next) => {
+        
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
         const id = req.params.id;
@@ -131,6 +132,7 @@ const Controller_Products = {
         let cateArr = product.categories.map(cate => {
             return cate.level3.id;
         })
+        
         let dataArr = rollBackArr(product.classify);
         const currCategories = await API_Category.readMany({_id: {$in: cateArr }});
         const level1 = await API_Category.readMany({level: 1});
@@ -152,43 +154,50 @@ const Controller_Products = {
 
     // [POST] /products/update/:id
     POST_updateProduct: async (req, res, next) => {
-        const oldPath = req.body.oldpath;
-        const pid = req.body.pid;
-        let cateStr = req.body.categories;
-        let cateArr = await API_Category.readMany({ _id: { $in: cateStr.split(',') } });
-        let categories = cateArr.map((c) => {
-            return getRelation(c);
-        });
-
+        // return res.json({data: JSON.parse(req.docx)})
         const id = req.params.id;
         const files = req.files;
-
+        let data = JSON.parse(req.docx);
         let isNewImg = files.length != 0;
-        let pdir = typeof pid == 'string' ? pid : pid[0];
+        // const oldPath = req.body.oldpath;
+        // const pid = req.body.pid;
+        // let cateStr = req.body.categories;
+        // let cateArr = await API_Category.readMany({ _id: { $in: cateStr.split(',') } });
+        // let categories = cateArr.map((c) => {
+        //     return getRelation(c);
+        // });
 
-        let updateImg = !isNewImg
-            ? oldPath
-            : files.map((file) => {
-                  return `/uploads/products/${pdir}/${file.filename}`;
-              });
+        data.categories = await API_Category.readMany({_id: {$in: data.cateList}})
+            .then(items => {
+                return items.map(item => {
+                    return getRelation(item);
+                })
+            })
 
-        let classify = reDistribute(req.body);
-        const data = {
-            ...req.body,
-            pimg: updateImg,
-            categories,
-            classify,
-        };
-        delete data.oldpath;
+        
 
-        await API_Products.update(id, data)
+        
+        // let pdir = typeof pid == 'string' ? pid : pid[0];
+
+        data.pimg = !isNewImg
+            ? data.oldpath
+            : data.pimg
+
+        data.classify = reDistribute(data);
+        // const data = {
+        //     ...req.body,
+        //     pimg: updateImg,
+        //     categories,
+        //     classify,
+        // };
+
+        return await API_Products.update(id, data)
             .then(async (product) => {
                 if (isNewImg) {
-                    for (path of oldPath) {
+                    for (path of data.oldpath) {
                         fileapis.deleteSync('./src/public' + path, (err) => {
                             if (err) {
-                                req.flash('error', 'Xóa hình ảnh thất bại: ' + err);
-                                return res.redirect(updateURL + id);
+                                console.log(err)
                             }
                         });
                     }
