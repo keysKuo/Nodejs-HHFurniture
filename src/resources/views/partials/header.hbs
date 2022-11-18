@@ -30,7 +30,7 @@
                 </div>
 
                 <div class='search-container p-3'>
-                    <form class='search-form' role='search' action='https://hhfurniture.com.vn' method='get'>
+                    {{!-- <form class='search-form' role='search' action='/san-pham/tim-kiem' method='get'> --}}
                         <div class='search-form__container'>
                             <input
                                 placeholder='Tìm kiếm tên sản phẩm, mã sản phẩm,…'
@@ -40,12 +40,12 @@
                                 title='Tìm kiếm'
                                 value=''
                             />
-                            <button class='search-form__submit' type='submit' title='Tìm kiếm' aria-label='Tìm kiếm'>
+                            <button class='search-form__submit' type='button' title='Tìm kiếm' aria-label='Tìm kiếm'>
                                 <i aria-hidden='true' class='fas fa-search'></i>
                                 <span class='screen-only'>Tìm kiếm</span>
                             </button>
                         </div>
-                    </form>
+                    {{!-- </form> --}}
                 </div>
                 <ul class='nav justify-content-center menu_container'>
                     {{#each lsCat}}
