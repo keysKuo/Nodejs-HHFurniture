@@ -83,19 +83,19 @@
                         <ul class='pagination justify-content-center'>
                             {{#paginate pagination type="previous"}}
                             <li class='page-item {{#if disabled}}disabled{{/if}}'>
-                                <a class='page-link bg-transparent text-light' href='?p={{n}}' aria-label='Previous'> 
+                                <a class='page-link bg-transparent text-light' href='?page={{n}}' aria-label='Previous'> 
                                     <span aria-hidden='true'>&laquo;</span>
                                 </a>
                             </li>
                             {{/paginate}}
                             {{#paginate pagination type="middle" limit="7"}}
                             <li class='page-item {{#if active}}active{{/if}}'>
-                                <a class='page-link bg-transparent text-light' href='?p={{n}}'>{{n}}</a>
+                                <a class='page-link bg-transparent text-light' href='?page={{n}}'>{{n}}</a>
                             </li>
                             {{/paginate}}
                             {{#paginate pagination type="next"}}
                             <li class='page-item {{#if disabled}}disabled{{/if}}'>
-                                <a class='page-link bg-transparent text-light'  href='?p={{n}}' aria-label='Next'>
+                                <a class='page-link bg-transparent text-light'  href='?page={{n}}' aria-label='Next'>
                                     <span aria-hidden='true'>&raquo;</span>
                                 </a>
                             </li>
