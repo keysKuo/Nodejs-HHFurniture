@@ -3,6 +3,7 @@ const router = express.Router();
 const productRouter = require('./Products');
 const newsRouter = require('./News');
 const categoryRouter = require('./Category');
+const policyRouter = require('./Policy');
 // const orderRouter = require('./Order');
 // const userRouter = require('./User');
 
@@ -22,6 +23,7 @@ router.use('/category', categoryRouter);
 // News
 router.use('/news', newsRouter);
 
+router.use('/policy', policyRouter);
 
 router.get('/user/logout', (req, res, next) => {
     req.session.destroy();

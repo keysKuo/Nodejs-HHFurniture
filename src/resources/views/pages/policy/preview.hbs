@@ -1,0 +1,50 @@
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card shadow'>
+                <div class='card-header d-flex justify-content-between'>
+                    <h4>{{pageName}}</h4>
+                    <a type='button' href='/admin/news/storage' class='btn btn-secondary'>Trở lại</a>
+                </div>
+                <div class='card-body'>
+                    <div class='news__detail__container'>
+                        <div class='news__detail__container__left'>
+                            <div class='news__detail__sub__title'>
+                                <a href='/news'>
+                                    <p>TIN TỨC MỚI</p>
+                                </a>
+                            </div>
+                            <div class='news__detail__content'>
+                                <div class='news__detail__content__header'>
+                                    <h3>{{data.title}}</h3>
+                                </div>
+                                <div class='news__detail__content__time'>
+                                    <p>{{data.updatedAt}}</p>
+                                </div>
+                                <div class='news__detail__content__img'>
+                                    <img src='{{data.images.[0]}}' alt='image' />
+                                    <p> </p>
+                                </div>
+                                <div class='news__detail__content__text'>
+                                    {{{data.content}}}
+                                </div>
+                                <div class='news__detail__content__watch__more'>
+                                    <span>Để xem thêm nhiều tin tức vui lòng</span>
+                                    <a href='/news'>Click Tại Đây</a>
+                                </div>
+                                <div class='news__detail__content__fanpage'>
+                                    <p>Fanpage:</p>
+                                    {{!-- <span>
+                                        <a
+                                            href='https://www.facebook.com/palletthanhduong.vn'
+                                        >https://www.facebook.com/palletthanhduong.vn</a>
+                                    </span> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

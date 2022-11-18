@@ -5,3 +5,4 @@ module.exports.Customers = require('./Customers');
 module.exports.News = require('./News');
 module.exports.ImageContent = require('./ImageContent');
 module.exports.Cart = require('./Carts');
+module.exports.Policy = require('./Policy');

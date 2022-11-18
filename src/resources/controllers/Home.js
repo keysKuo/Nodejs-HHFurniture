@@ -16,7 +16,7 @@ const {
     policy,
     lsCartItem,
 } = require('../data/mock');
-const { normalizeData } = require('../utils/categoryUtils');
+const lsQuery = require('../utils/lsQuery');
 
 const Controller_Home = {
     // [GET] /
@@ -35,43 +35,8 @@ const Controller_Home = {
             },
         };
 
-        let lsProductDoNoiThat = await API_Products.readMany({ 'categories.level1.name': 'Đồ nội thất' }, options).then(
-            (products) => {
-                return normalizeData(products);
-            },
-        );
-
-        let lsProductThietBiVeSinh = await API_Products.readMany(
-            { 'categories.level1.name': 'Thiết bị vệ sinh' },
-            options,
-        ).then((products) => {
-            return normalizeData(products);
-        });
-
-        let lsProductDenTrangTri = await API_Products.readMany(
-            { 'categories.level1.name': 'Đèn trang trí' },
-            options,
-        ).then((products) => {
-            return normalizeData(products);
-        });
-
-        let lsProductDoTrangTri = await API_Products.readMany(
-            { 'categories.level1.name': 'Đồ trang trí' },
-            options,
-        ).then((products) => {
-            return normalizeData(products);
-        });
-
-        let lsPostProject = await API_News.readMany({}, { limit: 4 }).then((posts) => {
-            return posts.map((post) => {
-                return {
-                    title: post.title,
-                    slug: post.slug,
-                    images: post.images[0],
-                };
-            });
-        });
-        //return res.json({data: lsProductDoTrangTri});
+        let data = await lsQuery(options);
+        // return res.json({data: data});
 
         return res.render('pages/home', {
             layout: 'main',
@@ -83,11 +48,11 @@ const Controller_Home = {
             lsSubCat,
 
             // BE trả về
-            lsProductDoNoiThat,
-            lsProductThietBiVeSinh,
-            lsProductDenTrangTri,
-            lsProductDoTrangTri,
-            lsPostNews,
+            lsProductDoNoiThat: data.lsProductDoNoiThat,
+            lsProductThietBiVeSinh: data.lsProductThietBiVeSinh,
+            lsProductDenTrangTri: data.lsProductDenTrangTri,
+            lsProductDoTrangTri: data.lsProductDoTrangTri,
+            lsPostNews: data.lsPostNews,
             lsPostProject,
             //////////////
         });
@@ -136,6 +101,16 @@ const Controller_Home = {
             keywords: 'Homepage, đồ nội thất',
         };
 
+        const options = {
+            limit: 12,
+            select: {
+                description: 0,
+                categories: 0,
+            },
+        };
+
+        let data = await lsQuery(options);
+
         return res.render('pages/sales', {
             layout: 'main',
             template: 'khuyen-mai-template',
@@ -144,11 +119,11 @@ const Controller_Home = {
             meta,
 
             // BE trả về
-            lsProductDoNoiThat,
-            lsProductThietBiVeSinh,
-            lsProductDenTrangTri,
-            lsProductDoTrangTri,
-            lsPostNews,
+            lsProductDoNoiThat: data.lsProductDoNoiThat,
+            lsProductThietBiVeSinh: data.lsProductThietBiVeSinh,
+            lsProductDenTrangTri: data.lsProductDenTrangTri,
+            lsProductDoTrangTri: data.lsProductDoTrangTri,
+            lsPostNews: data.lsPostNews,
             //////////
         });
     },
