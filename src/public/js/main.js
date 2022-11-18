@@ -140,4 +140,9 @@ $(document).ready(function ($) {
         current.addClass('chose');
         prev.removeClass('chose');
     });
+
+    $('.search-form__submit').click(function() {
+        let key = $('.search-form__input').val();
+        window.location.replace(`/san-pham/tim-kiem?key=${key}`);
+    })
 });

@@ -26,6 +26,8 @@ router.get('/gioi-thieu', Controller_Home.GET_Introduction);
 
 router.get('/danh-muc-san-pham/:slug', Controller_Category.GET_CategoryPage);
 
+router.get('/san-pham/tim-kiem', Controller_Products.GET_findProduct);
+
 router.get('/san-pham/:slug', Controller_Products.GET_productDetail);
 
 router.get('/gio-hang', Controller_Cart.GET_CartPage);
