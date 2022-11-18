@@ -29,10 +29,11 @@ router.get('/dang-nhap', (req, res, next) => {
 })
 
 router.post('/dang-nhap', (req, res, next) => {
-    const { username, password } = req.body;
-    req.session.isLogin = true;
-    if(username == 'admin' && password == '123456')
+    const { username, password } = req.body; 
+    if(username == 'admin' && password == '123456') {
+        req.session.isLogin = true;
         return res.redirect('/admin');
+    }
     else {
         req.flash('error', 'Sai tài khoản hoặc mật khẩu');
         return res.redirect('/dang-nhap');

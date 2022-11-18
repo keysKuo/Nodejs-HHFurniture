@@ -10,9 +10,9 @@ const API_Products = {
     },
 
     readMany: async (loaders, options) => {
-        let skip = options.skip || 0;
-        let limit = options.limit || 0;
-        let select = options.select || {};
+        let skip = (options) ? options.skip : 0;
+        let limit = (options) ? options.limit : 0;
+        let select = (options) ? options.select : {};
         return await Products.find(loaders)
             .select(select)
             .skip(skip)

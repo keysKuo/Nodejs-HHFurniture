@@ -6,13 +6,14 @@ const app = require('./config/server').init();
 
 db.connect();
 
-const { API_Category } = require('./resources/apis');
+const { API_Category, API_Products } = require('./resources/apis');
 const mongoose = require('mongoose');
+const { Controller_Products } = require('./resources/controllers');
 
 
 router(app);
 
-app.get('/test', require('./resources/controllers/Category').GET_CategoryPage);
+app.get('/test', Controller_Products.GET_findProduct);
 
 app.get('/home', async (req, res, next) => {
     // await API_Category.create({
