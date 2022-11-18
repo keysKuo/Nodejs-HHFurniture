@@ -307,29 +307,29 @@ const Controller_Products = {
     GET_findProduct: async (req, res, next) => {
         const page = parseInt(req.query.page) || 1;
         const key = req.query.key;
-        let regex = {$regex: key, $options: 'i'};
+        let regex = { $regex: key, $options: 'i' };
         let options = {
             limit: 20,
             skip: 20 * (page - 1),
             select: {
                 description: 0,
-                categories: 0
-            }
-        }
+                categories: 0,
+            },
+        };
 
-        let product = await API_Products.readMany({
-            $or: [
-                { pname: regex }, 
-                { pid: regex}
-            ]
-        }, options)
-        
-        return res.json({data: product});
+        let product = await API_Products.readMany(
+            {
+                $or: [{ pname: regex }, { pid: regex }],
+            },
+            options,
+        );
+
+        return res.json({ data: product });
         return res.render('pages/products/search', {
             layout: 'main',
             product: product,
-        })
-    }
+        });
+    },
 };
 
 module.exports = Controller_Products;

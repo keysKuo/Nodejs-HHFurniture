@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'Roboto';
-  src: url(../fonts/Roboto-Medium.ttf);
+    font-family: 'Roboto';
+    src: url(../fonts/Roboto-Medium.ttf);
 }
 
 :root {
@@ -273,7 +273,6 @@ body {
     padding: 10px;
     flex-direction: column;
     height: 100%;
-    width: 20%;
 }
 
 .cart-container .cart-contents {
@@ -306,7 +305,6 @@ body {
     padding: 5px 5px 5px 5px;
     background-color: #fda702;
     border-radius: 10px 10px 10px 10px;
-    width: 20%;
 }
 .phone-container ul {
     list-style: none;
@@ -969,7 +967,9 @@ video {
 .swiper-button-prev {
     top: calc(50% - (-40px / 2));
 }
-
+.swiper-scrollbar {
+    position: absolute !important;
+}
 .section-khachhang .testimonial {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2303,14 +2303,13 @@ a.checkout-button:hover {
     text-overflow: ellipsis;
 }
 
-
 .login-page {
     font-family: 'Roboto';
     background: #121212; /* fallback for old browsers */
     overflow-x: hidden;
-  
+
     height: 600px;
-  
+
     /* code to make all text unselectable */
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -2318,93 +2317,89 @@ a.checkout-button:hover {
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
-  }
-  
-  
-  
-  /* ########################################################## */
-  
-  
-  .login-page h1 {
+}
+
+/* ########################################################## */
+
+.login-page h1 {
     color: #fda702;
     text-align: center;
     font-size: 35px;
     font-weight: 800;
-  }
-  
-  .login-page .flex-container {
+}
+
+.login-page .flex-container {
     width: 100vw;
-  
+
     margin-top: 80px;
-  
+
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  .login-page .content-container {
+}
+
+.login-page .content-container {
     width: 500px;
     height: 400px;
-  }
-  
-  .login-page .form-container {
+}
+
+.login-page .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-  
+
     width: 500px;
     height: 400px;
-  
+
     margin-top: 5px;
     padding-top: 20px;
-  
+
     border-radius: 12px;
-  
+
     display: flex;
     justify-content: center;
     flex-direction: column;
-  
+
     background: #1f1f1f;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.199);
-  }
-  
-  .login-page .subtitle {
+}
+
+.login-page .subtitle {
     font-size: 11px;
-  
+
     color: rgba(177, 177, 177, 0.3);
-  }
-  
-  .login-page input {
+}
+
+.login-page input {
     border: none;
     border-bottom: solid rgb(143, 143, 143) 1px;
-  
+
     margin-bottom: 30px;
-  
+
     background: none;
     color: rgba(255, 255, 255, 0.555);
-  
+
     height: 35px;
     width: 300px;
-  }
-  
-  .login-page .submit-btn {
+}
+
+.login-page .submit-btn {
     cursor: pointer;
-  
+
     border: none;
     border-radius: 8px;
-  
+
     box-shadow: 2px 2px 7px #38d39f70;
-  
+
     background: #fda702;
-    color: rgba(0,0,0);
-  
+    color: rgba(0, 0, 0);
+
     width: 100px;
-  
+
     transition: all 1s;
-  }
-  
-  .login-page .submit-btn:hover {
+}
+
+.login-page .submit-btn:hover {
     color: white;
     box-shadow: none;
-  }
-  
+}

@@ -1,6 +1,6 @@
 $(document).ready(function ($) {
     AOS.init({
-        duration: 180000,
+        duration: 1000,
     });
     const tobii = new Tobii();
     $('.owl-carousel').owlCarousel({
@@ -84,6 +84,20 @@ $(document).ready(function ($) {
         autoplay: 5000,
         speed: 800,
         autoplayDisableOnInteraction: false,
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 8,
+                spaceBetween: 50,
+            },
+        },
     });
     // back-to-top
     var mybutton = document.getElementById('back-to-top');
@@ -116,7 +130,7 @@ $(document).ready(function ($) {
         if ($(window).width() > 600) {
             setTimeout(function () {
                 $('#TuVanModal').modal('show');
-            }, 180000);
+            }, 1800000);
         }
     });
 
