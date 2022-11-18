@@ -1,8 +1,16 @@
 const express = require('express');
-const { Controller_Cart, Controller_Home, Controller_Category, Controller_Products, Controller_News } = require('../controllers');
+const {
+    Controller_Cart,
+    Controller_Home,
+    Controller_Category,
+    Controller_Products,
+    Controller_News,
+} = require('../controllers');
 const router = express.Router();
 
 router.get('/', Controller_Home.GET_Homepage);
+
+router.get('/s', Controller_Home.GET_SearchProductPage);
 
 router.get('/contact', Controller_Home.GET_Contact);
 
@@ -24,22 +32,20 @@ router.get('/gio-hang', Controller_Cart.GET_CartPage);
 
 router.get('/dang-nhap', (req, res, next) => {
     return res.render('pages/common/login', {
-        error: req.flash('error') || ''
-    })
-})
+        error: req.flash('error') || '',
+    });
+});
 
 router.post('/dang-nhap', (req, res, next) => {
-    const { username, password } = req.body; 
-    if(username == 'admin' && password == '123456') {
+    const { username, password } = req.body;
+    if (username == 'admin' && password == '123456') {
         req.session.isLogin = true;
         return res.redirect('/admin');
-    }
-    else {
+    } else {
         req.flash('error', 'Sai tài khoản hoặc mật khẩu');
         return res.redirect('/dang-nhap');
     }
-})
-
+});
 
 // router.get('*', function (req, res) {
 //     res.status(404).render('error', {

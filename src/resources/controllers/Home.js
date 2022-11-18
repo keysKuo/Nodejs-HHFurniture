@@ -12,6 +12,7 @@ const {
     lsProductThietBiVeSinh,
     lsProductDenTrangTri,
     lsProductDoTrangTri,
+    lsProductSearch,
     policy,
     lsCartItem,
 } = require('../data/mock');
@@ -206,6 +207,29 @@ const Controller_Home = {
             meta,
             lsSubCat,
             lsCat,
+        });
+    },
+
+    // [GET] /search
+    GET_SearchProductPage: async (req, res, next) => {
+        const meta = {
+            title: 'Search',
+            desc: 'Trang chủ H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
+        const page = parseInt(req.query.page) || 1;
+
+        return res.render('pages/searchProduct', {
+            layout: 'main',
+            template: 'search-template',
+            meta,
+            lsSubCat,
+            lsCat,
+            lsProductSearch,
+            pagination: {
+                page: page, // The current page the user is on
+                pageCount: 12, // The total number of available pages
+            },
         });
     },
 };
