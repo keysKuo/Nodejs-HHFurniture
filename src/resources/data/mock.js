@@ -261,6 +261,7 @@ module.exports = {
     lsProductThietBiVeSinh: lsProduct12,
     lsProductDenTrangTri: lsProduct12,
     lsProductDoTrangTri: lsProduct12,
+    lsProductSearch: lsProduct12,
     lsCat: [
         {
             title: 'Về H & H',

@@ -1,0 +1,36 @@
+<section class='section m-4' data-aos="fade-up">
+    {{> heading title="Tìm kiếm sản phẩm"}}
+    <div class='container'>
+        <div class='row products'>
+         {{#each lsProductSearch}}
+            <div class="col-md-3 " style="padding: 20px;">
+                {{> productPartials hasButton=true}}
+            </div>
+         {{/each}}
+            <nav aria-label='Page navigation example'>
+                <ul class='pagination justify-content-center'>
+                    {{#paginate pagination type="previous"}}
+                    <li class='page-item {{#if disabled}}disabled{{/if}}'>
+                        <a class='page-link bg-transparent text-light' href='?p={{n}}' aria-label='Previous'> 
+                            <span aria-hidden='true'>&laquo;</span>
+                        </a>
+                    </li>
+                    {{/paginate}}
+                    {{#paginate pagination type="middle" limit="7"}}
+                    <li class='page-item {{#if active}}active{{/if}}'>
+                        <a class='page-link bg-transparent text-light' href='?p={{n}}'>{{n}}</a>
+                    </li>
+                    {{/paginate}}
+                    {{#paginate pagination type="next"}}
+                    <li class='page-item {{#if disabled}}disabled{{/if}}'>
+                        <a class='page-link bg-transparent text-light'  href='?p={{n}}' aria-label='Next'>
+                            <span aria-hidden='true'>&raquo;</span>
+                        </a>
+                    </li>
+                    {{/paginate}}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
