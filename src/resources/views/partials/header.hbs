@@ -1,5 +1,6 @@
 <nav class='navbar fixed-top navbar-expand-lg navbar-dark bg-dark header'>
     <div class='container header-container'>
+
         <a class='navbar-brand logo-container' href='/'>
             <img src='/images/Logo-chuan-mau.png' class='logo-img' alt='Logo' />
         </a>
@@ -15,7 +16,7 @@
             <span class='navbar-toggler-icon'></span>
         </button>
         <div class='collapse navbar-collapse' id='navbarSupportedContent'>
-            <div class='row'>
+            <div class='row' style='flex-grow: inherit;'>
                 <div class='col-md-9'>
                     <div class='sub-category'>
                         <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
@@ -30,8 +31,8 @@
                         </ul>
                     </div>
 
-                <div class='search-container p-3'>
-                    {{!-- <form class='search-form' role='search' action='/san-pham/tim-kiem' method='get'> --}}
+                    <div class='search-container p-3'>
+                        {{! <form class='search-form' role='search' action='/san-pham/tim-kiem' method='get'> }}
                         <div class='search-form__container'>
                             <input
                                 placeholder='Tìm kiếm tên sản phẩm, mã sản phẩm,…'
@@ -46,38 +47,38 @@
                                 <span class='screen-only'>Tìm kiếm</span>
                             </button>
                         </div>
-                    {{!-- </form> --}}
-                </div>
-                <ul class='nav justify-content-center menu_container'>
-                    {{#each lsCat}}
-                        <li class='nav-item dropdown menu_item'>
-                            {{#if isExpanded}}
-                                <a
-                                    class='nav-link dropdown-toggle'
-                                    data-bs-toggle='dropdown'
-                                    href='{{slug}}'
-                                    role='button'
-                                    aria-expanded='false'
-                                >{{title}}
-                                    <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                        {{! </form> }}
+                    </div>
+                    <ul class='nav justify-content-center menu_container mt-3'>
+                        {{#each lsCat}}
+                            <li class='nav-item dropdown menu_item'>
+                                {{#if isExpanded}}
+                                    <a
+                                        class='nav-link dropdown-toggle'
+                                        data-bs-toggle='dropdown'
+                                        href='{{slug}}'
+                                        role='button'
+                                        aria-expanded='false'
+                                    >{{title}}
+                                        <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
 
-                                    {{#if isHot}}
-                                        <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
-                                    {{/if}}
-                                </a>
-                            {{else}}
-                                <a class='nav-link' href='{{slug}}'>{{title}}
-                                    {{#if isHot}}
-                                        <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
-                                    {{/if}}
-                                </a>
-                            {{/if}}
+                                        {{#if isHot}}
+                                            <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
+                                        {{/if}}
+                                    </a>
+                                {{else}}
+                                    <a class='nav-link' href='{{slug}}'>{{title}}
+                                        {{#if isHot}}
+                                            <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
+                                        {{/if}}
+                                    </a>
+                                {{/if}}
 
-                            {{#if isExpanded}}
-                                <ul class='dropdown-menu'>
-                                    {{#each items}}
-                                        <li><a class='dropdown-item' href='{{slug}}'>{{title}}</a></li>
-                                    {{/each}}
+                                {{#if isExpanded}}
+                                    <ul class='dropdown-menu'>
+                                        {{#each items}}
+                                            <li><a class='dropdown-item' href='{{slug}}'>{{title}}</a></li>
+                                        {{/each}}
                                     </ul>
                                 {{/if}}
                             </li>
@@ -107,7 +108,6 @@
                                                     9
                                                 </span>
                                             </i>
-
 
                                         </a>
                                     </div>
