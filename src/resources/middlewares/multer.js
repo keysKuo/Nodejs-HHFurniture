@@ -12,6 +12,7 @@ const storage = multer.diskStorage({
         fileapis.createSync(path, err => {
             req.flash('error', 'Tạo thư mục thất bại');
         });
+        req.folder = path;
         cb(null, path);
     },
 

@@ -218,7 +218,7 @@ const init = () => {
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
     app.use(cookieParser('SUD'));
-    app.use(session({ cookie: { maxAge: 30000 } }));
+    app.use(session({ cookie: { maxAge: 300000 } }));
     app.use(flash());
     app.use(bodyParser.urlencoded({ extended: false }));
     return app;

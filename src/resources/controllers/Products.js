@@ -15,14 +15,14 @@ const {
 } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
-const { getRelation, queryCategories, normalizeData, rollBackArr } = require('../utils/categoryUtils');
+const { getRelation, normalizeData, rollBackArr } = require('../utils/categoryUtils');
 
 // URLs
-const storageURL = '/products/storage';
-const createURL = '/products/create';
-const updateURL = '/products/update/';
-const deleteURL = '/products/delete/';
-const previewURL = '/products/preview/';
+const storageURL = '/admin/products/storage';
+const createURL = '/admin/products/create';
+const updateURL = '/admin/products/update/';
+const deleteURL = '/admin/products/delete/';
+const previewURL = '/admin/products/preview/';
 
 const Controller_Products = {
     // [GET] /products/storage
@@ -64,12 +64,12 @@ const Controller_Products = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
-        const categories = await API_Category.readMany({ level: 3 });
+        const categories = await API_Category.readMany({ level: 1 });
 
         return res.render('pages/products/create', {
             layout: 'admin',
             pageName: 'Thêm sản phẩm',
-            categories,
+            level1: categories,
             success,
             error,
         });
@@ -77,39 +77,23 @@ const Controller_Products = {
 
     // [POST] /products/create
     POST_createProduct: async (req, res, next) => {
-        const files = req.files;
-        if (files.length == 0) {
-            req.flash('error', 'Vui lòng nhập hình ảnh');
-            return res.redirect(createURL);
-        }
-
-        let pdir = typeof req.body.pid == 'string' ? req.body.pid : req.body.pid[0];
-
-        let pimg = files.map((file) => {
-            return `/uploads/products/${pdir}/${file.filename}`;
+        //return res.json({data: JSON.parse(req.docx)})
+        let data = JSON.parse(req.docx);
+        let slug = createSlug(data.pname, {});
+        let classify = reDistribute(data);
+        let categories = await API_Category.readMany({ _id: { $in: data.cateList } }).then((items) => {
+            return items.map((item) => {
+                return getRelation(item);
+            });
         });
 
-        const slug = createSlug(req.body.pname, {
-            lower: false,
-            strict: true,
-            remove: false,
-            locale: 'vi',
-        });
-
-        let categories = [];
-        let queryCate = await queryCategories(req.body.categories);
-        for (cate of queryCate) {
-            categories.push(getRelation(cate));
-        }
-
-        let classify = reDistribute(req.body);
-        await API_Products.create({ ...req.body, pimg, classify, categories, slug })
+        await API_Products.create({ ...data, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
                 return res.redirect(storageURL);
             })
             .catch((err) => {
-                fileapis.removeDirectory(BASE_URL + 'products/' + req.body.pid, (err) => {
+                fileapis.removeDirectory(BASE_URL + 'products/' + data.pdir, (err) => {
                     console.log('Xóa thư mục thất bại: ' + err);
                 });
                 req.flash('error', 'Thêm sản phẩm thất bại: ' + err);
@@ -143,16 +127,13 @@ const Controller_Products = {
         const id = req.params.id;
 
         let product = await API_Products.readOne({ _id: id });
+        let cateArr = product.categories.map((cate) => {
+            return cate.level3.id;
+        });
 
         let dataArr = rollBackArr(product.classify);
-        const categories = await API_Category.readMany({ level: 3 }).then((categories) => {
-            return categories.map((cate) => {
-                return {
-                    ...cate,
-                    check: product.categories.some((c) => c.level3.name == cate.name),
-                };
-            });
-        });
+        const currCategories = await API_Category.readMany({ _id: { $in: cateArr } });
+        const level1 = await API_Category.readMany({ level: 1 });
         //console.log(categories)
         //return res.json({data: dataArr})
 
@@ -161,51 +142,39 @@ const Controller_Products = {
             pageName: 'Chỉnh sửa sản phẩm',
             data: product,
             dataArr,
+            cateArr,
+            level1,
             error,
             success,
-            categories,
+            currCategories,
         });
     },
 
     // [POST] /products/update/:id
     POST_updateProduct: async (req, res, next) => {
-        const oldPath = req.body.oldpath;
-        const pid = req.body.pid;
-
-        let cateArr = await API_Category.readMany({ _id: { $in: req.body.categories } });
-        let categories = cateArr.map((c) => {
-            return getRelation(c);
-        });
-
+        // return res.json({data: JSON.parse(req.docx)})
         const id = req.params.id;
         const files = req.files;
-
+        let data = JSON.parse(req.docx);
         let isNewImg = files.length != 0;
-        let pdir = typeof pid == 'string' ? pid : pid[0];
 
-        let updateImg = !isNewImg
-            ? oldPath
-            : files.map((file) => {
-                  return `/uploads/products/${pdir}/${file.filename}`;
-              });
+        data.categories = await API_Category.readMany({ _id: { $in: data.cateList } }).then((items) => {
+            return items.map((item) => {
+                return getRelation(item);
+            });
+        });
 
-        let classify = reDistribute(req.body);
-        const data = {
-            ...req.body,
-            pimg: updateImg,
-            categories,
-            classify,
-        };
-        delete data.oldpath;
+        data.pimg = !isNewImg ? data.oldpath : data.pimg;
 
-        await API_Products.update(id, data)
+        data.classify = reDistribute(data);
+
+        return await API_Products.update(id, data)
             .then(async (product) => {
                 if (isNewImg) {
-                    for (path of oldPath) {
+                    for (path of data.oldpath) {
                         fileapis.deleteSync('./src/public' + path, (err) => {
                             if (err) {
-                                req.flash('error', 'Xóa hình ảnh thất bại: ' + err);
-                                return res.redirect(updateURL + id);
+                                console.log(err);
                             }
                         });
                     }
@@ -333,6 +302,34 @@ const Controller_Products = {
         let products = await API_Products.readMany({ categories: { $in: [] } }, {});
         console.log(children);
     },
+
+    // [GET] /products/search?key=...
+    GET_findProduct: async (req, res, next) => {
+        const page = parseInt(req.query.page) || 1;
+        const key = req.query.key;
+        let regex = {$regex: key, $options: 'i'};
+        let options = {
+            limit: 20,
+            skip: 20 * (page - 1),
+            select: {
+                description: 0,
+                categories: 0
+            }
+        }
+
+        let product = await API_Products.readMany({
+            $or: [
+                { pname: regex }, 
+                { pid: regex}
+            ]
+        }, options)
+        
+        return res.json({data: product});
+        return res.render('pages/products/search', {
+            layout: 'main',
+            product: product,
+        })
+    }
 };
 
 module.exports = Controller_Products;

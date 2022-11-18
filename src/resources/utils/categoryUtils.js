@@ -19,15 +19,7 @@ exports.getRelation = (category) => {
     return categories;
 }
 
-exports.queryCategories = async (categories) => {
-    let arr = (typeof categories == 'string') ? [categories] : categories;
-    let result = [];
-    for(cate of arr) {
-        result.push(await API_Category.readOne({_id: cate}))
-    }
 
-    return result;
-}
 
 exports.normalizeData = (products) => {
     return products.map((product) => {
