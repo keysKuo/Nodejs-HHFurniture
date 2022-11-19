@@ -6,6 +6,7 @@ const { ImageContent } = require('../models');
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
 const fs = require('fs');
+const { uuid } = require('uuidv4');
 
 router.get('/preview/:id', Controller_News.GET_previewNews);
 router.get('/storage', Controller_News.GET_managerNews);
@@ -23,12 +24,14 @@ router.get('/delete/:id', Controller_News.GET_removeNews);
 router.post('/upload', multipartMiddleware, (req, res) => {
     try {
         fs.readFile(req.files.upload.path, function (err, data) {
-            let newPath = './src/public/cke_uploads/' + req.files.upload.name;
+            let fileName = req.files.upload.name;
+            let ext = fileName.substring(fileName.lastIndexOf('.'));
+            let newName = '/cke_uploads/' + uuid().substring(0,13) + ext;
+            let newPath = './src/public' + newName;
             fs.writeFile(newPath, data, function (err) {
                 if (err) console.log({ err: err });
                 else {
-                    let fileName = req.files.upload.name;
-                    let url = '/cke_uploads/' + fileName;
+                    let url = newName;
                     let msg = 'Tải lên thành công';
                     let funcNum = req.query.CKEditorFuncNum;
                     console.log({ url, msg, funcNum });

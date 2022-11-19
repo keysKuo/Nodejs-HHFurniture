@@ -7,5 +7,7 @@ router.get('/create', Controller_Policy.GET_createPolicy);
 router.post('/create', Controller_Policy.POST_createPolicy);
 
 router.get('/storage', Controller_Policy.GET_policyStorage);
+
+router.get('/delete/:id', Controller_Policy.GET_deletePolicy);
 // Client Router
 module.exports = router;

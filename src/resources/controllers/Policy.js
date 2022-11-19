@@ -1,6 +1,8 @@
 const { API_Policy } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const ImageContent = require('../models/ImageContent');
+const fileapis = require('../middlewares/fileapis');
+
 const Controller_Policy = {
     // [GET] /admin/policy/create
     GET_createPolicy: async (req, res, next) => {
@@ -32,10 +34,35 @@ const Controller_Policy = {
             })
     },
 
+    // [GET] /admin/policy/delete/:id
+    GET_deletePolicy: async (req, res, next) => {
+        const id = req.params.id;
+
+        return await API_Policy.remove(id)
+            .then(policy => {
+                if(policy.content_images) {
+                    for (path of policy.content_images) {
+                        fileapis.deleteSync('./src/public' + path, (err) => {
+                            if (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                }
+
+                req.flash('/success', 'Xoá chính sách thành công');
+                return res.redirect('/admin/policy/storage');
+            })
+            .catch(err => {
+                req.flash('error', 'Xoá chính sách thất bại');
+                return res.redirect('/admin/policy/storage');
+            })
+    },
+
     // [GET] /admin/policy/storage
     GET_policyStorage: async (req, res, next) => {
         let policies = await API_Policy.readMany({}, {});
-        
+        //console.log(policies);
         return res.render('pages/policy/storage', {
             layout: 'admin',
             pageName: 'Danh sách chính sách',
