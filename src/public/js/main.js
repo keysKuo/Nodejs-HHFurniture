@@ -3,6 +3,22 @@ $(document).ready(function ($) {
         duration: 1000,
     });
     const tobii = new Tobii();
+
+    //gallery
+    $('#lightSlider').lightSlider({
+        gallery: true,
+        item: 1,
+        loop: true,
+        slideMargin: 0,
+        slideMove: 1,
+        thumbItem: 3,
+        slideMargin: 10,
+        speed: 400, //ms'
+        auto: true,
+        pause: 5000,
+        enableDrag: true,
+    });
+
     $('.owl-carousel').owlCarousel({
         loop: false,
         margin: 10,
@@ -141,8 +157,8 @@ $(document).ready(function ($) {
         prev.removeClass('chose');
     });
 
-    $('.search-form__submit').click(function() {
+    $('.search-form__submit').click(function () {
         let key = $('.search-form__input').val();
         window.location.replace(`/san-pham/tim-kiem?key=${key}`);
-    })
+    });
 });
