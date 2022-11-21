@@ -1,6 +1,7 @@
-<section class='section mb-0 top-section danhmuc-subcate section-boxed section-height-default section-height-default'
+<section
+    class='section mb-0 top-section danhmuc-subcate section-boxed section-height-default section-height-default'
     data-aos='fade-up'
-    >
+>
     <div class='container -gap-default'>
         <div class='row'>
             <div class='col-md-12'>
@@ -10,15 +11,33 @@
                             <span class='nmr-crumb'>
                                 <a class='nav-link p-1' href='/'></a>
                             </span>
-                            <span class='nmr-crumb'>
-                                <a class='nav-link p-1' href='{{product.categories.[0].slug}}'>
-                                    <i class='fa fa-angle-right'></i>
-                                    {{product.categories.name}}
-                                </a>
-                            </span>
 
+                            {{#if product.categories.0.level1}}
+                                <span class='nmr-crumb'>
+                                    <a class='nav-link p-1' href='{{product.categories.0.slug}}'>
+                                        <i class='fa fa-angle-right'></i>
+                                        {{product.categories.0.level1.name}}
+                                    </a>
+                                </span>
+                            {{/if}}
+                            {{#if product.categories.0.level2}}
+                                <span class='nmr-crumb'>
+                                    <a class='nav-link p-1' href='{{product.categories.0.slug}}'>
+                                        <i class='fa fa-angle-right'></i>
+                                        {{product.categories.0.level2.name}}
+                                    </a>
+                                </span>
+                            {{/if}}
+                            {{#if product.categories.0.level3}}
+                                <span class='nmr-crumb'>
+                                    <a class='nav-link p-1' href='{{product.categories.0.slug}}'>
+                                        <i class='fa fa-angle-right'></i>
+                                        {{product.categories.0.level3.name}}
+                                    </a>
+                                </span>
+                            {{/if}}
                             <span class='nmr-crumb'>
-                                <a class='nav-link p-1' href='/'>
+                                <a class='nav-link p-1 active' href='/'>
                                     <i class='fa fa-angle-right'></i>
                                     {{product.pname}}
                                 </a>
@@ -30,7 +49,7 @@
         </div>
     </div>
 </section>
-<section class='section m-0 pb-0 ' data-aos='fade-up'>
+<section class='section m-0 pb-0' data-aos='fade-up'>
     <div class='container'>
         <div class='row'>
             <div class='col-md-5'>
@@ -39,35 +58,16 @@
                         {{#when product.classify.rate 'gt' 0}}
                             <span class='onsale'>-{{product.classify.rate}}%</span>
                         {{/when}}
-
-                        <div
-                            class='product-gallery product-gallery--with-images product-gallery--columns-4 images'
-                            style='opacity: 1; transition: opacity 0.25s ease-in-out 0s;'
-                        >
-                            <a href='#' class='product-gallery__trigger' style='display: none;'>
-                                <img
-                                    draggable='false'
-                                    role='img'
-                                    class='emoji'
-                                    alt='🔍'
-                                    src='https://s.w.org/images/core/emoji/13.0.1/svg/1f50d.svg'
-                                />
-                            </a>
-                            <figure class='product-gallery__wrapper'>
-                                <div class='product-gallery__image' style='position: relative; overflow: hidden;'>
-
-                                    <a href="{{ product.pimg}}" class="lightbox">
-                                        <img  width='600'
-                                            height='600'
-                                            src='{{ product.pimg}}'
-                                            class='wp-post-image'
-                                            alt=''
-                                            title='N.SCU-G1691'
-                                        />
+                        <div class="lSSlideWrapper usingCss" style="transition-timing-function: ease; transition-duration: 500ms;">
+                            <ul id="lightSlider">
+                                {{#each product.pimg}}
+                                <li data-thumb="{{this}}">
+                                    <a href='{{this}}' class='lightbox'>
+                                        <img class="img-product" width='600' height='600' src='{{this}}' alt="" />
                                     </a>
-
-                                </div>
-                            </figure>
+                                </li>
+                                {{/each}}
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                                     <span class='detail-label'>
                                         Mã Sản Phẩm:
                                     </span>
-                                    <span class='sku'>{{product.classify.[0].pid}}</span>
+                                    <span class='sku'>{{product.classify.0.pid}}</span>
                                 </span>
                             </div>
                         </div>
@@ -101,52 +101,61 @@
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
                                         <span class='Price-amount amount'>
-                                            
-                                            {{formatCurrency product.classify.[0].price}}
-                                            
+
+                                            {{formatCurrency product.classify.0.price}}
+
                                         </span>
                                     </h5>
                                 </div>
                             </div>
-
-                            <div class='d-flex align-items-center'>
-                                <h6 class='mb-0 shop-list-title'>Chất liệu:</h6>
-                                <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    <li class='list-inline-item'>
-                                        <a
-                                            href='javascript:void(0)'
-                                            class='btn btn-icon btn-soft-primary chose'
-                                        >{{product.material}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class='d-flex align-items-center'>
-                                <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
-                                <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.classify.[0].colors as |item|}}
+                            <form action=''>
+                                <div class='d-flex align-items-center'>
+                                    <h6 class='mb-0 shop-list-title'>Chất liệu:</h6>
+                                    <ul class='product-detail-item list-unstyled mb-0 ms-3'>
                                         <li class='list-inline-item'>
                                             <a
                                                 href='javascript:void(0)'
                                                 class='btn btn-icon btn-soft-primary chose'
-                                            >{{item}}</a>
+                                            >{{product.material}}</a>
                                         </li>
-                                    {{/each}}
-                                </ul>
-                            </div>
-                            <div class='d-flex align-items-center'>
-                                <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
-                                <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                    {{#each product.classify as |item|}}
-                                        <li class='list-inline-item'>
-                                            <a
-                                                href='javascript:void(0)'
-                                                class='btn btn-icon btn-soft-primary'
-                                            >{{item.size}}</a>
-                                        </li>
-                                    {{/each}}
-                                </ul>
-                            </div>
+                                    </ul>
+                                </div>
+
+                                <div class='d-flex align-items-center'>
+                                    <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
+                                    <ul class='product-detail-item list-unstyled mb-0 ms-3'>
+                                        {{#each product.classify.0.colors as |item|}}
+                                            <li class='list-inline-item'>
+                                                <a
+                                                    href='javascript:void(0)'
+                                                    class='btn btn-icon btn-soft-primary chose'
+                                                >{{item}}</a>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+
+                                <div class='d-flex align-items-center'>
+                                    <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
+                                    <ul role='radiogroup' class='product-detail-item list-unstyled mb-0 ms-3'>
+                                        {{#each product.classify as |item|}}
+                                            <li
+                                                role='radio'
+                                                aria-checked='{{#if @first}}true{{else}}false{{/if}}'
+                                                data-size='{{item.size}}'
+                                                tabindex='0'
+                                                class='list-inline-item'
+                                            >
+                                                <a
+                                                    href='javascript:void(0)'
+                                                    class='btn btn-icon btn-soft-primary'
+                                                >{{item.size}}</a>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                            </form>
+
                         </div>
                         <!--end col-->
 
@@ -155,36 +164,36 @@
                                 <div class='col-lg-5 col-12'>
                                     <div class='d-flex shop-list align-items-center mt-2'>
                                         <h6 class='mb-0 shop-list-title'>Số lượng:</h6>
-                                          <div class='qib-container mt-3'>
-                                        <button
-                                            type='button'
-                                            data-product_id='{{id}}'
-                                            class='minus qib-button'
-                                        >-</button>
-                                        <div class='quantity buttons_added buttons-added'>
-                                            <label class='screen-reader-text' for='quantity'>Bộ Bàn Trang Điểm Hiện Đại
-                                                H&amp;H SCU-G1692 số lượng</label>
-                                            <input
-                                                type='number'
-                                                id='quantity'
-                                                class='input-text qty quantity_{{id}} text'
-                                                step='1'
-                                                min='1'
-                                                max=''
-                                                name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
-                                                value='1'
-                                                title='SL'
-                                                size='4'
-                                                placeholder=''
-                                                inputmode='numeric'
-                                            />
+                                        <div class='qib-container mt-3'>
+                                            <button
+                                                type='button'
+                                                data-product_id='{{id}}'
+                                                class='minus qib-button'
+                                            >-</button>
+                                            <div class='quantity buttons_added buttons-added'>
+                                                <label class='screen-reader-text' for='quantity'>Bộ Bàn Trang Điểm Hiện
+                                                    Đại H&amp;H SCU-G1692 số lượng</label>
+                                                <input
+                                                    type='number'
+                                                    id='quantity'
+                                                    class='input-text qty quantity_{{id}} text'
+                                                    step='1'
+                                                    min='1'
+                                                    max=''
+                                                    name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
+                                                    value='1'
+                                                    title='SL'
+                                                    size='4'
+                                                    placeholder=''
+                                                    inputmode='numeric'
+                                                />
+                                            </div>
+                                            <button
+                                                type='button'
+                                                data-product_id='{{id}}'
+                                                class='plus qib-button'
+                                            >+</button>
                                         </div>
-                                        <button
-                                            type='button'
-                                            data-product_id='{{id}}'
-                                            class='plus qib-button'
-                                        >+</button>
-                                    </div>
                                     </div>
                                 </div>
                                 <div class='col-lg-12 col-12'>

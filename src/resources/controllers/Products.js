@@ -253,9 +253,7 @@ const Controller_Products = {
                     };
                 });
             });
-
             // return res.json({ data: lsPostProject });
-
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
             return res.render('pages/product', {
                 layout: 'main',
@@ -306,7 +304,7 @@ const Controller_Products = {
     // [GET] /products/search?key=...
     GET_findProduct: async (req, res, next) => {
         const page = parseInt(req.query.page) || 1;
-        const key = req.query.key || "";
+        const key = req.query.key || '';
         const meta = {
             title: 'Search',
             desc: 'Trang chủ H&H Furniture',
@@ -314,29 +312,27 @@ const Controller_Products = {
         };
 
         let products;
-        if(key) {
-            let regex = {$regex: key, $options: 'i'};
+        if (key) {
+            let regex = { $regex: key, $options: 'i' };
             let options = {
                 limit: 12,
                 skip: 12 * (page - 1),
                 select: {
                     description: 0,
-                    categories: 0
-                }
-            }
-            
-            products = await API_Products.readMany({
-                $or: [
-                    { pname: regex }, 
-                    { pid: regex}
-                ]
-            }, options)
-        }
-        else {
+                    categories: 0,
+                },
+            };
+
+            products = await API_Products.readMany(
+                {
+                    $or: [{ pname: regex }, { pid: regex }],
+                },
+                options,
+            );
+        } else {
             return res.redirect('/');
         }
-        
-        
+
         // return res.json({data: products});
         return res.render('pages/searchProduct', {
             layout: 'main',
@@ -349,8 +345,8 @@ const Controller_Products = {
                 page: page, // The current page the user is on
                 pageCount: 12, // The total number of available pages
             },
-        })
-    }
+        });
+    },
 };
 
 module.exports = Controller_Products;

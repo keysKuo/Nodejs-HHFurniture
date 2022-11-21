@@ -1323,8 +1323,11 @@ video {
 }
 
 .breadcrumb a {
-    color: #fda702;
+    color: #767676;
     font-weight: 700;
+}
+.breadcrumb a.active {
+    color: #fda702;
 }
 .breadcrumb {
     margin: 0 0 1em;
