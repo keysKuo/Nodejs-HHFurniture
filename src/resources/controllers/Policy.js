@@ -62,7 +62,7 @@ const Controller_Policy = {
     // [GET] /admin/policy/storage
     GET_policyStorage: async (req, res, next) => {
         let policies = await API_Policy.readMany({}, {});
-        //console.log(policies);
+        // console.log(policies);
         return res.render('pages/policy/storage', {
             layout: 'admin',
             pageName: 'Danh sách chính sách',
@@ -70,6 +70,41 @@ const Controller_Policy = {
             success: req.flash('success') || '',
             error: req.flash('error') || ''
         })
+    },
+
+    // [GET] /admin/policy/update/:id
+    GET_policyUpdate: async (req, res, next) => {
+        const id = req.params.id;
+
+        let policy = await API_Policy.readOne({_id: id});
+        
+        return res.render('pages/policy/update', {
+            layout: 'admin',
+            data: policy,
+            success: req.flash('success') || '',
+            error: req.flash('error') || ''
+        })
+    },
+
+    // [POST] /admin/policy/update/:id
+    POST_updatePolicy: async (req, res, next) => {
+        const id = req.params.id;
+        
+        let content_images = await uploadImageForContent();
+
+        return await API_Policy.update(id, {...req.body})
+            .then(async policy => {
+                if(policy.content_images) {
+                    policy.content_images = policy.content_images.concat(content_images);
+                    await policy.save();
+                }
+                req.flash('success', 'Tạo chính sách thành công');
+                return res.redirect('/admin/policy/storage');
+            })
+            .catch(err => {
+                req.flash('error', 'Tạo chính sách thất bại');
+                return res.redirect('/admin/policy/create');
+            })
     }
 }
 
