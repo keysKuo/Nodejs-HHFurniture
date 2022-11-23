@@ -31,6 +31,10 @@ const API_Orders = {
     remove: async (id) => {
         return await Orders.findByIdAndRemove(id);
     },
+
+    count: async () => {
+        return await Orders.countDocuments({});
+    }
 };
 
 module.exports = API_Orders;
