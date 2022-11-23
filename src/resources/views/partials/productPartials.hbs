@@ -7,7 +7,13 @@
             <a href='/san-pham/{{slug}}'><img
                     width='300'
                     height='300'
-                    src='{{pimg}}'
+                    src='
+                        {{#if (isArray pimg)}}
+                               {{#first pimg}} {{/first}}
+                        {{else}}
+                            {{pimg}}   
+                        {{/if}}
+                     '
                     class='attachment-woocommerce_thumbnail size-woocommerce_thumbnail'
                     alt=''
                 /></a>

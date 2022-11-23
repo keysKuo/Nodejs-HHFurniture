@@ -1919,6 +1919,15 @@ widget.fb_iframe_widget span {
     font-size: 20px;
     font-weight: 600;
 }
+#variantProductSize a {
+    display: block;
+}
+#variantProductSize .ui-selected .ui-selectee {
+    color: #000;
+}
+#variantProductSize .ui-selected a {
+    background-color: #fff;
+}
 
 /* payments */
 #customer_details {

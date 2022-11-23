@@ -52,7 +52,7 @@ const init = () => {
                     }
                     return options.inverse(this);
                 },
-                first: function (list, options) {         
+                first: function (list, options) {
                     return list[0];
                 },
                 uploaded: function (data, options) {
@@ -101,9 +101,9 @@ const init = () => {
                     return html;
                 },
                 discountRate: function (frame, options) {
-                    console.log(frame)
-                    for(item of frame) {
-                        if(item.rate > 0) {
+                    console.log(frame);
+                    for (item of frame) {
+                        if (item.rate > 0) {
                             return options.fn(item.rate);
                         }
                     }
@@ -208,6 +208,9 @@ const init = () => {
                     }
 
                     return ret;
+                },
+                isArray: function (value) {
+                    return Array.isArray(value);
                 },
             },
         }),

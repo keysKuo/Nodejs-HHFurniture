@@ -55,17 +55,18 @@
             <div class='col-md-5'>
                 <div class='product-images position-relative'>
                     <div class='widget-container'>
-                        {{#when product.classify.rate 'gt' 0}}
-                            <span class='onsale'>-{{product.classify.rate}}%</span>
-                        {{/when}}
-                        <div class="lSSlideWrapper usingCss" style="transition-timing-function: ease; transition-duration: 500ms;">
-                            <ul id="lightSlider">
+                            <span class='onsale onsale-product-detail rate'></span>
+                        <div
+                            class='lSSlideWrapper usingCss'
+                            style='transition-timing-function: ease; transition-duration: 500ms;'
+                        >
+                            <ul id='lightSlider'>
                                 {{#each product.pimg}}
-                                <li data-thumb="{{this}}">
-                                    <a href='{{this}}' class='lightbox'>
-                                        <img class="img-product" width='600' height='600' src='{{this}}' alt="" />
-                                    </a>
-                                </li>
+                                    <li data-thumb='{{this}}'>
+                                        <a href='{{this}}' class='lightbox'>
+                                            <img class='img-product' width='600' height='600' src='{{this}}' alt='' />
+                                        </a>
+                                    </li>
                                 {{/each}}
                             </ul>
                         </div>
@@ -95,27 +96,70 @@
                             </div>
                         </div>
                         <div class='col-lg-12 col-12'>
-
+                            
                             <div class='d-flex shop-list align-items-center my-4'>
-                                <h6 class='mb-0 shop-list-title'>Gía niêm yết:</h6>
+                                <h6 class='mb-0 shop-list-title'>Giá niêm yết:</h6>
                                 <div class='ms-3'>
                                     <h5 class='text-muted product-price'>
-                                        <span class='Price-amount amount'>
-
-                                            {{formatCurrency product.classify.0.price}}
-
+                                        <span {{#when product.classify.[0].rate 'gt' 0}}
+                                        style="text-decoration: line-through; color: grey"{{/when}} 
+                                        class='Price-amount amount gia-niem-yet'>
+                                            {{formatCurrency product.classify.[0].price}}
                                         </span>
                                     </h5>
                                 </div>
                             </div>
-                            <form action=''>
+                            <div class='discount-price d-flex shop-list align-items-center my-4'>
+                                <h6 class='mb-0 shop-list-title'>Giảm:</h6>
+                                <div class='ms-3'>
+                                    <h5 class='text-muted product-price '>
+                                        <span class='Price-amount amount rate'>
+                                            {{product.classify.[0].rate}}%
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class='discount-price d-flex shop-list align-items-center my-4'>
+                                <h6 class='mb-0 shop-list-title'>Giá khuyến mãi:</h6>
+                                <div class='ms-3'>
+                                    <h5 class='text-muted product-price'>
+                                        <span class='Price-amount amount discount'>
+                                            {{formatCurrency product.classify.[0].discount}}
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+
+                            <form
+                                action=''
+                            >
+                                <select style="display: none" name="purchasableId" id="variantProductSelect">
+                                    {{#each product.classify}}
+                                        <option value="{{this.pid}}"
+                                            data-sku="{{this.pid}}"
+                                            data-price="{{this.price}}"
+                                            data-discount="{{this.discount}}"
+                                            data-rate="{{this.rate}}"
+                                            data-color="{{ this.colors.[0]}}"
+                                            data-size="{{this.size}}"
+                                            data-out-of-stock="false"
+                                            
+                                             >{{this.pid}}</option>
+                                    {{/each}}
+                                </select>
+
                                 <div class='d-flex align-items-center'>
                                     <h6 class='mb-0 shop-list-title'>Chất liệu:</h6>
-                                    <ul class='product-detail-item list-unstyled mb-0 ms-3'>
-                                        <li class='list-inline-item'>
+                                    <ul class='product-detail-item list-unstyled mb-0 ms-3'
+                                        id="variantProductMaterial"
+                                        >
+                                        <li class='list-inline-item'
+                                            data-material="{{product.material}}"
+                                            >
                                             <a
                                                 href='javascript:void(0)'
                                                 class='btn btn-icon btn-soft-primary chose'
+                                                title="{{product.material}}"
                                             >{{product.material}}</a>
                                         </li>
                                     </ul>
@@ -123,12 +167,24 @@
 
                                 <div class='d-flex align-items-center'>
                                     <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
-                                    <ul class='product-detail-item list-unstyled mb-0 ms-3'>
+                                    <select style="display: none" name="color" id="colorSelect">
+                                        {{#each product.classify.[0].colors as |item|}}
+                                            <option value="{{item}}" >{{item}}</option>
+                                        {{/each}}
+                                    </select>
+
+                                    <ul 
+                                        class='product-detail-item list-unstyled mb-0 ms-3'
+                                        id="variantProductColor"
+                                        >                                        
                                         {{#each product.classify.0.colors as |item|}}
-                                            <li class='list-inline-item'>
+                                            <li class='list-inline-item'
+                                                data-color="{{item}}"
+                                                >
                                                 <a
                                                     href='javascript:void(0)'
                                                     class='btn btn-icon btn-soft-primary chose'
+                                                    title="{{item}}"
                                                 >{{item}}</a>
                                             </li>
                                         {{/each}}
@@ -137,18 +193,34 @@
 
                                 <div class='d-flex align-items-center'>
                                     <h6 class='mb-0 shop-list-title'>Kích thước:</h6>
-                                    <ul role='radiogroup' class='product-detail-item list-unstyled mb-0 ms-3'>
+                                    <select style="display: none" name="size" id="sizeSelect">
+                                        {{#each product.classify as |item|}}
+                                            <option value="{{item.size}}" >{{item.size}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <ul
+                                        role='radiogroup'
+                                        aria-label='Kích Thước'
+                                        data-attribute_name='attribute_pa_kich-thuoc'
+                                        data-attribute_values='[{{#each product.classify as |item|}}"{{item.size}}",{{/each}}]'
+                                        class='product-detail-item list-unstyled mb-0 ms-3'
+                                        id="variantProductSize"
+                                    >
                                         {{#each product.classify as |item|}}
                                             <li
                                                 role='radio'
-                                                aria-checked='{{#if @first}}true{{else}}false{{/if}}'
+                                                aria-checked='false'
                                                 data-size='{{item.size}}'
+                                                data-title='{{item.size}}'
+                                                title='{{item.size}}'
+                                                data-value='{{item.size}}'
                                                 tabindex='0'
                                                 class='list-inline-item'
                                             >
                                                 <a
                                                     href='javascript:void(0)'
                                                     class='btn btn-icon btn-soft-primary'
+                                                    title="{{item.size}}"
                                                 >{{item.size}}</a>
                                             </li>
                                         {{/each}}
@@ -398,4 +470,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> 
