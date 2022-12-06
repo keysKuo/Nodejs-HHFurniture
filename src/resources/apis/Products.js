@@ -5,8 +5,11 @@ const API_Products = {
         return await new Products(data).save();
     },
 
-    readOne: async (loaders) => {
-        return await Products.findOne(loaders).populate({ path: 'categories', populate: { path: 'level1 level2 level3' } }).lean();
+    readOne: async (loaders, options) => {
+        let select = (options) ? options.select : {};
+        return await Products.findOne(loaders)
+            .select(select)
+            .populate({ path: 'categories', populate: { path: 'level1 level2 level3' } }).lean();
     },
 
     readMany: async (loaders, options) => {

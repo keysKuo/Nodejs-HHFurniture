@@ -1,4 +1,18 @@
 $(document).ready(function ($) {
+    $('#addCart').click(() => {
+        let pid = $('#pid').text();
+        let quantity = $('#quantity').val();
+        // alert('clicked');
+        $.ajax({
+            url: '/addCart',
+            method: 'POST',
+            data: { pid, quantity },
+            success: (data) => {
+                alert(data.msg);
+            }
+        })
+    })
+
     $('.add-to-cart').click(function () {
         var id = $(this).data('id_product');
         var cart_product_id = $('.cart_product_id_' + id).val();

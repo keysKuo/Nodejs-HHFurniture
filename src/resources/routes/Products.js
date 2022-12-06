@@ -16,6 +16,7 @@ router.get('/delete/:id', Controller_Products.GET_removeProduct);
 router.get('/fail', (req, res, next) => {
     
 })
+
 // Client Router
 // router.get('/:slug', Controller_Products.GET_productDetail);
 // router.get('/collection/:slug', Controller_Products.GET_productCollection);
