@@ -774,7 +774,7 @@ p {
     font-family: 'Petrona, serif' !important;
     font-size: 13px;
     font-weight: 400;
-    text-transform: uppercase;
+    text-transform: capitalize;
     line-height: 1.3em;
     color: #ffffff;
 }
@@ -819,7 +819,8 @@ p {
 }
 
 /* list video */
-.section-chanel {
+.section-chanel .widget-wrap {
+    border: 1px solid var(--bs-yellow);
 }
 .wrapper {
     padding: 10px;
@@ -2130,30 +2131,18 @@ ul.wc_payment_methods.payment_methods.methods {
     font-weight: 700;
     background-color: rgba(0, 0, 0, 0.07);
 }
-#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
-    content: '\e03c';
-}
-#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label:before {
-    content: '\e904';
-}
+
 #payment .payment_methods > .wc_payment_method > label {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.04);
     display: block;
     cursor: pointer;
 }
-#payment .payment_methods > .wc_payment_method > label:before {
-    font-family: WooCommerce;
-    content: '\e039';
+#payment .payment_methods li.wc_payment_method > input[type='radio']:first-child:checked + label::before {
+    content: '\2B24';
 }
 #payment .payment_methods > .wc_payment_method > label:before {
-    display: inline-block;
-    font-size: inherit;
-    -webkit-font-smoothing: antialiased;
-    content: '\e902';
-    margin-right: 0.5407911001em;
-    transition: color, ease, 0.2s;
-    font-family: 'GP Premium';
+    content: '\25EF';
 }
 
 #add_payment_method #payment div.payment_box,

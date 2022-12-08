@@ -36,7 +36,6 @@ $(document).ready(function ($) {
         slideMargin: 0,
         slideMove: 1,
         thumbItem: 3,
-        slideMargin: 10,
         speed: 400, //ms'
         auto: true,
         pause: 5000,
@@ -60,7 +59,7 @@ $(document).ready(function ($) {
             },
             769: {
                 nav: true,
-                items: 5,
+                items: 4,
             },
         },
     });

@@ -1,6 +1,5 @@
 <section
     class='section mb-0 top-section danhmuc-subcate section-boxed section-height-default section-height-default'
-    data-aos='fade-up'
 >
     <div class='container -gap-default'>
         <div class='row'>
@@ -49,22 +48,22 @@
         </div>
     </div>
 </section>
-<section class='section m-0 pb-0' data-aos='fade-up'>
+<section class='section m-0 pb-0' >
     <div class='container'>
         <div class='row'>
-            <div class='col-md-5'>
+            <div class='col-md-6 p-0'>
                 <div class='product-images position-relative'>
                     <div class='widget-container'>
                             <span class='onsale onsale-product-detail rate'></span>
                         <div
-                            class='lSSlideWrapper usingCss'
+                            class='lSSlideWrapper usingCss m-auto'
                             style='transition-timing-function: ease; transition-duration: 500ms;'
                         >
                             <ul id='lightSlider'>
                                 {{#each product.pimg}}
-                                    <li data-thumb='{{this}}'>
+                                    <li data-thumb='{{this}}' class=''>
                                         <a href='{{this}}' class='lightbox'>
-                                            <img class='img-product' width='600' height='600' src='{{this}}' alt='' />
+                                            <img class='img-product' style='border-radius: 10px;' width='600' height='600' src='{{this}}' alt='' />
                                         </a>
                                     </li>
                                 {{/each}}
@@ -75,7 +74,7 @@
             </div>
             <!--end col-->
 
-            <div class='col-md-7 mt-0 mt-sm-0 pt-2 pt-sm-0'>
+            <div class='col-md-6 mt-0 mt-sm-0 pt-2 pt-sm-0 p-0'>
                 <div class='section-title ms-md-4 product-details'>
 
                     <div class='row pt-0'>
@@ -133,7 +132,13 @@
                             <form
                                 action=''
                             >
-                                <select style="display: none" name="purchasableId" id="variantProductSelect">
+                                <select
+                                            data-slug="{{product.slug}}"
+                                            data-img="{{product.pimg}}"
+                                            data-title="{{product.pname}}"
+                                            data-material="{{product.material}}"
+
+                                 style="display: none" name="purchasableId" id="variantProductSelect">
                                     {{#each product.classify}}
                                         <option value="{{this.pid}}"
                                             data-sku="{{this.pid}}"
@@ -142,8 +147,7 @@
                                             data-rate="{{this.rate}}"
                                             data-color="{{ this.colors.[0]}}"
                                             data-size="{{this.size}}"
-                                            data-out-of-stock="false"
-                                            
+                                            data-outOfStock="false"
                                              >{{this.pid}}</option>
                                     {{/each}}
                                 </select>
@@ -233,13 +237,14 @@
 
                         <div class='col-lg-12 col-12 mt-5 mt-lg-0'>
                             <div class='row'>
-                                <div class='col-lg-5 col-12'>
+                                <div class='col-lg-7 col-12'>
                                     <div class='d-flex shop-list align-items-center mt-2'>
                                         <h6 class='mb-0 shop-list-title'>Số lượng:</h6>
                                         <div class='qib-container mt-3'>
                                             <button
                                                 type='button'
-                                                data-product_id='{{id}}'
+                                                    data-product_id="{{product.slug}}"
+
                                                 class='minus qib-button'
                                             >-</button>
                                             <div class='quantity buttons_added buttons-added'>
@@ -248,21 +253,18 @@
                                                 <input
                                                     type='number'
                                                     id='quantity'
-                                                    class='input-text qty quantity_{{id}} text'
+                                                    class='input-text qty quantity_{{product.slug}} quantity text'
                                                     step='1'
                                                     min='1'
                                                     max=''
-                                                    name='cart[9897af2e1014f2e1c831b8d6e18f6e57][qty]'
+                                                    name='cart'
                                                     value='1'
-                                                    title='SL'
-                                                    size='4'
                                                     placeholder=''
-                                                    inputmode='numeric'
                                                 />
                                             </div>
                                             <button
                                                 type='button'
-                                                data-product_id='{{id}}'
+                                                    data-product_id="{{product.slug}}"
                                                 class='plus qib-button'
                                             >+</button>
                                         </div>
@@ -274,7 +276,7 @@
                                             <li class='list-inline-item'>
                                                 <a
                                                     href='javascript:void(0)'
-                                                    class='btn-submit btn btn-icon btn-soft-primary'
+                                                    class='add-to-cart btn-submit btn btn-icon btn-soft-primary'
                                                 >Thêm vào giỏ hàng</a>
                                             </li>
                                         </ul>
@@ -288,7 +290,7 @@
                         <div class='col-md-12 mt-4'>
                             <div class='row'>
 
-                                <div class='col-md-3 col-12 d-flex mt-2'>
+                                <div class='col-md-5 col-12 d-flex mt-2'>
                                     <div
                                         class='share-btn share-btn_facebook'
                                         tabindex='0'
@@ -313,7 +315,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class='col-md-9 col-12 d-flex mt-2'>
+                                <div class='col-md-7 col-12 d-flex mt-2'>
                                     <div class='bg-white pr-2 mt-10'>
                                         <div
                                             data-layout='standard'
@@ -405,7 +407,7 @@
 <section class='section m-4'>
     <div class='container products'>
         <div class='row'>
-            <div class='col-md-8' data-aos='fade-up'>
+            <div class='col-md-8'>
                 <div class='row'>
                     <div class='col-md-4 posts--thumbnail-left _width-initial posts'>
                         <div class='heading-title-arround p-1'>
@@ -434,7 +436,7 @@
                     {{/each}}
                 </div>
             </div>
-            <div class='col-md-4 p-1' style='border:3px solid #ffba00' data-aos='fade-up'>
+            <div class='col-md-4 p-1' style='border:3px solid #ffba00' >
                 <div class='row'>
                     <div class='-1 posts--thumbnail-left _width-initial posts'>
                         <div class='heading-title-arround p-1'>

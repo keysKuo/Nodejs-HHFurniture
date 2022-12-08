@@ -149,6 +149,7 @@ const Controller_Home = {
         });
     },
 
+    // [GET] /policy/:slug
     GET_PolicyPage: async (req, res, next) => {
         const meta = {
             title: policy.title + ' – H&H Furniture',

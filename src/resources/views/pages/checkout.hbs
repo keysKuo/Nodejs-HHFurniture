@@ -13,196 +13,196 @@
         >
             <div class='row my-4'>
                 <div class='col-md-5 p-0'>
-                    <div class="" id='customer_details'>
-  <div class='billing-fields'>
-                        <h3>Thông tin thanh toán</h3>
-                        <div class='billing-fields__field-wrapper'>
-                            <div
-                                class='form-row my-3 px-2 form-row-first validate-required'
-                                id='billing_first_name_field'
-                            >
-                                <label for='billing_first_name' class=''>Họ và tên&nbsp;<abbr
-                                        class='required'
-                                        title='bắt buộc'
-                                    >*</abbr>
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='text'
-                                        class='input-text'
-                                        name='billing_first_name'
-                                        id='billing_first_name'
-                                        placeholder='Họ và tên'
-                                        value=''
-                                        autocomplete='given-name'
-                                    />
-                                </span>
+                    <div class='' id='customer_details'>
+                        <div class='billing-fields'>
+                            <h3>Thông tin thanh toán</h3>
+                            <div class='billing-fields__field-wrapper'>
+                                <div
+                                    class='form-row my-3 px-2 form-row-first validate-required'
+                                    id='billing_first_name_field'
+                                >
+                                    <label for='billing_first_name' class=''>Họ và tên&nbsp;<abbr
+                                            class='required'
+                                            title='bắt buộc'
+                                        >*</abbr>
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='text'
+                                            class='input-text'
+                                            name='billing_first_name'
+                                            id='billing_first_name'
+                                            placeholder='Họ và tên'
+                                            value=''
+                                            autocomplete='given-name'
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 form-row-wide address-field validate-required'
+                                    id='billing_address_1_field'
+                                >
+                                    <label for='billing_address_1' class=''>Địa chỉ&nbsp;<abbr
+                                            class='required'
+                                            title='bắt buộc'
+                                        >*</abbr>
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='text'
+                                            class='input-text'
+                                            name='billing_address_1'
+                                            id='billing_address_1'
+                                            placeholder='Địa chỉ'
+                                            value=''
+                                            autocomplete='address-line1'
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 form-row-wide address-field validate-state'
+                                    id='billing_state_field'
+                                    style='display: none'
+                                >
+                                    <label for='billing_state' class=''>Bang / Hạt&nbsp;
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='hidden'
+                                            id='billing_state'
+                                            name='billing_state'
+                                            placeholder=''
+                                            class='hidden'
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 form-row-wide validate-required validate-phone'
+                                    id='billing_phone_field'
+                                >
+                                    <label for='billing_phone' class=''>Số điện thoại&nbsp;<abbr
+                                            class='required'
+                                            title='bắt buộc'
+                                        >*</abbr>
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='tel'
+                                            class='input-text'
+                                            name='billing_phone'
+                                            id='billing_phone'
+                                            placeholder=''
+                                            value=''
+                                            autocomplete='tel'
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 form-row-wide validate-required validate-email'
+                                    id='billing_email_field'
+                                >
+                                    <label for='billing_email' class=''>Địa chỉ email&nbsp;<abbr
+                                            class='required'
+                                            title='bắt buộc'
+                                        >*</abbr>
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='email'
+                                            class='input-text'
+                                            name='billing_email'
+                                            id='billing_email'
+                                            placeholder=''
+                                            value=''
+                                            autocomplete='email'
+                                        />
+                                    </span>
+                                </div>
                             </div>
-                            <div
-                                class='form-row my-3 px-2 form-row-wide address-field validate-required'
-                                id='billing_address_1_field'
-                            >
-                                <label for='billing_address_1' class=''>Địa chỉ&nbsp;<abbr
-                                        class='required'
-                                        title='bắt buộc'
-                                    >*</abbr>
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='text'
-                                        class='input-text'
-                                        name='billing_address_1'
-                                        id='billing_address_1'
-                                        placeholder='Địa chỉ'
-                                        value=''
-                                        autocomplete='address-line1'
-                                    />
-                                </span>
-                            </div>
-                            <div
-                                class='form-row my-3 px-2 form-row-wide address-field validate-state'
-                                id='billing_state_field'
-                                style='display: none'
-                            >
-                                <label for='billing_state' class=''>Bang / Hạt&nbsp;
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='hidden'
-                                        id='billing_state'
-                                        name='billing_state'
-                                        placeholder=''
-                                        class='hidden'
-                                    />
-                                </span>
-                            </div>
-                            <div
-                                class='form-row my-3 px-2 form-row-wide validate-required validate-phone'
-                                id='billing_phone_field'
-                            >
-                                <label for='billing_phone' class=''>Số điện thoại&nbsp;<abbr
-                                        class='required'
-                                        title='bắt buộc'
-                                    >*</abbr>
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='tel'
-                                        class='input-text'
-                                        name='billing_phone'
-                                        id='billing_phone'
-                                        placeholder=''
-                                        value=''
-                                        autocomplete='tel'
-                                    />
-                                </span>
-                            </div>
-                            <div
-                                class='form-row my-3 px-2 form-row-wide validate-required validate-email'
-                                id='billing_email_field'
-                            >
-                                <label for='billing_email' class=''>Địa chỉ email&nbsp;<abbr
-                                        class='required'
-                                        title='bắt buộc'
-                                    >*</abbr>
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='email'
-                                        class='input-text'
-                                        name='billing_email'
-                                        id='billing_email'
-                                        placeholder=''
-                                        value=''
-                                        autocomplete='email'
-                                    />
-                                </span>
-                            </div>
+
                         </div>
+                        <div class='additional-fields'>
+                            <div id='my_custom_checkout_field'>
+                                <br />
+                                <h3>THÔNG TIN HÓA ĐƠN (NẾU CÓ)</h3>
+                                <div
+                                    class='form-row my-3 px-2 my-field-class form-row-wide'
+                                    id='my_field_name_field'
+                                    data-priority=''
+                                >
+                                    <label for='my_field_name' class=''>Tên công ty&nbsp;
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='text'
+                                            class='input-text'
+                                            name='my_field_name'
+                                            id='my_field_name'
+                                            placeholder=''
+                                            value=''
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 my-field-class form-row-wide'
+                                    id='my_field_name1_field'
+                                    data-priority=''
+                                >
+                                    <label for='my_field_name1' class=''>Mã số thuế&nbsp;
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='text'
+                                            class='input-text'
+                                            name='my_field_name1'
+                                            id='my_field_name1'
+                                            placeholder=''
+                                            value=''
+                                        />
+                                    </span>
+                                </div>
+                                <div
+                                    class='form-row my-3 px-2 my-field-class form-row-wide'
+                                    id='my_field_name2_field'
+                                    data-priority=''
+                                >
+                                    <label for='my_field_name2' class=''>Địa chỉ&nbsp;
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <input
+                                            type='text'
+                                            class='input-text'
+                                            name='my_field_name2'
+                                            id='my_field_name2'
+                                            placeholder=''
+                                            value=''
+                                        />
+                                    </span>
+                                </div>
+                            </div>
 
-                    </div>
-                    <div class='additional-fields'>
-                        <div id='my_custom_checkout_field'>
-                            <br />
-                            <h3>THÔNG TIN HÓA ĐƠN (NẾU CÓ)</h3>
-                            <div
-                                class='form-row my-3 px-2 my-field-class form-row-wide'
-                                id='my_field_name_field'
-                                data-priority=''
-                            >
-                                <label for='my_field_name' class=''>Tên công ty&nbsp;
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='text'
-                                        class='input-text'
-                                        name='my_field_name'
-                                        id='my_field_name'
-                                        placeholder=''
-                                        value=''
-                                    />
-                                </span>
+                            <h3>Thông tin bổ sung</h3>
+
+                            <div class='additional-fields__field-wrapper'>
+                                <div class='form-row my-3 px-2 notes' id='order_comments_field' data-priority=''>
+                                    <label for='order_comments' class=''>Ghi chú đơn hàng&nbsp;
+                                    </label>
+                                    <span class='input-wrapper'>
+                                        <textarea
+                                            name='order_comments'
+                                            class='input-text'
+                                            id='order_comments'
+                                            placeholder='Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn.'
+                                            rows='2'
+                                            cols='5'
+                                        ></textarea>
+                                    </span>
+                                </div>
                             </div>
-                            <div
-                                class='form-row my-3 px-2 my-field-class form-row-wide'
-                                id='my_field_name1_field'
-                                data-priority=''
-                            >
-                                <label for='my_field_name1' class=''>Mã số thuế&nbsp;
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='text'
-                                        class='input-text'
-                                        name='my_field_name1'
-                                        id='my_field_name1'
-                                        placeholder=''
-                                        value=''
-                                    />
-                                </span>
-                            </div>
-                            <div
-                                class='form-row my-3 px-2 my-field-class form-row-wide'
-                                id='my_field_name2_field'
-                                data-priority=''
-                            >
-                                <label for='my_field_name2' class=''>Địa chỉ&nbsp;
-                                </label>
-                                <span class='input-wrapper'>
-                                    <input
-                                        type='text'
-                                        class='input-text'
-                                        name='my_field_name2'
-                                        id='my_field_name2'
-                                        placeholder=''
-                                        value=''
-                                    />
-                                </span>
-                            </div>
+
                         </div>
-
-                        <h3>Thông tin bổ sung</h3>
-
-                        <div class='additional-fields__field-wrapper'>
-                            <div class='form-row my-3 px-2 notes' id='order_comments_field' data-priority=''>
-                                <label for='order_comments' class=''>Ghi chú đơn hàng&nbsp;
-                                </label>
-                                <span class='input-wrapper'>
-                                    <textarea
-                                        name='order_comments'
-                                        class='input-text'
-                                        id='order_comments'
-                                        placeholder='Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn.'
-                                        rows='2'
-                                        cols='5'
-                                    ></textarea>
-                                </span>
-                            </div>
-                        </div>
-
                     </div>
-                    </div>
-                  
+
                 </div>
                 <div class='col-md-1'></div>
                 <div class='col-md-6'>
@@ -216,55 +216,55 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each  lsCartItem}}
-                                <tr class='cart_item'>
-                                    <td class='product-name'>
-                                         <a
-                                        href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
-                                        >{{title}}</a><dl class='variation'>
-                                            <dt class='fs-6 d-inline-block text-light variation-ChtLiu'>Chất Liệu:</dt>
-                                            <dd class='fs-6 d-inline-block variation-ChtLiu'><p>{{material}}</p>
-                                            </dd>
-                                            <br />
-                                            <dt class='fs-6 d-inline-block text-light variation-KchThc'>Kích Thước:</dt>
-                                            <dd class='fs-6 d-inline-block variation-KchThc'><p>{{size}}</p>
-                                            </dd>
-                                            <br />
-                                            <dt class='fs-6 d-inline-block text-light variation-MuSc'>Màu Sắc:</dt>
-                                            <dd class='fs-6 d-inline-block variation-MuSc'><p>{{color}}</p>
-                                            </dd>
-                                            <br />
-                                        </dl>
-                                    </td>
-                                    <td class='product-total text-center' style='min-width:200px'>
-                                        <span class='giathuong'>Giá niêm yết: </span>
-                                        {{#when discount 'gt' 0}}
-                                            <del>
-                                                <span class='Price-amount amount text-light'>
-                                                    {{formatCurrency price}}
-                                                </span></del>
-                                            <br />
-                                            <span class='giathuong'>Giảm: </span>
-                                            <span class='Price-amount amount fs-5'>
-                                                {{discount}}%
-                                            </span>
-                                            <br />
-                                            <br />
-                                            <span class='giathuong'>Giá khuyến mãi: </span>
-                                            <span class='Price-amount amount fs-5'>
-                                                {{discountPrice price discount}}
-
-                                            </span>
-                                        {{else}}
-                                            <span class='Price-amount amount'>
+                                {{#each lsCartItem}}
+                                    <tr class='cart_item'>
+                                        <td class='product-name'>
+                                            <a
+                                                href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
+                                            >{{title}}</a><dl class='variation'>
+                                                <dt class='fs-6 d-inline-block text-light variation-ChtLiu'>Chất Liệu:</dt>
+                                                <dd class='fs-6 d-inline-block variation-ChtLiu'><p>{{material}}</p>
+                                                </dd>
+                                                <br />
+                                                <dt class='fs-6 d-inline-block text-light variation-KchThc'>Kích Thước:</dt>
+                                                <dd class='fs-6 d-inline-block variation-KchThc'><p>{{size}}</p>
+                                                </dd>
+                                                <br />
+                                                <dt class='fs-6 d-inline-block text-light variation-MuSc'>Màu Sắc:</dt>
+                                                <dd class='fs-6 d-inline-block variation-MuSc'><p>{{color}}</p>
+                                                </dd>
+                                                <br />
+                                            </dl>
+                                        </td>
+                                        <td class='product-total text-center' style='min-width:200px'>
+                                            <span class='giathuong'>Giá niêm yết: </span>
+                                            {{#when discount 'gt' 0}}
+                                                <del>
+                                                    <span class='Price-amount amount text-light'>
+                                                        {{formatCurrency price}}
+                                                    </span></del>
+                                                <br />
+                                                <span class='giathuong'>Giảm: </span>
                                                 <span class='Price-amount amount fs-5'>
-                                                    {{formatCurrency price}}
+                                                    {{discount}}%
+                                                </span>
+                                                <br />
+                                                <br />
+                                                <span class='giathuong'>Giá khuyến mãi: </span>
+                                                <span class='Price-amount amount fs-5'>
+                                                    {{discountPrice price discount}}
 
                                                 </span>
-                                            </span>
-                                        {{/when}}
-                                    </td>
-                                </tr>
+                                            {{else}}
+                                                <span class='Price-amount amount'>
+                                                    <span class='Price-amount amount fs-5'>
+                                                        {{formatCurrency price}}
+
+                                                    </span>
+                                                </span>
+                                            {{/when}}
+                                        </td>
+                                    </tr>
                                 {{/each}}
                             </tbody>
                             <tfoot>
@@ -308,10 +308,10 @@
                                         aria-expanded='false'
                                         aria-controls='collapseOne'
                                     />
- <span class="checkmark"></span>
                                     <label for='payment_method_bacs'>
                                         Chuyển khoản ngân hàng
                                     </label>
+
                                     <div
                                         id='collapseOne'
                                         class='panel-collapse collapses payment_box payment_method_bacs'
@@ -334,7 +334,6 @@
                                         aria-expanded='false'
                                         aria-controls='collapseOne'
                                     />
- <span class="checkmark"></span>
                                     <label for='payment_method_cod'>
                                         Trả tiền mặt khi nhận hàng
                                     </label>
@@ -344,27 +343,12 @@
                                 </li>
                             </ul>
                             <div class='form-row place-order'>
-                                <noscript>
-                                    Trình duyệt của bạn không hỗ trợ JavaScript, hoặc nó bị vô hiệu hóa, hãy đảm bảo bạn
-                                    nhấp vào
-                                    <em>Cập nhật giỏ hàng</em>
-                                    trước khi bạn thanh toán. Bạn có thể phải trả nhiều hơn số tiền đã nói ở trên, nếu
-                                    bạn không làm như vậy.
-                                    <br />
-                                    <button
-                                        type='submit'
-                                        class='button alt'
-                                        name='checkout_update_totals'
-                                        value='Cập nhật tổng'
-                                    >Cập nhật tổng</button>
-                                </noscript>
-
                                 <div class='terms-and-conditions-wrapper'>
                                     <div class='privacy-policy-text'>
                                         <p>Thông tin cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, tăng trải nghiệm
                                             sử dụng website, và cho các mục đích cụ thể khác đã được mô tả trong
                                             <a
-                                                href='https://hhfurniture.com.vn/chinh-sach-bao-mat/'
+                                                href='/chinh-sach/chinh-sach-bao-mat'
                                                 class='privacy-policy-link'
                                                 target='_blank'
                                             >chính sách riêng tư</a>.</p>
@@ -379,18 +363,6 @@
                                     value='GỬI ĐƠN HÀNG'
                                     data-value='GỬI ĐƠN HÀNG'
                                 >GỬI ĐƠN HÀNG</button>
-
-                                <input
-                                    type='hidden'
-                                    id='process-checkout-nonce'
-                                    name='process-checkout-nonce'
-                                    value='6fa8a3fac1'
-                                />
-                                <input
-                                    type='hidden'
-                                    name='_wp_http_referer'
-                                    value='/?wc-ajax=update_order_review&amp;elementor_page_id=65'
-                                />
                             </div>
                         </div>
 

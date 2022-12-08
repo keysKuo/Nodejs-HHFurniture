@@ -27,6 +27,7 @@ let ItemSchema = new Schema(
 const CartSchema = new Schema(
     {
         items: [ItemSchema],
+        shippingFee: String,
         subTotal: {
             default: 0,
             type: Number,

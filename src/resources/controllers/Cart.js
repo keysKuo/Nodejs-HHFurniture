@@ -12,9 +12,6 @@ const Controller_Cart = {
             lsSubCat,
             lsCat,
 
-            /// BE trả về
-            lsCartItem,
-            ///////
         });
     },
 };

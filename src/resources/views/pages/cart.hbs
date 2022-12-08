@@ -6,7 +6,7 @@
         <div class='table-responsive-md'>
             <form>
                 <table
-                    class='table shop_table shop_table_responsive cart cart-form__contents position-relative'
+                    class='table shop_table shop_table_responsive cart-form__contents position-relative'
                     cellspacing='0'
                 >
                     <thead>
@@ -18,9 +18,9 @@
                             <th class='product-price'>Giá bán</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id='body-cart'>
 
-                        {{#each lsCartItem}}
+                        {{!-- {{#each lsCartItem}}
                             <tr class='cart-form__cart-item cart_item'>
                                 <td class='product-remove'>
                                     <a
@@ -33,29 +33,35 @@
                                 <td class='product-thumbnail'>
                                     <a
                                         href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
-                                    ><img
+                                    >
+                                    <img
                                             width='200'
                                             height='200'
                                             src='/images/{{img}}'
                                             class='attachment_thumbnail size_thumbnail'
-                                            alt=''
-                                        /></a>
+                                            alt='{{title}}'
+                                        />
+                                        </a>
                                 </td>
 
                                 <td class='product-name' data-title='Sản phẩm'>
                                     <a
                                         href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
-                                    >{{title}}</a><dl class='variation'>
+                                    >{{title}}</a>
+                                    <dl class='variation'>
                                         <dt class='fs-6 d-inline-block text-light variation-ChtLiu'>Chất Liệu:</dt>
-                                        <dd class='fs-6 d-inline-block variation-ChtLiu'><p>{{material}}</p>
+                                        <dd class='fs-6 d-inline-block variation-ChtLiu'>
+                                            <p>{{material}}</p>
                                         </dd>
                                         <br />
                                         <dt class='fs-6 d-inline-block text-light variation-KchThc'>Kích Thước:</dt>
-                                        <dd class='fs-6 d-inline-block variation-KchThc'><p>{{size}}</p>
+                                        <dd class='fs-6 d-inline-block variation-KchThc'>
+                                            <p>{{size}}</p>
                                         </dd>
                                         <br />
                                         <dt class='fs-6 d-inline-block text-light variation-MuSc'>Màu Sắc:</dt>
-                                        <dd class='fs-6 d-inline-block variation-MuSc'><p>{{color}}</p>
+                                        <dd class='fs-6 d-inline-block variation-MuSc'>
+                                            <p>{{color}}</p>
                                         </dd>
                                         <br />
                                     </dl>
@@ -100,7 +106,8 @@
                                         <del>
                                             <span class='Price-amount amount text-light'>
                                                 {{formatCurrency price}}
-                                            </span></del>
+                                            </span>
+                                            </del>
                                         <br />
                                         <span class='giathuong'>Giảm: </span>
                                         <span class='Price-amount amount fs-5'>
@@ -123,7 +130,7 @@
                                     {{/when}}
                                 </td>
                             </tr>
-                        {{/each}}
+                        {{/each}} --}}
 
                         <tr>
                             <td colspan='6' class='actions'>
@@ -150,11 +157,8 @@
                                     aria-disabled='true'
                                 >Cập nhật giỏ hàng</button>
 
-                                <input type='hidden' id='cart-nonce' name='cart-nonce' value='1a20c87b83' /><input
-                                    type='hidden'
-                                    name='_wp_http_referer'
-                                    value='/gio-hang'
-                                />
+                                <input type='hidden' id='cart-nonce' name='cart-nonce' value='1a20c87b83' />
+                                <input type='hidden' name='_wp_http_referer' value='/gio-hang' />
                             </td>
                         </tr>
                     </tbody>
@@ -166,26 +170,36 @@
             <div class='cart_totals'>
                 <h2>Cộng giỏ hàng</h2>
                 <table cellspacing='0' class='shop_table shop_table_responsive'>
-                    <tbody><tr class='cart-subtotal'>
+                    <tbody>
+                        <tr class='cart-subtotal'>
                             <th>Tạm tính</th>
-                            <td data-title='Tạm tính'><span class='Price-amount amount'>
+                            <td data-title='Tạm tính'>
+                                <span class='Price-amount amount'>
                                     {{formatCurrency 230000000}}
-                                </span></td>
+                                </span>
+                            </td>
                         </tr>
 
                         <tr class='order-total'>
                             <th>Tổng</th>
-                            <td data-title='Tổng'><strong><span class='Price-amount amount'><bdi>23.160.000<span
-                                                class='Price-currencySymbol'
-                                            >đ</span></bdi></span></strong>
-                                <p class='taxtext'>(Giá chưa bao gồm thuế VAT 10%)</p></td>
+                            <td data-title='Tổng'>
+                                <strong>
+                                    <span class='Price-amount amount fs-5 ' id='order-total'>
+                                       
+                                    </span>
+                                </strong>
+                                <p class='taxtext'>(Giá chưa bao gồm thuế VAT 10%)</p>
+                            </td>
                         </tr>
-                    </tbody></table>
+                    </tbody>
+                </table>
                 <div class='wc-proceed-to-checkout'>
                     <a href='/thanh-toan' class='checkout-button button alt wc-forward'>XÁC NHẬN ĐẶT HÀNG</a>
                 </div>
             </div>
         </div>
-        <div class='clearfix'></div>
+        <div class='clearfix'>
+
+        </div>
     </div>
 </section>
