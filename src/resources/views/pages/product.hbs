@@ -90,7 +90,7 @@
                                     <span class='detail-label'>
                                         Mã Sản Phẩm:
                                     </span>
-                                    <span class='sku'>{{product.classify.0.pid}}</span>
+                                    <span id="pid" class='sku'>{{product.classify.0.pid}}</span>
                                 </span>
                             </div>
                         </div>
@@ -186,6 +186,7 @@
                                                 data-color="{{item}}"
                                                 >
                                                 <a
+                                                    id="color"
                                                     href='javascript:void(0)'
                                                     class='btn btn-icon btn-soft-primary chose'
                                                     title="{{item}}"
@@ -274,7 +275,8 @@
                                     <div class='d-block'>
                                         <ul class='product-detail-item list-unstyled mb-0 p-0'>
                                             <li class='list-inline-item'>
-                                                <a
+                                                <a  
+                                                    id="addCart"
                                                     href='javascript:void(0)'
                                                     class='add-to-cart btn-submit btn btn-icon btn-soft-primary'
                                                 >Thêm vào giỏ hàng</a>

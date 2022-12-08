@@ -7,6 +7,20 @@ if (localStorage.getItem('shopping-cart')) {
 }
 
 $(document).ready(function ($) {
+    $('#addCart').click(() => {
+        let pid = $('#pid').text();
+        let quantity = $('#quantity').val();
+        // alert('clicked');
+        $.ajax({
+            url: '/addCart',
+            method: 'POST',
+            data: { pid, quantity },
+            success: (data) => {
+                alert(data.msg);
+            }
+        })
+    })
+
     $('.add-to-cart').click(function () {
         var selected = $('#variantProductSelect').find(':selected');
         var img = $('#variantProductSelect').data('img');

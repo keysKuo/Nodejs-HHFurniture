@@ -31,6 +31,31 @@ router.get('/san-pham/tim-kiem', Controller_Products.GET_findProduct);
 router.get('/san-pham/:slug', Controller_Products.GET_productDetail);
 
 router.get('/chinh-sach/:slug', Controller_Home.GET_PolicyPage);
+router.post('/addCart', (req, res, next) => {
+    const { pid, quantity } = req.body;
+    let isIncluded = -1;
+    if (req.session.product_list) {
+        isIncluded = req.session.product_list.findIndex((p) => p == pid);
+        console.log(isIncluded);
+        if (isIncluded == -1) {
+            req.session.product_list.push(pid);
+        }
+    } else {
+        req.session.product_list = [pid];
+    }
+
+    if (req.session.counter) {
+        if (isIncluded > -1) {
+            req.session.counter[isIncluded] += parseInt(quantity);
+        } else {
+            req.session.counter.push(parseInt(quantity));
+        }
+    } else {
+        req.session.counter = [parseInt(quantity)];
+    }
+
+    return res.send({ msg: `Sản phẩm ${pid} đã được thêm vào giỏ hàng` });
+});
 
 router.get('/gio-hang', Controller_Cart.GET_CartPage);
 
