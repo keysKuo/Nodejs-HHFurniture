@@ -2430,3 +2430,6 @@ a.checkout-button:hover {
     color: white;
     box-shadow: none;
 }
+.styleTitle {
+    font-size: 25px;
+}

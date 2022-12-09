@@ -7,6 +7,17 @@ if (localStorage.getItem('shopping-cart')) {
 }
 
 $(document).ready(function ($) {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+    });
     $('#addCart').click(() => {
         let pid = $('#pid').text();
         let quantity = $('#quantity').val();
@@ -65,6 +76,10 @@ $(document).ready(function ($) {
             );
         }
         renderCounter();
+        Toast.fire({
+            icon: 'success',
+            title: 'Thêm vào giỏ hàng thành công',
+        });
         localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
     });
 
@@ -109,7 +124,7 @@ $(document).ready(function ($) {
 
     function renderCounter() {
         var no = JSON.parse(localStorage.getItem('shopping-cart')).length;
-        document.getElementById('cart-contents-count').innerText = no;
+        return (document.getElementById('cart-contents-count').innerText = no);
     }
     renderCounter();
 
@@ -144,7 +159,7 @@ $(document).ready(function ($) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger',
+                cancelButton: 'btn btn-danger mx-4',
             },
             buttonsStyling: false,
         });
@@ -155,13 +170,13 @@ $(document).ready(function ($) {
                 text: 'Một khi đặt đơn hàng bạn chỉ có thể hủy bỏ trong vòng 24h',
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, please!',
-                cancelButtonText: 'No, cancel!',
+                confirmButtonText: 'Xác nhận đặt hàng',
+                cancelButtonText: 'Hủy đặt hàng',
                 reverseButtons: true,
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                    new swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
+                    swalWithBootstrapButtons.fire('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
                     const cart = {
                         name,
                         email,

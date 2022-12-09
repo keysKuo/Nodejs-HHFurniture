@@ -305,7 +305,7 @@ function renderProductToCheckout() {
         shoppingCart.forEach((item) => {
             item = JSON.parse(item);
             body += ` <tr class='cart-form__cart-item cart_item'>
-                                <td class='product-thumbnail' style='width:200px'>
+                                <td class='product-thumbnail' style='min-width:150px'>
                                     <a
                                         href='/san-pham/${item.product.slug}'
                                     ><img
