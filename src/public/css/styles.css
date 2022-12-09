@@ -1494,7 +1494,7 @@ a.remove {
 }
 
 table.cart .product-thumbnail {
-    min-width: 120px;
+    min-width: 220px;
 }
 table.shop_table td {
     padding: 20px;
@@ -1999,6 +1999,7 @@ h3#order_review_heading {
     color: #000 !important;
     text-align: center;
     padding-top: 6px;
+    font-weight: 600;
     padding-right: 6px;
 }
 
@@ -2024,6 +2025,7 @@ form .form-row .required {
     width: 100%;
     background: #fda702;
     color: #000 !important;
+    font-weight: 600;
     text-align: center;
     margin-bottom: 0px;
     border-radius: 10px 10px 0px 0px;
@@ -2059,7 +2061,31 @@ form .form-row .required {
     background-color: var(--orange);
     color: #000000;
 }
-.checkout-review-order-table:after {
+.table-wrapper {
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 500px;
+}
+.table-wrapper::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+#order_review:after {
     content: '';
     position: absolute;
     bottom: -20px;
@@ -2071,7 +2097,7 @@ form .form-row .required {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.checkout-review-order-table::before {
+#order_review::before {
     content: '';
     position: absolute;
     bottom: -20px;

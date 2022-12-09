@@ -65,6 +65,7 @@ $(document).ready(function ($) {
                 }),
             );
         }
+        renderCounter();
         localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
     });
 
@@ -106,6 +107,104 @@ $(document).ready(function ($) {
             renderTotalPrice();
         }
     });
+
+    function renderCounter() {
+        var no = JSON.parse(localStorage.getItem('shopping-cart')).length;
+        document.getElementById('cart-contents-count').innerText = no;
+    }
+    renderCounter();
+
+    $('.remove-item-cart').click(function () {
+        var id = $(this).data('sku');
+        shoppingCart = shoppingCart.filter((item) => {
+            item = JSON.parse(item);
+            return item.product.id != id;
+        });
+        updateShoppingCart();
+    });
+    function updateShoppingCart() {
+        localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+        renderProductToCart();
+        renderTotalPrice();
+    }
+
+    $('.send_order').click(function () {
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var phone = $('#phone').val();
+        var address = $('#address').val();
+        var company_name = $('#company_name').val();
+        var tax_no = $('#tax_no').val();
+        var company_adress = $('#company_adress').val();
+        var note = $('#note').val();
+        var method = $('input[name="payment_method"]').val();
+        let lsCartItem = shoppingCart.map((item) => {
+            item = JSON.parse(item);
+            return item;
+        });
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger',
+            },
+            buttonsStyling: false,
+        });
+
+        swalWithBootstrapButtons
+            .fire({
+                title: 'Xác nhận thanh toán đơn hàng',
+                text: 'Một khi đặt đơn hàng bạn chỉ có thể hủy bỏ trong vòng 24h',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, please!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true,
+            })
+            .then((result) => {
+                if (result.isConfirmed) {
+                    new swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
+                    const cart = {
+                        name,
+                        email,
+                        phone,
+                        address,
+                        company_name,
+                        tax_no,
+                        company_adress,
+                        note,
+                        lsCartItem,
+                        method,
+                    };
+                    console.log(cart);
+                    // $.ajax({
+                    //     url: 'order',
+                    //     method: 'POST',
+                    //     data: {
+                    //         name,
+                    //         email,
+                    //         phone,
+                    //         address,
+                    //         company_name,
+                    //         tax_no,
+                    //         company_adress,
+                    //         note,
+                    //         lsCartItem,
+                    //     },
+                    //     success: function () {
+                    //         swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
+                    //     },
+                    // });
+                    window.setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+                }
+            });
+    });
 });
 
 function changeNumberOfUnit(id, quantity, action) {
@@ -142,24 +241,24 @@ function changeNumberOfUnit(id, quantity, action) {
     }
 }
 
-let bodyCart = document.getElementById('body-cart');
 function formatCurrency(price) {
     if (price) return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫';
     return 'Liên hệ';
 }
-
+let bodyCart = document.getElementById('body-cart');
 function renderProductToCart() {
     shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
-
-    bodyCart.innerHTML = ``;
-    let abc;
-    shoppingCart.forEach((item) => {
-        item = JSON.parse(item);
-        abc += ` <tr class='cart-form__cart-item cart_item'>
-                                <td class='product-remove'>
+    let body = '';
+    if (shoppingCart) {
+        shoppingCart.forEach((item) => {
+            item = JSON.parse(item);
+            body += ` <tr class='cart-form__cart-item cart_item'>
+                                <td class='product-remove text-center' >
                                     <a
-                                        href='/gio-hang/?remove_item=9897af2e1014f2e1c831b8d6e18f6e57&amp;_wpnonce=1a20c87b83'
+                                        href=''
+                                        style='color: var(--yellow)'
                                         class='remove-item-cart'
+                                        data-sku='${item.product.id}'
                                         aria-label='Xóa sản phẩm này'
                                     >x</a>
                                 </td>
@@ -230,8 +329,8 @@ function renderProductToCart() {
 
                                 <td class='product-price' data-title='Giá'>
                                     `;
-        if (item.rate > 0) {
-            abc += `
+            if (item.rate > 0) {
+                body += `
                                     <span class='giathuong'>Giá niêm yết: </span>
                                     <del>
                                         <span class='Price-amount amount text-light'>
@@ -248,24 +347,20 @@ function renderProductToCart() {
                                     <span class='Price-amount amount fs-5'>
                                         ${formatCurrency(item.discount)}
                                     </span>`;
-        } else {
-            abc += `<span class='Price-amount amount'>
+            } else {
+                body += `<span class='Price-amount amount'>
                                         <span class='Price-amount amount fs-5'>
                                             ${formatCurrency(item.price)}
                                         </span>
                                     </span>`;
-        }
-        abc += `        
+            }
+            body += `        
                                 </td>
                             </tr>`;
-
-        bodyCart.innerHTML = abc;
-    });
-    function updateCount() {
-        var no = JSON.parse(localStorage.getItem('shopping-cart')).length;
-        return ($('.cart-contents-count').innerText = no);
+        });
+        console.log(body);
+        bodyCart.innerHTML = body;
     }
-    updateCount();
 }
 renderProductToCart();
 

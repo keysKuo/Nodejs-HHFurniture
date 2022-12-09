@@ -21,7 +21,7 @@
                                     class='form-row my-3 px-2 form-row-first validate-required'
                                     id='billing_first_name_field'
                                 >
-                                    <label for='billing_first_name' class=''>Họ và tên&nbsp;<abbr
+                                    <label for='name' class=''>Họ và tên&nbsp;<abbr
                                             class='required'
                                             title='bắt buộc'
                                         >*</abbr>
@@ -30,8 +30,8 @@
                                         <input
                                             type='text'
                                             class='input-text'
-                                            name='billing_first_name'
-                                            id='billing_first_name'
+                                            name='name'
+                                            id='name'
                                             placeholder='Họ và tên'
                                             value=''
                                             autocomplete='given-name'
@@ -42,7 +42,7 @@
                                     class='form-row my-3 px-2 form-row-wide address-field validate-required'
                                     id='billing_address_1_field'
                                 >
-                                    <label for='billing_address_1' class=''>Địa chỉ&nbsp;<abbr
+                                    <label for='address' class=''>Địa chỉ&nbsp;<abbr
                                             class='required'
                                             title='bắt buộc'
                                         >*</abbr>
@@ -51,8 +51,8 @@
                                         <input
                                             type='text'
                                             class='input-text'
-                                            name='billing_address_1'
-                                            id='billing_address_1'
+                                            name='address'
+                                            id='address'
                                             placeholder='Địa chỉ'
                                             value=''
                                             autocomplete='address-line1'
@@ -60,27 +60,10 @@
                                     </span>
                                 </div>
                                 <div
-                                    class='form-row my-3 px-2 form-row-wide address-field validate-state'
-                                    id='billing_state_field'
-                                    style='display: none'
-                                >
-                                    <label for='billing_state' class=''>Bang / Hạt&nbsp;
-                                    </label>
-                                    <span class='input-wrapper'>
-                                        <input
-                                            type='hidden'
-                                            id='billing_state'
-                                            name='billing_state'
-                                            placeholder=''
-                                            class='hidden'
-                                        />
-                                    </span>
-                                </div>
-                                <div
                                     class='form-row my-3 px-2 form-row-wide validate-required validate-phone'
                                     id='billing_phone_field'
                                 >
-                                    <label for='billing_phone' class=''>Số điện thoại&nbsp;<abbr
+                                    <label for='phone' class=''>Số điện thoại&nbsp;<abbr
                                             class='required'
                                             title='bắt buộc'
                                         >*</abbr>
@@ -89,8 +72,8 @@
                                         <input
                                             type='tel'
                                             class='input-text'
-                                            name='billing_phone'
-                                            id='billing_phone'
+                                            name='phone'
+                                            id='phone'
                                             placeholder=''
                                             value=''
                                             autocomplete='tel'
@@ -101,7 +84,7 @@
                                     class='form-row my-3 px-2 form-row-wide validate-required validate-email'
                                     id='billing_email_field'
                                 >
-                                    <label for='billing_email' class=''>Địa chỉ email&nbsp;<abbr
+                                    <label for='email' class=''>Địa chỉ email&nbsp;<abbr
                                             class='required'
                                             title='bắt buộc'
                                         >*</abbr>
@@ -110,8 +93,8 @@
                                         <input
                                             type='email'
                                             class='input-text'
-                                            name='billing_email'
-                                            id='billing_email'
+                                            name='email'
+                                            id='email'
                                             placeholder=''
                                             value=''
                                             autocomplete='email'
@@ -130,14 +113,14 @@
                                     id='my_field_name_field'
                                     data-priority=''
                                 >
-                                    <label for='my_field_name' class=''>Tên công ty&nbsp;
+                                    <label for='company_name' class=''>Tên công ty&nbsp;
                                     </label>
                                     <span class='input-wrapper'>
                                         <input
                                             type='text'
                                             class='input-text'
-                                            name='my_field_name'
-                                            id='my_field_name'
+                                            name='company_name'
+                                            id='company_name'
                                             placeholder=''
                                             value=''
                                         />
@@ -148,14 +131,14 @@
                                     id='my_field_name1_field'
                                     data-priority=''
                                 >
-                                    <label for='my_field_name1' class=''>Mã số thuế&nbsp;
+                                    <label for='tax_no' class=''>Mã số thuế&nbsp;
                                     </label>
                                     <span class='input-wrapper'>
                                         <input
                                             type='text'
                                             class='input-text'
-                                            name='my_field_name1'
-                                            id='my_field_name1'
+                                            name='tax_no'
+                                            id='tax_no'
                                             placeholder=''
                                             value=''
                                         />
@@ -166,14 +149,14 @@
                                     id='my_field_name2_field'
                                     data-priority=''
                                 >
-                                    <label for='my_field_name2' class=''>Địa chỉ&nbsp;
+                                    <label for='company_adress' class=''>Địa chỉ&nbsp;
                                     </label>
                                     <span class='input-wrapper'>
                                         <input
                                             type='text'
                                             class='input-text'
-                                            name='my_field_name2'
-                                            id='my_field_name2'
+                                            name='company_adress'
+                                            id='company_adress'
                                             placeholder=''
                                             value=''
                                         />
@@ -185,13 +168,13 @@
 
                             <div class='additional-fields__field-wrapper'>
                                 <div class='form-row my-3 px-2 notes' id='order_comments_field' data-priority=''>
-                                    <label for='order_comments' class=''>Ghi chú đơn hàng&nbsp;
+                                    <label for='note' class=''>Ghi chú đơn hàng&nbsp;
                                     </label>
                                     <span class='input-wrapper'>
                                         <textarea
-                                            name='order_comments'
+                                            name='note'
                                             class='input-text'
-                                            id='order_comments'
+                                            id='note'
                                             placeholder='Ghi chú về đơn hàng, ví dụ: thời gian hay chỉ dẫn địa điểm giao hàng chi tiết hơn.'
                                             rows='2'
                                             cols='5'
@@ -207,95 +190,49 @@
                 <div class='col-md-1'></div>
                 <div class='col-md-6'>
                     <h3 id='order_review_heading'>Đơn hàng của bạn</h3>
-                    <div id='order_review' class='checkout-review-order'>
-                        <table class='shop_table position-relative checkout-review-order-table'>
-                            <thead>
-                                <tr>
-                                    <th class='product-name'>Sản phẩm</th>
-                                    <th class='product-total'>Tạm tính</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{#each lsCartItem}}
-                                    <tr class='cart_item'>
-                                        <td class='product-name'>
-                                            <a
-                                                href='/san-pham/bo-ban-trang-diem-hien-dai-hh-scu-g1692/?attribute_pa_chat-lieu=go-tu-nhien-kim-loai&amp;attribute_pa_kich-thuoc=1000520760&amp;attribute_pa_mau-sac=cam'
-                                            >{{title}}</a><dl class='variation'>
-                                                <dt class='fs-6 d-inline-block text-light variation-ChtLiu'>Chất Liệu:</dt>
-                                                <dd class='fs-6 d-inline-block variation-ChtLiu'><p>{{material}}</p>
-                                                </dd>
-                                                <br />
-                                                <dt class='fs-6 d-inline-block text-light variation-KchThc'>Kích Thước:</dt>
-                                                <dd class='fs-6 d-inline-block variation-KchThc'><p>{{size}}</p>
-                                                </dd>
-                                                <br />
-                                                <dt class='fs-6 d-inline-block text-light variation-MuSc'>Màu Sắc:</dt>
-                                                <dd class='fs-6 d-inline-block variation-MuSc'><p>{{color}}</p>
-                                                </dd>
-                                                <br />
-                                            </dl>
-                                        </td>
-                                        <td class='product-total text-center' style='min-width:200px'>
-                                            <span class='giathuong'>Giá niêm yết: </span>
-                                            {{#when discount 'gt' 0}}
-                                                <del>
-                                                    <span class='Price-amount amount text-light'>
-                                                        {{formatCurrency price}}
-                                                    </span></del>
-                                                <br />
-                                                <span class='giathuong'>Giảm: </span>
-                                                <span class='Price-amount amount fs-5'>
-                                                    {{discount}}%
-                                                </span>
-                                                <br />
-                                                <br />
-                                                <span class='giathuong'>Giá khuyến mãi: </span>
-                                                <span class='Price-amount amount fs-5'>
-                                                    {{discountPrice price discount}}
-
-                                                </span>
-                                            {{else}}
-                                                <span class='Price-amount amount'>
-                                                    <span class='Price-amount amount fs-5'>
-                                                        {{formatCurrency price}}
-
-                                                    </span>
-                                                </span>
-                                            {{/when}}
-                                        </td>
+                    <div id='order_review' class='checkout-review-order position-relative ' style='border:1px solid var(--orange)'>
+                        <div class='table-wrapper' >
+                            <table class='shop_table position-relative checkout-review-order-table ' >
+                                <thead>
+                                    <tr>
+                                        <th class='product-thumbnail'>Hình ảnh</th>
+                                        <th class='product-name'>Sản phẩm</th>
+                                        <th class='product-name'>Số lượng</th>
+                                        <th class='product-total'>Tạm tính</th>
                                     </tr>
-                                {{/each}}
-                            </tbody>
-                            <tfoot>
+                                </thead>
+                                <tbody id='body-checkout'>
+                                    
+                                </tbody>
+                                <tfoot>
 
-                                <tr class='cart-subtotal'>
-                                    <th>Tạm tính</th>
-                                    <td>
-                                        <span class='Price-amount amount'>
-                                            <bdi>23.160.000<span class='Price-currencySymbol'>đ</span>
-                                            </bdi>
-                                        </span>
-                                    </td>
-                                </tr>
-
-                                <tr class='order-total text-center'>
-                                    <th>Tổng</th>
-                                    <td>
-                                        <strong>
+                                    <tr class='cart-subtotal'>
+                                        <th>Tạm tính</th>
+                                        <td>
                                             <span class='Price-amount amount'>
                                                 <bdi>23.160.000<span class='Price-currencySymbol'>đ</span>
                                                 </bdi>
                                             </span>
-                                        </strong>
-                                        <p class='taxtext text-dark'>(Giá chưa bao gồm thuế VAT 10%)</p>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
 
-                            </tfoot>
-                        </table>
+                                    <tr class='order-total text-center' >
+                                        <th colspan="2" class="fs-3">Tổng hóa đơn</th>
+                                        <td  colspan="2">
+                                            <strong>
+                                            <span class='Price-amount amount fs-5 ' id='order-total'>
+                                        
+                                                </span>
+                                            </strong>
+                                            <p class='taxtext text-dark'>(Giá chưa bao gồm thuế VAT 10%)</p>
+                                        </td>
+                                    </tr>
 
-                        <div id='payment' class='checkout-payment'>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                     <div id='payment' class='checkout-payment'>
                             <ul class='wc_payment_methods payment_methods methods'>
                                 <li class='wc_payment_method payment_method_bacs'>
                                     <input
@@ -342,33 +279,122 @@
                                     </div>
                                 </li>
                             </ul>
-                            <div class='form-row place-order'>
-                                <div class='terms-and-conditions-wrapper'>
-                                    <div class='privacy-policy-text'>
-                                        <p>Thông tin cá nhân của bạn sẽ được sử dụng để xử lý đơn hàng, tăng trải nghiệm
-                                            sử dụng website, và cho các mục đích cụ thể khác đã được mô tả trong
-                                            <a
-                                                href='/chinh-sach/chinh-sach-bao-mat'
-                                                class='privacy-policy-link'
-                                                target='_blank'
-                                            >chính sách riêng tư</a>.</p>
-                                    </div>
-                                </div>
+                            <div class='form-row place-order text-center'>
+                              
 
-                                <button
-                                    type='submit'
-                                    class='button alt'
-                                    name='checkout_place_order'
-                                    id='place_order'
-                                    value='GỬI ĐƠN HÀNG'
-                                    data-value='GỬI ĐƠN HÀNG'
-                                >GỬI ĐƠN HÀNG</button>
+                                <input type="button" value="GỬI ĐƠN HÀNG" name="checkout_place_order" class="w-100 text-dark fw-bold button alt send_order">
                             </div>
                         </div>
-
-                    </div>
                 </div>
             </div>
         </form>
     </div>
 </section>
+
+<script>
+    
+function formatCurrency(price) {
+    if (price) return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫';
+    return 'Liên hệ';
+}
+let bodyCheckout = document.getElementById('body-checkout');
+function renderProductToCheckout() {
+    shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
+    let body = '';
+    if (shoppingCart) {
+        shoppingCart.forEach((item) => {
+            item = JSON.parse(item);
+            body += ` <tr class='cart-form__cart-item cart_item'>
+                                <td class='product-thumbnail' style='width:200px'>
+                                    <a
+                                        href='/san-pham/${item.product.slug}'
+                                    ><img
+                                            width='200'
+                                            height='200'
+                                            src='${item.product.img}'
+                                            class='attachment_thumbnail size_thumbnail'
+                                            alt='${item.product.title}'
+                                        /></a>
+                                </td>
+
+                                <td class='product-name' data-title='Sản phẩm'>
+                                    <a
+                                        href='/san-pham/${item.product.slug}'
+                                    >${item.product.title}</a><dl class='variation'>
+                                        <dt class='fs-6 d-inline-block text-light variation-ChtLiu'>Chất Liệu:</dt>
+                                        <dd class='fs-6 d-inline-block variation-ChtLiu'><p>${item.product.material}</p>
+                                        </dd>
+                                        <br />
+                                        <dt class='fs-6 d-inline-block text-light variation-KchThc'>Kích Thước:</dt>
+                                        <dd class='fs-6 d-inline-block variation-KchThc'><p>${item.product.size}</p>
+                                        </dd>
+                                        <br />
+                                        <dt class='fs-6 d-inline-block text-light variation-MuSc'>Màu Sắc:</dt>
+                                        <dd class='fs-6 d-inline-block variation-MuSc'><p>${item.product.color}</p>
+                                        </dd>
+                                        <br />
+                                    </dl>
+                                </td>
+
+                                 <td class='product-quantity text-center' style="min-width:10px">
+                                    ${item.quantity}
+                                    
+                                </td>
+                                <td class='product-price' data-title='Giá' style="min-width: 110px;}">
+                                    `;
+            if (item.rate > 0) {
+                body += `
+                                    <span class='giathuong'>Giá niêm yết: </span>
+                                    <del>
+                                        <span class='Price-amount amount text-light'>
+                                            ${formatCurrency(item.price)}
+                                        </span></del>
+                                    <br />
+                                    <span class='giathuong'>Giảm: </span>
+                                    <span class='Price-amount amount fs-5'>
+                                        ${item.rate}%
+                                    </span>
+                                    <br />
+                                    <br />
+                                    <span class='giathuong'>Giá khuyến mãi: </span>
+                                    <span class='Price-amount amount fs-5'>
+                                        ${formatCurrency(item.discount)}
+                                    </span>`;
+            } else {
+                body += `<span class='Price-amount amount'>
+                                        <span class='Price-amount amount fs-5'>
+                                            ${formatCurrency(item.price)}
+                                        </span>
+                                    </span>`;
+            }
+            body += `        
+                                </td>
+                            </tr>`;
+            bodyCheckout.innerHTML = body;
+        });
+    }
+}
+renderProductToCheckout();
+
+function renderTotalPrice() {
+    let total = 0;
+
+    let tmp = shoppingCart.map((item) => {
+        item = JSON.parse(item);
+        if (item.discount > 0) {
+            return parseInt(item.discount) * parseInt(item.quantity);
+        } else {
+            return parseInt(item.price) * parseInt(item.quantity);
+        }
+    });
+    total = tmp.reduce((acc, item) => {
+        return acc + item;
+    }, 0);
+
+    let totalPrice = document.getElementById('order-total');
+    return (totalPrice.innerText = formatCurrency(total));
+}
+renderTotalPrice();
+
+
+</script>
