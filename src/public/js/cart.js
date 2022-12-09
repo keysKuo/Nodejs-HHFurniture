@@ -17,9 +17,9 @@ $(document).ready(function ($) {
             data: { pid, quantity },
             success: (data) => {
                 alert(data.msg);
-            }
-        })
-    })
+            },
+        });
+    });
 
     $('.add-to-cart').click(function () {
         var selected = $('#variantProductSelect').find(':selected');
@@ -147,6 +147,7 @@ function formatCurrency(price) {
     if (price) return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫';
     return 'Liên hệ';
 }
+
 function renderProductToCart() {
     shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'));
 
@@ -279,7 +280,6 @@ function renderTotalPrice() {
             return parseInt(item.price) * parseInt(item.quantity);
         }
     });
-    console.log(tmp);
     total = tmp.reduce((acc, item) => {
         return acc + item;
     }, 0);

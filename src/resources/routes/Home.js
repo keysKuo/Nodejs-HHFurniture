@@ -31,6 +31,7 @@ router.get('/san-pham/tim-kiem', Controller_Products.GET_findProduct);
 router.get('/san-pham/:slug', Controller_Products.GET_productDetail);
 
 router.get('/chinh-sach/:slug', Controller_Home.GET_PolicyPage);
+
 router.post('/addCart', (req, res, next) => {
     const { pid, quantity } = req.body;
     let isIncluded = -1;
