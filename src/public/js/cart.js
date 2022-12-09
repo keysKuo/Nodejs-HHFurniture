@@ -194,9 +194,9 @@ $(document).ready(function ($) {
                     //         swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
                     //     },
                     // });
-                    window.setTimeout(function () {
-                        location.reload();
-                    }, 3000);
+                    // window.setTimeout(function () {
+                    //     location.reload();
+                    // }, 3000);
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
@@ -358,7 +358,6 @@ function renderProductToCart() {
                                 </td>
                             </tr>`;
         });
-        console.log(body);
         bodyCart.innerHTML = body;
     }
 }
