@@ -47,7 +47,6 @@ $(document).ready(function ($) {
             price,
             discount,
             rate,
-            total: discount,
         };
 
         let checkID = shoppingCart.some((item) => {
@@ -175,25 +174,24 @@ $(document).ready(function ($) {
                         lsCartItem,
                         method,
                     };
-                    console.log(cart);
-                    // $.ajax({
-                    //     url: 'order',
-                    //     method: 'POST',
-                    //     data: {
-                    //         name,
-                    //         email,
-                    //         phone,
-                    //         address,
-                    //         company_name,
-                    //         tax_no,
-                    //         company_adress,
-                    //         note,
-                    //         lsCartItem,
-                    //     },
-                    //     success: function () {
-                    //         swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
-                    //     },
-                    // });
+                    $.ajax({
+                        url: '/gio-hang/add-order',
+                        method: 'POST',
+                        data: {
+                            name,
+                            email,
+                            phone,
+                            address,
+                            company_name,
+                            tax_no,
+                            company_adress,
+                            note,
+                            lsCartItem,
+                        },
+                        success: function () {
+                            swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
+                        },
+                    });
                     // window.setTimeout(function () {
                     //     location.reload();
                     // }, 3000);

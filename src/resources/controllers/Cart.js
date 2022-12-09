@@ -47,6 +47,10 @@ const Controller_Cart = {
             lsCat,
         });
     },
+
+    POST_AddOrder: async (req, res, next) => {
+        console.log(req.body);
+    },
 };
 
 module.exports = Controller_Cart;

@@ -60,6 +60,8 @@ router.post('/addCart', (req, res, next) => {
 
 router.get('/gio-hang', Controller_Cart.GET_CartPage);
 
+router.post('/gio-hang/add-order', Controller_Cart.POST_AddOrder);
+
 router.get('/dang-nhap', (req, res, next) => {
     return res.render('pages/common/login', {
         error: req.flash('error') || '',
