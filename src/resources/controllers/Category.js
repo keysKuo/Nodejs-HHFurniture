@@ -45,55 +45,62 @@ const Controller_Category = {
     // ++++++++++ System Controller +++++++++++
     // /category/storage
     GET_categoryStorage: async (req, res, next) => {
-        let level1 = await API_Category.readMany({level: 1});
-        let level2 = await API_Category.readMany({level: 2});
-        let level3 = await API_Category.readMany({level: 3});
-        
+        let level1 = await API_Category.readMany({ level: 1 });
+        let level2 = await API_Category.readMany({ level: 2 });
+        let level3 = await API_Category.readMany({ level: 3 });
+
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
-    
+
         return res.render('pages/categories/storage', {
             layout: 'admin',
             pageName: 'Danh mục sản phẩm',
-            level1, level2, level3, error, success
-        })
+            level1,
+            level2,
+            level3,
+            error,
+            success,
+        });
     },
 
     // /category/create
     GET_createCategory: async (req, res, next) => {
-        let level1 = await API_Category.readMany({level: 1});
-        let level2 = await API_Category.readMany({level: 2});
-        let level3 = await API_Category.readMany({level: 3});
-        
+        let level1 = await API_Category.readMany({ level: 1 });
+        let level2 = await API_Category.readMany({ level: 2 });
+        let level3 = await API_Category.readMany({ level: 3 });
+
         const error = req.flash('error') || '';
 
         return res.render('pages/categories/create', {
             layout: 'admin',
             pageName: 'Thêm danh mục sản phẩm',
-            level1, level2, level3, error
-        })
+            level1,
+            level2,
+            level3,
+            error,
+        });
     },
 
     POST_createCategory: async (req, res, next) => {
         const { name, level, level1, level2, level3 } = req.body;
         let data = {
             name: name,
-            slug: createSlug(name, {})
+            slug: createSlug(name, {}),
         };
 
-        await API_Category.readOne({slug: data.slug})
-            .then(cate => {
-                if(cate) {
-                    data.slug = createSlug(name + ' ' + cate.parent.parent.name, {});
-                }
-            })
+        await API_Category.readOne({ slug: data.slug }).then((cate) => {
+            if (cate) {
+                console.log(cate);
+                data.slug = createSlug(name + ' ' + cate.parent.parent.name, {});
+            }
+        });
 
         switch (parseInt(level)) {
             case 1:
                 data.level = 1;
                 break;
             case 2:
-                if(level1 == '') {
+                if (level1 == '') {
                     req.flash('error', 'Vui lòng chọn danh mục cấp 1');
                     return res.redirect(createUrl);
                 }
@@ -101,7 +108,7 @@ const Controller_Category = {
                 data.parent = mongoose.Types.ObjectId(level1);
                 break;
             case 3:
-                if(level2 == '') {
+                if (level2 == '') {
                     req.flash('error', 'Vui lòng chọn danh mục cấp 2');
                     return res.redirect(createUrl);
                 }
@@ -114,29 +121,29 @@ const Controller_Category = {
         }
 
         await API_Category.create(data)
-            .then(category => {
+            .then((category) => {
                 req.flash('success', 'Tạo danh mục thành công');
                 return res.redirect(storageUrl);
             })
-            .catch(err => {
+            .catch((err) => {
                 req.flash('error', 'Tạo danh mục thất bại: ' + err);
                 return res.redirect(createUrl);
-            })
+            });
     },
 
     AJAX_POST_filterCategory: async (req, res, next) => {
         const { level1_id } = req.body;
-        if(level1_id == '') {
-            return res.send(500)
+        if (level1_id == '') {
+            return res.send(500);
         }
-        let level2 = await API_Category.readMany({parent: level1_id}, {});
+        let level2 = await API_Category.readMany({ parent: level1_id }, {});
         let html = `<option value=''>Chọn danh mục...</option>`;
-        if(level2.length != 0) {
-            level2.forEach(item => {
-                html += `<option value='${item._id}'>${item.name}</option>`
-            })
+        if (level2.length != 0) {
+            level2.forEach((item) => {
+                html += `<option value='${item._id}'>${item.name}</option>`;
+            });
         }
-        
+
         return res.send(html);
     },
 
@@ -144,16 +151,16 @@ const Controller_Category = {
         let id = req.params.id;
 
         await API_Category.remove(id)
-            .then(async category => {
-                let idList = await API_Category.readMany({parent: category._id});
+            .then(async (category) => {
+                let idList = await API_Category.readMany({ parent: category._id });
                 await API_Category.removeMany(idList);
                 req.flash('success', 'Xoá danh mục thành công');
                 return res.redirect(storageUrl);
             })
-            .catch(err => {
+            .catch((err) => {
                 req.flash('error', 'Xoá danh mục thất bại');
                 return res.redirect(storageUrl);
-            })
+            });
     },
 
     // ++++++++++ Client Controller +++++++++++

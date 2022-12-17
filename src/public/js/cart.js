@@ -150,7 +150,7 @@ $(document).ready(function ($) {
         var company_name = $('#company_name').val();
         var tax_no = $('#tax_no').val();
         var company_adress = $('#company_adress').val();
-        var total = $("#order-total").text() || 0;
+        var total = $('#order-total').text() || 0;
         var note = $('#note').val();
         var method = $('input[name="payment_method"]').val();
         let lsCartItem = shoppingCart.map((item) => {
@@ -206,7 +206,9 @@ $(document).ready(function ($) {
                             total,
                             lsCartItem,
                         },
-                        success: function () {
+                        success: function (rs) {
+                            console.log(rs);
+                            console.log(rs.order);
                             swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
                         },
                     });

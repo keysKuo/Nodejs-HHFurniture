@@ -17,39 +17,51 @@ const Controller_Cart = {
 
     POST_AddOrder: async (req, res, next) => {
         // console.log(req.body);
-        const { name, email, phone, address, company_name, tax_no, company_address, total, note, lsCartItem } = req.body;
+        const { name, email, phone, address, company_name, tax_no, company_address, total, note, lsCartItem } =
+            req.body;
 
-        let customer = await API_Customers.readOne({name, phone})
-            .then(async customer => {
-                if(customer) {
+        let customer = await API_Customers.readOne({ name, phone })
+            .then(async (customer) => {
+                if (customer) {
                     return customer;
-                }
-                else {
-                    return await API_Customers.create({name, email, phone, address, company_name, tax_no, company_address})
+                } else {
+                    return await API_Customers.create({
+                        name,
+                        email,
+                        phone,
+                        address,
+                        company_name,
+                        tax_no,
+                        company_address,
+                    });
                 }
             })
-            .catch(err => {
-                console.log(err)
-                return res.json({success: false, msg: err})
-            })
+            .catch((err) => {
+                console.log(err);
+                return res.json({ success: false, msg: err });
+            });
 
-        
         let order_no = await API_Orders.count()
-            .then(count => {
-                if(!count) {
+            .then((count) => {
+                if (!count) {
                     return 0;
                 }
                 return count;
             })
-            .catch(err => {
-                console.log(err)
-            })
-        if (!order_no)
-            order_no = 0
-        await API_Orders.create({ order_no: order_no + 1, product_list: lsCartItem, customer: customer._id, total, note})
-            .then(order => {
-                console.log(order);
-            })
+            .catch((err) => {
+                console.log(err);
+            });
+        if (!order_no) order_no = 0;
+        await API_Orders.create({
+            order_no: order_no + 1,
+            product_list: lsCartItem,
+            customer: customer._id,
+            total,
+            note,
+        }).then((order) => {
+            console.log(order);
+            return order;
+        });
     },
 };
 
