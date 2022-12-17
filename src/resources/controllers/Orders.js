@@ -5,11 +5,26 @@ const Controller_Order = {
     // [GET] /admin/orders/storage
 
     GET_orderStorage: async (req, res, next) => {
-        let orders = await API_Orders.readMany({},{});
-        
+        let orders = await API_Orders.readMany({status: 'Đang chờ duyệt'},{});
+        // console.log(orders);
         return res.render('pages/orders/storage', {
             layout: 'admin',
-            orders: orders
+            pageName: "Danh sách đơn hàng",
+            orders: orders,
+            success: req.flash('success') || '',
+            error: req.flash('error') || ''
+        })
+    },
+
+    // [GET] /admin/orders/preview/:id
+    GET_orderPreview: async (req, res, next) => {
+        const id = req.params.id;
+        let order = await API_Orders.readOne({_id: id})
+        // console.log(order.product_list)
+        return res.render('pages/orders/preview', {
+            layout: 'admin',
+            pageName: 'Chi tiết hóa đơn',
+            order: order
         })
     },
 
@@ -45,7 +60,49 @@ const Controller_Order = {
                 req.flash('error', 'Vui lòng nhập đủ thông tin khách hàng (*)');
                 return res.redirect('/thanh-toan');
             })
+    },
+
+    // [GET] /admin/orders/remove/:id
+    GET_orderRemove: async (req, res, next) => {
+        const id = req.params.id;
         
-        
+        return API_Orders.remove(id)
+            .then(order => {
+                req.flash('success', 'Xóa hóa đơn thành công');
+                return res.redirect('/admin/orders/storage');
+            })
+            .catch(err => {
+                req.flash('error', 'Xóa hóa đơn thất bại' + err);
+                return res.redirect('/admin/orders/storage');
+            })
+    },
+
+    // [GET] /admin/orders/history
+    GET_orderHistory: async (req, res, next) => {
+        let orders = await API_Orders.readMany({status: {$in: ['Hoàn thành', 'Hủy']}}, {})
+
+        return res.render('pages/orders/history', {
+            layout: 'admin',
+            pageName: 'Lịch sử đơn hàng',
+            orders: orders,
+            success: req.flash('success') || '',
+            error: req.flash('error') || ''
+        })
+    },
+
+    // [POST] /admin/orders/complete/:id/:status
+    POST_orderComplete: async (req, res, next) => {
+        const { id, status } = req.body;
+        return API_Orders.update(id, {status: status})
+            .then(order => {
+                req.flash('success', `Đơn hàng đã được ${status}`);
+                return res.send(200)
+            })
+            .catch(err => {
+                req.flash('error', 'Hoàn tất đơn hàng thất bại: ' + err);
+                return res.send(404)
+            })
     }
 }
+
+module.exports = Controller_Order;

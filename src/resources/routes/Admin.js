@@ -4,7 +4,7 @@ const productRouter = require('./Products');
 const newsRouter = require('./News');
 const categoryRouter = require('./Category');
 const policyRouter = require('./Policy');
-// const orderRouter = require('./Order');
+const orderRouter = require('./Orders');
 // const userRouter = require('./User');
 
 // Home
@@ -23,8 +23,14 @@ router.use('/category', categoryRouter);
 // News
 router.use('/news', newsRouter);
 
+// Policy
 router.use('/policy', policyRouter);
 
+
+// Order
+router.use('/orders', orderRouter);
+
+// Users
 router.get('/user/logout', (req, res, next) => {
     req.session.destroy();
     return res.redirect('/dang-nhap');

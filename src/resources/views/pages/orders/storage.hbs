@@ -1,0 +1,173 @@
+{{#if success}}
+    <div class='alert alert-success alert-dismissible fade show' role='alert'>
+        {{success}}
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+{{#if error}}
+    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+        {{error}}
+        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+            <span aria-hidden='true'>&times;</span>
+        </button>
+    </div>
+{{/if}}
+
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card shadow'>
+                <div class='card-header d-flex justify-content-between'>
+                    <h4>{{pageName}}</h4>
+                    <a href='/admin/orders/history' class='btn btn-secondary'><i class="fa-solid fa-clock-rotate-left"></i>
+                        Lịch sử giao dịch</a>
+                </div>
+                <div class='card-body'>
+                    <table class='table table-hover mt-2 data-table' style='table-layout:fixed;'>
+                        <thead class='thead-light'>
+                            <tr>
+                                <th scope='col'>Số đơn hàng</th>
+                                <th scope='col'>Khách hàng</th>
+                                <th scope='col'>Tổng cộng</th>
+                                <th colspan="2" scope='col'>Ghi chú</th>
+                                <th scope='col'>Thời gian đặt</th>  
+                                <th scope='col'>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#if orders}}
+                                {{#each orders}}
+                                    <input id="order_id" type="hidden" value="{{_id}}">
+                                    <tr>
+                                        <td>{{order_no}}</td>
+                                        <td>{{customer.name}}</td>
+                                        <td>{{total}}</td>
+                                        <td>{{{note}}}</td>
+                                        <td></td>
+                                        <td>{{formatDate createdAt}}</td>
+                                        <td class='d-flex'>
+                                            <!-- Button trigger modal -->
+                                            <a class='text-info w-100 mr-2' href='/admin/orders/preview/{{_id}}'>
+                                                <i class="fa-solid fa-eye fa-lg"></i>
+                                            </a>
+                                            <!-- Button trigger modal -->
+                                            {{!-- <a class='text-success w-100' href='/admin/orders/complete/{{_id}}/Hoàn thành'>
+                                                <i class='fas fa-check fa-lg'></i>
+                                            </a>
+                                            <a alt="Hủy" class='text-danger w-100' href='/admin/orders/complete/{{_id}}/Hủy'>
+                                                <i class='fas fa-ban fa-lg'></i>
+                                            </a> --}}
+                                            <!-- Button trigger modal -->
+                                            <a
+                                                class='text-success w-100'
+                                                data-toggle='modal'
+                                                data-target='#completeModal'
+                                                {{!-- onclick="$('#completeBtn').attr('href', '/admin/orders/complete/{{_id}}/Hoàn thành')" --}}
+                                            >
+                                                <i class="fa-solid fa-check fa-lg"></i>
+                                            </a>
+                                            <a
+                                                class='text-danger w-100'
+                                                data-toggle='modal'
+                                                data-target='#deleteModal'
+                                                {{!-- onclick="$('#deleteBtn').attr('href', '/admin/orders/complete/{{_id}}/Hủy')" --}}
+                                            >
+                                                <i class="fa-solid fa-ban fa-lg"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {{/each}}
+                            {{else}}
+                                <tr><td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            {{/if}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class='modal fade' id='completeModal'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Hoàn thành đơn hàng</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                Bạn có muốn hoàn thành đơn hàng này?
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Trở lại</button>
+                <a type='button' id='completeBtn' class='btn btn-success'>Hoàn thành đơn</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class='modal fade' id='deleteModal'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Huỷ đơn hàng</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <div class='modal-body'>
+                Bạn có muốn huỷ đơn hàng này?
+            </div>
+            <div class='modal-footer'>
+                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Trở lại</button>
+                <a type='button' id='deleteBtn' class='btn btn-danger'>Huỷ đơn</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#completeBtn').click((e) => {
+        
+        let id = $('#order_id').val();
+        $.ajax({
+            url: `/admin/orders/complete/${id}`,
+            method: 'POST',
+            data: {
+                id, status: 'Hoàn thành'
+            },
+            success: (result) =>{
+                window.location.reload();
+            }
+        })
+        
+    })
+    $('#deleteBtn').click((e) => {
+        
+        let id = $('#order_id').val();
+        $.ajax({
+            url: `/admin/orders/complete/${id}`,
+            method: 'POST',
+            data: {
+                id, status: 'Hủy'
+            },
+            success: (result) =>{
+                console.log('pass')
+                window.location.href = window.location.href;
+            }
+        })
+        
+    })
+</script>

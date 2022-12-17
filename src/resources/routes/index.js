@@ -12,6 +12,7 @@ const { isAdmin } = require('../middlewares/validators');
 function router(app) {
     app.use('/', homeRouter);
     app.use('/admin', isAdmin, adminRouter);
+    app.use('/gio-hang', cartRouter);
 
     // app.use('/products', productRouter);
     // app.use('/news', newsRouter);
@@ -20,7 +21,6 @@ function router(app) {
     // app.use('/san-pham', productRouter);
     // app.use('/danh-muc-san-pham', categoryRouter);
     // app.use('/category', categoryRouter);
-    app.use('/gio-hang', cartRouter);
 }
 
 module.exports = router;

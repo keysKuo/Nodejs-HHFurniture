@@ -81,6 +81,8 @@ $(document).ready(function ($) {
             title: 'Thêm vào giỏ hàng thành công',
         });
         localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart));
+
+        window.location.reload();
     });
 
     $('.minus').click(function () {
@@ -157,7 +159,7 @@ $(document).ready(function ($) {
             item = JSON.parse(item);
             return item;
         });
-        const swalWithBootstrapButtons = Swal.mixin({
+        let swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
                 cancelButton: 'btn btn-danger mx-4',
@@ -177,7 +179,6 @@ $(document).ready(function ($) {
             })
             .then((result) => {
                 if (result.isConfirmed) {
-                    swalWithBootstrapButtons.fire('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
                     const cart = {
                         name,
                         email,
@@ -208,13 +209,31 @@ $(document).ready(function ($) {
                         },
                         success: function (rs) {
                             console.log(rs);
-                            console.log(rs.order);
-                            swal('Cám ơn bạn đã đặt hàng', 'bạn đã thanh toán thành công', 'success');
+                            if (rs.success) {
+                                swalWithBootstrapButtons.fire(
+                                    'Cám ơn bạn đã đặt hàng',
+                                    'bạn đã thanh toán thành công',
+                                    'success',
+                                );
+
+                                localStorage.removeItem('shopping-cart');
+
+                                window.setTimeout(function () {
+                                    location.reload();
+                                }, 3000);
+                            } else {
+                                swalWithBootstrapButtons.fire(
+                                    'Vui lòng điền đầy đủ thông tin trước khi đặt hàng',
+                                    'Thanh toán không thành công',
+                                    'error',
+                                );
+
+                                window.setTimeout(function () {
+                                    location.reload();
+                                }, 3000);
+                            }
                         },
                     });
-                    // window.setTimeout(function () {
-                    //     location.reload();
-                    // }, 3000);
                 } else if (
                     /* Read more about handling dismissals below */
                     result.dismiss === Swal.DismissReason.cancel
