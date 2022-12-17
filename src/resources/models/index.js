@@ -6,3 +6,4 @@ module.exports.News = require('./News');
 module.exports.ImageContent = require('./ImageContent');
 module.exports.Cart = require('./Carts');
 module.exports.Policy = require('./Policy');
+module.exports.Orders = require('./Orders');

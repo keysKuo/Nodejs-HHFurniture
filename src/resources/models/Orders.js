@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const Orders = new Schema({
-    order_no: { type: Number, indexed: true },
-    product_list: [{ type: mongoose.Types.ObjectId, ref: 'Products'}],
+    order_no: { type: Number },
+    product_list: [Object],
     customer: { type: mongoose.Types.ObjectId, ref: 'Customers'},
-    total: { type: Number },
+    total: { type: String },
     note: { type: String }
 },
 {

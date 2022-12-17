@@ -58,9 +58,9 @@ router.get('/chinh-sach/:slug', Controller_Home.GET_PolicyPage);
 //     return res.send({ msg: `Sản phẩm ${pid} đã được thêm vào giỏ hàng` });
 // });
 
-router.get('/gio-hang', Controller_Cart.GET_CartPage);
+// router.get('/gio-hang', Controller_Cart.GET_CartPage);
 
-router.post('/gio-hang/add-order', Controller_Cart.POST_AddOrder);
+// router.post('/gio-hang/add-order', Controller_Cart.POST_AddOrder);
 
 router.get('/dang-nhap', (req, res, next) => {
     return res.render('pages/common/login', {

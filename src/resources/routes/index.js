@@ -20,7 +20,7 @@ function router(app) {
     // app.use('/san-pham', productRouter);
     // app.use('/danh-muc-san-pham', categoryRouter);
     // app.use('/category', categoryRouter);
-    // app.use('/gio-hang', cartRouter);
+    app.use('/gio-hang', cartRouter);
 }
 
 module.exports = router;
