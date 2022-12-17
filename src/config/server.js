@@ -35,8 +35,22 @@ const init = () => {
                 },
 
                 formatCurrency: function (price) {
-                    if (price) return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫';
+                    if (price > 0) return price.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1.') + ' ₫';
                     return 'Liên hệ';
+                },
+                formatDate: function (date) {
+                    return date.toLocaleString('vi-vn');
+                },
+
+                statusAutoStyling: function (status) {
+                    switch (status) {
+                        case 'Hoàn thành':
+                            return `<span class="text-success">${status}</span>`;
+                        case 'Hủy':
+                            return `<span class="text-danger">${status}</span>`;
+                        default:
+                            return `<span class="text-warning">${status}</span>`;
+                    }
                 },
 
                 includesID: function (list, target, options) {

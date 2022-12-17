@@ -7,7 +7,6 @@ const API_Orders = {
 
     readOne: async (loaders) => {
         return await Orders.findOne(loaders)
-        .populate('product_list')
         .populate('customer')
         .lean();
     },
@@ -21,6 +20,7 @@ const API_Orders = {
             .skip(skip)
             .limit(limit)
             .sort({ createdAt: -1 })
+            .populate('customer')
             .lean();
     },
 

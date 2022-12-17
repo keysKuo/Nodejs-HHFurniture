@@ -1,4 +1,5 @@
 const BASE_URL = process.env.BASE_URL;
+const { uuid } = require('uuidv4');
 const { API_Products, API_Customers, API_Orders } = require('../apis');
 const { doitacs, introduce, lsCat, lsCartItem, lsSubCat, lsPost, posts, lsProduct } = require('../data/mock');
 
@@ -32,21 +33,8 @@ const Controller_Cart = {
                 console.log(err)
                 return res.json({success: false, msg: err})
             })
-
         
-        let order_no = await API_Orders.count()
-            .then(count => {
-                if(!count) {
-                    return 0;
-                }
-                return count;
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        if (!order_no)
-            order_no = 0
-        await API_Orders.create({ order_no: order_no + 1, product_list: lsCartItem, customer: customer._id, total, note})
+        await API_Orders.create({ order_no: 'ORD' + uuid().slice(0,7), product_list: lsCartItem, customer: customer._id, total, note})
             .then(order => {
                 console.log(order);
             })

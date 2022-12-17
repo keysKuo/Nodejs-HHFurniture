@@ -7,7 +7,6 @@ const app = require('./config/server').init();
 db.connect();
 
 const { API_Category, API_Products } = require('./resources/apis');
-const mongoose = require('mongoose');
 const { Controller_Products } = require('./resources/controllers');
 
 router(app);
