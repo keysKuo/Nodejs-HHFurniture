@@ -280,22 +280,22 @@ module.exports = {
         {
             title: 'Sản phẩm',
             items: [
-                {
-                    title: 'Đồ nội thất',
-                    slug: '/danh-muc-san-pham/do-noi-that',
-                },
-                {
-                    title: 'Thiết bị vệ sinh',
-                    slug: '/danh-muc-san-pham',
-                },
-                {
-                    title: 'Đèn trang trí',
-                    slug: '/danh-muc-san-pham',
-                },
-                {
-                    title: 'Đồ trang trí',
-                    slug: '/danh-muc-san-pham',
-                },
+                // {
+                //     title: 'Đồ nội thất',
+                //     slug: '/danh-muc-san-pham/do-noi-that',
+                // },
+                // {
+                //     title: 'Thiết bị vệ sinh',
+                //     slug: '/danh-muc-san-pham',
+                // },
+                // {
+                //     title: 'Đèn trang trí',
+                //     slug: '/danh-muc-san-pham',
+                // },
+                // {
+                //     title: 'Đồ trang trí',
+                //     slug: '/danh-muc-san-pham',
+                // },
             ],
             isExpanded: true,
         },

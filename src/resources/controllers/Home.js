@@ -36,48 +36,32 @@ const Controller_Home = {
         };
 
         let data = await lsQuery(options);
-        // return res.json({data: data});
+        let level1 = await API_Category.readMany({ level: 1 });
+        let level2 = await API_Category.readMany({ level: 2 });
+        let level3 = await API_Category.readMany({ level: 3 });
 
-        return res.render('pages/home', {
-            layout: 'main',
-            template: 'home-template',
-            meta,
-            lsCat,
-            doitacs,
-            introduce,
-            lsSubCat,
-
-            // BE trả về
-            lsProductDoNoiThat: data.lsProductDoNoiThat,
-            lsProductThietBiVeSinh: data.lsProductThietBiVeSinh,
-            lsProductDenTrangTri: data.lsProductDenTrangTri,
-            lsProductDoTrangTri: data.lsProductDoTrangTri,
-            lsPostNews: data.lsPostNews,
-            lsPostProject,
-            //////////////
+        let makeTree = (cat, parent) => {
+            let node = {
+                name: parent.name,
+                slug: parent.slug,
+                items: [],
+            };
+            cat.filter((n) => {
+                if (n.parent != null && parent != null) {
+                    return n.parent.slug === parent.slug;
+                }
+            }).forEach((n) => {
+                return node.items.push({ name: n.name, slug: n.slug, items: makeTree(cat, n.parent) });
+            });
+            return node;
+        };
+        level1.map((e) => {
+            let rs = makeTree(level2, e);
+            console.log(JSON.stringify(rs, null, 2));
         });
     },
     // [GET] /ban-tin
-    GET_News: async (req, res, next) => {
-        const meta = {
-            title: 'Bản tin – H&H Furniture',
-            desc: 'Trang chủ H&H Furniture',
-            keywords: 'Homepage, đồ nội thất',
-        };
-
-        let lsPostNews = await API_News.readMany({}, { limit: 12, select: { content: 0 } });
-        return res.render('pages/news', {
-            layout: 'main',
-            template: 'post-template',
-            meta,
-            lsSubCat,
-            lsCat,
-
-            // BE trả về
-            lsPostNews,
-            //////////////
-        });
-    },
+    GET_News: async (req, res, next) => {},
     // [GET] /contact
     GET_Contact: async (req, res, next) => {
         const meta = {
@@ -131,36 +115,35 @@ const Controller_Home = {
     GET_Payment: async (req, res, next) => {
         const product_list = req.session.product_list;
         const counter = req.session.counter;
-        let n = (counter) ? counter.length : 0;
+        let n = counter ? counter.length : 0;
         const options = {
             select: { description: 0 },
-        }
+        };
 
         let lsCartItem = [];
         let index;
         for (let i = 0; i < n; i++) {
-            await API_Products.readOne({ pid: { $in: product_list[i] } }, options)
-                .then(p => {
-                    index = p.pid.findIndex(ip => ip == product_list[i]);
-                    let curr = p.classify[index];
-                    let product = {
-                        productId: p.pid[index],
-                        size: curr.size,
-                        price: curr.price,
-                        material: p.material,
-                        color: curr.colors[0],
-                        img: p.pimg[0], 
-                        slug: p.slug
-                    }
-                    
-                    lsCartItem.push({
-                        product: product,
-                        rate: curr.rate,
-                        quantity: counter[i],
-                        discount: curr.discount,
-                        total: (curr.discount) ? curr.discount * counter[i] : curr.price * counter[i]
-                    })
-                })
+            await API_Products.readOne({ pid: { $in: product_list[i] } }, options).then((p) => {
+                index = p.pid.findIndex((ip) => ip == product_list[i]);
+                let curr = p.classify[index];
+                let product = {
+                    productId: p.pid[index],
+                    size: curr.size,
+                    price: curr.price,
+                    material: p.material,
+                    color: curr.colors[0],
+                    img: p.pimg[0],
+                    slug: p.slug,
+                };
+
+                lsCartItem.push({
+                    product: product,
+                    rate: curr.rate,
+                    quantity: counter[i],
+                    discount: curr.discount,
+                    total: curr.discount ? curr.discount * counter[i] : curr.price * counter[i],
+                });
+            });
         }
 
         const meta = {
