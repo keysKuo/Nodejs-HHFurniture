@@ -3,7 +3,6 @@ const { API_Products, API_News, API_Category } = require('../apis');
 const {
     doitacs,
     introduce,
-    lsCat,
     lsCart,
     lsSubCat,
     lsPostNews,
@@ -17,7 +16,65 @@ const {
     lsCartItem,
 } = require('../data/mock');
 const lsQuery = require('../utils/lsQuery');
-
+let lsCat = [
+    {
+        title: 'Về H & H',
+        items: [
+            {
+                title: 'Giới thiệu',
+                slug: '/gioi-thieu',
+            },
+            {
+                title: 'Liên hệ',
+                slug: '/contact',
+            },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Sản phẩm',
+        items: [
+            {
+                title: 'Đồ nội thất',
+                slug: '/danh-muc-san-pham/do-noi-that',
+            },
+            {
+                title: 'Thiết bị vệ sinh',
+                slug: '/danh-muc-san-pham',
+            },
+            {
+                title: 'Đèn trang trí',
+                slug: '/danh-muc-san-pham',
+            },
+            {
+                title: 'Đồ trang trí',
+                slug: '/danh-muc-san-pham',
+            },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Bản tin H & H',
+        slug: '/ban-tin',
+    },
+    {
+        title: 'Chính sách',
+        items: [
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐẠI LÝ' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH CỘNG TÁC VIÊN' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH GIAO HÀNG' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: ' QUY TRÌNH BÁN HÀNG' },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Khuyến mãi',
+        slug: '/khuyen-mai',
+        isExpanded: false,
+        isHot: true,
+    },
+];
 const Controller_Home = {
     // [GET] /
     GET_Homepage: async (req, res, next) => {
@@ -36,28 +93,48 @@ const Controller_Home = {
         };
 
         let data = await lsQuery(options);
-        let level1 = await API_Category.readMany({ level: 1 });
-        let level2 = await API_Category.readMany({ level: 2 });
-        let level3 = await API_Category.readMany({ level: 3 });
+        // let level1 = await API_Category.readMany({ level: 1 });
+        // let level2 = await API_Category.readMany({ level: 2 });
+        // let level3 = await API_Category.readMany({ level: 3 });
+        // let makeTree = (cat, parent) => {
+        //     let node = {
+        //         title: parent.name,
+        //         slug: '/danh-muc-san-pham/' + parent.slug,
+        //         items: [],
+        //     };
+        //     cat.filter((n) => n.parent?.slug === parent?.slug).forEach((n) => {
+        //         return node.items.push({ title: n.name, slug: '/danh-muc-san-pham/' + n.slug, items: [] });
+        //     });
+        //     return node;
+        // };
+        // level1.forEach((n) => {
+        //     let result = makeTree(level2, n);
+        //     lsCat.map((n) => {
+        //         if (n.title == 'Sản phẩm') {
+        //             n.items.push(result);
+        //         }
+        //     });
+        // });
 
-        let makeTree = (cat, parent) => {
-            let node = {
-                name: parent.name,
-                slug: parent.slug,
-                items: [],
-            };
-            cat.filter((n) => {
-                if (n.parent != null && parent != null) {
-                    return n.parent.slug === parent.slug;
-                }
-            }).forEach((n) => {
-                return node.items.push({ name: n.name, slug: n.slug, items: makeTree(cat, n.parent) });
-            });
-            return node;
-        };
-        level1.map((e) => {
-            let rs = makeTree(level2, e);
-            console.log(JSON.stringify(rs, null, 2));
+        // return res.json({data: data});
+
+        return res.render('pages/home', {
+            layout: 'main',
+            template: 'home-template',
+            meta,
+            lsCat,
+            doitacs,
+            introduce,
+            lsSubCat,
+
+            // BE trả về
+            lsProductDoNoiThat: data.lsProductDoNoiThat,
+            lsProductThietBiVeSinh: data.lsProductThietBiVeSinh,
+            lsProductDenTrangTri: data.lsProductDenTrangTri,
+            lsProductDoTrangTri: data.lsProductDoTrangTri,
+            lsPostNews: data.lsPostNews,
+            lsPostProject,
+            //////////////
         });
     },
     // [GET] /ban-tin
