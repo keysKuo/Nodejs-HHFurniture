@@ -166,36 +166,26 @@ $(document).ready(function ($) {
             },
             buttonsStyling: false,
         });
-
-        swalWithBootstrapButtons
-            .fire({
-                title: 'Xác nhận thanh toán đơn hàng',
-                text: 'Một khi đặt đơn hàng bạn chỉ có thể hủy bỏ trong vòng 24h',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Xác nhận đặt hàng',
-                cancelButtonText: 'Hủy đặt hàng',
-                reverseButtons: true,
-            })
-            .then((result) => {
-                if (result.isConfirmed) {
-                    const cart = {
-                        name,
-                        email,
-                        phone,
-                        address,
-                        company_name,
-                        tax_no,
-                        company_adress,
-                        note,
-                        lsCartItem,
-                        total,
-                        method,
-                    };
-                    $.ajax({
-                        url: '/gio-hang/add-order',
-                        method: 'POST',
-                        data: {
+        if (phone == '' || address == '' || name == '') {
+            swalWithBootstrapButtons.fire(
+                'Vui lòng điền đầy đủ thông tin trước khi đặt hàng',
+                'Thanh toán không thành công',
+                'error',
+            );
+        } else {
+            swalWithBootstrapButtons
+                .fire({
+                    title: 'Xác nhận thanh toán đơn hàng',
+                    text: 'Một khi đặt đơn hàng bạn chỉ có thể hủy bỏ trong vòng 24h',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Xác nhận đặt hàng',
+                    cancelButtonText: 'Hủy đặt hàng',
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        const cart = {
                             name,
                             email,
                             phone,
@@ -204,43 +194,60 @@ $(document).ready(function ($) {
                             tax_no,
                             company_adress,
                             note,
-                            total,
                             lsCartItem,
-                        },
-                        success: function (rs) {
-                            console.log(rs);
-                            if (rs.success) {
-                                swalWithBootstrapButtons.fire(
-                                    'Cám ơn bạn đã đặt hàng',
-                                    'bạn đã thanh toán thành công',
-                                    'success',
-                                );
+                            total,
+                            method,
+                        };
+                        $.ajax({
+                            url: '/gio-hang/add-order',
+                            method: 'POST',
+                            data: {
+                                name,
+                                email,
+                                phone,
+                                address,
+                                company_name,
+                                tax_no,
+                                company_adress,
+                                note,
+                                total,
+                                lsCartItem,
+                            },
+                            success: function (rs) {
+                                console.log(rs);
+                                if (rs.success) {
+                                    swalWithBootstrapButtons.fire(
+                                        'Cám ơn bạn đã đặt hàng',
+                                        'bạn đã thanh toán thành công',
+                                        'success',
+                                    );
 
-                                localStorage.removeItem('shopping-cart');
+                                    localStorage.removeItem('shopping-cart');
 
-                                window.setTimeout(function () {
-                                    location.reload();
-                                }, 3000);
-                            } else {
-                                swalWithBootstrapButtons.fire(
-                                    'Vui lòng điền đầy đủ thông tin trước khi đặt hàng',
-                                    'Thanh toán không thành công',
-                                    'error',
-                                );
+                                    window.setTimeout(function () {
+                                        location.reload();
+                                    }, 3000);
+                                } else {
+                                    swalWithBootstrapButtons.fire(
+                                        'Vui lòng điền đầy đủ thông tin trước khi đặt hàng',
+                                        'Thanh toán không thành công',
+                                        'error',
+                                    );
 
-                                window.setTimeout(function () {
-                                    location.reload();
-                                }, 3000);
-                            }
-                        },
-                    });
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
-                    swalWithBootstrapButtons.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
-                }
-            });
+                                    window.setTimeout(function () {
+                                        location.reload();
+                                    }, 3000);
+                                }
+                            },
+                        });
+                    } else if (
+                        /* Read more about handling dismissals below */
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+                    }
+                });
+        }
     });
 });
 

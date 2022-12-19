@@ -22,51 +22,77 @@
             <div class='card shadow'>
                 <div class='card-header d-flex justify-content-between'>
                     <h4>{{pageName}}</h4>
-                    <a type="button" href="/admin/category/create" class="btn btn-success">+ Thêm danh mục</a>
+                    <a type='button' href='/admin/category/create' class='btn btn-success'>+ Thêm danh mục</a>
                 </div>
                 <div class='card-body'>
-                    <form action="/admin/category/delete/" class='form delete-form' method='POST'>
-                        <fieldset>
-                            <!-- Text input-->
-                            
+                    <fieldset>
+                        <!-- Text input-->
+                        <div class='level1-box form-group'>
+                            <label class='control-label text-uppercase' for='level1'>DANH MỤC CẤP 1</label>
+                            <select id='level1' name='level1' class='form-control'>
+                                <option value=''>Chọn danh mục...</option>
+                                {{#each level1}}
+                                    <option value='{{_id}}'>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class='level2-box form-group d-none'>
+                            <label class='control-label text-uppercase' for='level2'>DANH MỤC CẤP 2</label>
+                            <select id='level2' name='level2' class='form-control'>
+                                <option value=''>Chọn danh mục...</option>
+                                {{#each level2}}
+                                    <option value='{{_id}}'>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class='level3-box form-group d-none'>
+                            <label class='control-label text-uppercase' for='level3'>DANH MỤC CẤP 3</label>
+                            <select id='level3' name='level3' class='form-control'>
+                                <option value=''>Chọn danh mục...</option>
+                                {{#each level3}}
+                                    <option value='{{_id}}'>{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
 
-                            <div class='level1-box form-group'>
-                                <label class='control-label text-uppercase ' for='level1'>DANH MỤC CẤP 1</label>
-                                <select id='level1' name='level1' class='form-control'>
-                                    <option value=''>Chọn danh mục...</option>
-                                    {{#each level1}}
-                                            <option value='{{_id}}'>{{name}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                            <div class='level2-box form-group d-none'>
-                                <label class='control-label text-uppercase' for='level2'>DANH MỤC CẤP 2</label>
-                                <select id='level2' name='level2' class='form-control'>
-                                    <option value=''>Chọn danh mục...</option>
-                                    {{#each level2}}
-                                            <option value='{{_id}}'>{{name}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
-                            <div class='level3-box form-group d-none'>
-                                <label class='control-label text-uppercase' for='level3'>DANH MỤC CẤP 3</label>
-                                <select id='level3' name='level3' class='form-control'>
-                                    <option value=''>Chọn danh mục...</option>
-                                    {{#each level3}}
-                                            <option value='{{_id}}'>{{name}}</option>
-                                    {{/each}}
-                                </select>
-                            </div>
+                        <!-- Text input-->
+                        <div class='form-footer'>
+                            <button
+                                type='button'
+                                data-toggle='modal'
+                                data-target='#deleteModal'
+                                class='delCategory btn btn-danger'
+                            >
+                                Xoá danh mục</button>
+                        </div>
 
-                            <!-- Text input-->
-                            <div class='form-footer'>
-                                <button type='submit' class='delCategory btn btn-danger'>Xoá danh mục</button>
-                            </div>
-
-                        </fieldset>
-                    </form>
+                    </fieldset>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class='modal fade' id='deleteModal'>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Xóa danh mục</h5>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+            </div>
+            <form action='/admin/category/delete/' class='form delete-form' method='POST'>
+
+                <div class='modal-body'>
+                    Lưu ý khi xóa danh mục này các danh mục thuộc danh mục và sản phẩm của danh mục này sẽ bị xóa vĩnh
+                    viễn. Bạn có muốn xóa danh mục này ?
+                </div>
+                <div class='modal-footer'>
+                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>Hủy</button>
+                    <button type='submit' id='deleteBtn' class='btn btn-danger'>Xóa</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

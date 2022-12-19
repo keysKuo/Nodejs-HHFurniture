@@ -93,30 +93,31 @@ const Controller_Home = {
         };
 
         let data = await lsQuery(options);
-        // let level1 = await API_Category.readMany({ level: 1 });
-        // let level2 = await API_Category.readMany({ level: 2 });
-        // let level3 = await API_Category.readMany({ level: 3 });
-        // let makeTree = (cat, parent) => {
-        //     let node = {
-        //         title: parent.name,
-        //         slug: '/danh-muc-san-pham/' + parent.slug,
-        //         items: [],
-        //     };
-        //     cat.filter((n) => n.parent?.slug === parent?.slug).forEach((n) => {
-        //         return node.items.push({ title: n.name, slug: '/danh-muc-san-pham/' + n.slug, items: [] });
-        //     });
-        //     return node;
-        // };
-        // level1.forEach((n) => {
-        //     let result = makeTree(level2, n);
-        //     lsCat.map((n) => {
-        //         if (n.title == 'Sản phẩm') {
-        //             n.items.push(result);
-        //         }
-        //     });
-        // });
+        let cat = await API_Category.readMany();
+        console.log(cat);
+        // function list_to_tree(list) {
+        //     var map = {},
+        //         node,
+        //         roots = [],
+        //         i;
 
-        // return res.json({data: data});
+        //     for (i = 0; i < list.length; i += 1) {
+        //         map[list[i].id] = i; // initialize the map
+        //         list[i].children = []; // initialize the children
+        //     }
+
+        //     for (i = 0; i < list.length; i += 1) {
+        //         node = list[i];
+        //         if (node.parentId !== '0') {
+        //             // if you have dangling branches check that map[node.parentId] exists
+        //             list[map[node.parent]]?.children.push(node);
+        //         } else {
+        //             roots.push(node);
+        //         }
+        //     }
+        //     return roots;
+        // }
+        // console.log(list_to_tree(level1));
 
         return res.render('pages/home', {
             layout: 'main',
@@ -138,7 +139,32 @@ const Controller_Home = {
         });
     },
     // [GET] /ban-tin
-    GET_News: async (req, res, next) => {},
+    GET_News: async (req, res, next) => {
+        const meta = {
+            title: 'Bản tin – H&H Furniture',
+            desc: 'Bản tin H&H Furniture',
+            keywords: 'Homepage, đồ nội thất',
+        };
+        const page = parseInt(req.query.page) || 1;
+
+        const options = {
+            limit: 20,
+            skip: 20 * (page - 1),
+            select: {
+                content: 0,
+            },
+        };
+        var lsPostNews = await API_News.readMany({}, options);
+
+        return res.render('pages/news', {
+            layout: 'main',
+            template: 'news-template',
+            meta,
+            lsSubCat,
+            lsCat,
+            lsPostNews,
+        });
+    },
     // [GET] /contact
     GET_Contact: async (req, res, next) => {
         const meta = {
@@ -146,6 +172,7 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+
         return res.render('pages/contact', {
             layout: 'main',
             template: 'contact-template',
