@@ -12,7 +12,6 @@ const Controller_Cart = {
             template: 'khuyen-mai-template',
             meta,
             lsSubCat,
-            lsCat,
         });
     },
 

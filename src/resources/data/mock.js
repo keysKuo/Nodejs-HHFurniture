@@ -262,65 +262,6 @@ module.exports = {
     lsProductDenTrangTri: lsProduct12,
     lsProductDoTrangTri: lsProduct12,
     lsProductSearch: lsProduct12,
-    lsCat: [
-        {
-            title: 'Về H & H',
-            items: [
-                {
-                    title: 'Giới thiệu',
-                    slug: '/gioi-thieu',
-                },
-                {
-                    title: 'Liên hệ',
-                    slug: '/contact',
-                },
-            ],
-            isExpanded: true,
-        },
-        {
-            title: 'Sản phẩm',
-            items: [
-                // {
-                //     title: 'Đồ nội thất',
-                //     slug: '/danh-muc-san-pham/do-noi-that',
-                // },
-                // {
-                //     title: 'Thiết bị vệ sinh',
-                //     slug: '/danh-muc-san-pham',
-                // },
-                // {
-                //     title: 'Đèn trang trí',
-                //     slug: '/danh-muc-san-pham',
-                // },
-                // {
-                //     title: 'Đồ trang trí',
-                //     slug: '/danh-muc-san-pham',
-                // },
-            ],
-            isExpanded: true,
-        },
-        {
-            title: 'Bản tin H & H',
-            slug: '/ban-tin',
-        },
-        {
-            title: 'Chính sách',
-            items: [
-                { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐẠI LÝ' },
-                { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH CỘNG TÁC VIÊN' },
-                { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH GIAO HÀNG' },
-                { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH' },
-                { slug: '/chinh-sach/chinh-sach-dai-ly', title: ' QUY TRÌNH BÁN HÀNG' },
-            ],
-            isExpanded: true,
-        },
-        {
-            title: 'Khuyến mãi',
-            slug: '/khuyen-mai',
-            isExpanded: false,
-            isHot: true,
-        },
-    ],
 
     lsSubCat: [
         {

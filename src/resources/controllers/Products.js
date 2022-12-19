@@ -5,7 +5,6 @@ require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
 
 const {
-    lsCat,
     lsSubCat,
     lsProductRelated,
     lsProductDiscount,
@@ -260,7 +259,6 @@ const Controller_Products = {
                 layout: 'main',
                 template: 'san-pham-template',
                 lsSubCat,
-                lsCat,
                 meta,
 
                 // BE trả về
@@ -285,7 +283,6 @@ const Controller_Products = {
     //         layout: 'main',
     //         template: 'san-pham-template',
     //         lsSubCat,
-    //         lsCat,
     //         product,
     //         meta,
     //         lsProduct,
@@ -340,7 +337,6 @@ const Controller_Products = {
             template: 'search-template',
             meta,
             lsSubCat,
-            lsCat,
             lsProductSearch: products,
             pagination: {
                 page: page, // The current page the user is on

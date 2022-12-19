@@ -16,65 +16,6 @@ const {
     lsCartItem,
 } = require('../data/mock');
 const lsQuery = require('../utils/lsQuery');
-let lsCat = [
-    {
-        title: 'Về H & H',
-        items: [
-            {
-                title: 'Giới thiệu',
-                slug: '/gioi-thieu',
-            },
-            {
-                title: 'Liên hệ',
-                slug: '/contact',
-            },
-        ],
-        isExpanded: true,
-    },
-    {
-        title: 'Sản phẩm',
-        items: [
-            {
-                title: 'Đồ nội thất',
-                slug: '/danh-muc-san-pham/do-noi-that',
-            },
-            {
-                title: 'Thiết bị vệ sinh',
-                slug: '/danh-muc-san-pham',
-            },
-            {
-                title: 'Đèn trang trí',
-                slug: '/danh-muc-san-pham',
-            },
-            {
-                title: 'Đồ trang trí',
-                slug: '/danh-muc-san-pham',
-            },
-        ],
-        isExpanded: true,
-    },
-    {
-        title: 'Bản tin H & H',
-        slug: '/ban-tin',
-    },
-    {
-        title: 'Chính sách',
-        items: [
-            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐẠI LÝ' },
-            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH CỘNG TÁC VIÊN' },
-            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH GIAO HÀNG' },
-            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH' },
-            { slug: '/chinh-sach/chinh-sach-dai-ly', title: ' QUY TRÌNH BÁN HÀNG' },
-        ],
-        isExpanded: true,
-    },
-    {
-        title: 'Khuyến mãi',
-        slug: '/khuyen-mai',
-        isExpanded: false,
-        isHot: true,
-    },
-];
 const Controller_Home = {
     // [GET] /
     GET_Homepage: async (req, res, next) => {
@@ -123,7 +64,6 @@ const Controller_Home = {
             layout: 'main',
             template: 'home-template',
             meta,
-            lsCat,
             doitacs,
             introduce,
             lsSubCat,
@@ -161,7 +101,6 @@ const Controller_Home = {
             template: 'news-template',
             meta,
             lsSubCat,
-            lsCat,
             lsPostNews,
         });
     },
@@ -178,7 +117,6 @@ const Controller_Home = {
             template: 'contact-template',
             meta,
             lsSubCat,
-            lsCat,
         });
     },
     // [GET] /khuyen-mai
@@ -203,7 +141,6 @@ const Controller_Home = {
             layout: 'main',
             template: 'khuyen-mai-template',
             lsSubCat,
-            lsCat,
             meta,
 
             // BE trả về
@@ -261,7 +198,6 @@ const Controller_Home = {
             template: 'payment-template',
             meta,
             lsSubCat,
-            lsCat,
 
             // BE trả về
             lsCart,
@@ -283,7 +219,6 @@ const Controller_Home = {
             template: 'policy-template',
             meta,
             lsSubCat,
-            lsCat,
 
             /// BE trả về
             policy,
@@ -303,7 +238,6 @@ const Controller_Home = {
             template: 'policy-template',
             meta,
             lsSubCat,
-            lsCat,
         });
     },
 
@@ -321,7 +255,6 @@ const Controller_Home = {
             template: 'search-template',
             meta,
             lsSubCat,
-            lsCat,
             lsProductSearch,
             pagination: {
                 page: page, // The current page the user is on

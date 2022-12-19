@@ -248,7 +248,6 @@ const Controller_News = {
             template: 'policy-template',
             meta,
             lsSubCat,
-            lsCat,
 
             /// BE trả về
             post,

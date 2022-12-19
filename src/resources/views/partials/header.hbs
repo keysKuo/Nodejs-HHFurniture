@@ -50,39 +50,81 @@
                         {{! </form> }}
                     </div>
                     <ul class='nav justify-content-center menu_container mt-3'>
-                        {{#each lsCat}}
-                            <li class='nav-item dropdown menu_item'>
-                                {{#if isExpanded}}
-                                    <a
-                                        class='nav-link dropdown-toggle'
-                                        data-bs-toggle='dropdown'
-                                        href='{{slug}}'
-                                        role='button'
-                                        aria-expanded='false'
-                                    >{{title}}
-                                        <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                        <li class='nav-item dropdown menu_item'>
+                            <a
+                                class='nav-link dropdown-toggle'
+                                data-bs-toggle='dropdown'
+                                href=''
+                                role='button'
+                                aria-expanded='false'
+                            >Về H & H
+                                <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                            </a>
 
-                                        {{#if isHot}}
-                                            <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
-                                        {{/if}}
-                                    </a>
-                                {{else}}
-                                    <a class='nav-link' href='{{slug}}'>{{title}}
-                                        {{#if isHot}}
-                                            <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
-                                        {{/if}}
-                                    </a>
-                                {{/if}}
+                            <ul class='dropdown-menu'>
+                                <li><a class='dropdown-item' href='/gioi-thieu'>Giới thiệu</a></li>
+                                <li><a class='dropdown-item' href='/contact'>Liên hệ</a></li>
+                            </ul>
+                        </li>
 
-                                {{#if isExpanded}}
-                                    <ul class='dropdown-menu'>
-                                        {{#each items}}
-                                            <li><a class='dropdown-item' href='{{slug}}'>{{title}}</a></li>
-                                        {{/each}}
-                                    </ul>
-                                {{/if}}
-                            </li>
-                        {{/each}}
+                        <li class='nav-item dropdown menu_item'>
+                            <a
+                                class='nav-link dropdown-toggle'
+                                data-bs-toggle='dropdown'
+                                href=''
+                                role='button'
+                                aria-expanded='false'
+                            >Sản phẩm
+                                <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                            </a>
+
+                            <ul class='dropdown-menu'>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-noi-that'>
+                                        Đồ nội thất</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/thiet-bi-ve-sinh'>
+                                        Thiết bị vệ sinh</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/den-trang-tri'>
+                                        Đèn trang trí</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-trang-tri'>
+                                        Đồ trang trí</a></li>
+                            </ul>
+                        </li>
+
+                        <li class='nav-item dropdown menu_item'>
+                            <a class='nav-link' href='/ban-tin'>
+                                Bản tin H & H
+                            </a>
+                        </li>
+                        <li class='nav-item dropdown menu_item'>
+                            <a
+                                class='nav-link dropdown-toggle'
+                                data-bs-toggle='dropdown'
+                                href=''
+                                role='button'
+                                aria-expanded='false'
+                            >Chính sách
+                                <span class='sub-arrow'><i class='fas fa-caret-down'></i></span>
+                            </a>
+
+                            <ul class='dropdown-menu'>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-noi-that'>
+                                        CHÍNH SÁCH ĐẠI LÝ</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/thiet-bi-ve-sinh'>
+                                        CHÍNH SÁCH CỘNG TÁC VIÊN</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/den-trang-tri'>
+                                        CHÍNH SÁCH GIAO HÀNG</a></li>
+                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-trang-tri'>
+                                        CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH</a>
+                                </li><li><a class='dropdown-item' href='/danh-muc-san-pham/do-trang-tri'>
+                                        QUY TRÌNH BÁN HÀNG</a></li>
+                            </ul>
+                        </li>
+                        <li class='nav-item dropdown menu_item'>
+                            <a class='nav-link' href='/khuyen-mai'>Khuyến mãi
+                                <img src='/images/hot-icon-menu-item.png' class='hot-img' width='50' />
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
                 <div class='col-md-3 m-auto'>

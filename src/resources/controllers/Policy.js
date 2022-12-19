@@ -2,7 +2,7 @@ const { API_Policy } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const ImageContent = require('../models/ImageContent');
 const fileapis = require('../middlewares/fileapis');
-const { lsCat, lsSubCat, policy } = require('../data/mock');
+const { lsSubCat, policy } = require('../data/mock');
 const Controller_Policy = {
     // [GET] /admin/policy/create
     GET_createPolicy: async (req, res, next) => {
