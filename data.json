@@ -1,36 +1,29 @@
-{
-    "lsCartItem": {
-        "items": {
-            "product": {
-                "productId": "ABC",
-                "size": "B 1000*500*800",
-                "price": "2000000",
-                "material": "gỗ kim loại",
-                "color": "xanh",
-                "img": "abc.jpg",
-                "slug": "do-noi-that"
+[
+    {
+        "name": "",
+        "slug": "",
+        "children": [
+            {
+                "name": "",
+                "slug": "",
+                "children": [{ "name": "", "slug": "", "children": [] }]
             },
-            "rate": "10%",
-            "quantity": "5",
-            "discount": "3600000",
-            "total": "4000000"
-        },
-        "items": {
-            "product": {
-                "productId": "ABC",
-                "size": "B 1000*500*800",
-                "price": "2000000",
-                "material": "gỗ kim loại",
-                "color": "xanh",
-                "img": "abc.jpg",
-                "slug": "do-noi-that"
-            },
-            "rate": "10%",
-            "quantity": "6",
-            "discount": "3600000",
-            "total": "4000000"
-        },
-        "shippingFee": "20000",
-        "subTotal": "8000000"
+            {
+                "name": "",
+                "slug": "",
+                "children": [{ "name": "", "slug": "", "children": [] }]
+            }
+        ]
+    },
+    {
+        "name": "",
+        "slug": "",
+        "children": [
+            {
+                "name": "",
+                "slug": "",
+                "children": [{ "name": "", "slug": "", "children": [] }]
+            }
+        ]
     }
-}
+]

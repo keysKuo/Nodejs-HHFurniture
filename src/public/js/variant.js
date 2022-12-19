@@ -129,8 +129,21 @@ $(document).ready(function () {
     let size;
 
     let currentSize = $('#sizeSelect').val();
+    let currentColor = $('#colorSelect').val();
+    let currentMaterial = $('#materialSelect').val();
     if ($('#variantProductSize li:first').data('size') == currentSize) {
         $('#variantProductSize li:first').addClass('ui-selected');
+        $('#variantProductSize li:first').addClass('ui-selected');
+    }
+
+    if ($('#variantProductColor li:first').data('color') == currentColor) {
+        $('#variantProductColor li:first').addClass('ui-selected');
+        $('#variantProductColor li:first').addClass('ui-selected');
+    }
+
+    if ($('#variantProductMaterial li:first').data('material') == currentMaterial) {
+        $('#variantProductMaterial li:first').addClass('ui-selected');
+        $('#variantProductMaterial li:first').addClass('ui-selected');
     }
     $('#variantProductMaterial').selectable({
         selected: function () {

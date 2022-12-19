@@ -55,8 +55,12 @@
 }
 
 .chose {
-    background-color: white;
-    color: black !important;
+    color: white;
+}
+
+.product-detail-item .ui-selected a {
+    color: var(--background) !important;
+    background-color: #ffffff;
 }
 body {
     background-color: var(--background);

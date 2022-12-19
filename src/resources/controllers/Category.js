@@ -3,7 +3,6 @@ const { API_Products, API_Category, API_News } = require('../apis');
 const {
     doitacs,
     introduce,
-    lsCat,
     lsSubCat,
     lsPostProject,
     lsProductByCategory,
@@ -90,7 +89,7 @@ const Controller_Category = {
 
         await API_Category.readOne({ slug: data.slug }).then((cate) => {
             if (cate) {
-                // console.log(cate);
+                console.log(cate);
                 data.slug = createSlug(name + ' ' + cate.parent.parent.name, {});
             }
         });
@@ -237,7 +236,6 @@ const Controller_Category = {
                 template: 'category-template',
                 meta,
                 lsSubCat,
-                lsCat,
                 pagination: {
                     page: page, // The current page the user is on
                     pageCount: 12, // The total number of available pages
