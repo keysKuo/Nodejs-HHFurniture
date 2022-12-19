@@ -1,5 +1,5 @@
 const BASE_URL = process.env.BASE_URL;
-const { API_Products, API_News, API_Category } = require('../apis');
+const { API_Products, API_News, API_Category, API_Policy } = require('../apis');
 const {
     doitacs,
     introduce,
@@ -16,6 +16,65 @@ const {
     lsCartItem,
 } = require('../data/mock');
 const lsQuery = require('../utils/lsQuery');
+let lsCat = [
+    {
+        title: 'Về H & H',
+        items: [
+            {
+                title: 'Giới thiệu',
+                slug: '/gioi-thieu',
+            },
+            {
+                title: 'Liên hệ',
+                slug: '/contact',
+            },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Sản phẩm',
+        items: [
+            {
+                title: 'Đồ nội thất',
+                slug: '/danh-muc-san-pham/do-noi-that',
+            },
+            {
+                title: 'Thiết bị vệ sinh',
+                slug: '/danh-muc-san-pham',
+            },
+            {
+                title: 'Đèn trang trí',
+                slug: '/danh-muc-san-pham',
+            },
+            {
+                title: 'Đồ trang trí',
+                slug: '/danh-muc-san-pham',
+            },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Bản tin H & H',
+        slug: '/ban-tin',
+    },
+    {
+        title: 'Chính sách',
+        items: [
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐẠI LÝ' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH CỘNG TÁC VIÊN' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH GIAO HÀNG' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: 'CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH' },
+            { slug: '/chinh-sach/chinh-sach-dai-ly', title: ' QUY TRÌNH BÁN HÀNG' },
+        ],
+        isExpanded: true,
+    },
+    {
+        title: 'Khuyến mãi',
+        slug: '/khuyen-mai',
+        isExpanded: false,
+        isHot: true,
+    },
+];
 const Controller_Home = {
     // [GET] /
     GET_Homepage: async (req, res, next) => {
@@ -34,7 +93,22 @@ const Controller_Home = {
         };
 
         let data = await lsQuery(options);
-        let cat = await API_Category.readMany();
+        ls2 = await API_Category.readMany({level: 2})
+        ls3 = await API_Category.readMany({level: 3})
+
+        let lsCat = await API_Category.readMany({level: 1})
+            .then(async ls => {
+                for(let i = 0; i < ls.length; i++) {
+                    ls[i].children = ls2.filter(cate => cate.parent = ls[i]._id);
+                    for (let j = 0; j < ls[i].children.length; j++) {
+                        ls[i].children[j].children = ls3.filter(cate => cate.parent = ls[i].children[j]._id);
+                    }
+                }
+                return ls
+            })
+        
+            
+        let lsPolicy = API_Policy.readMany({},{})
         // console.log(cat);
         // function list_to_tree(list) {
         //     var map = {},
@@ -64,10 +138,11 @@ const Controller_Home = {
             layout: 'main',
             template: 'home-template',
             meta,
+            lsCat,
             doitacs,
             introduce,
             lsSubCat,
-
+            lsPolicy,
             // BE trả về
             lsProductDoNoiThat: data.lsProductDoNoiThat,
             lsProductThietBiVeSinh: data.lsProductThietBiVeSinh,
@@ -101,6 +176,7 @@ const Controller_Home = {
             template: 'news-template',
             meta,
             lsSubCat,
+            lsCat,
             lsPostNews,
         });
     },
@@ -117,6 +193,7 @@ const Controller_Home = {
             template: 'contact-template',
             meta,
             lsSubCat,
+            lsCat,
         });
     },
     // [GET] /khuyen-mai
@@ -141,6 +218,7 @@ const Controller_Home = {
             layout: 'main',
             template: 'khuyen-mai-template',
             lsSubCat,
+            lsCat,
             meta,
 
             // BE trả về
@@ -198,6 +276,7 @@ const Controller_Home = {
             template: 'payment-template',
             meta,
             lsSubCat,
+            lsCat,
 
             // BE trả về
             lsCart,
@@ -219,6 +298,7 @@ const Controller_Home = {
             template: 'policy-template',
             meta,
             lsSubCat,
+            lsCat,
 
             /// BE trả về
             policy,
@@ -238,6 +318,7 @@ const Controller_Home = {
             template: 'policy-template',
             meta,
             lsSubCat,
+            lsCat,
         });
     },
 
@@ -255,6 +336,7 @@ const Controller_Home = {
             template: 'search-template',
             meta,
             lsSubCat,
+            lsCat,
             lsProductSearch,
             pagination: {
                 page: page, // The current page the user is on
