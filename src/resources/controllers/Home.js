@@ -95,19 +95,28 @@ const Controller_Home = {
         let data = await lsQuery(options);
         ls2 = await API_Category.readMany({level: 2})
         ls3 = await API_Category.readMany({level: 3})
-
+            
         let lsCat = await API_Category.readMany({level: 1})
             .then(async ls => {
                 for(let i = 0; i < ls.length; i++) {
-                    ls[i].children = ls2.filter(cate => cate.parent = ls[i]._id);
-                    for (let j = 0; j < ls[i].children.length; j++) {
-                        ls[i].children[j].children = ls3.filter(cate => cate.parent = ls[i].children[j]._id);
+                    ls[i].children = ls2.filter(cate => {
+                        if (cate.parent != null) {
+                            return cate.parent._id.toString() == ls[i]._id.toString()
+                        }
+                    });
+                    
+                    for (let j = 0; j < ls[i].children.length; j++) {                       
+                        ls[i].children[j].children = ls3.filter(cate => {
+                            if(cate.parent != null) {
+                                return cate.parent._id.toString() == ls[i].children[j]._id.toString();
+                            }               
+                        })
                     }
+                 
                 }
                 return ls
             })
         
-            
         let lsPolicy = API_Policy.readMany({},{})
         // console.log(cat);
         // function list_to_tree(list) {
