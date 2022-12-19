@@ -94,7 +94,7 @@ const Controller_Home = {
 
         let data = await lsQuery(options);
         let cat = await API_Category.readMany();
-        console.log(cat);
+        // console.log(cat);
         // function list_to_tree(list) {
         //     var map = {},
         //         node,

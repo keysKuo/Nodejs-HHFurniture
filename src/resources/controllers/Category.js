@@ -90,7 +90,7 @@ const Controller_Category = {
 
         await API_Category.readOne({ slug: data.slug }).then((cate) => {
             if (cate) {
-                console.log(cate);
+                // console.log(cate);
                 data.slug = createSlug(name + ' ' + cate.parent.parent.name, {});
             }
         });
