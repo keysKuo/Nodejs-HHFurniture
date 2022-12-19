@@ -254,12 +254,14 @@ body {
     margin-top: 0;
     padding: 0px;
 }
-.menu_container .dropdown-menu .dropdown-item {
+.menu_container .dropdown-menu .dropdown-item,
+.menu_container .submenu .dropdown-item {
     color: black;
     font-size: 14px;
     text-transform: capitalize;
 }
-.menu_container .dropdown-menu .dropdown-item:hover {
+.menu_container .dropdown-menu .dropdown-item:hover,
+.menu_container .submenu .dropdown-item:hover {
     background-color: var(--orange);
     color: white;
 }
@@ -2436,4 +2438,43 @@ a.checkout-button:hover {
 }
 .styleTitle {
     font-size: 25px;
+}
+.dropdown-menu li:hover > ul.submenu {
+    display: block;
+    list-style: none;
+    background-color: #fff;
+    top: 0;
+    left: 100%;
+
+    z-index: 1000;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+}
+
+.dropdown-menu ul.submenu {
+    top: 100%;
+    left: 0;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+.dropdown-menu ul.submenu .submenu {
+    top: -0.5em;
+    left: 100%;
+    font-size: 1em;
+}
+.dropdown-menu ul.submenu li {
+    font-size: 0.9rem;
+}
+.dropdown-menu ul {
+    display: none;
+    position: absolute;
 }
