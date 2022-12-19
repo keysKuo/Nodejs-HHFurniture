@@ -43,7 +43,7 @@ $(document).ready(function ($) {
         var price = selected.data('price');
         var discount = selected.data('discount');
         var rate = selected.data('rate');
-        var color = selected.data('color');
+        var color = $('#variantProductColor .ui-selected').data('color');
         var size = selected.data('size');
         const cartItem = {
             product: {
@@ -101,6 +101,13 @@ $(document).ready(function ($) {
 
         if (checkID) {
             changeNumberOfUnit(id, qtySold, 'minus');
+            if (value <= 0) {
+                shoppingCart = shoppingCart.filter((item) => {
+                    item = JSON.parse(item);
+                    return item.product.slug != id;
+                });
+            }
+            updateShoppingCart();
             renderTotalPrice();
         }
     });
