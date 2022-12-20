@@ -127,16 +127,10 @@
                             </a>
 
                             <ul class='dropdown-menu'>
-                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-noi-that'>
-                                        CHÍNH SÁCH ĐẠI LÝ</a></li>
-                                <li><a class='dropdown-item' href='/danh-muc-san-pham/thiet-bi-ve-sinh'>
-                                        CHÍNH SÁCH CỘNG TÁC VIÊN</a></li>
-                                <li><a class='dropdown-item' href='/danh-muc-san-pham/den-trang-tri'>
-                                        CHÍNH SÁCH GIAO HÀNG</a></li>
-                                <li><a class='dropdown-item' href='/danh-muc-san-pham/do-trang-tri'>
-                                        CHÍNH SÁCH ĐỔI TRẢ – BẢO HÀNH</a>
-                                </li><li><a class='dropdown-item' href='/danh-muc-san-pham/do-trang-tri'>
-                                        QUY TRÌNH BÁN HÀNG</a></li>
+                                {{#each lsPolicy}}
+                                    <li><a class='dropdown-item' href='/chinh-sach/{{slug}}'>
+                                            {{title}}</a></li>
+                                {{/each}}
                             </ul>
                         </li>
                         <li class='nav-item dropdown menu_item'>

@@ -1,5 +1,5 @@
 const BASE_URL = process.env.BASE_URL;
-const { API_Products, API_Category, API_News } = require('../apis');
+const { API_Products, API_Category, API_News, API_Policy } = require('../apis');
 const {
     doitacs,
     introduce,
@@ -9,7 +9,7 @@ const {
     lsProductDiscount,
     lsProductBestSeller,
 } = require('../data/mock');
-const { getRelation, queryCategories, normalizeData } = require('../utils/categoryUtils');
+const { getRelation, queryCategories, normalizeData, getCatTree } = require('../utils/categoryUtils');
 const createSlug = require('../utils/createSlug');
 const reDistribute = require('../utils/reDistribute');
 const mongoose = require('mongoose');
@@ -231,11 +231,16 @@ const Controller_Category = {
             });
 
             const meta = { title: category.name, desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+            const lsCat = await getCatTree();
+            const lsPolicy = await API_Policy.readMany({}, {});
+
             return res.render('pages/category', {
                 layout: 'main',
                 template: 'category-template',
                 meta,
                 lsSubCat,
+                lsCat,
+                lsPolicy,
                 pagination: {
                     page: page, // The current page the user is on
                     pageCount: 12, // The total number of available pages

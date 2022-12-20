@@ -1,20 +1,13 @@
-const { API_Products, API_Category, API_News } = require('../apis');
+const { API_Products, API_Category, API_News, API_Policy } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
 const BASE_URL = process.env.BASE_URL;
 
-const {
-    lsSubCat,
-    lsProductRelated,
-    lsProductDiscount,
-    lsProductBestSeller,
-    lsPostProject,
-    product,
-} = require('../data/mock');
+const { lsSubCat } = require('../data/mock');
 const mongoose = require('mongoose');
 const reDistribute = require('../utils/reDistribute');
-const { getRelation, normalizeData, rollBackArr } = require('../utils/categoryUtils');
+const { getRelation, normalizeData, rollBackArr, getCatTree } = require('../utils/categoryUtils');
 
 // URLs
 const storageURL = '/admin/products/storage';
@@ -254,10 +247,15 @@ const Controller_Products = {
             });
             // return res.json({ data: lsPostProject });
             const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
+            const lsCat = await getCatTree();
+            const lsPolicy = await API_Policy.readMany({}, {});
+
             return res.render('pages/product', {
                 layout: 'main',
                 template: 'san-pham-template',
                 lsSubCat,
+                lsCat,
+                lsPolicy,
                 meta,
 
                 // BE trả về
@@ -270,23 +268,6 @@ const Controller_Products = {
             });
         }
     },
-
-    // [GET] /products/:slug
-    // GET_productDetail: async (req, res, next) => {
-    //     const slug = req.params.slug;
-
-    //     let product = await API_Products.readOne({ slug });
-    //     // product.frame = reDistribute(product);
-    //     const meta = { title: product.pname, desc: product.description, keywords: 'Homepage, đồ nội thất' };
-    //     return res.render('pages/products/detail', {
-    //         layout: 'main',
-    //         template: 'san-pham-template',
-    //         lsSubCat,
-    //         product,
-    //         meta,
-    //         lsProduct,
-    //     });
-    // },
 
     // [GET] /products/colection/:slug
     GET_productCollection: async (req, res, next) => {
@@ -307,6 +288,8 @@ const Controller_Products = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
 
         let products;
         if (key) {
@@ -336,6 +319,8 @@ const Controller_Products = {
             template: 'search-template',
             meta,
             lsSubCat,
+            lsCat,
+            lsPolicy,
             lsProductSearch: products,
             pagination: {
                 page: page, // The current page the user is on

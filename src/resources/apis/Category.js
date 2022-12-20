@@ -35,7 +35,7 @@ const API_Category = {
     },
 
     removeMany: async (idList) => {
-        return await Category.deleteMany({_id: idList});
+        return await Category.deleteMany({_id: {$in: idList }});
     }
 };
 

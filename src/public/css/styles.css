@@ -2467,7 +2467,7 @@ a.checkout-button:hover {
     padding-bottom: 0.5em;
 }
 .dropdown-menu ul.submenu .submenu {
-    top: -0.5em;
+    bottom: 0;
     left: 100%;
     font-size: 1em;
 }

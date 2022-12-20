@@ -1,17 +1,22 @@
 const BASE_URL = process.env.BASE_URL;
 const { uuid } = require('uuidv4');
-const { API_Products, API_Customers, API_Orders } = require('../apis');
+const { API_Products, API_Customers, API_Orders, API_Policy } = require('../apis');
 const { doitacs, introduce, lsCat, lsCartItem, lsSubCat, lsPost, posts, lsProduct } = require('../data/mock');
+const { getCatTree } = require('../utils/categoryUtils');
 
 const Controller_Cart = {
     GET_CartPage: async (req, res, next) => {
         const meta = { title: 'Giỏ hàng', desc: 'Trang chủ H&H Furniture', keywords: 'Homepage, đồ nội thất' };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
 
         return res.render('pages/cart', {
             layout: 'main',
             template: 'khuyen-mai-template',
             meta,
             lsSubCat,
+            lsCat,
+            lsPolicy,
         });
     },
 

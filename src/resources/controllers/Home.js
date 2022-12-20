@@ -15,6 +15,7 @@ const {
     policy,
     lsCartItem,
 } = require('../data/mock');
+const { getCatTree } = require('../utils/categoryUtils');
 const lsQuery = require('../utils/lsQuery');
 
 const Controller_Home = {
@@ -25,6 +26,8 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
 
         const options = {
             limit: 12,
@@ -35,21 +38,7 @@ const Controller_Home = {
         };
 
         let data = await lsQuery(options);
-        ls2 = await API_Category.readMany({ level: 2 });
-        ls3 = await API_Category.readMany({ level: 3 });
 
-        let lsCat = await API_Category.readMany({ level: 1 }).then(async (ls) => {
-            for (let i = 0; i < ls.length; i++) {
-                ls[i].children = ls2.filter((cate) => (cate.parent = ls[i]._id));
-                for (let j = 0; j < ls[i].children.length; j++) {
-                    ls[i].children[j].children = ls3.filter((cate) => (cate.parent = ls[i].children[j]._id));
-                }
-            }
-            return ls;
-        });
-
-        let lsPolicy = API_Policy.readMany({}, {});
-        console.log(lsCat);
         return res.render('pages/home', {
             layout: 'main',
             template: 'home-template',
@@ -76,6 +65,9 @@ const Controller_Home = {
             desc: 'Bản tin H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
+
         const page = parseInt(req.query.page) || 1;
 
         const options = {
@@ -93,6 +85,7 @@ const Controller_Home = {
             meta,
             lsSubCat,
             lsCat,
+            lsPolicy,
             lsPostNews,
         });
     },
@@ -103,13 +96,15 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
-
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
         return res.render('pages/contact', {
             layout: 'main',
             template: 'contact-template',
             meta,
             lsSubCat,
             lsCat,
+            lsPolicy,
         });
     },
     // [GET] /khuyen-mai
@@ -119,7 +114,8 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
-
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
         const options = {
             limit: 12,
             select: {
@@ -135,6 +131,7 @@ const Controller_Home = {
             template: 'khuyen-mai-template',
             lsSubCat,
             lsCat,
+            lsPolicy,
             meta,
 
             // BE trả về
@@ -186,6 +183,8 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
 
         return res.render('pages/checkout', {
             layout: 'main',
@@ -193,7 +192,7 @@ const Controller_Home = {
             meta,
             lsSubCat,
             lsCat,
-
+            lsPolicy,
             // BE trả về
             lsCart,
             lsCartItem, //done
@@ -203,19 +202,22 @@ const Controller_Home = {
 
     // [GET] /policy/:slug
     GET_PolicyPage: async (req, res, next) => {
+        let policy = await API_Policy.readOne({ slug: req.params.slug });
+
         const meta = {
             title: policy.title + ' – H&H Furniture',
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
-
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
         return res.render('pages/policy', {
             layout: 'main',
             template: 'policy-template',
             meta,
             lsSubCat,
             lsCat,
-
+            lsPolicy,
             /// BE trả về
             policy,
             ////////////
@@ -228,13 +230,15 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
-
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
         return res.render('pages/introduction', {
             layout: 'main',
             template: 'policy-template',
             meta,
             lsSubCat,
             lsCat,
+            lsPolicy,
         });
     },
 
@@ -245,6 +249,8 @@ const Controller_Home = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
         const page = parseInt(req.query.page) || 1;
 
         return res.render('pages/searchProduct', {
@@ -253,6 +259,7 @@ const Controller_Home = {
             meta,
             lsSubCat,
             lsCat,
+            lsPolicy,
             lsProductSearch,
             pagination: {
                 page: page, // The current page the user is on

@@ -1,4 +1,4 @@
-const { API_News } = require('../apis');
+const { API_News, API_Policy } = require('../apis');
 const createSlug = require('../utils/createSlug');
 const fileapis = require('../middlewares/fileapis');
 require('dotenv').config();
@@ -13,6 +13,7 @@ const deleteURL = '/admin/news/delete/';
 const previewURL = '/admin/news/preview/';
 
 const { lsCat, lsSubCat, post, lsPostRelated } = require('../data/mock');
+const { getCatTree } = require('../utils/categoryUtils');
 const Controller_News = {
     // [GET] /news
     GET_listNews: async (req, res, next) => {
@@ -41,10 +42,10 @@ const Controller_News = {
 
         let post = await API_News.readOne({ slug });
 
-        return res.render('pages/news/detail', {
+        return res.render('pages/post', {
             layout: 'main',
             pageName: post.title,
-            data: post,
+            post: post,
         });
     },
 
@@ -242,13 +243,16 @@ const Controller_News = {
             desc: 'Trang chủ H&H Furniture',
             keywords: 'Homepage, đồ nội thất',
         };
+        const lsCat = await getCatTree();
+        const lsPolicy = await API_Policy.readMany({}, {});
 
         return res.render('pages/post', {
             layout: 'main',
             template: 'policy-template',
             meta,
             lsSubCat,
-
+            lsCat,
+            lsPolicy,
             /// BE trả về
             post,
             lsPostRelated,

@@ -1,6 +1,6 @@
 {{#if isBanTin}}
     <div class='card blog border-0 work-container work-classic shadow rounded-md overflow-hidden'>
-        <img src='{{img}}' class='img-fluid work-image' alt='{{title}}' />
+        <img src='{{images}}' class='img-fluid work-image' alt='{{title}}' />
         <div class='card-body'>
             <div class='content'>
                 <h5 class='mt-3'>
@@ -14,7 +14,7 @@
                 </div>
                 <p class='text-muted'>
                     {{desc}}</p>
-                <a href='{{slug}}' class='h6 post__read-more'>
+                <a href='/ban-tin/{{slug}}' class='h6 post__read-more'>
                     Xem thêm »
                     <i class='uil uil-angle-right-b align-middle'></i></a>
             </div>
@@ -25,7 +25,7 @@
         class='card blog border-0 work-container work-classic shadow rounded-md overflow-hidden'
         style='background-color:black'
     >
-        <img src='{{img}}' class='img-fluid work-image' alt='{{title}}' />
+        <img src='{{images}}' class='img-fluid work-image' alt='{{title}}' />
         <div class='card-body p-0'>
             <div class='content'>
                 <h5 class='mt-3'>
@@ -51,7 +51,7 @@
                 <div class='post__thumbnail fit-height'><img
                         width='770'
                         height='293'
-                        src='{{img}}'
+                        src='{{images}}'
                         class='attachment-large size-large'
                         alt='{{title}}'
                     /></div>
