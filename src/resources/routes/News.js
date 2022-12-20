@@ -26,7 +26,7 @@ router.post('/upload', multipartMiddleware, (req, res) => {
         fs.readFile(req.files.upload.path, function (err, data) {
             let fileName = req.files.upload.name;
             let ext = fileName.substring(fileName.lastIndexOf('.'));
-            let newName = '/cke_uploads/' + uuid().substring(0,13) + ext;
+            let newName = './cke_uploads/' + uuid().substring(0,13) + ext;
             let newPath = './src/public' + newName;
             fs.writeFile(newPath, data, function (err) {
                 if (err) console.log({ err: err });
