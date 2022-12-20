@@ -5,7 +5,7 @@ const { upload2 } = require('../middlewares/multer');
 const { ImageContent } = require('../models');
 const multipart = require('connect-multiparty');
 const multipartMiddleware = multipart();
-const fs = require('fs');
+const fs = require('fs-extra');
 const { uuid } = require('uuidv4');
 
 router.get('/preview/:id', Controller_News.GET_previewNews);
