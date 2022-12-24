@@ -184,16 +184,16 @@
                                         class='product-detail-item list-unstyled mb-0 ms-3'
                                         id="variantProductColor"
                                         >                                        
-                                        {{#each product.classify.0.colors as |item|}}
+                                        {{#each product.classify as |item|}}
                                             <li class='list-inline-item'
-                                                data-color="{{item}}"
+                                                data-color="{{item.colors.[0]}}"
                                                 >
                                                 <a
                                                     id="color"
                                                     href='javascript:void(0)'
                                                     class='btn btn-icon btn-soft-primary chose'
-                                                    title="{{item}}"
-                                                >{{item}}</a>
+                                                    title="{{item.colors.[0]}}"
+                                                >{{item.colors.[0]}}</a>
                                             </li>
                                         {{/each}}
                                     </ul>

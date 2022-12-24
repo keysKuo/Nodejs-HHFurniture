@@ -12,7 +12,6 @@ $(document).ready(function () {
         $.each(attributes, function (i) {
             if ($('select[name="' + attributes[i] + '"]').length > 0) {
                 $('select[name="' + attributes[i] + '"]').on('change', function () {
-                    console.log('ádvsd');
                     attributeChange();
                     selectVariant($colorSelect.val(), $sizeSelect.val());
                 });
@@ -74,33 +73,6 @@ $(document).ready(function () {
         });
 
         updatePrice($selectedOption);
-    }
-
-    function disableSoldOutOptions() {
-        var $variants = $variantSelect.find('option');
-        for (i = 0; i < attributes.length; ++i) {
-            if ($('select[name="' + attributes[i] + '"]').length > 0) {
-                $('select[name="' + attributes[i] + '"]')
-                    .find('option')
-                    .each(function () {
-                        var $opt = $(this);
-                        var found = false;
-
-                        $variants.each(function () {
-                            if (
-                                $(this).data('out-of-stock') !== true &&
-                                String($(this).data(attributes[i])) === $opt.val()
-                            ) {
-                                found = true;
-                            }
-                        });
-
-                        if (!found) {
-                            $opt.attr('disabled', 'disabled');
-                        }
-                    });
-            }
-        }
     }
 
     const formatCurrency = (price) => {

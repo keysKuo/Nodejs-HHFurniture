@@ -250,6 +250,7 @@ const Controller_Products = {
             const lsCat = await getCatTree();
             const lsPolicy = await API_Policy.readMany({}, {});
 
+            console.log(product);
             return res.render('pages/product', {
                 layout: 'main',
                 template: 'san-pham-template',
