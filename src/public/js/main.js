@@ -35,7 +35,7 @@ $(document).ready(function ($) {
             },
             769: {
                 nav: true,
-                items: 4,
+                items: 5,
             },
         },
     });
