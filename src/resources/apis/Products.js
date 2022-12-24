@@ -1,4 +1,13 @@
 const { Products } = require('../models');
+const { google } = require('googleapis');
+const keys = require('../../config/hhfurniture-fef7435f6151.json');
+const client = new google.auth.JWT(
+    keys.client_email,
+    null,
+    keys.private_key,
+    ['https://www.googleapis.com/auth/spreadsheets']
+)
+
 // CRUD
 const API_Products = {
     create: async (data) => {
@@ -33,6 +42,39 @@ const API_Products = {
         return await Products.findByIdAndRemove(id);
     },
 
+    updateByPID: async (pid, data) => {
+        return Products.findOneAndUpdate({pid: {$in: pid}}, data);
+    },
+
+    updateSheet: async (data) => {
+        client.authorize((err, tokens) => {
+            if(err) {
+                console.log(err);
+                return;
+            }
+            else {
+                console.log('Connected');
+                gsrun(client,data);
+            }
+        })
+    }
 };
+
+
+
+async function gsrun(cl, data) {
+    const gsapi = google.sheets({version: 'v4', auth: cl});
+        
+    const updateOptions = {
+        spreadsheetId: '1tKCy3CrwUQP-WXscHNqbv7acOlAGagRFCfzgZc-Wvs0',
+        range: 'Sheet1!A2',
+        valueInputOption: 'USER_ENTERED',
+        resource: { values: data }
+    }
+
+    let res = await gsapi.spreadsheets.values.update(updateOptions);
+    console.log(res)
+}
+
 
 module.exports = API_Products;
