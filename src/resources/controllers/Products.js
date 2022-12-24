@@ -82,7 +82,7 @@ const Controller_Products = {
         await API_Products.create({ ...data, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
-                return res.redirect(storageURL);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 fileapis.removeDirectory(BASE_URL + 'products/' + data.pdir, (err) => {
@@ -104,7 +104,7 @@ const Controller_Products = {
                     console.log('Thư mục này không còn tồn tại: ' + err);
                 });
                 req.flash('success', 'Xóa sản phẩm thành công');
-                return res.redirect(storageURL);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 req.flash('error', 'Xóa sản phẩm thất bại:' + err);
@@ -172,7 +172,7 @@ const Controller_Products = {
                     }
                 }
                 req.flash('success', 'Chỉnh sửa sản phẩm thành công');
-                return res.redirect(updateURL + id);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 if (isNewImg) {

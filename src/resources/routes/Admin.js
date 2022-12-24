@@ -109,7 +109,11 @@ router.get('/refreshData', async (req, res, next) => {
         .then(products =>  {
             return products.map(p => {
                 let classify = rollBackArr(p.classify);
-                let categories = p.categories.map((c) => c.level3.name);
+                let categories = p.categories.map((c) => {
+                    if(c) {
+                        return c.level3.name;
+                    }
+                });
                 return [
                     categories.toString(),
                     p.pname,
@@ -126,7 +130,7 @@ router.get('/refreshData', async (req, res, next) => {
         })
     
     API_Products.updateSheet(json);
-    return res.json(json);
+    return res.redirect('/admin/products/storage')
 })
 
 module.exports = router;
