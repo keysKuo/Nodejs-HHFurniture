@@ -163,13 +163,16 @@ const Controller_Products = {
         return await API_Products.update(id, data)
             .then(async (product) => {
                 if (isNewImg) {
-                    for (path of data.oldpath) {
-                        fileapis.deleteSync('./src/public' + path, (err) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
+                    if(data.oldpath) {
+                        for (path of data.oldpath) {
+                            fileapis.deleteSync('./src/public' + path, (err) => {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
                     }
+                    
                 }
                 req.flash('success', 'Chỉnh sửa sản phẩm thành công');
                 return res.redirect('/admin/refreshData');
