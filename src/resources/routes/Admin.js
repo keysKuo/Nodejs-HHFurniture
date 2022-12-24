@@ -11,12 +11,15 @@ const fetch = require('node-fetch');
 
 const { rollBackArr, getRelation } = require('../utils/categoryUtils');
 const reDistribute = require('../utils/reDistribute');
+const createSlug = require('../utils/createSlug');
 // const userRouter = require('./User');
 
 // Home
 router.get('/', (req, res) => {
     return res.render('pages/admin', {
-        layout: 'admin'
+        layout: 'admin',
+        success: req.flash('success') || '',
+        error: req.flash('error') || ''
     });
 })
 
@@ -82,10 +85,17 @@ router.get('/updateByExcel',async (req, res, next) => {
     
             product.classify = reDistribute(product);
 
-            return await API_Products.updateByPID(product.pid, product)
-                .then(async product => {
-                    if(!product) {
-                        await API_Products.create(product);
+            await API_Products.updateByPID(product.pid, product)
+                .then(async p => {
+                    // console.log(p)
+                    if(p == null) {
+                        const slug = createSlug(product.pname, {});
+                        await API_Products.create({...product, slug})
+                            .then(result => {
+                                console.log('success')
+                            }).catch(err => {
+                                console.log(err)
+                            })
                     }
                 })
                 .catch(err => {
@@ -99,7 +109,7 @@ router.get('/updateByExcel',async (req, res, next) => {
         }else {
             req.flash('success', 'Dữ liệu sản phẩm đã được cập nhật');
         }
-        return res.redirect('/admin/products/storage');
+        return res.redirect('/admin');
         // return res.json(newProducts)
     })
 });

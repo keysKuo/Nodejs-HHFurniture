@@ -41,7 +41,7 @@ const Controller_Products = {
             });
         });
 
-        //console.log(products)
+        // console.log(products)
         return res.render('pages/products/storage', {
             layout: 'admin',
             pageName: 'Kho sản phẩm',

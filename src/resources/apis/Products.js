@@ -47,20 +47,28 @@ const API_Products = {
     },
 
     updateSheet: async (data) => {
-        client.authorize((err, tokens) => {
+        client.authorize(async (err, tokens) => {
             if(err) {
                 console.log(err);
                 return;
             }
             else {
                 console.log('Connected');
-                gsrun(client,data);
+                await gsclear(client);
+                await gsrun(client,data);
             }
         })
     }
 };
 
-
+async function gsclear(cl) {
+    const gsapi = google.sheets({version: 'v4', auth: cl});
+        
+    await gsapi.spreadsheets.values.clear({
+        spreadsheetId: '1tKCy3CrwUQP-WXscHNqbv7acOlAGagRFCfzgZc-Wvs0',
+        range: 'Sheet1!A2:Z1000',
+    });
+}
 
 async function gsrun(cl, data) {
     const gsapi = google.sheets({version: 'v4', auth: cl});
@@ -71,7 +79,7 @@ async function gsrun(cl, data) {
         valueInputOption: 'USER_ENTERED',
         resource: { values: data }
     }
-
+    
     let res = await gsapi.spreadsheets.values.update(updateOptions);
     console.log(res)
 }
