@@ -64,7 +64,8 @@ $(document).ready(function () {
 
     function selectVariant(color, size) {
         var $selectedOption = null;
-
+        console.log(color);
+        console.log(size);
         $variants.each(function () {
             if (String($(this).data('color')) === color && String($(this).data('size')) === size) {
                 $variantSelect.val($(this).attr('value'));
@@ -121,16 +122,17 @@ $(document).ready(function () {
         selected: function () {
             $('.ui-selected', this).each(function () {
                 material = $(this).data('material');
-                console.log(material);
+                $('#materialSelect').val(material).change();
+                currentMaterial = material;
             });
         },
     });
     $('#variantProductColor').selectable({
         selected: function () {
-            console.log(this);
             $('.ui-selected', this).each(function () {
                 color = $(this).data('color');
-                console.log(color);
+                $('#colorSelect').val(color).change();
+                currentColor = color;
             });
         },
     });
