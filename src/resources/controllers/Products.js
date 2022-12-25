@@ -41,7 +41,7 @@ const Controller_Products = {
             });
         });
 
-        //console.log(products)
+        // console.log(products)
         return res.render('pages/products/storage', {
             layout: 'admin',
             pageName: 'Kho sản phẩm',
@@ -82,7 +82,7 @@ const Controller_Products = {
         await API_Products.create({ ...data, classify, categories, slug })
             .then(() => {
                 req.flash('success', 'Thêm sản phẩm thành công');
-                return res.redirect(storageURL);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 fileapis.removeDirectory(BASE_URL + 'products/' + data.pdir, (err) => {
@@ -104,7 +104,7 @@ const Controller_Products = {
                     console.log('Thư mục này không còn tồn tại: ' + err);
                 });
                 req.flash('success', 'Xóa sản phẩm thành công');
-                return res.redirect(storageURL);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 req.flash('error', 'Xóa sản phẩm thất bại:' + err);
@@ -163,16 +163,19 @@ const Controller_Products = {
         return await API_Products.update(id, data)
             .then(async (product) => {
                 if (isNewImg) {
-                    for (path of data.oldpath) {
-                        fileapis.deleteSync('./src/public' + path, (err) => {
-                            if (err) {
-                                console.log(err);
-                            }
-                        });
+                    if(data.oldpath) {
+                        for (path of data.oldpath) {
+                            fileapis.deleteSync('./src/public' + path, (err) => {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            });
+                        }
                     }
+                    
                 }
                 req.flash('success', 'Chỉnh sửa sản phẩm thành công');
-                return res.redirect(updateURL + id);
+                return res.redirect('/admin/refreshData');
             })
             .catch((err) => {
                 if (isNewImg) {
