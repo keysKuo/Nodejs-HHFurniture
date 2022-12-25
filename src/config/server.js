@@ -226,6 +226,13 @@ const init = () => {
                 isArray: function (value) {
                     return Array.isArray(value);
                 },
+
+                uniqueArray: function (array) {
+                    var abc = [...array.map((e) => e.colors[0])];
+                    const set = new Set(abc);
+                    const uniqueArray = [...set];
+                    return uniqueArray;
+                },
             },
         }),
     );

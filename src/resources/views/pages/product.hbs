@@ -175,8 +175,8 @@
                                 <div class='d-flex align-items-center'>
                                     <h6 class='mb-0 shop-list-title'>Màu sắc:</h6>
                                     <select style="display: none" name="color" id="colorSelect">
-                                        {{#each product.classify as |item|}}
-                                            <option value="{{item.colors.[0]}}" >{{item.colors.[0]}}</option>
+                                        {{#each (uniqueArray product.classify) as |item| }}
+                                            <option value="{{item}}" >{{item}}</option>
                                         {{/each}}
                                     </select>
 
@@ -184,16 +184,16 @@
                                         class='product-detail-item list-unstyled mb-0 ms-3'
                                         id="variantProductColor"
                                         >                                        
-                                        {{#each product.classify as |item|}}
+                                        {{#each (uniqueArray product.classify) as |item| }}
                                             <li class='list-inline-item'
-                                                data-color="{{item.colors.[0]}}"
+                                                data-color="{{item}}"
                                                 >
                                                 <a
                                                     id="color"
                                                     href='javascript:void(0)'
                                                     class='btn btn-icon btn-soft-primary chose'
-                                                    title="{{item.colors.[0]}}"
-                                                >{{item.colors.[0]}}</a>
+                                                    title="{{item}}"
+                                                >{{item}}</a>
                                             </li>
                                         {{/each}}
                                     </ul>
