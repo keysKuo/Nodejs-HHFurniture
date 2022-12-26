@@ -44,19 +44,15 @@ const Controller_Category = {
     // ++++++++++ System Controller +++++++++++
     // /category/storage
     GET_categoryStorage: async (req, res, next) => {
-        let level1 = await API_Category.readMany({ level: 1 });
-        let level2 = await API_Category.readMany({ level: 2 });
-        let level3 = await API_Category.readMany({ level: 3 });
-
+        let lsCat = await getCatTree();
+        // console.log(lsCat)
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
         return res.render('pages/categories/storage', {
             layout: 'admin',
             pageName: 'Danh mục sản phẩm',
-            level1,
-            level2,
-            level3,
+            lsCat,
             error,
             success,
         });
@@ -258,6 +254,26 @@ const Controller_Category = {
             });
         }
     },
+
+    // [POST] /admin/category/sort
+    POST_sortCategory: async (req, res, next) => {
+        const { level1, level2, level3 } = req.body;
+        
+        for(let i = level1.length - 1; i >= 0; i--) {
+            await API_Category.update(level1[i], {});
+        }
+
+        for(let i = level2.length - 1; i >= 0; i--) {
+            await API_Category.update(level2[i], {});
+        }
+
+        for(let i = level3.length - 1; i >= 0; i--) {
+            await API_Category.update(level3[i], {});
+        }
+        
+        req.flash('success', 'Đã cập nhất dữ liệu danh mục');
+        return res.redirect('/admin/category/storage')
+    }
 };
 
 module.exports = Controller_Category;

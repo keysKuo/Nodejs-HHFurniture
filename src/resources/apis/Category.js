@@ -15,13 +15,13 @@ const API_Category = {
         if (select) {
             return await Category.find(loaders, options)
                 .select(select)
-                .sort({ createdAt: -1 })
+                .sort({ updatedAt: -1 })
                 .populate({ path: 'parent', populate: 'parent' })
                 .lean();
         }
 
         return await Category.find(loaders, options)
-            .sort({ createdAt: -1 })
+            .sort({ updatedAt: -1 })
             .populate({ path: 'parent', populate: 'parent' })
             .lean();
     },

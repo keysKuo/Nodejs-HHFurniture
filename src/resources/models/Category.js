@@ -6,6 +6,9 @@ const Category = new Schema({
     parent: { type: Schema.Types.ObjectId, ref: 'Category' },
     level: { type: Number },
     slug: { type: String, required: true},
+},
+{
+    timestamps: true
 });
 
 module.exports = mongoose.model('Category', Category);

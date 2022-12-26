@@ -7,7 +7,7 @@ router.get('/create', Controller_Category.GET_createCategory);
 router.post('/create', Controller_Category.POST_createCategory);
 router.get('/storage', Controller_Category.GET_categoryStorage);
 router.post('/delete/:id', Controller_Category.POST_removeCategory);
-
+router.post('/sort', Controller_Category.POST_sortCategory);
 // CLient Controllers
 //router.get('/:slug', Controller_Category.GET_CategoryPage);
 
