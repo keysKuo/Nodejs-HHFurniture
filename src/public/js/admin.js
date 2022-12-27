@@ -185,6 +185,11 @@ $(document).ready(function () {
         $('#categories').val(cateStr);
         parent.remove();
     })
+
+    $('#updateBtn').click(function() {
+        
+        $('.layer').show();
+    })
 });
 
 
