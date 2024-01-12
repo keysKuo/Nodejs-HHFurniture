@@ -4,7 +4,7 @@ require('dotenv').config();
 async function connect() {
     try {
         await mongoose.connect(
-            `mongodb+srv://HHFurniture:${process.env.DB_PASSWORD}@cluster0.qvzoay3.mongodb.net/?retryWrites=true&w=majority`,
+            `mongodb+srv://nkeyskuo124:w8x42bbZtE9V1CIe@delirate.sghuaxp.mongodb.net/`,
             {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
